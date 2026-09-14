@@ -14,10 +14,25 @@ export type Bindings = {
   DB: Database;
   ADMIN_PASSWORD?: string;
   SESSION_SECRET?: string;
+  /**
+   * The public origin when TLS is terminated by a trusted reverse proxy.
+   * Keep this unset for local development.
+   */
+  PUBLIC_ORIGIN?: string;
   OLLAMA_BASE_URL?: string;
   OLLAMA_MODEL?: string;
   ASSETS?: { fetch(request: Request): Promise<Response> };
 };
+function publicOrigin(bindings: Bindings, requestUrl: string) {
+  const value = bindings.PUBLIC_ORIGIN?.trim();
+  if (!value) return new URL(requestUrl).origin;
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol) ? url.origin : null;
+  } catch {
+    return null;
+  }
+}
 async function sameSecret(a: string, b: string) {
   const digest = async (v: string) =>
     new Uint8Array(
@@ -51,7 +66,8 @@ export function createApp() {
   app.use("/api/*", async (c, next) => {
     c.header("Cache-Control", "no-store");
     if (!["GET", "HEAD", "OPTIONS"].includes(c.req.method)) {
-      if (c.req.header("origin") !== new URL(c.req.url).origin)
+      const origin = publicOrigin(c.env, c.req.url);
+      if (!origin || c.req.header("origin") !== origin)
         return c.json({ error: "Same-origin request required" }, 403);
       if (c.req.header("sec-fetch-site") === "cross-site")
         return c.json({ error: "Cross-site request denied" }, 403);
@@ -104,10 +120,12 @@ export function createApp() {
       secret,
       "HS256",
     );
+    const origin = publicOrigin(c.env, c.req.url);
+    if (!origin) return c.json({ error: "Public origin is invalid" }, 503);
     setCookie(c, "research_session", token, {
       httpOnly: true,
       sameSite: "Strict",
-      secure: new URL(c.req.url).protocol === "https:",
+      secure: new URL(origin).protocol === "https:",
       path: "/",
       maxAge: 28800,
     });

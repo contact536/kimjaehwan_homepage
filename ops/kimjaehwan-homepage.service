@@ -1,0 +1,21 @@
+[Unit]
+Description=Kim Jaehwan research homepage
+After=network.target
+
+[Service]
+Type=simple
+User=kimhomepage
+Group=kimhomepage
+WorkingDirectory=/srv/kimjaehwan-homepage
+EnvironmentFile=/etc/kimjaehwan-homepage.env
+ExecStart=/usr/bin/node --env-file=/etc/kimjaehwan-homepage.env --experimental-strip-types server/local.ts
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/kimjaehwan-homepage
+
+[Install]
+WantedBy=multi-user.target

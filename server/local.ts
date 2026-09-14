@@ -15,6 +15,7 @@ app.use("*", async (c, next) => {
     DB: db,
     ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
     SESSION_SECRET: process.env.SESSION_SECRET,
+    PUBLIC_ORIGIN: process.env.PUBLIC_ORIGIN,
     OLLAMA_BASE_URL: process.env.OLLAMA_BASE_URL,
     OLLAMA_MODEL: process.env.OLLAMA_MODEL,
   };

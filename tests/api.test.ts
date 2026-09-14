@@ -175,3 +175,38 @@ test("login throttling and unconfigured credentials fail closed", async () => {
     close();
   }
 });
+test("a configured public origin preserves CSRF checks and secure cookies behind TLS proxy", async () => {
+  const { db, close } = openDatabase(":memory:");
+  const app = createApp();
+  const env: Bindings = {
+    DB: db,
+    ADMIN_PASSWORD: password,
+    SESSION_SECRET: secret,
+    PUBLIC_ORIGIN: "https://kimjaehwan.com",
+  };
+  try {
+    const response = await app.request(
+      "http://127.0.0.1:4317/api/auth/login",
+      {
+        method: "POST",
+        headers: { origin: "https://kimjaehwan.com", "content-type": "application/json" },
+        body: JSON.stringify({ password }),
+      },
+      env,
+    );
+    assert.equal(response.status, 200);
+    assert.match(response.headers.get("set-cookie") || "", /Secure/i);
+    const rejected = await app.request(
+      "http://127.0.0.1:4317/api/auth/login",
+      {
+        method: "POST",
+        headers: { origin: "http://kimjaehwan.com", "content-type": "application/json" },
+        body: JSON.stringify({ password }),
+      },
+      env,
+    );
+    assert.equal(rejected.status, 403);
+  } finally {
+    close();
+  }
+});
