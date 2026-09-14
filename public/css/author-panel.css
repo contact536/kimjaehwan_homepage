@@ -1,0 +1,13 @@
+/* Shared author context on supporting pages, inspired by Academic Pages. */
+.author-layout { display:grid; grid-template-columns:180px minmax(0,1fr); gap:48px; max-width:1080px; margin:0 auto; padding:52px 28px 76px; align-items:start; }
+.author-layout>.kim-page { padding:0; margin:0; width:100%; min-width:0; }
+.author-panel { position:sticky; top:160px; padding-top:8px; }
+.author-photo { display:block; width:110px; margin-bottom:20px; }
+.author-photo img { display:block; width:110px; height:110px; object-fit:cover; object-position:center 28%; border-radius:50%; }
+.author-name { display:block; color:var(--text-primary); font-size:1.25rem; font-weight:700; text-decoration:none; }
+.author-name span { display:block; font-size:.9375rem; font-weight:400; color:var(--text-secondary); margin-top:2px; }
+.author-info p { font-size:.9375rem; line-height:1.8; margin:14px 0 20px; color:var(--text-secondary); }
+.author-info nav { display:grid; gap:9px; border-top:1px solid var(--border); padding-top:16px; font-size:.9375rem; }
+.author-panel a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+@media(max-width:850px) { .author-layout { grid-template-columns:1fr; gap:30px; padding:30px 22px 60px; } .author-panel { position:static; display:flex; gap:18px; border-bottom:1px solid var(--border); padding:0 0 24px; } .author-photo,.author-photo img { width:72px; height:72px; flex-shrink:0; } .author-photo { margin:0; } .author-info { min-width:0; } .author-name { font-size:1.125rem; } .author-info p { margin:7px 0 10px; } .author-info nav { display:flex; flex-wrap:wrap; gap:8px 18px; padding:0; border:0; font-size:.875rem; } }
+@media print { .author-layout { display:block; padding:0; } .author-panel { display:none; } }

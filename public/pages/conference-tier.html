@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conference Tier — 김재환</title>
+  <link rel="icon" type="image/png" href="../assets/kim-mark.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .tier-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 20px;
+      align-items: center;
+    }
+
+    .tier-search {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .tier-search i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .tier-search input {
+      width: 100%;
+      padding: 12px 16px 12px 40px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
+    }
+
+    .tier-search input:focus {
+      outline: none;
+      border-color: rgb(var(--page-color, 108, 99, 255));
+      box-shadow: 0 0 0 3px rgba(var(--page-color, 108, 99, 255), 0.1);
+    }
+
+    .tier-filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .filter-row-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding-top: 10px;
+      min-width: 54px;
+      flex-shrink: 0;
+    }
+
+    .filter-hint {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+      margin: 4px 0 20px;
+      font-style: italic;
+    }
+
+    .tier-filter-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tier-filter-btn:hover {
+      border-color: rgba(var(--page-color, 108, 99, 255), 0.4);
+    }
+
+    .tier-filter-btn.active {
+      background: rgb(var(--page-color, 108, 99, 255));
+      color: white;
+      border-color: rgb(var(--page-color, 108, 99, 255));
+    }
+
+    .tier-table-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .tier-table thead {
+      background: rgba(var(--page-color, 108, 99, 255), 0.06);
+      border-bottom: 2px solid rgba(var(--page-color, 108, 99, 255), 0.15);
+    }
+
+    .tier-table th {
+      padding: 14px 18px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgb(var(--page-color, 108, 99, 255));
+    }
+
+    .tier-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s ease;
+    }
+
+    .tier-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .tier-table tbody tr:hover {
+      background: rgba(var(--page-color, 108, 99, 255), 0.04);
+    }
+
+    .tier-table td {
+      padding: 12px 18px;
+      color: var(--text-primary);
+    }
+
+    .tier-conf-name {
+      font-weight: 600;
+    }
+
+    .tier-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      min-width: 48px;
+      text-align: center;
+    }
+
+    .tier-badge--a-star { background: #fbeae5; color: #c53030; }
+    .tier-badge--a      { background: #fff1cc; color: #b7791f; }
+    .tier-badge--a-b2   { background: #fde8ec; color: #a04860; }
+    .tier-badge--a-b    { background: #e0e7ff; color: #4c51bf; }
+    .tier-badge--b      { background: #d4f1e3; color: #2f855a; }
+    .tier-badge--b-c    { background: #d4e4f7; color: #2b6cb0; }
+    .tier-badge--c      { background: #e5e7eb; color: #4b5563; }
+    .tier-badge--d      { background: #f3e8e8; color: #77554d; }
+
+    .format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .format-badge i {
+      font-size: 0.72rem;
+    }
+
+    .format-badge--inperson { background: #fef3c7; color: #92400e; }
+    .format-badge--hybrid   { background: #dbeafe; color: #1e40af; }
+    .format-badge--online   { background: #d1fae5; color: #065f46; }
+
+    .field-chip {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: rgba(var(--page-color, 108, 99, 255), 0.08);
+      color: rgb(var(--page-color, 108, 99, 255));
+    }
+
+    .field-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      max-width: 180px;
+    }
+
+    .tier-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 24px 0 12px;
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    .tier-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tier-empty {
+      padding: 40px;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    .tier-count {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .tier-note {
+      margin-top: 20px;
+      padding: 16px 20px;
+      border-left: 3px solid rgb(var(--page-color, 108, 99, 255));
+      background: rgba(var(--page-color, 108, 99, 255), 0.05);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .tier-note strong {
+      color: var(--text-primary);
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      background: rgba(var(--page-color, 108, 99, 255), 0.08);
+      color: rgb(var(--page-color, 108, 99, 255));
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .source-link:hover {
+      background: rgba(var(--page-color, 108, 99, 255), 0.18);
+      color: rgb(var(--page-color, 108, 99, 255));
+    }
+
+    .source-link i {
+      font-size: 0.68rem;
+    }
+
+    .method-note {
+      margin-top: 40px;
+      padding: 22px 26px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      border-left: 4px solid rgb(var(--page-color, 108, 99, 255));
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .method-note h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .method-note h3 i {
+      color: rgb(var(--page-color, 108, 99, 255));
+    }
+
+    .method-note p {
+      margin-bottom: 10px;
+    }
+
+    .method-note ul {
+      padding-left: 22px;
+      margin-bottom: 12px;
+    }
+
+    .method-note li {
+      margin-bottom: 6px;
+    }
+
+    .method-note a {
+      color: rgb(var(--page-color, 108, 99, 255));
+      font-weight: 600;
+    }
+
+    .method-note__small {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .tier-table {
+        font-size: 0.82rem;
+      }
+      .tier-table th,
+      .tier-table td {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+<link rel="stylesheet" href="/css/kim.css"><link rel="stylesheet" href="/css/academic.css"><script src="/js/academic.js" defer></script><script defer src="/js/page-finder.js"></script><link rel="stylesheet" href="/css/page-finder.css"><link rel="stylesheet" href="/css/typography.css"></head>
+<body><header class="academic-header"><div class="academic-nav"><a class="academic-brand" href="/">김재환 <span>Jaehwan Kim</span></a><button class="academic-menu-toggle" aria-expanded="false" aria-controls="academicMenu">메뉴</button><nav id="academicMenu" aria-label="주 메뉴"><a href="/">소개</a><a href="/pages/research.html">연구</a><a href="/pages/projects.html">프로젝트</a><a href="/pages/publications.html">논문 · 자료</a><a href="/pages/experience.html">CV</a><a href="/pages/contact.html">연락</a><details class="academic-tools"><summary>연구 도구</summary><div><a href="/pages/conference-tier.html">학회 탐색</a><a href="/pages/journal.html">저널 탐색</a><a href="/pages/patents.html">지식재산</a><a href="/pages/assistant.html">연구 도우미</a></div></details><details class="page-finder"><summary>페이지 찾기</summary><div class="finder-panel"><label for="page-finder-query">연구 주제 또는 페이지 이름</label><input id="page-finder-query" type="search" placeholder="예: CLOA, 세무, CV" autocomplete="off"><p class="finder-count" role="status" aria-live="polite">11개 바로가기</p><div class="finder-results"><a href="/" data-keywords="프로필 XAIKOREA 대표 AI 연구원 Jaehwan Kim">소개 · 김재환<small>프로필 XAIKOREA 대표 AI 연구원 Jaehwan Kim</small></a><a href="/pages/research.html#cloa" data-keywords="인용 RAG 검색 Citation-Linked Output Architecture">CLOA · 근거 기반 AI<small>인용 RAG 검색 Citation-Linked Output Architecture</small></a><a href="/pages/research.html#taxia" data-keywords="세금 세무 회계 LLM SaaS">TAXiA · 세무회계 AI<small>세금 세무 회계 LLM SaaS</small></a><a href="/pages/research.html#kortaxarena" data-keywords="벤치마크 세무 LLM benchmark">KorTaxArena · 한국어 모델 평가<small>벤치마크 세무 LLM benchmark</small></a><a href="/pages/projects.html" data-keywords="연구 개발 과제">프로젝트<small>연구 개발 과제</small></a><a href="/pages/publications.html" data-keywords="출판 연구 기록 publications">논문 · 자료<small>출판 연구 기록 publications</small></a><a href="/pages/experience.html" data-keywords="이력 박사 MBA education career">CV · 학력과 경력<small>이력 박사 MBA education career</small></a><a href="/pages/conference-tier.html" data-keywords="컨퍼런스 conference 등급 NeurIPS ICML">학회 탐색<small>컨퍼런스 conference 등급 NeurIPS ICML</small></a><a href="/pages/journal.html" data-keywords="학술지 journal 등급">저널 탐색<small>학술지 journal 등급</small></a><a href="/pages/patents.html" data-keywords="특허 출원 patent">지식재산<small>특허 출원 patent</small></a><a href="/pages/contact.html" data-keywords="이메일 email contact 문의">연락 · 연구 협업<small>이메일 email contact 문의</small></a></div><p class="finder-empty" hidden>찾는 페이지가 없습니다. 다른 검색어를 입력해 주세요.</p></div></details></nav></div></header><p class="kim-catalog-note">학회·저널 참고 자료 · 원본 스냅샷 기준 · <a href="/">김재환 연구 플랫폼</a></p>
+  <script src="../js/theme.js"></script>
+  
+
+  <main class="page-content" data-theme="deadlines">
+    <div class="container">
+      <h1 class="page-title">
+        <span class="page-icon"><i class="fas fa-layer-group"></i></span>
+        Conference Tier
+      </h1>
+      <p class="page-subtitle">Computer Science conference rankings by tier, acceptance rate, and field.</p>
+
+      <div class="tier-legend">
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--a-star">A*</span> Top-tier</span>
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--a">A</span> Excellent</span>
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--a-b2">A/B</span> Between A and B</span>
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--a-b">A-/B+</span> A minus / B plus</span>
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--b">B</span> Good</span>
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--b-c">B/C</span> Between B and C</span>
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--c">C</span> Standard</span>
+        <span class="tier-legend-item"><span class="tier-badge tier-badge--d">D</span> Minor / Regional</span>
+      </div>
+
+      <div class="tier-controls">
+        <div class="tier-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="tierSearch" placeholder="Search by conference name or field...">
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-row-label">Tier</span>
+        <div class="tier-filters" id="tierFilters">
+          <button class="tier-filter-btn active" data-tier="all">All</button>
+          <button class="tier-filter-btn" data-tier="A*">A*</button>
+          <button class="tier-filter-btn" data-tier="A">A</button>
+          <button class="tier-filter-btn" data-tier="A/B">A/B</button>
+          <button class="tier-filter-btn" data-tier="A-/B+">A-/B+</button>
+          <button class="tier-filter-btn" data-tier="B">B</button>
+          <button class="tier-filter-btn" data-tier="B/C">B/C</button>
+          <button class="tier-filter-btn" data-tier="C">C</button>
+          <button class="tier-filter-btn" data-tier="D">D</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-row-label">Field</span>
+        <div class="tier-filters" id="fieldFilters"></div>
+      </div>
+
+      <p class="filter-hint">Tip: Click multiple Tier or Field buttons to combine filters. Click again to deselect.</p>
+
+      <div class="tier-table-wrapper">
+        <table class="tier-table" id="tierTable">
+          <thead>
+            <tr>
+              <th>Conference</th>
+              <th>Acceptance</th>
+              <th>Field</th>
+              <th>Tier</th>
+              <th>Format</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="tierTableBody"></tbody>
+        </table>
+        <div class="tier-empty" id="tierEmpty" style="display:none;">
+          <i class="fas fa-inbox" style="font-size:2rem; opacity:0.3; margin-bottom:10px;"></i>
+          <p>No conferences match your filter.</p>
+        </div>
+      </div>
+
+      <div class="tier-count" id="tierCount"></div>
+
+      <!-- Methodology Note -->
+      <div class="method-note">
+        <h3><i class="fas fa-info-circle"></i> Methodology &amp; Disclaimer</h3>
+        <p>Tiers on this page are <strong>not based solely on acceptance rate</strong>. They combine multiple sources:</p>
+        <ul>
+          <li>User-curated list (63 conferences): community consensus (CORE/CCF-style judgment).</li>
+          <li>Bulk additions (~200 conferences): averaged rankings from Korea's top CS schools (KAIST, SNU, POSTECH), BK21+ IF, and Korean Information Science Society — aggregated in <a href="https://gist.github.com/Pusnow/6eb933355b5cb8d31ef1abcb3c3e1206" target="_blank">Pusnow's CS Conference Ranking</a>.</li>
+          <li>D-tier additions (~70 conferences): estimated from general community reputation. Acceptance rates marked with "~" are <em>approximations</em> and may not reflect official published numbers.</li>
+          <li>Format (In-person / Hybrid / Online) is inferred from recent editions and may change year to year.</li>
+        </ul>
+        <p><strong>Official ranking sources:</strong>
+          <a href="https://portal.core.edu.au/conf-ranks/" target="_blank">CORE</a> ·
+          <a href="https://www.ccf.org.cn/Academic_Evaluation/By_category/" target="_blank">CCF</a> ·
+          <a href="https://research.com/conference-rankings/computer-science" target="_blank">Research.com</a> ·
+          <a href="https://dblp.org/" target="_blank">DBLP</a> ·
+          <a href="https://gist.github.com/Pusnow/6eb933355b5cb8d31ef1abcb3c3e1206" target="_blank">Pusnow gist</a>
+        </p>
+        <p class="method-note__small">The "Source" column links to DBLP search for each conference — use it to verify existence, publication record, and recent editions.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 김재환. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const CONFERENCES = [
+      { name: "NeurIPS", acceptance: "24-26%", field: "ML", tier: "A*", format: "Hybrid" },
+      { name: "ICML", acceptance: "25-30%", field: "ML", tier: "A*", format: "Hybrid" },
+      { name: "ICLR", acceptance: "30-32%", field: "ML", tier: "A*", format: "Hybrid" },
+      { name: "AAAI", acceptance: "20-25%", field: "AI", tier: "A", format: "In-person" },
+      { name: "IJCAI", acceptance: "15-25%", field: "AI", tier: "A", format: "In-person" },
+      { name: "ACL", acceptance: "20-25%", field: "NLP", tier: "A*", format: "Hybrid" },
+      { name: "EMNLP", acceptance: "20-30%", field: "NLP", tier: "A*", format: "Hybrid" },
+      { name: "NAACL", acceptance: "20-25%", field: "NLP", tier: "A", format: "Hybrid" },
+      { name: "CVPR", acceptance: "22-26%", field: "CV", tier: "A*", format: "In-person" },
+      { name: "ICCV", acceptance: "24-26%", field: "CV", tier: "A*", format: "In-person" },
+      { name: "ECCV", acceptance: "27-30%", field: "CV", tier: "A*", format: "In-person" },
+      { name: "KDD", acceptance: "18-22%", field: "Data", tier: "A", format: "In-person" },
+      { name: "WWW", acceptance: "20-23%", field: "Web/Data", tier: "A", format: "In-person" },
+      { name: "ICDM", acceptance: "13-25%", field: "Data", tier: "A", format: "Hybrid" },
+      { name: "SIGCOMM", acceptance: "10-16%", field: "Network", tier: "A*", format: "In-person" },
+      { name: "NSDI", acceptance: "12-15%", field: "Systems", tier: "A*", format: "In-person" },
+      { name: "OSDI", acceptance: "~15%", field: "Systems", tier: "A*", format: "In-person" },
+      { name: "SOSP", acceptance: "~15%", field: "Systems", tier: "A*", format: "In-person" },
+      { name: "ASPLOS", acceptance: "15-20%", field: "Arch", tier: "A*", format: "In-person" },
+      { name: "ISCA", acceptance: "20-25%", field: "Arch", tier: "A*", format: "In-person" },
+      { name: "MICRO", acceptance: "~20%", field: "Arch", tier: "A*", format: "In-person" },
+      { name: "HPCA", acceptance: "20-25%", field: "Arch", tier: "A", format: "In-person" },
+      { name: "ICSE", acceptance: "~20%", field: "SE", tier: "A*", format: "In-person" },
+      { name: "FSE", acceptance: "~20%", field: "SE", tier: "A*", format: "In-person" },
+      { name: "IEEE S&P", acceptance: "12-15%", field: "Security", tier: "A*", format: "In-person" },
+      { name: "USENIX Security", acceptance: "16-20%", field: "Security", tier: "A*", format: "In-person" },
+      { name: "ACM CCS", acceptance: "14-25%", field: "Security", tier: "A*", format: "In-person" },
+      { name: "NDSS", acceptance: "~16%", field: "Security", tier: "A*", format: "In-person" },
+      { name: "ICRA", acceptance: "40-45%", field: "Robotics", tier: "A", format: "In-person" },
+      { name: "IROS", acceptance: "35-45%", field: "Robotics", tier: "A", format: "In-person" },
+      { name: "ICCAD", acceptance: "18-25%", field: "EDA", tier: "A", format: "In-person" },
+      { name: "DAC", acceptance: "20-25%", field: "EDA", tier: "A", format: "In-person" },
+      { name: "DATE", acceptance: "~25%", field: "EDA", tier: "A", format: "Hybrid" },
+      { name: "ASP-DAC", acceptance: "28-31%", field: "EDA", tier: "A-/B+", format: "In-person" },
+      { name: "ESWEEK", acceptance: "Varies", field: "Embedded", tier: "A-/B+", format: "Hybrid" },
+      { name: "EMSOFT", acceptance: "~30%", field: "Embedded SW", tier: "A-/B+", format: "In-person" },
+      { name: "CODES+ISSS", acceptance: "~27%", field: "HW-SW Co-design", tier: "A-/B+", format: "In-person" },
+      { name: "CASES", acceptance: "N/A", field: "Embedded Arch", tier: "B", format: "Hybrid" },
+      { name: "MEMOCODE", acceptance: "N/A", field: "Formal/EDA", tier: "B", format: "Hybrid" },
+      { name: "ICPR", acceptance: "45-55%", field: "CV", tier: "B", format: "In-person" },
+      { name: "ICONIP", acceptance: "30-60%", field: "ML", tier: "B/C", format: "Hybrid" },
+      { name: "PRICAI", acceptance: "30-40%", field: "AI", tier: "B", format: "In-person" },
+      { name: "IJCNN", acceptance: "40-50%", field: "DL", tier: "B", format: "Hybrid" },
+      { name: "ICIP", acceptance: "40-45%", field: "CV", tier: "B", format: "In-person" },
+      { name: "ICASSP", acceptance: "40-50%", field: "Signal", tier: "B", format: "Hybrid" },
+      { name: "IEEE BigData", acceptance: "20-30%", field: "Data", tier: "B", format: "Hybrid" },
+      { name: "CCGrid", acceptance: "25-35%", field: "Cloud", tier: "B", format: "Hybrid" },
+      { name: "HPCC", acceptance: "30-40%", field: "HPC", tier: "B", format: "Hybrid" },
+      { name: "ICMLA", acceptance: "35-50%", field: "ML", tier: "B/C", format: "Hybrid" },
+      { name: "WCNC", acceptance: "30-40%", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "GLOBECOM", acceptance: "35-45%", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "INFOCOM", acceptance: "~20%", field: "Network", tier: "A/B", format: "Hybrid" },
+      { name: "ICCS", acceptance: "30-40%", field: "Computing", tier: "B/C", format: "Hybrid" },
+      { name: "ICCSA", acceptance: "30-50%", field: "Computing", tier: "B/C", format: "Hybrid" },
+      { name: "ICUFN", acceptance: "30-50%", field: "Network", tier: "C", format: "Hybrid" },
+      { name: "ICAIIC", acceptance: "40-60%", field: "AI", tier: "C", format: "Hybrid" },
+      { name: "COINS", acceptance: "N/A", field: "AI/Systems", tier: "C", format: "Hybrid" },
+      { name: "ICACT", acceptance: "50-70%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "ICTC", acceptance: "50-70%", field: "ICT", tier: "D", format: "Hybrid" },
+      { name: "ICEIC", acceptance: "50-70%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "ICCE", acceptance: "40-50%", field: "Embedded", tier: "C", format: "Hybrid" },
+      { name: "CIT", acceptance: "40-60%", field: "General CS", tier: "C", format: "Hybrid" },
+      { name: "ICIT", acceptance: "40-60%", field: "Industry", tier: "C", format: "Hybrid" },
+      { name: "ICIIT", acceptance: "50-70%", field: "IT", tier: "D", format: "Hybrid" },
+      { name: "AAMAS", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "ACCV", acceptance: "N/A", field: "CV", tier: "B", format: "Hybrid" },
+      { name: "ACL Findings", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "ACNS", acceptance: "N/A", field: "Crypto", tier: "B/C", format: "Hybrid" },
+      { name: "ACSAC", acceptance: "N/A", field: "Security", tier: "A-/B+", format: "Hybrid" },
+      { name: "AIED", acceptance: "N/A", field: "Education", tier: "B/C", format: "Hybrid" },
+      { name: "AISTATS", acceptance: "N/A", field: "ML, Theory", tier: "A", format: "Hybrid" },
+      { name: "ANCS", acceptance: "N/A", field: "Network", tier: "B", format: "Hybrid" },
+      { name: "ARITH", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "ASE", acceptance: "N/A", field: "SE", tier: "A*", format: "In-person" },
+      { name: "ASIACCS", acceptance: "N/A", field: "Security", tier: "B", format: "Hybrid" },
+      { name: "ASIACRYPT", acceptance: "N/A", field: "Crypto", tier: "B/C", format: "In-person" },
+      { name: "ASONAM", acceptance: "N/A", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "ASRU", acceptance: "N/A", field: "NLP/Speech", tier: "B/C", format: "Hybrid" },
+      { name: "AVSS", acceptance: "N/A", field: "General CS", tier: "C", format: "Hybrid" },
+      { name: "BCB", acceptance: "N/A", field: "Medical/Bio", tier: "B/C", format: "Hybrid" },
+      { name: "BIBM", acceptance: "N/A", field: "Medical/Bio", tier: "B/C", format: "Hybrid" },
+      { name: "BIGDATA", acceptance: "N/A", field: "Data", tier: "B/C", format: "Hybrid" },
+      { name: "BMVC", acceptance: "N/A", field: "CV", tier: "A-/B+", format: "Hybrid" },
+      { name: "Blockchain", acceptance: "N/A", field: "Blockchain", tier: "B/C", format: "Hybrid" },
+      { name: "CADE", acceptance: "N/A", field: "EDA/HW", tier: "B/C", format: "Hybrid" },
+      { name: "CAV", acceptance: "N/A", field: "SE, Theory", tier: "A*", format: "In-person" },
+      { name: "CC", acceptance: "N/A", field: "PL", tier: "B", format: "Hybrid" },
+      { name: "CCC", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "CCS", acceptance: "N/A", field: "Security", tier: "A*", format: "In-person" },
+      { name: "CGO", acceptance: "N/A", field: "PL", tier: "A-/B+", format: "Hybrid" },
+      { name: "CHES", acceptance: "N/A", field: "Crypto", tier: "B/C", format: "Hybrid" },
+      { name: "CHI", acceptance: "N/A", field: "HCI", tier: "A*", format: "In-person" },
+      { name: "CIDR", acceptance: "N/A", field: "Data", tier: "A-/B+", format: "Hybrid" },
+      { name: "CIKM", acceptance: "N/A", field: "General CS", tier: "A*", format: "Hybrid" },
+      { name: "CLOUD", acceptance: "N/A", field: "Cloud", tier: "B", format: "Hybrid" },
+      { name: "CLUSTER", acceptance: "N/A", field: "Cloud", tier: "B", format: "Hybrid" },
+      { name: "CODASPY", acceptance: "N/A", field: "Security", tier: "B/C", format: "Hybrid" },
+      { name: "COLING", acceptance: "N/A", field: "NLP", tier: "A-/B+", format: "Hybrid" },
+      { name: "COLT", acceptance: "N/A", field: "Theory, ML", tier: "A-/B+", format: "In-person" },
+      { name: "CONCUR", acceptance: "N/A", field: "Theory", tier: "B", format: "Hybrid" },
+      { name: "CONEXT", acceptance: "N/A", field: "Network", tier: "A", format: "Hybrid" },
+      { name: "CPM", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "CRYPTO", acceptance: "N/A", field: "Crypto", tier: "A*", format: "In-person" },
+      { name: "CSCW", acceptance: "N/A", field: "HCI", tier: "A", format: "In-person" },
+      { name: "CSEET", acceptance: "N/A", field: "SE", tier: "C", format: "Hybrid" },
+      { name: "CSF", acceptance: "N/A", field: "Security", tier: "B", format: "Hybrid" },
+      { name: "CoNLL", acceptance: "N/A", field: "NLP/Speech", tier: "B/C", format: "Hybrid" },
+      { name: "CoRL", acceptance: "N/A", field: "Robotics, ML", tier: "B/C", format: "Hybrid" },
+      { name: "CogSci", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "DASFAA", acceptance: "N/A", field: "Data", tier: "B/C", format: "Hybrid" },
+      { name: "DISC", acceptance: "N/A", field: "Systems", tier: "B", format: "Hybrid" },
+      { name: "DLT", acceptance: "N/A", field: "Theory", tier: "B/C", format: "Hybrid" },
+      { name: "DSN", acceptance: "N/A", field: "Network", tier: "B", format: "Hybrid" },
+      { name: "EACL", acceptance: "N/A", field: "NLP", tier: "A-/B+", format: "Hybrid" },
+      { name: "ECAI", acceptance: "N/A", field: "AI", tier: "A-/B+", format: "Hybrid" },
+      { name: "ECCB", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "ECOOP", acceptance: "N/A", field: "PL", tier: "A-/B+", format: "Hybrid" },
+      { name: "ECRTS", acceptance: "N/A", field: "RT", tier: "B", format: "Hybrid" },
+      { name: "EDBT", acceptance: "N/A", field: "Data", tier: "A-/B+", format: "Hybrid" },
+      { name: "EH", acceptance: "N/A", field: "VR/AR", tier: "B/C", format: "Hybrid" },
+      { name: "EMNLP Findings", acceptance: "N/A", field: "NLP/Speech", tier: "B/C", format: "Hybrid" },
+      { name: "ESA", acceptance: "N/A", field: "Theory", tier: "B", format: "Hybrid" },
+      { name: "ESOP", acceptance: "N/A", field: "PL", tier: "A-/B+", format: "Hybrid" },
+      { name: "ESORICS", acceptance: "N/A", field: "Security", tier: "B", format: "Hybrid" },
+      { name: "EURO-PAR", acceptance: "N/A", field: "HPC", tier: "B", format: "Hybrid" },
+      { name: "EUROCRYPT", acceptance: "N/A", field: "Crypto", tier: "A*", format: "In-person" },
+      { name: "EuroS&P", acceptance: "N/A", field: "Security", tier: "B/C", format: "Hybrid" },
+      { name: "EuroSys", acceptance: "N/A", field: "Systems", tier: "A*", format: "In-person" },
+      { name: "EuroVis", acceptance: "N/A", field: "Vis", tier: "B/C", format: "Hybrid" },
+      { name: "Eurographics", acceptance: "N/A", field: "Graphics", tier: "A-/B+", format: "In-person" },
+      { name: "FASE", acceptance: "N/A", field: "SE", tier: "B", format: "Hybrid" },
+      { name: "FC", acceptance: "N/A", field: "Crypto", tier: "B", format: "Hybrid" },
+      { name: "FCCM", acceptance: "N/A", field: "EDA/HW", tier: "B/C", format: "Hybrid" },
+      { name: "FM", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "FMCAD", acceptance: "N/A", field: "EDA/HW", tier: "B/C", format: "Hybrid" },
+      { name: "FOCS", acceptance: "N/A", field: "General CS", tier: "A*", format: "In-person" },
+      { name: "FPGA", acceptance: "N/A", field: "EDA/HW", tier: "B/C", format: "Hybrid" },
+      { name: "FPL", acceptance: "N/A", field: "EDA/HW", tier: "B/C", format: "Hybrid" },
+      { name: "FSE/ESEC", acceptance: "N/A", field: "SE", tier: "A*", format: "In-person" },
+      { name: "GECCO", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "HPDC", acceptance: "N/A", field: "Systems", tier: "A", format: "Hybrid" },
+      { name: "HSCC", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "HiPC", acceptance: "N/A", field: "HPC", tier: "B/C", format: "Hybrid" },
+      { name: "HiPEAC", acceptance: "N/A", field: "PL", tier: "B/C", format: "Hybrid" },
+      { name: "I3D", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "ICALP", acceptance: "N/A", field: "Theory", tier: "A-/B+", format: "Hybrid" },
+      { name: "ICAPS", acceptance: "N/A", field: "AI", tier: "A-/B+", format: "Hybrid" },
+      { name: "ICBC", acceptance: "N/A", field: "Crypto, Blockchain", tier: "B/C", format: "Hybrid" },
+      { name: "ICCD", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "ICCPS", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "ICDCS", acceptance: "N/A", field: "Systems", tier: "A-/B+", format: "Hybrid" },
+      { name: "ICDE", acceptance: "N/A", field: "Data", tier: "A*", format: "In-person" },
+      { name: "ICFP", acceptance: "N/A", field: "PL", tier: "A", format: "In-person" },
+      { name: "ICLP", acceptance: "N/A", field: "PL", tier: "C", format: "Hybrid" },
+      { name: "ICMI", acceptance: "N/A", field: "HCI", tier: "B/C", format: "Hybrid" },
+      { name: "ICMR", acceptance: "N/A", field: "Multimedia", tier: "C", format: "Hybrid" },
+      { name: "ICN", acceptance: "N/A", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "ICNP", acceptance: "N/A", field: "Network", tier: "A-/B+", format: "Hybrid" },
+      { name: "ICPP", acceptance: "N/A", field: "HPC", tier: "B", format: "Hybrid" },
+      { name: "ICS", acceptance: "N/A", field: "HPC", tier: "A-/B+", format: "Hybrid" },
+      { name: "ICSME", acceptance: "N/A", field: "SE", tier: "B", format: "Hybrid" },
+      { name: "ICSOC", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "ICST", acceptance: "N/A", field: "SE", tier: "B", format: "Hybrid" },
+      { name: "ICWS", acceptance: "N/A", field: "IR/Web", tier: "B/C", format: "Hybrid" },
+      { name: "ICWSM", acceptance: "N/A", field: "IR/Web", tier: "B/C", format: "Hybrid" },
+      { name: "IISWC", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "IJCAR", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "IJCNLP", acceptance: "N/A", field: "NLP/Speech", tier: "B/C", format: "Hybrid" },
+      { name: "IM", acceptance: "N/A", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "IMC", acceptance: "N/A", field: "Network", tier: "A", format: "In-person" },
+      { name: "IPDPS", acceptance: "N/A", field: "HPC", tier: "A-/B+", format: "Hybrid" },
+      { name: "IPMI", acceptance: "N/A", field: "Medical/Bio", tier: "B/C", format: "Hybrid" },
+      { name: "IPSN", acceptance: "N/A", field: "Network, Embedded", tier: "A", format: "Hybrid" },
+      { name: "ISAAC", acceptance: "N/A", field: "Theory", tier: "B", format: "Hybrid" },
+      { name: "ISBI", acceptance: "N/A", field: "Medical/Bio", tier: "B/C", format: "Hybrid" },
+      { name: "ISIT", acceptance: "N/A", field: "Theory", tier: "B/C", format: "Hybrid" },
+      { name: "ISLPED", acceptance: "N/A", field: "EDA/HW", tier: "B", format: "Hybrid" },
+      { name: "ISMAR", acceptance: "N/A", field: "VR/AR, HCI", tier: "B", format: "Hybrid" },
+      { name: "ISMB", acceptance: "N/A", field: "Medical/Bio", tier: "A-/B+", format: "Hybrid" },
+      { name: "ISPASS", acceptance: "N/A", field: "SE", tier: "B", format: "Hybrid" },
+      { name: "ISSRE", acceptance: "N/A", field: "SE", tier: "B", format: "Hybrid" },
+      { name: "ISSTA", acceptance: "N/A", field: "SE", tier: "A-/B+", format: "Hybrid" },
+      { name: "ISWC", acceptance: "N/A", field: "IR/Web", tier: "A-/B+", format: "Hybrid" },
+      { name: "ITS", acceptance: "N/A", field: "General CS", tier: "C", format: "Hybrid" },
+      { name: "IUI", acceptance: "N/A", field: "HCI", tier: "B", format: "Hybrid" },
+      { name: "InfoVis", acceptance: "N/A", field: "Vis", tier: "C", format: "Hybrid" },
+      { name: "InterSpeech", acceptance: "N/A", field: "NLP/Speech", tier: "B/C", format: "Hybrid" },
+      { name: "KR", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "LCTES", acceptance: "N/A", field: "PL", tier: "B", format: "Hybrid" },
+      { name: "LICS", acceptance: "N/A", field: "Theory", tier: "A", format: "Hybrid" },
+      { name: "LREC", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "MASCOTS", acceptance: "N/A", field: "Network", tier: "B", format: "Hybrid" },
+      { name: "MASS", acceptance: "N/A", field: "Network", tier: "B", format: "Hybrid" },
+      { name: "MEMSYS", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "MFCS", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "MICCAI", acceptance: "N/A", field: "Medical, CV", tier: "A-/B+", format: "In-person" },
+      { name: "MIDDLEWARE", acceptance: "N/A", field: "Cloud", tier: "B", format: "Hybrid" },
+      { name: "MLSys", acceptance: "N/A", field: "ML", tier: "B/C", format: "Hybrid" },
+      { name: "MM", acceptance: "N/A", field: "Multimedia, CV", tier: "A*", format: "Hybrid" },
+      { name: "MMsys", acceptance: "N/A", field: "Multimedia", tier: "B/C", format: "Hybrid" },
+      { name: "MODELS", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "MSR", acceptance: "N/A", field: "SE", tier: "B/C", format: "Hybrid" },
+      { name: "MSST", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "MobiCom", acceptance: "N/A", field: "Network", tier: "A*", format: "In-person" },
+      { name: "MobiHoc", acceptance: "N/A", field: "Network", tier: "A", format: "Hybrid" },
+      { name: "MobiSys", acceptance: "N/A", field: "Network", tier: "A", format: "In-person" },
+      { name: "MobileHCI", acceptance: "N/A", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "NAACL Findings", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "NAACL/HLT", acceptance: "N/A", field: "NLP", tier: "A*", format: "Hybrid" },
+      { name: "NOMS", acceptance: "N/A", field: "Network", tier: "B", format: "Hybrid" },
+      { name: "NOSSDAV", acceptance: "N/A", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "NeurIPS/NIPS", acceptance: "N/A", field: "ML", tier: "A*", format: "In-person" },
+      { name: "OOPSLA", acceptance: "N/A", field: "PL", tier: "A*", format: "In-person" },
+      { name: "PACT", acceptance: "N/A", field: "HPC", tier: "A*", format: "In-person" },
+      { name: "PAKDD", acceptance: "N/A", field: "Data", tier: "B/C", format: "Hybrid" },
+      { name: "PAM", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "PERCOM", acceptance: "N/A", field: "Network", tier: "A-/B+", format: "Hybrid" },
+      { name: "PERFORMANCE", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "PETS", acceptance: "N/A", field: "Security", tier: "B/C", format: "Hybrid" },
+      { name: "PKC", acceptance: "N/A", field: "Crypto", tier: "B/C", format: "Hybrid" },
+      { name: "PKDD", acceptance: "N/A", field: "ML", tier: "B/C", format: "Hybrid" },
+      { name: "PLDI", acceptance: "N/A", field: "PL", tier: "A*", format: "In-person" },
+      { name: "PODC", acceptance: "N/A", field: "Systems", tier: "A", format: "In-person" },
+      { name: "PODS", acceptance: "N/A", field: "Data", tier: "A*", format: "In-person" },
+      { name: "POPL", acceptance: "N/A", field: "PL", tier: "A*", format: "In-person" },
+      { name: "PPoPP", acceptance: "N/A", field: "PL", tier: "A*", format: "In-person" },
+      { name: "PSB", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "Pacific Graphics", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "RAID", acceptance: "N/A", field: "Security", tier: "A-/B+", format: "Hybrid" },
+      { name: "RE", acceptance: "N/A", field: "SE", tier: "B", format: "Hybrid" },
+      { name: "RECOMB", acceptance: "N/A", field: "IR/Web", tier: "A-/B+", format: "Hybrid" },
+      { name: "RSS", acceptance: "N/A", field: "Robotics", tier: "B", format: "Hybrid" },
+      { name: "RTAS", acceptance: "N/A", field: "RT, Embedded", tier: "A", format: "Hybrid" },
+      { name: "RTSS", acceptance: "N/A", field: "RT, Embedded", tier: "A*", format: "In-person" },
+      { name: "RecSys", acceptance: "N/A", field: "Data", tier: "B", format: "Hybrid" },
+      { name: "S&P", acceptance: "N/A", field: "Security", tier: "A*", format: "In-person" },
+      { name: "SAC", acceptance: "N/A", field: "General CS", tier: "C", format: "Hybrid" },
+      { name: "SANER", acceptance: "N/A", field: "SE", tier: "B/C", format: "Hybrid" },
+      { name: "SAS", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "SC", acceptance: "N/A", field: "Network", tier: "A*", format: "In-person" },
+      { name: "SCA", acceptance: "N/A", field: "Graphics", tier: "B/C", format: "Hybrid" },
+      { name: "SDM", acceptance: "N/A", field: "Data", tier: "B", format: "Hybrid" },
+      { name: "SEC", acceptance: "N/A", field: "Security", tier: "B/C", format: "Hybrid" },
+      { name: "SECON", acceptance: "N/A", field: "Network", tier: "B", format: "Hybrid" },
+      { name: "SGP", acceptance: "N/A", field: "Graphics", tier: "B", format: "Hybrid" },
+      { name: "SIGDIAL", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "SIGGRAPH", acceptance: "N/A", field: "Graphics", tier: "A", format: "In-person" },
+      { name: "SIGGRAPH ASIA", acceptance: "N/A", field: "Graphics", tier: "A-/B+", format: "In-person" },
+      { name: "SIGIR", acceptance: "N/A", field: "IR/Web, Data", tier: "A*", format: "In-person" },
+      { name: "SIGMETRICS", acceptance: "N/A", field: "General CS", tier: "A*", format: "In-person" },
+      { name: "SIGMOD", acceptance: "N/A", field: "General CS", tier: "A*", format: "In-person" },
+      { name: "SLT", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "SOCC", acceptance: "N/A", field: "Cloud", tier: "B", format: "Hybrid" },
+      { name: "SOCG", acceptance: "N/A", field: "General CS", tier: "A-/B+", format: "Hybrid" },
+      { name: "SODA", acceptance: "N/A", field: "Theory", tier: "A*", format: "In-person" },
+      { name: "SOUPS", acceptance: "N/A", field: "Security", tier: "B", format: "Hybrid" },
+      { name: "SPAA", acceptance: "N/A", field: "HPC", tier: "A", format: "Hybrid" },
+      { name: "SRDS", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "STACS", acceptance: "N/A", field: "General CS", tier: "B", format: "Hybrid" },
+      { name: "STOC", acceptance: "N/A", field: "Theory", tier: "A*", format: "In-person" },
+      { name: "SWAT", acceptance: "N/A", field: "Theory", tier: "B/C", format: "Hybrid" },
+      { name: "SYSTOR", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "SenSys", acceptance: "N/A", field: "Network, Embedded", tier: "A", format: "In-person" },
+      { name: "TACAS", acceptance: "N/A", field: "Theory, SE", tier: "A-/B+", format: "Hybrid" },
+      { name: "TCC", acceptance: "N/A", field: "Crypto", tier: "C", format: "Hybrid" },
+      { name: "UAI", acceptance: "N/A", field: "ML", tier: "A", format: "Hybrid" },
+      { name: "UBICOMP", acceptance: "N/A", field: "HCI", tier: "A*", format: "In-person" },
+      { name: "UIST", acceptance: "N/A", field: "SE", tier: "A", format: "In-person" },
+      { name: "USENIX ATC", acceptance: "N/A", field: "General CS", tier: "A*", format: "In-person" },
+      { name: "USENIX FAST", acceptance: "N/A", field: "Systems", tier: "A", format: "In-person" },
+      { name: "USENIX NSDI", acceptance: "N/A", field: "Network", tier: "A", format: "In-person" },
+      { name: "USENIX OSDI", acceptance: "N/A", field: "Systems", tier: "A*", format: "In-person" },
+      { name: "VEE", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "VIS", acceptance: "N/A", field: "Vis", tier: "A", format: "Hybrid" },
+      { name: "VLDB / PVLDB", acceptance: "N/A", field: "General CS", tier: "A*", format: "In-person" },
+      { name: "VMCAI", acceptance: "N/A", field: "SE", tier: "B/C", format: "Hybrid" },
+      { name: "VR", acceptance: "N/A", field: "VR/AR", tier: "A-/B+", format: "Hybrid" },
+      { name: "VRST", acceptance: "N/A", field: "SE", tier: "B", format: "Hybrid" },
+      { name: "WACV", acceptance: "N/A", field: "CV", tier: "B/C", format: "Hybrid" },
+      { name: "WADS", acceptance: "N/A", field: "Theory", tier: "B/C", format: "Hybrid" },
+      { name: "WHC/HS", acceptance: "N/A", field: "VR/AR", tier: "B/C", format: "Hybrid" },
+      { name: "WMT", acceptance: "N/A", field: "General CS", tier: "B/C", format: "Hybrid" },
+      { name: "WSDM", acceptance: "N/A", field: "Data", tier: "A-/B+", format: "Hybrid" },
+      { name: "WiOpt", acceptance: "N/A", field: "Network", tier: "B/C", format: "Hybrid" },
+      { name: "WiSec", acceptance: "N/A", field: "Security", tier: "B/C", format: "Hybrid" },
+      { name: "WoWMoM", acceptance: "N/A", field: "Network", tier: "B/C", format: "Hybrid" },
+
+      // ── D tier (Minor / Regional / Low peer-review bar) ──
+      { name: "ICMIC", acceptance: "~80%", field: "Control", tier: "D", format: "Hybrid" },
+      { name: "ADINTEC", acceptance: "~80%", field: "General CS", tier: "D", format: "Hybrid" },
+      { name: "ICEECC", acceptance: "~85%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "ICECE", acceptance: "~80%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "ICCCE", acceptance: "~80%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "ICEET", acceptance: "~85%", field: "Education", tier: "D", format: "Hybrid" },
+      { name: "ICEIT", acceptance: "~80%", field: "IT", tier: "D", format: "Hybrid" },
+      { name: "ICEEI", acceptance: "~80%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "IMCEC", acceptance: "~75%", field: "General CS", tier: "D", format: "Hybrid" },
+      { name: "ICEIC (IEIE)", acceptance: "~75%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "ICCCS", acceptance: "~70%", field: "General CS", tier: "D", format: "Hybrid" },
+      { name: "ICMTMA", acceptance: "~75%", field: "Automation", tier: "D", format: "Hybrid" },
+      { name: "ICEMI", acceptance: "~75%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "ICACCE", acceptance: "~80%", field: "AI", tier: "D", format: "Hybrid" },
+      { name: "ICISE", acceptance: "~80%", field: "SE", tier: "D", format: "Hybrid" },
+      { name: "ICICT", acceptance: "~80%", field: "ICT", tier: "D", format: "Hybrid" },
+      { name: "ICMLC", acceptance: "~70%", field: "ML", tier: "D", format: "Hybrid" },
+      { name: "ICICTA", acceptance: "~80%", field: "Automation", tier: "D", format: "Hybrid" },
+      { name: "AIAI (subset)", acceptance: "~75%", field: "AI", tier: "D", format: "Hybrid" },
+      { name: "CCIS", acceptance: "~75%", field: "General CS", tier: "D", format: "Hybrid" },
+      { name: "IEIE Summer/Winter Workshop", acceptance: "~95%", field: "Electronics", tier: "D", format: "In-person" },
+      { name: "KIPS Winter/Summer Workshop", acceptance: "~95%", field: "General CS", tier: "D", format: "In-person" },
+      { name: "KICS Summer/Winter Workshop", acceptance: "~95%", field: "Network", tier: "D", format: "In-person" },
+      { name: "KIIT Summer Workshop", acceptance: "~95%", field: "General CS", tier: "D", format: "In-person" },
+      { name: "KIISE Summer/Winter Workshop", acceptance: "~95%", field: "General CS", tier: "D", format: "In-person" },
+
+      // ── Additional D tier (international but low-bar / predatory-adjacent) ──
+      { name: "WCECS", acceptance: "~80%", field: "General CS", tier: "D", format: "Hybrid" },
+      { name: "ICSENG", acceptance: "~80%", field: "Systems", tier: "D", format: "Hybrid" },
+      { name: "ICEES", acceptance: "~80%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "ICIIBMS", acceptance: "~75%", field: "Medical/Bio", tier: "D", format: "Hybrid" },
+      { name: "ICCE-Asia", acceptance: "~70%", field: "Embedded", tier: "D", format: "Hybrid" },
+      { name: "ICETA", acceptance: "~80%", field: "Education", tier: "D", format: "Hybrid" },
+      { name: "ISNCC", acceptance: "~70%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "ICITEE", acceptance: "~75%", field: "IT", tier: "D", format: "Hybrid" },
+      { name: "ICIEA", acceptance: "~70%", field: "Industry", tier: "D", format: "Hybrid" },
+      { name: "ICEMS", acceptance: "~70%", field: "Electronics", tier: "D", format: "Hybrid" },
+      { name: "ICSPCC", acceptance: "~70%", field: "Signal", tier: "D", format: "Hybrid" },
+      { name: "ICCCNT", acceptance: "~65%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "SIGMAP", acceptance: "~75%", field: "Multimedia", tier: "D", format: "Hybrid" },
+      { name: "ICAMECHS", acceptance: "~75%", field: "Automation", tier: "D", format: "Hybrid" },
+      { name: "ICAIS", acceptance: "~75%", field: "AI", tier: "D", format: "Hybrid" },
+      { name: "ICDCN", acceptance: "~70%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "CICSyN", acceptance: "~75%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "ACIIDS (lower tracks)", acceptance: "~70%", field: "AI", tier: "D", format: "Hybrid" },
+      { name: "ICCAR", acceptance: "~70%", field: "Robotics", tier: "D", format: "Hybrid" },
+      { name: "ICARM", acceptance: "~70%", field: "Robotics", tier: "D", format: "Hybrid" },
+      { name: "ICMA", acceptance: "~70%", field: "Automation", tier: "D", format: "Hybrid" },
+      { name: "ICIIP", acceptance: "~70%", field: "CV", tier: "D", format: "Hybrid" },
+      { name: "ICISS", acceptance: "~75%", field: "General CS", tier: "D", format: "Hybrid" },
+
+      // ── Quantum Computing conferences ──
+      { name: "QIP", acceptance: "~20%", field: "Quantum, Theory", tier: "A*", format: "In-person" },
+      { name: "QCrypt", acceptance: "~30%", field: "Quantum, Crypto", tier: "A", format: "In-person" },
+      { name: "TQC", acceptance: "~30%", field: "Quantum, Theory", tier: "A", format: "In-person" },
+      { name: "IEEE QCE (Quantum Week)", acceptance: "~50%", field: "Quantum", tier: "A-/B+", format: "In-person" },
+      { name: "AQIS", acceptance: "~40%", field: "Quantum", tier: "A-/B+", format: "In-person" },
+      { name: "IEEE ICQCE", acceptance: "~50%", field: "Quantum", tier: "B", format: "Hybrid" },
+      { name: "IEEE Quantum Communications and Computing", acceptance: "~55%", field: "Quantum, Network", tier: "B", format: "Hybrid" },
+      { name: "ICQNM", acceptance: "~60%", field: "Quantum", tier: "B/C", format: "Hybrid" },
+      { name: "QTML (Quantum Techniques in ML)", acceptance: "~40%", field: "Quantum, ML", tier: "A-/B+", format: "Hybrid" },
+      { name: "QTNM", acceptance: "~60%", field: "Quantum", tier: "B/C", format: "Hybrid" },
+      { name: "IEEE Quantum Software", acceptance: "~55%", field: "Quantum, SE", tier: "B", format: "Hybrid" },
+      { name: "Q2B (Quantum to Business)", acceptance: "Invited", field: "Quantum, Industry", tier: "B", format: "In-person" },
+      { name: "QCNC (Quantum Comm & Networking)", acceptance: "~60%", field: "Quantum, Network", tier: "B/C", format: "Hybrid" },
+      { name: "APS March Meeting (Quantum track)", acceptance: "Invited", field: "Quantum, Physics", tier: "A-/B+", format: "In-person" },
+      { name: "Quantum Information Processing Workshop", acceptance: "~60%", field: "Quantum", tier: "C", format: "Hybrid" },
+      { name: "ICQCE (Quantum Computing & Engineering)", acceptance: "~55%", field: "Quantum", tier: "B/C", format: "Hybrid" },
+      { name: "IQC (International Quantum Communication)", acceptance: "~55%", field: "Quantum, Network", tier: "B/C", format: "Hybrid" },
+      { name: "QIS (Korean Quantum Info Science)", acceptance: "~70%", field: "Quantum", tier: "C", format: "In-person" },
+
+      // ── Lesser-known Asian / Regional / Specialized conferences ──
+      { name: "ISPACS", acceptance: "~50%", field: "Signal, Network", tier: "B/C", format: "Hybrid" },
+      { name: "APSIPA ASC", acceptance: "~50%", field: "Signal, Multimedia", tier: "B", format: "Hybrid" },
+      { name: "ICCAS", acceptance: "~55%", field: "Robotics, Systems", tier: "B/C", format: "Hybrid" },
+      { name: "SICE Annual Conference", acceptance: "~50%", field: "Robotics, Systems", tier: "B/C", format: "In-person" },
+      { name: "ICTAI", acceptance: "~30%", field: "AI", tier: "B", format: "Hybrid" },
+      { name: "INDIN", acceptance: "~55%", field: "Industry, Network", tier: "B/C", format: "Hybrid" },
+      { name: "IECON", acceptance: "~60%", field: "Electronics, Industry", tier: "B/C", format: "Hybrid" },
+      { name: "ICONS", acceptance: "~60%", field: "Network", tier: "C", format: "Hybrid" },
+      { name: "SOFSEM", acceptance: "~30%", field: "Theory, SE", tier: "B/C", format: "In-person" },
+      { name: "ICPADS", acceptance: "~25%", field: "HPC, Systems", tier: "B", format: "Hybrid" },
+      { name: "ICSC (Semantic Computing)", acceptance: "~30%", field: "Data, AI", tier: "B/C", format: "Hybrid" },
+      { name: "IUCC", acceptance: "~40%", field: "Network, Cloud", tier: "C", format: "Hybrid" },
+      { name: "ICSP (China)", acceptance: "~50%", field: "Signal", tier: "C", format: "Hybrid" },
+      { name: "ICALT", acceptance: "~35%", field: "Education", tier: "B/C", format: "Hybrid" },
+      { name: "EDM (Educational Data Mining)", acceptance: "~25%", field: "Education, Data", tier: "B", format: "Hybrid" },
+      { name: "VRCAI", acceptance: "~50%", field: "VR/AR, Graphics", tier: "C", format: "Hybrid" },
+      { name: "CGI (Computer Graphics International)", acceptance: "~30%", field: "Graphics", tier: "B/C", format: "Hybrid" },
+      { name: "NICOGRAPH", acceptance: "~70%", field: "Graphics, Multimedia", tier: "D", format: "In-person" },
+      { name: "ISCC (IEEE Sym. Computers & Comm.)", acceptance: "~35%", field: "Network, Systems", tier: "B/C", format: "Hybrid" },
+      { name: "ICDIS (Data Intelligence & Security)", acceptance: "~50%", field: "Security, Data", tier: "C", format: "Hybrid" },
+      { name: "WiCom", acceptance: "~70%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "ICSESS", acceptance: "~70%", field: "SE", tier: "D", format: "Hybrid" },
+      { name: "AHFE", acceptance: "~70%", field: "HCI, Industry", tier: "D", format: "Hybrid" },
+      { name: "SAI Computing Conference", acceptance: "~55%", field: "General CS", tier: "C", format: "Hybrid" },
+      { name: "PRDC (Pacific Rim Dependable Computing)", acceptance: "~30%", field: "Systems, Security", tier: "B", format: "Hybrid" },
+      { name: "ATC (Advanced Trusted Computing)", acceptance: "~40%", field: "Security", tier: "B/C", format: "Hybrid" },
+      { name: "ICOIN", acceptance: "~40%", field: "Network", tier: "C", format: "Hybrid" },
+      { name: "ICCT (Communication Technology)", acceptance: "~50%", field: "Network", tier: "C", format: "Hybrid" },
+      { name: "WCSP", acceptance: "~50%", field: "Signal, Network", tier: "C", format: "Hybrid" },
+      { name: "ICCBR (Case-Based Reasoning)", acceptance: "~40%", field: "AI", tier: "B/C", format: "Hybrid" },
+      { name: "DMIN (Data Mining)", acceptance: "~50%", field: "Data, AI", tier: "C", format: "Hybrid" },
+      { name: "ICAART", acceptance: "~30%", field: "AI", tier: "B/C", format: "Hybrid" },
+      { name: "IJCRS (Rough Sets)", acceptance: "~40%", field: "AI, Theory", tier: "C", format: "Hybrid" },
+      { name: "CIBB (Bioinformatics & Biostatistics)", acceptance: "~50%", field: "Medical, Data", tier: "C", format: "Hybrid" },
+      { name: "ISC HPC", acceptance: "~30%", field: "HPC", tier: "B", format: "In-person" },
+      { name: "MEMOCODE", acceptance: "~40%", field: "EDA/HW, SE", tier: "B/C", format: "Hybrid" },
+      { name: "FDL", acceptance: "~45%", field: "EDA/HW", tier: "C", format: "Hybrid" },
+      { name: "DDECS", acceptance: "~50%", field: "EDA/HW", tier: "C", format: "Hybrid" },
+      { name: "VLSI-SoC", acceptance: "~45%", field: "Arch, EDA/HW", tier: "C", format: "Hybrid" },
+      { name: "ASYNC", acceptance: "~45%", field: "Arch", tier: "B/C", format: "Hybrid" },
+      { name: "PATMOS", acceptance: "~50%", field: "EDA/HW", tier: "C", format: "Hybrid" },
+      { name: "ReConFig", acceptance: "~45%", field: "EDA/HW", tier: "C", format: "Hybrid" },
+      { name: "MIPRO", acceptance: "~55%", field: "General CS", tier: "C", format: "Hybrid" },
+      { name: "TENCON", acceptance: "~50%", field: "General CS, Network", tier: "C", format: "Hybrid" },
+      { name: "ICEIS", acceptance: "~30%", field: "SE, Data", tier: "B/C", format: "Hybrid" },
+      { name: "WEBIST", acceptance: "~30%", field: "IR/Web", tier: "C", format: "Hybrid" },
+      { name: "DATA", acceptance: "~30%", field: "Data", tier: "C", format: "Hybrid" },
+      { name: "CLOSER (Cloud)", acceptance: "~30%", field: "Cloud", tier: "C", format: "Hybrid" },
+      { name: "VEHITS", acceptance: "~30%", field: "Robotics, Systems", tier: "C", format: "Hybrid" },
+      { name: "BIOSTEC", acceptance: "~35%", field: "Medical", tier: "C", format: "Hybrid" },
+      { name: "ICEET (China Education)", acceptance: "~75%", field: "Education", tier: "D", format: "Hybrid" },
+      { name: "ICCC-Asia", acceptance: "~60%", field: "Network", tier: "D", format: "Hybrid" },
+      { name: "WMSCI", acceptance: "~60%", field: "General CS", tier: "D", format: "Hybrid" },
+      { name: "CTS (Collaborative Tech & Systems)", acceptance: "~55%", field: "Systems, HCI", tier: "C", format: "Hybrid" },
+    ];
+
+    const TIER_CLASS = {
+      "A*":    "tier-badge--a-star",
+      "A":     "tier-badge--a",
+      "A/B":   "tier-badge--a-b2",
+      "A-/B+": "tier-badge--a-b",
+      "B":     "tier-badge--b",
+      "B/C":   "tier-badge--b-c",
+      "C":     "tier-badge--c",
+      "D":     "tier-badge--d",
+    };
+
+    const FORMAT_CLASS = {
+      "In-person": { cls: "format-badge--inperson", icon: "fa-user-friends" },
+      "Hybrid":    { cls: "format-badge--hybrid",   icon: "fa-shuffle" },
+      "Online":    { cls: "format-badge--online",   icon: "fa-globe" },
+    };
+
+    const tbody = document.getElementById('tierTableBody');
+    const search = document.getElementById('tierSearch');
+    const empty = document.getElementById('tierEmpty');
+    const count = document.getElementById('tierCount');
+    const tierFilters = document.getElementById('tierFilters');
+    const fieldFilters = document.getElementById('fieldFilters');
+
+    // Support multi-category fields separated by "/" or ","
+    function parseFields(fieldStr) {
+      return fieldStr.split(/\s*[,/]\s*/).map(s => s.trim()).filter(Boolean);
+    }
+
+    // Build Field filter buttons: extract all unique sub-fields across conferences
+    const allFieldSet = new Set();
+    CONFERENCES.forEach(c => parseFields(c.field).forEach(f => allFieldSet.add(f)));
+    const FIELDS = ['All', ...[...allFieldSet].sort()];
+    fieldFilters.innerHTML = FIELDS.map((f, i) =>
+      `<button class="tier-filter-btn${i === 0 ? ' active' : ''}" data-field="${f}">${f}</button>`
+    ).join('');
+
+    const activeTiers = new Set(['all']);
+    const activeFields = new Set(['All']);
+    let query = '';
+
+    function render() {
+      const q = query.toLowerCase();
+      const filtered = CONFERENCES.filter(c => {
+        const matchTier = activeTiers.has('all') || activeTiers.has(c.tier);
+        const itemFields = parseFields(c.field);
+        const matchField = activeFields.has('All') || itemFields.some(f => activeFields.has(f));
+        const matchText = !q || c.name.toLowerCase().includes(q) || c.field.toLowerCase().includes(q);
+        return matchTier && matchField && matchText;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        count.textContent = '';
+        return;
+      }
+      empty.style.display = 'none';
+      tbody.innerHTML = filtered.map(c => {
+        const fm = FORMAT_CLASS[c.format] || { cls: "format-badge--hybrid", icon: "fa-shuffle" };
+        const searchName = c.name.replace(/\s*\([^)]*\)\s*/g, '').trim();
+        const dblpUrl = `https://dblp.org/search?q=${encodeURIComponent(searchName)}`;
+        const fieldChips = parseFields(c.field).map(f => `<span class="field-chip">${f}</span>`).join('');
+        return `
+        <tr>
+          <td class="tier-conf-name">${c.name}</td>
+          <td>${c.acceptance}</td>
+          <td><div class="field-chips">${fieldChips}</div></td>
+          <td><span class="tier-badge ${TIER_CLASS[c.tier] || ''}">${c.tier}</span></td>
+          <td><span class="format-badge ${fm.cls}"><i class="fas ${fm.icon}"></i>${c.format}</span></td>
+          <td><a href="${dblpUrl}" target="_blank" class="source-link" title="Look up on DBLP"><i class="fas fa-external-link-alt"></i> DBLP</a></td>
+        </tr>
+      `;}).join('');
+      count.textContent = `Showing ${filtered.length} of ${CONFERENCES.length} conferences`;
+    }
+
+    // Multi-select handler for a filter group
+    function makeMultiSelect(container, allKey, activeSet, attr) {
+      container.addEventListener('click', e => {
+        const btn = e.target.closest('.tier-filter-btn');
+        if (!btn) return;
+        const val = btn.dataset[attr];
+
+        if (val === allKey) {
+          // Clicking "All" clears everything and selects All only
+          activeSet.clear();
+          activeSet.add(allKey);
+          container.querySelectorAll('.tier-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        } else {
+          // Toggle this button; remove "All" from active
+          if (activeSet.has(val)) {
+            activeSet.delete(val);
+            btn.classList.remove('active');
+          } else {
+            activeSet.delete(allKey);
+            container.querySelector(`[data-${attr}="${allKey}"]`)?.classList.remove('active');
+            activeSet.add(val);
+            btn.classList.add('active');
+          }
+          // If nothing selected, revert to All
+          if (activeSet.size === 0) {
+            activeSet.add(allKey);
+            container.querySelector(`[data-${attr}="${allKey}"]`)?.classList.add('active');
+          }
+        }
+        render();
+      });
+    }
+
+    search.addEventListener('input', e => {
+      query = e.target.value;
+      render();
+    });
+
+    makeMultiSelect(tierFilters, 'all', activeTiers, 'tier');
+    makeMultiSelect(fieldFilters, 'All', activeFields, 'field');
+
+    render();
+  </script>
+</body>
+</html>

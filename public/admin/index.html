@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>김재환 연구 플랫폼 · 콘텐츠 관리</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+    <script defer src="/admin/admin.js"></script>
+  <link rel="stylesheet" href="/css/typography.css"></head>
+  <body>
+    <header>
+      <a href="/">김재환 <span>CONTENT STUDIO</span></a
+      ><a href="/" class="site-link">사이트 보기 ↗</a>
+    </header>
+    <main>
+      <section id="login-panel" class="login">
+        <span class="eyebrow">CONTENT STUDIO</span>
+        <h1>연구 기록을<br />이어가세요.</h1>
+        <p>프로필, 연구 소식, 학회와 저널을 관리합니다.</p>
+        <form id="login">
+          <label for="password">관리자 비밀번호</label
+          ><input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          /><button type="submit">로그인 →</button>
+        </form>
+      </section>
+      <section id="workspace" hidden>
+        <div class="heading">
+          <div>
+            <span class="eyebrow">CONTENT STUDIO</span>
+            <h1>콘텐츠 관리</h1>
+          </div>
+          <div class="actions">
+            <a href="/api/admin/export" class="button secondary" download
+              >데이터 내보내기</a
+            ><button id="logout" class="secondary">로그아웃</button>
+          </div>
+        </div>
+        <details class="password-settings"><summary>관리자 비밀번호 변경</summary><form id="password-change"><p class="hint">변경하면 모든 관리자 세션이 종료됩니다. 새 비밀번호로 다시 로그인하세요.</p><label for="current-password">현재 비밀번호</label><input id="current-password" type="password" autocomplete="current-password" required maxlength="512"><label for="new-password">새 비밀번호 (8~128자)</label><input id="new-password" type="password" autocomplete="new-password" required minlength="8" maxlength="128"><label for="confirm-password">새 비밀번호 확인</label><input id="confirm-password" type="password" autocomplete="new-password" required minlength="8" maxlength="128"><button type="submit">비밀번호 변경</button><p id="password-message" role="status" aria-live="polite"></p></form></details><details class="studio-guide">
+          <summary>콘텐츠 관리 안내 <span>편집 순서 · 반영 범위 · 문제 해결</span></summary>
+          <div class="guide-layout">
+            <nav class="guide-toc" aria-label="콘텐츠 관리 안내 목차">
+              <a href="#guide-edit">편집 순서</a>
+              <a href="#guide-scope">저장과 반영 범위</a>
+              <a href="#guide-help">문제 해결</a>
+            </nav>
+            <div class="guide-body">
+              <section id="guide-edit" tabindex="-1" aria-labelledby="guide-edit-title">
+                <h2 id="guide-edit-title">편집 순서</h2>
+                <ol><li>콘텐츠 종류를 선택하고 이름으로 항목을 찾습니다.</li><li>항목을 선택해 필드를 수정한 뒤 <strong>변경사항 저장</strong>을 누릅니다. 자동 저장은 제공하지 않습니다.</li><li>저장 완료 메시지를 확인하고 <strong>표시 페이지 보기</strong>를 열어 결과를 확인합니다. 이미 열려 있다면 새로고침하세요.</li></ol>
+                <p class="guide-note">다른 항목이나 페이지로 이동하기 전에 저장하세요. 입력 중인 내용은 별도로 보관되지 않습니다.</p>
+              </section>
+              <section id="guide-scope" tabindex="-1" aria-labelledby="guide-scope-title">
+                <h2 id="guide-scope-title">저장과 반영 범위</h2>
+                <dl class="guide-scope"><div><dt>연구 본문</dt><dd>기존 3개 연구의 제목·부제·요약·본문을 수정합니다. 공개 연구 화면과 연구 도우미가 저장한 내용을 사용합니다. 신규 연구 생성과 삭제는 지원하지 않습니다.</dd></div><div><dt>학회 · 저널</dt><dd>각 탐색 페이지의 목록과 필터 정보에 반영됩니다.</dd></div><div><dt>연구 소식</dt><dd>홈의 Journey에 반영됩니다. CV의 기업 주요 이력은 별도 자료로 관리합니다.</dd></div><div><dt>프로필</dt><dd>이름·직함·연구 소개·이메일은 홈에 반영됩니다. 하위 페이지 프로필은 별도 자료로 생성되며 수치 필드는 현재 화면에 표시되지 않습니다.</dd></div></dl>
+                <p class="guide-note"><strong>콘텐츠 저장과 사이트 배포는 별개입니다.</strong> 저장은 현재 접속한 사이트의 데이터에 적용됩니다. 로컬에서 저장한 데이터나 수정한 디자인이 배포 사이트로 자동 전송되지는 않습니다.</p>
+              </section>
+              <section id="guide-help" tabindex="-1" aria-labelledby="guide-help-title">
+                <h2 id="guide-help-title">문제 해결</h2>
+                <dl><dt>다른 곳에서 수정되었다는 오류</dt><dd>작성 중인 내용을 따로 복사해 둔 뒤, 컬렉션과 항목을 다시 선택해 최신 내용을 불러오세요. 변경 사항을 비교한 후 저장합니다.</dd><dt>로그인이 다시 필요한 경우</dt><dd>관리자 비밀번호로 다시 로그인하세요. 저장 성공 메시지가 없었다면 표시 페이지에서 반영 여부를 확인하세요.</dd><dt>수정 전 내용을 보관하려면</dt><dd>상단의 데이터 내보내기로 현재 저장된 데이터를 다운로드할 수 있습니다. 내보내기는 자동 복원 기능이 아닙니다.</dd></dl>
+              </section>
+            </div>
+          </div>
+        </details>
+        <nav id="collections" aria-label="콘텐츠 종류"><button data-kind="research" aria-pressed="false">연구 본문</button>
+          <button data-kind="conferences" class="active" aria-pressed="true">학회</button
+          ><button data-kind="journals" aria-pressed="false">저널</button
+          ><button data-kind="news" aria-pressed="false">연구 소식</button
+          ><button data-kind="profile" aria-pressed="false">프로필</button>
+        </nav>
+        <div class="collection-context"><div><h2 id="collection-title">학회</h2><p id="collection-description">학회 이름, 연구 분야와 등급을 관리합니다.</p></div><a id="collection-preview" href="/pages/conference-tier.html" target="_blank" rel="noopener">표시 페이지 보기 ↗</a></div>
+        <div class="studio">
+          <section class="records">
+            <div class="list-tools">
+              <input
+                id="search"
+                aria-label="콘텐츠 검색"
+                placeholder="이름으로 검색"
+              /><button id="new">+ 추가</button>
+            </div>
+            <p id="count" role="status" aria-live="polite"></p>
+            <div id="records"></div>
+            <div class="pagination">
+              <button id="previous" class="secondary">이전</button
+              ><span id="page"></span
+              ><button id="next" class="secondary">다음</button>
+            </div>
+          </section>
+          <section class="editor">
+            <h2 id="editor-title">편집할 항목을 선택하세요</h2>
+            <form id="editor" hidden>
+              <p id="editor-state" role="status" aria-live="polite"></p><div id="fields"></div><details class="input-preview" open><summary>입력 내용 미리보기</summary><p class="hint">저장 전 내용 확인용입니다. 실제 페이지 배치는 표시 페이지에서 확인하세요.</p><div id="preview-card"></div></details>
+              <div class="editor-actions">
+                <button id="save" type="submit">변경사항 저장</button
+                ><button type="button" id="discard" class="secondary">수정 취소</button><button type="button" id="delete" class="danger">삭제</button>
+              </div>
+            </form>
+            <p class="hint" id="save-hint">저장하면 해당 학회 탐색 페이지에 반영됩니다.</p>
+          </section>
+        </div>
+      </section>
+      <p id="message" role="status" aria-live="polite"></p>
+    </main>
+    <footer>김재환 연구 플랫폼 · Private content studio</footer>
+  </body>
+</html>

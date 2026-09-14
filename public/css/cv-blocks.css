@@ -1,0 +1,23 @@
+/* Structured CV blocks, using the existing academic palette. */
+.cv-layout { display:grid; grid-template-columns:210px minmax(0,1fr); gap:48px; align-items:start; margin-top:40px; }
+.cv-overview { position:sticky; top:160px; border-top:3px solid var(--accent); padding-top:20px; font-size:.9375rem; }
+.cv-overview .cv-name { font-size:1.25rem; font-weight:700; margin:0 0 10px; }
+.cv-name span { display:block; color:var(--text-secondary); font-size:.9375rem; font-weight:400; }
+.cv-overview nav { display:grid; margin:24px 0; border-top:1px solid var(--border); }
+.cv-overview nav a { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); color:var(--text-primary); }
+.cv-contact,.cv-source { display:block; font-size:.875rem; margin-top:12px; overflow-wrap:anywhere; }
+.cv-block { margin-bottom:44px; scroll-margin-top:155px; }
+.cv-caption { font-size:.875rem; color:var(--text-secondary); margin:0 0 3px; }
+.cv-block h2 { font-size:1.65rem; margin:0 0 26px; font-weight:600; }
+.cv-timeline { list-style:none; padding:0 0 0 20px; margin:0; }
+.cv-timeline>li { position:relative; border-left:1px solid var(--border); padding:0 0 30px 24px; }
+.cv-timeline>li::before { content:''; position:absolute; left:-5px; top:9px; width:9px; height:9px; border-radius:50%; background:var(--accent); }
+.cv-timeline>li:last-child { padding-bottom:6px; }
+.cv-date { font-size:.875rem; color:var(--text-secondary); font-variant-numeric:tabular-nums; margin-bottom:6px; }
+.cv-event h3 { font-size:1.0625rem; line-height:1.6; margin:0 0 8px; word-break:keep-all; overflow-wrap:anywhere; }
+.cv-event p { font-size:1rem; line-height:1.9; margin:10px 0 0; }
+.cv-state { display:inline-block; font-size:.875rem; padding:2px 9px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:4px; color:var(--text-secondary); }
+.cv-block:target { outline:2px solid var(--accent); outline-offset:10px; border-radius:2px; }
+.cv-page a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+@media(max-width:760px) { .cv-layout { grid-template-columns:1fr; gap:32px; margin-top:28px; } .cv-overview { position:static; } .cv-overview nav { display:flex; flex-wrap:wrap; gap:10px 22px; border:0; margin:16px 0; } .cv-overview nav a { gap:10px; } .cv-block { scroll-margin-top:150px; } }
+@media print { .cv-layout { display:block; margin-top:15px; } .cv-overview { position:static; border:0; margin-bottom:24px; } .cv-overview nav,.cv-source { display:none; } .cv-block { margin-bottom:22px; } .cv-block:target { outline:none; } .cv-timeline>li { break-inside:avoid; padding-bottom:18px; } .cv-block h2 { break-after:avoid; } .cv-timeline>li::before { background:#555; } }

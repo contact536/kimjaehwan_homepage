@@ -1,0 +1,457 @@
+[
+  {
+    "path": "/assets/Background.png",
+    "status": "downloaded",
+    "bytes": 435732
+  },
+  {
+    "path": "/assets/Corex logo.png",
+    "status": "downloaded",
+    "bytes": 1181620
+  },
+  {
+    "path": "/assets/Intro.jpg",
+    "status": "downloaded",
+    "bytes": 296524
+  },
+  {
+    "path": "/assets/LG Aimers.png",
+    "status": "downloaded",
+    "bytes": 87444
+  },
+  {
+    "path": "/assets/Permillion Logos.png",
+    "status": "downloaded",
+    "bytes": 13154
+  },
+  {
+    "path": "/assets/Profile.png",
+    "status": "downloaded",
+    "bytes": 5605496
+  },
+  {
+    "path": "/assets/RAISE LAB.png",
+    "status": "downloaded",
+    "bytes": 28142
+  },
+  {
+    "path": "/assets/Yonsei Logo2.svg",
+    "status": "downloaded",
+    "bytes": 17893
+  },
+  {
+    "path": "/assets/certificates/colorado.svg",
+    "status": "downloaded",
+    "bytes": 22264
+  },
+  {
+    "path": "/assets/certificates/duke.svg",
+    "status": "downloaded",
+    "bytes": 21550
+  },
+  {
+    "path": "/assets/certificates/google.svg",
+    "status": "downloaded",
+    "bytes": 1809
+  },
+  {
+    "path": "/assets/certificates/ibm.svg",
+    "status": "downloaded",
+    "bytes": 705
+  },
+  {
+    "path": "/assets/certificates/johns-hopkins.png",
+    "status": "downloaded",
+    "bytes": 4446
+  },
+  {
+    "path": "/assets/certificates/lg-aimers.png",
+    "status": "downloaded",
+    "bytes": 87444
+  },
+  {
+    "path": "/assets/certificates/london.webp",
+    "status": "downloaded",
+    "bytes": 12894
+  },
+  {
+    "path": "/assets/certificates/macquarie.png",
+    "status": "downloaded",
+    "bytes": 15689
+  },
+  {
+    "path": "/assets/certificates/siemens.png",
+    "status": "downloaded",
+    "bytes": 3691
+  },
+  {
+    "path": "/assets/certificates/stanford.svg",
+    "status": "downloaded",
+    "bytes": 81803
+  },
+  {
+    "path": "/assets/certificates/udemy.svg",
+    "status": "downloaded",
+    "bytes": 1889
+  },
+  {
+    "path": "/assets/certificates/umich.svg",
+    "status": "downloaded",
+    "bytes": 66292
+  },
+  {
+    "path": "/assets/certificates/vanderbilt.webp",
+    "status": "downloaded",
+    "bytes": 88750
+  },
+  {
+    "path": "/assets/certificates/yonsei.svg",
+    "status": "downloaded",
+    "bytes": 17893
+  },
+  {
+    "path": "/assets/cin-logo.08eef3ff6f312432fe12b8dde0ae01c2.svg",
+    "status": "downloaded",
+    "bytes": 9852
+  },
+  {
+    "path": "/assets/favicon.png",
+    "status": "downloaded",
+    "bytes": 618077
+  },
+  {
+    "path": "/assets/land-110m.json",
+    "status": "downloaded",
+    "bytes": 86802
+  },
+  {
+    "path": "/assets/overleaf/image 1.png",
+    "status": "downloaded",
+    "bytes": 87814
+  },
+  {
+    "path": "/assets/overleaf/image 10.png",
+    "status": "downloaded",
+    "bytes": 131863
+  },
+  {
+    "path": "/assets/overleaf/image 11.png",
+    "status": "downloaded",
+    "bytes": 96482
+  },
+  {
+    "path": "/assets/overleaf/image 12.png",
+    "status": "downloaded",
+    "bytes": 110778
+  },
+  {
+    "path": "/assets/overleaf/image 13.png",
+    "status": "downloaded",
+    "bytes": 189848
+  },
+  {
+    "path": "/assets/overleaf/image 14.png",
+    "status": "downloaded",
+    "bytes": 111214
+  },
+  {
+    "path": "/assets/overleaf/image 15.png",
+    "status": "downloaded",
+    "bytes": 116840
+  },
+  {
+    "path": "/assets/overleaf/image 16.png",
+    "status": "downloaded",
+    "bytes": 85867
+  },
+  {
+    "path": "/assets/overleaf/image 17.png",
+    "status": "downloaded",
+    "bytes": 95598
+  },
+  {
+    "path": "/assets/overleaf/image 18.png",
+    "status": "downloaded",
+    "bytes": 97678
+  },
+  {
+    "path": "/assets/overleaf/image 19.png",
+    "status": "downloaded",
+    "bytes": 98689
+  },
+  {
+    "path": "/assets/overleaf/image 2.png",
+    "status": "downloaded",
+    "bytes": 97728
+  },
+  {
+    "path": "/assets/overleaf/image 20.png",
+    "status": "downloaded",
+    "bytes": 96403
+  },
+  {
+    "path": "/assets/overleaf/image 21.png",
+    "status": "downloaded",
+    "bytes": 74318
+  },
+  {
+    "path": "/assets/overleaf/image 22.png",
+    "status": "downloaded",
+    "bytes": 29768
+  },
+  {
+    "path": "/assets/overleaf/image 23.png",
+    "status": "downloaded",
+    "bytes": 8070
+  },
+  {
+    "path": "/assets/overleaf/image 24.png",
+    "status": "downloaded",
+    "bytes": 77768
+  },
+  {
+    "path": "/assets/overleaf/image 25.png",
+    "status": "downloaded",
+    "bytes": 134477
+  },
+  {
+    "path": "/assets/overleaf/image 26.png",
+    "status": "downloaded",
+    "bytes": 128829
+  },
+  {
+    "path": "/assets/overleaf/image 27.png",
+    "status": "downloaded",
+    "bytes": 29538
+  },
+  {
+    "path": "/assets/overleaf/image 28.png",
+    "status": "downloaded",
+    "bytes": 223723
+  },
+  {
+    "path": "/assets/overleaf/image 29.png",
+    "status": "downloaded",
+    "bytes": 17307
+  },
+  {
+    "path": "/assets/overleaf/image 3.png",
+    "status": "downloaded",
+    "bytes": 100939
+  },
+  {
+    "path": "/assets/overleaf/image 30.png",
+    "status": "downloaded",
+    "bytes": 115019
+  },
+  {
+    "path": "/assets/overleaf/image 31.png",
+    "status": "downloaded",
+    "bytes": 182112
+  },
+  {
+    "path": "/assets/overleaf/image 32.png",
+    "status": "downloaded",
+    "bytes": 183109
+  },
+  {
+    "path": "/assets/overleaf/image 33.png",
+    "status": "downloaded",
+    "bytes": 157213
+  },
+  {
+    "path": "/assets/overleaf/image 34.png",
+    "status": "downloaded",
+    "bytes": 169462
+  },
+  {
+    "path": "/assets/overleaf/image 35.png",
+    "status": "downloaded",
+    "bytes": 10801
+  },
+  {
+    "path": "/assets/overleaf/image 36.png",
+    "status": "downloaded",
+    "bytes": 66363
+  },
+  {
+    "path": "/assets/overleaf/image 4.png",
+    "status": "downloaded",
+    "bytes": 98251
+  },
+  {
+    "path": "/assets/overleaf/image 5.png",
+    "status": "downloaded",
+    "bytes": 92858
+  },
+  {
+    "path": "/assets/overleaf/image 6.png",
+    "status": "downloaded",
+    "bytes": 117104
+  },
+  {
+    "path": "/assets/overleaf/image 7.png",
+    "status": "downloaded",
+    "bytes": 220633
+  },
+  {
+    "path": "/assets/overleaf/image 8.png",
+    "status": "downloaded",
+    "bytes": 300900
+  },
+  {
+    "path": "/assets/overleaf/image 9.png",
+    "status": "downloaded",
+    "bytes": 296654
+  },
+  {
+    "path": "/assets/overleaf/image.png",
+    "status": "downloaded",
+    "bytes": 85258
+  },
+  {
+    "path": "/assets/photos/co-researcher/dohyun-hwang.jpg",
+    "status": "downloaded",
+    "bytes": 70685
+  },
+  {
+    "path": "/assets/photos/co-researcher/pablo-lipa.jpg",
+    "status": "downloaded",
+    "bytes": 21244
+  },
+  {
+    "path": "/assets/photos/co-researcher/raffaele-sassone.jpg",
+    "status": "downloaded",
+    "bytes": 20993
+  },
+  {
+    "path": "/assets/photos/pupil/dohyun-hwang.jpg",
+    "status": "downloaded",
+    "bytes": 70685
+  },
+  {
+    "path": "/assets/photos/pupil/eunbi-ko.jpg",
+    "status": "downloaded",
+    "bytes": 119303
+  },
+  {
+    "path": "/assets/photos/pupil/hongjoon-jun.jpg",
+    "status": "downloaded",
+    "bytes": 91075
+  },
+  {
+    "path": "/assets/photos/pupil/hyunseo-kim.jpg",
+    "status": "downloaded",
+    "bytes": 74797
+  },
+  {
+    "path": "/assets/photos/pupil/jeayun-jung.jpg",
+    "status": "downloaded",
+    "bytes": 106676
+  },
+  {
+    "path": "/assets/photos/pupil/kangmin-ko.jpg",
+    "status": "downloaded",
+    "bytes": 93259
+  },
+  {
+    "path": "/assets/photos/pupil/minkyun-ko.jpg",
+    "status": "downloaded",
+    "bytes": 23459
+  },
+  {
+    "path": "/assets/photos/pupil/sehee-park.jpg",
+    "status": "downloaded",
+    "bytes": 19811
+  },
+  {
+    "path": "/assets/photos/pupil/seunghee-yea.jpg",
+    "status": "downloaded",
+    "bytes": 64439
+  },
+  {
+    "path": "/assets/photos/pupil/soomin-lee.jpg",
+    "status": "downloaded",
+    "bytes": 52055
+  },
+  {
+    "path": "/assets/research/ai.png",
+    "status": "downloaded",
+    "bytes": 1594348
+  },
+  {
+    "path": "/assets/research/autonomous.png",
+    "status": "downloaded",
+    "bytes": 1559678
+  },
+  {
+    "path": "/assets/research/banners/ai.png",
+    "status": "downloaded",
+    "bytes": 995650
+  },
+  {
+    "path": "/assets/research/banners/autonomous.png",
+    "status": "downloaded",
+    "bytes": 1107083
+  },
+  {
+    "path": "/assets/research/banners/computer-systems.png",
+    "status": "downloaded",
+    "bytes": 1060728
+  },
+  {
+    "path": "/assets/research/banners/quantum.png",
+    "status": "downloaded",
+    "bytes": 1117642
+  },
+  {
+    "path": "/assets/research/banners/security.png",
+    "status": "downloaded",
+    "bytes": 1432987
+  },
+  {
+    "path": "/assets/research/banners/tda-medical.png",
+    "status": "downloaded",
+    "bytes": 1284748
+  },
+  {
+    "path": "/assets/research/computer-systems.png",
+    "status": "downloaded",
+    "bytes": 1515040
+  },
+  {
+    "path": "/assets/research/quantum.png",
+    "status": "downloaded",
+    "bytes": 1533684
+  },
+  {
+    "path": "/assets/research/security.png",
+    "status": "downloaded",
+    "bytes": 1654822
+  },
+  {
+    "path": "/assets/research/tda-medical.png",
+    "status": "downloaded",
+    "bytes": 1922224
+  },
+  {
+    "path": "/assets/schools/bongeun-middle.webp",
+    "status": "downloaded",
+    "bytes": 1048
+  },
+  {
+    "path": "/assets/schools/cheongdam-high.webp",
+    "status": "downloaded",
+    "bytes": 9112
+  },
+  {
+    "path": "/assets/schools/eonbuk-elementary.webp",
+    "status": "downloaded",
+    "bytes": 11298
+  },
+  {
+    "path": "/assets/schools/ilsc.png",
+    "status": "downloaded",
+    "bytes": 61581
+  }
+]

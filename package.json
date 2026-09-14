@@ -1,0 +1,45 @@
+{
+  "name": "sjhwang-platform",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --experimental-strip-types server/local.ts",
+    "start": "npm run dev",
+    "setup": "node scripts/setup.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "db:generate": "drizzle-kit generate",
+    "check": "tsc --noEmit",
+    "verify:front": "node scripts/verify-front.mjs",
+    "content:generate": "node scripts/personalize.mjs && node scripts/finalize-personal.mjs && node scripts/apply-academic.mjs && node scripts/apply-research-rows.mjs && node scripts/apply-research-topics.mjs && node scripts/apply-reading.mjs && node scripts/apply-cv-blocks.mjs && node scripts/apply-author-panel.mjs && node scripts/apply-research-actions.mjs && node scripts/apply-assistant-workspace.mjs && node scripts/bind-research-content.mjs && node scripts/apply-page-finder.mjs && node scripts/apply-company-documents.mjs && node scripts/apply-typography.mjs && node scripts/apply-company-website.mjs",
+    "build:frontend": "node --env-file-if-exists=.env --experimental-strip-types scripts/export-frontend.mjs"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.1",
+    "@langchain/core": "^1.2.9",
+    "@langchain/langgraph": "^1.4.14",
+    "@langchain/ollama": "^1.3.0",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.13.7",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260905.1",
+    "@openai/sites-vite-plugin": "^0.2.0",
+    "@types/node": "^26.4.1",
+    "drizzle-kit": "^0.31.10",
+    "esbuild": "^0.28.2",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  },
+  "overrides": {
+    "@esbuild-kit/core-utils": {
+      "esbuild": "$esbuild"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+/* Research questions lead to the corresponding project through native anchors. */
+.research-topics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:28px 0 36px; }
+[data-topic="cloa"], [data-research="cloa"] { --topic-color:#245b95; --topic-surface:#f0f6fc; }
+[data-topic="taxia"], [data-research="taxia"] { --topic-color:#176757; --topic-surface:#eef8f5; }
+[data-topic="kortaxarena"], [data-research="kortaxarena"] { --topic-color:#704693; --topic-surface:#f7f2fb; }
+.research-topics .research-topic { display:flex; flex-direction:column; gap:10px; padding:20px; border:1px solid transparent; border-top:3px solid var(--topic-color); border-radius:4px; background:var(--topic-surface); color:var(--text-primary); text-decoration:none; min-width:0; }
+.topic-heading { color:var(--topic-color); font-size:1rem; font-weight:700; }
+.topic-label { font-size:.875rem; color:var(--topic-color); margin-top:8px; }
+.topic-question { font-size:1.05rem; font-weight:600; line-height:1.65; word-break:keep-all; overflow-wrap:anywhere; }
+.topic-approach { font-size:1rem; line-height:1.75; word-break:keep-all; overflow-wrap:anywhere; }
+.topic-destination { margin-top:auto; padding-top:16px; font-size:.9rem; color:var(--topic-color); font-weight:600; }
+.research-topic:hover { border-color:var(--topic-color); }
+.research-topic:focus-visible { outline:3px solid var(--topic-color); outline-offset:4px; }
+.research-entry[id], .kim-detail[id] { scroll-margin-top:125px; }
+.research-entry:target, .kim-detail:target { outline:2px solid var(--topic-color); outline-offset:8px; }
+.research-entry .research-preview { border-left:3px solid var(--topic-color); }
+[data-theme="dark"] [data-topic="cloa"], [data-theme="dark"] [data-research="cloa"] { --topic-color:#a2caf7; --topic-surface:#172638; }
+[data-theme="dark"] [data-topic="taxia"], [data-theme="dark"] [data-research="taxia"] { --topic-color:#9cdac7; --topic-surface:#172b27; }
+[data-theme="dark"] [data-topic="kortaxarena"], [data-theme="dark"] [data-research="kortaxarena"] { --topic-color:#d3b1f3; --topic-surface:#2b2135; }
+@media(max-width:760px) { .research-topics { grid-template-columns:1fr; gap:12px; } .research-topics .research-topic { padding:18px; gap:6px; } .topic-destination { padding-top:8px; } }
+@media print { .research-topics { display:none; } .research-entry:target, .kim-detail:target { outline:none; } }

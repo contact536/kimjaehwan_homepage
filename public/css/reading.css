@@ -1,0 +1,31 @@
+/* A restrained reading surface, integrated with the existing academic theme. */
+.kim-page.reading-page { max-width:780px; }
+.reading-page p,.reading-page li { line-height:1.95; }
+.reading-page>h1 { margin-bottom:28px; letter-spacing:-.035em; }
+.reading-entry { padding:28px; margin:32px 0; border:1px solid var(--border); border-radius:8px; background:var(--bg-secondary); }
+.reading-entry h2 { font-size:1.65rem; margin:8px 0 14px; line-height:1.5; }
+.reading-entry h2 a { color:var(--text-primary); }
+.reading-entry p { margin:12px 0; font-size:1rem; }
+.reading-entry .reading-meta { font-size:.875rem; color:var(--text-secondary); margin:0; }
+.reading-entry .reading-deck { font-size:1.125rem; }
+.reading-entry .reading-status { display:inline-block; font-size:.875rem; border-left:3px solid var(--accent); padding:2px 12px; color:var(--text-secondary); }
+.reading-links { display:flex; flex-wrap:wrap; gap:12px 24px; margin-top:22px; font-size:.9375rem; }
+.reading-related { margin-top:44px; }
+.reading-related h2 { font-size:1.25rem; margin-bottom:14px; }
+.reading-related>a { display:block; padding:20px 0; border-top:1px solid var(--border); text-decoration:none; }
+.reading-related strong,.reading-related span { display:block; }
+.reading-related strong span { display:inline; }
+.reading-related>a>span { color:var(--text-secondary); font-size:.9375rem; margin-top:5px; }
+.reading-related>a:hover strong { text-decoration:underline; text-underline-offset:4px; }
+.reading-toc { background:var(--bg-secondary); border:1px solid var(--border); border-radius:6px; padding:16px 22px; margin:28px 0; }
+.reading-toc summary { cursor:pointer; font-weight:600; }
+.reading-toc ol { margin:12px 0 0; padding-left:24px; }
+.reading-toc li { padding:3px 0; font-size:.9375rem; }
+.heading-anchor { margin-left:10px; font-weight:400; font-size:1rem; }
+.reading-page [id] { scroll-margin-top:145px; }
+.reading-page [id]:target { outline:2px solid var(--accent); outline-offset:6px; }
+.reading-page a:focus-visible,.reading-toc summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:2px; }
+.reading-page .kim-detail ul { padding-left:24px; }
+.reading-page .kim-row { grid-template-columns:110px minmax(0,1fr); gap:24px; }
+@media(max-width:600px) { .reading-entry { padding:20px; } .reading-page .kim-row { grid-template-columns:1fr; gap:8px; } .reading-toc { padding:14px 18px; } }
+@media print { .reading-toc,.heading-anchor { display:none; } .reading-entry { padding:0; border:0; background:none; } }

@@ -1,0 +1,123 @@
+[
+  {
+    "kind": "conferences",
+    "name": "MEMOCODE",
+    "kept": {
+      "name": "MEMOCODE",
+      "acceptance": "N/A",
+      "field": "Formal/EDA",
+      "tier": "B",
+      "format": "Hybrid",
+      "fields": [
+        "Formal",
+        "EDA",
+        "HW",
+        "SE"
+      ],
+      "tiers": [
+        "B",
+        "C"
+      ]
+    },
+    "alternate": {
+      "name": "MEMOCODE",
+      "acceptance": "~40%",
+      "field": "EDA/HW, SE",
+      "tier": "B/C",
+      "format": "Hybrid"
+    }
+  },
+  {
+    "kind": "journals",
+    "name": "Data Mining and Knowledge Discovery",
+    "kept": {
+      "name": "Data Mining and Knowledge Discovery",
+      "abbr": "DMKD",
+      "publisher": "Springer",
+      "host": "—",
+      "field": "AI/Data",
+      "tier": "Q1",
+      "if": "4.8",
+      "strength": "Data mining theory and methods",
+      "fields": [
+        "AI",
+        "Data"
+      ],
+      "tiers": [
+        "Q1"
+      ]
+    },
+    "alternate": {
+      "name": "Data Mining and Knowledge Discovery",
+      "abbr": "DMKD",
+      "publisher": "Springer",
+      "host": "—",
+      "field": "Data",
+      "tier": "Q1",
+      "if": "4.8",
+      "strength": "Data mining algorithms, KDD"
+    }
+  },
+  {
+    "kind": "journals",
+    "name": "Knowledge and Information Systems",
+    "kept": {
+      "name": "Knowledge and Information Systems",
+      "abbr": "KAIS",
+      "publisher": "Springer",
+      "host": "—",
+      "field": "Data",
+      "tier": "Q1",
+      "if": "2.7",
+      "strength": "KI systems, data mining",
+      "fields": [
+        "Data",
+        "AI"
+      ],
+      "tiers": [
+        "Q1"
+      ]
+    },
+    "alternate": {
+      "name": "Knowledge and Information Systems",
+      "abbr": "KAIS-J",
+      "publisher": "Springer",
+      "host": "—",
+      "field": "AI/Data",
+      "tier": "Q1",
+      "if": "2.7",
+      "strength": "Knowledge engineering, data integration"
+    }
+  },
+  {
+    "kind": "journals",
+    "name": "ACM Transactions on Cyber-Physical Systems",
+    "kept": {
+      "name": "ACM Transactions on Cyber-Physical Systems",
+      "abbr": "TCPS",
+      "publisher": "ACM",
+      "host": "ACM",
+      "field": "RT/Embedded",
+      "tier": "Q1",
+      "if": "2.3",
+      "strength": "CPS theory and design",
+      "fields": [
+        "RT",
+        "Embedded"
+      ],
+      "tiers": [
+        "Q1"
+      ]
+    },
+    "alternate": {
+      "name": "ACM Transactions on Cyber-Physical Systems",
+      "abbr": "TCPS-ACM",
+      "publisher": "ACM",
+      "host": "ACM",
+      "field": "Embedded/RT",
+      "tier": "Q1",
+      "if": "2.3",
+      "strength": "CPS theory and design"
+    }
+  }
+]

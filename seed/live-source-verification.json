@@ -1,0 +1,200 @@
+{
+  "checked_at": "2026-09-05T23:56:35.118640+00:00",
+  "results": [
+    {
+      "path": "css/pages.css",
+      "matches_live_source": true,
+      "live_sha256": "5a670dcb522701fe9665d5d6464f2276ef73ea5b3289f6b5fb8a1bd9f719185d"
+    },
+    {
+      "path": "css/research-hero.css",
+      "matches_live_source": true,
+      "live_sha256": "4ac64a5072e21d9b296bc49b529bb1407900141670b7b976d33699eb0b352056"
+    },
+    {
+      "path": "css/style.css",
+      "matches_live_source": true,
+      "live_sha256": "c9aa5dedfcf82976e64a96a31598ded15c4e1392f053b23b376aa82093032eeb"
+    },
+    {
+      "path": "index.html",
+      "matches_live_source": true,
+      "live_sha256": "a94f1794ec5c47171b9178c3c73d189cb5652e7f71b738d05aff9ccb89050845"
+    },
+    {
+      "path": "js/script.js",
+      "matches_live_source": true,
+      "live_sha256": "8557720b497ecc57d1df676073234a751221b135b254c268179fd3d172bb5d43"
+    },
+    {
+      "path": "js/sidebar.js",
+      "matches_live_source": true,
+      "live_sha256": "924f78e96f9af7b7dd35972466fcddda1e065cc4b1112e65daee6c1654b21c12"
+    },
+    {
+      "path": "js/theme.js",
+      "matches_live_source": true,
+      "live_sha256": "a4ec1f409fd9e0d434f3efcfcdf7f729b61c8113cfaee470c875c789bcb9ca4d"
+    },
+    {
+      "path": "pages/about.html",
+      "matches_live_source": true,
+      "live_sha256": "2396fb93aa2da0b321c479fc8480e4377f6c077697c75be5a6b077b768df256b"
+    },
+    {
+      "path": "pages/awards.html",
+      "matches_live_source": true,
+      "live_sha256": "389a61da9b04461f618a0d069b0bf054d3f5b99b102fdc8141868cac03319c96"
+    },
+    {
+      "path": "pages/co-researcher.html",
+      "matches_live_source": true,
+      "live_sha256": "0ae9758cf1856b382df52c022a79376aaec6a9b179b2870d5c395091a3bcabb8"
+    },
+    {
+      "path": "pages/conference-tier.html",
+      "matches_live_source": true,
+      "live_sha256": "2a3f0ee72f73b5bd35c11894311241933b921492f16fbdebcf436fc112113b1d"
+    },
+    {
+      "path": "pages/coursework.html",
+      "matches_live_source": true,
+      "live_sha256": "6097261bff4502700fe51f27ed6ffd2aa97da627153b63097d320efed6fa9521"
+    },
+    {
+      "path": "pages/deadlines.html",
+      "matches_live_source": true,
+      "live_sha256": "e0008f29c5de3395a56c4d22553965c5cdbb580672d2237b4c70f5a1f819ada5"
+    },
+    {
+      "path": "pages/education/bongeun-middle.html",
+      "matches_live_source": true,
+      "live_sha256": "d7b2d4dfc3863f7d83db2c92845309eb8313def0bed8563e0ab82c4dbcc4c663"
+    },
+    {
+      "path": "pages/education/cheongdam-high.html",
+      "matches_live_source": true,
+      "live_sha256": "caed5b8b3b04377fa8be1a627b64c06f1b62e0c15ecdbbdb5778a3b69fc4902f"
+    },
+    {
+      "path": "pages/education/eonbuk-elementary.html",
+      "matches_live_source": true,
+      "live_sha256": "d57f8db57b6c3f17d84feb3c891596620d79a9b2ba307ea2655aede6baad36b9"
+    },
+    {
+      "path": "pages/experience.html",
+      "matches_live_source": true,
+      "live_sha256": "44b06cc5d63844c97a01849d84433d4ea16e8832401418460cfc049ebcee27d0"
+    },
+    {
+      "path": "pages/journal.html",
+      "matches_live_source": true,
+      "live_sha256": "50280a5b4da823cc5ef0794c50913f2dc10aa816ca924d9356e6db1cd49321ca"
+    },
+    {
+      "path": "pages/open-problems.html",
+      "matches_live_source": true,
+      "live_sha256": "ba2eb6db986786b8a7d87dce7a0ab63e5fb7ca09e68b3d03114213df18e54b00"
+    },
+    {
+      "path": "pages/overleaf.html",
+      "matches_live_source": true,
+      "live_sha256": "b345d0c70ecb26670956fccbea9e3bca47002c6181e1ee61dedac136d6a65ea3"
+    },
+    {
+      "path": "pages/paper-writing.html",
+      "matches_live_source": true,
+      "live_sha256": "ba30c3dde6493d62c63c63f6eb0aa6bf8afb82fcd079b75906831a82dd4a7f19"
+    },
+    {
+      "path": "pages/people.html",
+      "matches_live_source": true,
+      "live_sha256": "5aaaf73f085bfcf2178d104444c28e3849392d1a4dcc47006f75bcb8489069c9"
+    },
+    {
+      "path": "pages/photos.html",
+      "matches_live_source": true,
+      "live_sha256": "9bfc4e8e7339a7cfcb366d714355205b169e8df413f47dce30489f577eb98964"
+    },
+    {
+      "path": "pages/pupil.html",
+      "matches_live_source": true,
+      "live_sha256": "b3b35267c5abb3abdb41e4bd8be19a1864bebb6510a8e91892a071d6bab1c35b"
+    },
+    {
+      "path": "pages/research/ai.html",
+      "matches_live_source": true,
+      "live_sha256": "b0639161fbae5a0f5a46c59766b0c40773628913beec7fa4a68228933b9f0c00"
+    },
+    {
+      "path": "pages/research/autonomous.html",
+      "matches_live_source": true,
+      "live_sha256": "d25361068ce7a8336f2f1ba9b7535b0987627b6398d5b60618a81def11731c49"
+    },
+    {
+      "path": "pages/research/computer-systems.html",
+      "matches_live_source": true,
+      "live_sha256": "38347802f6163f64cab35fb50251f926dd0ea574376e14f21af5b977d34cc517"
+    },
+    {
+      "path": "pages/research/quantum.html",
+      "matches_live_source": true,
+      "live_sha256": "8b443d75e2f7e466358a586a3c45eb81f488e218f01233bba2377e67ef95da83"
+    },
+    {
+      "path": "pages/research/security.html",
+      "matches_live_source": true,
+      "live_sha256": "a970075f1e9a5a11b4d542eff9d840946730b5610346b1b500ce9cce87ce4a2e"
+    },
+    {
+      "path": "pages/research/tda-medical.html",
+      "matches_live_source": true,
+      "live_sha256": "4b7ba31c0f734ac0446ff9d3897b6152ed034e38cf6661dabe623d6db0a25b1b"
+    },
+    {
+      "path": "pages/schedule.html",
+      "matches_live_source": true,
+      "live_sha256": "901a10edc9c0c0121f6af3f4674c63649abd51a289cbccd36e0885256222534f"
+    },
+    {
+      "path": "pages/skills.html",
+      "matches_live_source": true,
+      "live_sha256": "9524e8a62a1e541a9429f6083589dd092407e0046ace8044a71a75e47bc41d26"
+    },
+    {
+      "path": "pages/traveling/australia.html",
+      "matches_live_source": true,
+      "live_sha256": "ca533f98034ea759238de4a23c37a3b42bcd20296e137c5fcde6a2c28dc0365c"
+    },
+    {
+      "path": "pages/traveling/europe.html",
+      "matches_live_source": true,
+      "live_sha256": "0d93e1d128f6716283c0c32252f30d7dda4bdf527dbb21b9a391083079ddb1ee"
+    },
+    {
+      "path": "pages/traveling/japan-hokkaido.html",
+      "matches_live_source": true,
+      "live_sha256": "d2f4e947f2e96d10701d8e438c6d8417202c1af2f387ffc77668e4b024ab13cb"
+    },
+    {
+      "path": "pages/traveling/japan-nagoya.html",
+      "matches_live_source": true,
+      "live_sha256": "f471897c4fd1b0a55449082ab8538bd4bb88cf84d8312e3ab17f221129492194"
+    },
+    {
+      "path": "pages/traveling/japan-osaka.html",
+      "matches_live_source": true,
+      "live_sha256": "6eeb05de2553565db75d696149cf42ca2ba66c05b7f1f106b236e5f574e2d1c1"
+    },
+    {
+      "path": "pages/traveling/japan-tokyo.html",
+      "matches_live_source": true,
+      "live_sha256": "75c8183969a5cfbd1d78258833813da283fc933fd8704a05a0429122776cf85b"
+    },
+    {
+      "path": "pages/traveling/vietnam.html",
+      "matches_live_source": true,
+      "live_sha256": "263a601ad339ff3a6e1e4fc408e1149970403e501cb34ba6d1312117d462ff2a"
+    }
+  ]
+}
