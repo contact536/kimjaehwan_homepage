@@ -34,6 +34,14 @@ terraform plan -out homepage.tfplan
 
 `terraform plan` is a read-only preview. Review its instance, boot volume, Floating IP, security group, and rules before running `terraform apply homepage.tfplan`.
 
+For an interactive local preparation that keeps the API password out of `terraform.tfvars`, run:
+
+```powershell
+.\plan.ps1 -TerraformPath "C:\path\to\terraform.exe"
+```
+
+The script prompts for the required values and produces `homepage.tfplan`; it never calls `terraform apply`.
+
 ## After the infrastructure is created
 
 1. Use the output `floating_ip` to SSH to the server using the configured key pair.
