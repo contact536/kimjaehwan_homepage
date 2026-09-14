@@ -18,3 +18,11 @@ deliverables/
 *.db
 *.pem
 *.key
+
+# Terraform state and credentials must remain local.
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+!terraform/terraform.tfvars.example
+terraform/crash.log
