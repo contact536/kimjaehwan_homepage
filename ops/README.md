@@ -25,7 +25,22 @@ BACKUP_RETENTION_DAYS=30
 ## 백업과 배포
 
 - 백업은 매일 `/var/lib/kimjaehwan-homepage/backups/`에 생성되며 SQLite 무결성 검사를 통과한 파일만 남깁니다.
-- 이 경로는 같은 서버의 볼륨에 있으므로, 서버·볼륨 장애까지 대비하려면 검증된 백업을 NHN Object Storage 등 별도 저장소에도 복사해야 합니다.
+- S3 자격 증명이 설정되면 같은 작업에서 NHN Object Storage에도 업로드하고, 원격 오브젝트의 크기를 다시 확인합니다. 로컬은 30일, 원격은 기본 90일을 보관합니다.
+- 원격 업로드가 실패해도 검증된 로컬 백업은 남으며, systemd 작업은 실패 상태가 되어 `journalctl -u kimjaehwan-homepage-backup.service`에서 확인할 수 있습니다.
+
+## NHN Object Storage 오프사이트 백업
+
+1. NHN 콘솔의 **Storage > Object Storage**에서 S3 API 자격 증명을 발급하고, 판교(KR1)에 전용 버킷을 만듭니다. 버킷 이름은 소문자·숫자·`.`·`-`만 포함하는 3~63자 이름이어야 합니다.
+2. S3 access key와 secret key는 이 저장소나 이 대화에 붙여넣지 않습니다. Windows PowerShell에서 아래 스크립트를 실행하면 두 값을 비공개 입력으로 받아 서버의 `/etc/kimjaehwan-homepage-backup.env`에만 `root:kimhomepage / 640` 권한으로 저장하고, 즉시 첫 원격 백업을 검증합니다.
+
+```powershell
+cd C:/Users/USER/Documents/ChatGPT/kimjaehwankimjaehwan/kimjaehwan-homepage-source
+./ops/configure-offsite-backup.ps1 -Bucket kimjaehwan-homepage-backups
+```
+
+3. 기본값은 endpoint `https://kr1-api-object-storage.nhncloudservice.com`, region `KR1`, 원격 보관 90일입니다. 별도 보관 기간이 필요하면 `-RetentionDays 180`처럼 지정합니다.
+
+NHN Object Storage는 S3 호환 API와 KR1 엔드포인트를 제공합니다. S3 API 자격 증명은 프로젝트별 사용자당 최대 3개이므로, 이 백업 전용 키를 만들고 더 이상 쓰지 않는 키는 콘솔에서 폐기합니다.
 - 소스 변경은 서버에서 `sudo /srv/kimjaehwan-homepage/ops/deploy.sh`로 반영합니다. 이 스크립트는 fast-forward 업데이트, 운영 의존성 설치, 서비스 재시작, 타이머 활성화, Caddy 검증과 health check를 순서대로 실행합니다.
 
 ## 네트워크
