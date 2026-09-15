@@ -1,4 +1,8 @@
-kimjaehwan.com, www.kimjaehwan.com {
+www.kimjaehwan.com {
+  redir https://kimjaehwan.com{uri} permanent
+}
+
+kimjaehwan.com {
   encode zstd gzip
   reverse_proxy 127.0.0.1:4317
 }
