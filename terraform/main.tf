@@ -89,7 +89,7 @@ resource "nhncloud_compute_instance_v2" "homepage" {
     destination_type      = "volume"
     boot_index            = 0
     volume_size           = var.root_volume_gb
-    delete_on_termination = false
+    delete_on_termination = true
   }
 
   # The VPC port owns security-group attachment. Reapplying the same group to

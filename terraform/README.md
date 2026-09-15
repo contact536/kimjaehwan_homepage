@@ -50,6 +50,8 @@ After reviewing a plan, use `-Apply` to generate a fresh plan and apply it in th
 
 Saved non-secret values in the ignored `terraform.tfvars` file are reused, so only the NHN API credentials are requested again.
 
+For a fresh, empty instance whose SSH key must be replaced, `-ReplaceInstance -Apply` captures the old boot-volume ID, recreates the instance with the configured key, then deletes that retired boot volume after a successful replacement. Do not use this option after application data has been stored on the server.
+
 ## After the infrastructure is created
 
 1. Use the output `floating_ip` to SSH to the server using the configured key pair.
