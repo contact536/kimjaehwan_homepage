@@ -9,8 +9,13 @@
  document.addEventListener('click',e=>{document.querySelectorAll('.academic-tools[open]').forEach(d=>{if(!d.contains(e.target))d.open=false})});
 })();
 (() => {
- const footer=document.querySelector('.kim-footer');
- if(!footer)return;
+ let footer=document.querySelector('.kim-footer');
+ if(!footer){
+  footer=document.createElement('footer');
+  footer.className='kim-footer';
+  footer.setAttribute('aria-label','방문 통계 안내');
+  document.body.append(footer);
+ }
  const note=document.createElement('p');
  note.className='kim-small';
  const privacy=document.createElement('a');
