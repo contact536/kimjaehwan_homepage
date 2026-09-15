@@ -39,7 +39,15 @@ $apiPassword = Read-Host "NHN API password" -AsSecureString
 $networkId = Read-Required "Existing VPC UUID"
 $subnetId = Read-Host "Existing subnet UUID (optional; leave empty for automatic allocation)"
 $keyPairName = Read-Required "Existing SSH key-pair name"
-$sshAllowedCidr = Read-Required "Your public IPv4 CIDR (for example 203.0.113.10/32)"
+try {
+  $currentPublicIp = (Invoke-RestMethod -Uri "https://api.ipify.org").Trim()
+  if ($currentPublicIp -notmatch "^\d{1,3}(\.\d{1,3}){3}$") { throw "The public-IP service returned an invalid IPv4 address." }
+  $sshAllowedCidr = "$currentPublicIp/32"
+  Write-Host "SSH will be restricted to the current public IP: $sshAllowedCidr"
+} catch {
+  Write-Warning "Could not determine the current public IP automatically."
+  $sshAllowedCidr = Read-Required "Your public IPv4 CIDR (for example 203.0.113.10/32)"
+}
 
 $subnetLine = if ([string]::IsNullOrWhiteSpace($subnetId)) { "" } else { "subnet_id        = `"$(Escape-TfString $subnetId.Trim())`"" }
 

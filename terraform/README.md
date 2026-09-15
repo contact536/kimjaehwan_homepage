@@ -40,7 +40,7 @@ For an interactive local preparation that keeps the API password out of `terrafo
 .\plan.ps1 -TerraformPath "C:\path\to\terraform.exe"
 ```
 
-The script prompts for the required values and produces `homepage.tfplan`; it never calls `terraform apply`.
+The script detects the current public IPv4 address and restricts SSH to it. It prompts for an SSH CIDR only if that lookup fails, produces `homepage.tfplan`, and never calls `terraform apply`.
 
 ## After the infrastructure is created
 
