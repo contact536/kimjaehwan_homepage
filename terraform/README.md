@@ -2,7 +2,7 @@
 
 This directory creates the infrastructure for the Kim Jae-hwan research homepage in the existing NHN Cloud company project:
 
-- one non-U2 Compute Instance with a 30 GB persistent boot volume;
+- one non-U2 Compute Instance with a 30 GB boot volume;
 - one VPC port on a selected existing VPC (with an optional subnet selection);
 - one Floating IP associated with that port;
 - one dedicated security group that allows public HTTP/HTTPS and SSH only from the specified administrator CIDR.
@@ -34,6 +34,8 @@ terraform plan -out homepage.tfplan
 
 `terraform plan` is a read-only preview. Review its instance, boot volume, Floating IP, security group, and rules before running `terraform apply homepage.tfplan`.
 
+For the existing production server, the plan must show **no resource replacement**. In particular, NHN treats a change to `delete_on_termination` on the existing boot volume as a destroy-and-recreate operation. Do not apply a plan containing `-/+`; the configuration intentionally preserves the current value while database recovery is handled by verified backups.
+
 For an interactive local preparation that keeps the API password out of `terraform.tfvars`, run:
 
 ```powershell
@@ -61,4 +63,4 @@ For a fresh, empty instance whose SSH key must be replaced, `-ReplaceInstance -A
 
 ## State and lifecycle
 
-Terraform state identifies resources that incur cost and is intentionally ignored by Git. Store it in an encrypted, access-controlled location before team use; do not upload it to the public repository. The boot volume is retained when an instance is terminated, and `prevent_destroy` blocks accidental Terraform deletion. A deliberate retirement requires removing that guard in a reviewed change and deleting the volume only after a backup is verified.
+Terraform state identifies resources that incur cost and is intentionally ignored by Git. Store it in an encrypted, access-controlled location before team use; do not upload it to the public repository. `prevent_destroy` blocks accidental Terraform deletion. The current boot-volume policy is retained to avoid an unsafe replacement; a deliberate retirement requires removing that guard in a reviewed change and verifying the application backup before the instance is removed.

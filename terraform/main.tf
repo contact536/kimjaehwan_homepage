@@ -84,14 +84,16 @@ resource "nhncloud_compute_instance_v2" "homepage" {
   }
 
   block_device {
-    uuid                  = data.nhncloud_images_image_v2.homepage.id
-    source_type           = "image"
-    destination_type      = "volume"
-    boot_index            = 0
-    volume_size           = var.root_volume_gb
-    # Keep the data volume if the instance is removed outside the recovery
-    # procedure. It must be deleted explicitly after a verified backup.
-    delete_on_termination = false
+    uuid             = data.nhncloud_images_image_v2.homepage.id
+    source_type      = "image"
+    destination_type = "volume"
+    boot_index       = 0
+    volume_size      = var.root_volume_gb
+    # NHN requires instance replacement to alter this on an existing boot
+    # volume. Keep the value recorded in the live instance so a routine plan
+    # cannot replace the production server. Verified database backups provide
+    # the recovery path for application data.
+    delete_on_termination = true
   }
 
   # The VPC port owns security-group attachment. Reapplying the same group to
