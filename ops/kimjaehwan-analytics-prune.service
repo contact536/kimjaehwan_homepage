@@ -1,5 +1,5 @@
 [Unit]
-Description=Prune kimjaehwan.com visitor analytics beyond 90 days
+Description=Remove prior-day visitor hashes while retaining aggregate statistics
 
 [Service]
 Type=oneshot

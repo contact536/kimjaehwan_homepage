@@ -154,10 +154,14 @@
   }
   async function loadAnalytics() {
     $('analytics-status').textContent = '방문 데이터를 불러오는 중입니다.';
-    const days = [7, 30, 90].includes(Number($('analytics-range').value)) ? Number($('analytics-range').value) : 30;
+    const selected = $('analytics-range').value;
+    const days = ['7', '30', '90', 'all'].includes(selected) ? selected : '30';
     try {
       const data = await api(`/api/admin/analytics?days=${days}`);
       const daily = data.daily || [];
+      const entire = days === 'all';
+      $('analytics-daily-title').textContent = entire ? '월별 방문' : '일별 방문';
+      $('analytics-active-label').textContent = entire ? '방문이 있었던 달' : '방문이 있었던 날';
       $('analytics-views').textContent = Number(data.views || 0).toLocaleString('ko-KR');
       $('analytics-visitors').textContent = Number(data.visitors || 0).toLocaleString('ko-KR');
       $('analytics-active-days').textContent = String(daily.length);
@@ -185,7 +189,7 @@
       analyticsRows('analytics-countries', data.countries || [], 'country', countryName, 'visitors', '명');
       analyticsRows('analytics-regions', data.regions || [], 'region', (value, row) =>
         `${countryName(row.country)} · ${value || '지역 알 수 없음'}`, 'visitors', '명');
-      $('analytics-status').textContent = `${data.from || ''} ~ ${data.to || ''} · 페이지 조회와 하루 단위 방문자를 집계합니다.`;
+      $('analytics-status').textContent = `${data.from || ''} ~ ${data.to || ''} · 페이지 조회와 하루 단위 방문자 합계를 ${entire ? '월별로' : '일별로'} 표시합니다.`;
     } catch (error) {
       $('analytics-status').textContent = `방문 현황을 불러오지 못했습니다: ${error.message}`;
     }

@@ -2,7 +2,7 @@
 Description=Monthly DB-IP City Lite update
 
 [Timer]
-OnCalendar=monthly
+OnCalendar=*-*-03 03:00:00
 Persistent=true
 RandomizedDelaySec=3600
 

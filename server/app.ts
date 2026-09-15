@@ -182,8 +182,9 @@ export function createApp() {
   });
   app.get("/api/admin/session", (c) => c.json({ authenticated: true }));
   app.get("/api/admin/analytics", async (c) => {
-    const days = Number(c.req.query("days") || 30);
-    if (![7, 30, 90].includes(days)) return c.json({ error: "Choose 7, 30 or 90 days" }, 400);
+    const value = c.req.query("days") || "30";
+    if (!["7", "30", "90", "all"].includes(value)) return c.json({ error: "Choose 7, 30, 90 days or all" }, 400);
+    const days = value === "all" ? "all" : Number(value) as 7 | 30 | 90;
     return c.json(await analyticsReport(c.env.DB, days));
   });
   app.get('/api/research/status', c => c.json({retrieval:true,agent:{configured:Boolean(c.env.OLLAMA_MODEL),requiresLogin:true,framework:'LangGraph'}}));

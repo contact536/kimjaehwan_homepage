@@ -1,5 +1,5 @@
 [Unit]
-Description=Daily visitor analytics retention cleanup
+Description=Daily cleanup of prior-day visitor hashes
 
 [Timer]
 OnCalendar=daily
