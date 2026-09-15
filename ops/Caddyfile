@@ -1,22 +1,22 @@
 www.kimjaehwan.com {
-  redir https://kimjaehwan.com{uri} permanent
+	redir https://kimjaehwan.com{uri} permanent
 }
 
 kimjaehwan.com {
-  header {
-    Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    X-Content-Type-Options "nosniff"
-    X-Frame-Options "SAMEORIGIN"
-    Referrer-Policy "strict-origin-when-cross-origin"
-    Permissions-Policy "camera=(), geolocation=(), microphone=(), payment=()"
-    -Server
-  }
+\theader {
+\t\tStrict-Transport-Security "max-age=31536000; includeSubDomains"
+\t\tX-Content-Type-Options "nosniff"
+\t\tX-Frame-Options "SAMEORIGIN"
+\t\tReferrer-Policy "strict-origin-when-cross-origin"
+\t\tPermissions-Policy "camera=(), geolocation=(), microphone=(), payment=()"
+\t\t-Server
+\t}
 
-  encode zstd gzip
-  reverse_proxy 127.0.0.1:4317 {
-    # Caddy owns this value; the loopback-only application uses it for
-    # per-client login throttling rather than a shared global bucket.
-    header_up -X-Client-IP
-    header_up X-Client-IP {remote_host}
-  }
+\tencode zstd gzip
+\treverse_proxy 127.0.0.1:4317 {
+\t\t# Caddy owns this value; the loopback-only application uses it for
+\t\t# per-client login throttling rather than a shared global bucket.
+\t\theader_up -X-Client-IP
+\t\theader_up X-Client-IP {remote_host}
+\t}
 }
