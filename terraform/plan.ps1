@@ -58,6 +58,22 @@ function Get-NhnEndpoint($Catalog, [string]$Type, [string]$Region) {
   return $endpoint.publicURL
 }
 
+function Remove-NhnVolume([string]$VolumeEndpoint, [string]$VolumeId, [string]$Token) {
+  $deleteUri = "{0}/volumes/{1}" -f $VolumeEndpoint.TrimEnd('/'), $VolumeId
+  try {
+    Invoke-WebRequest -UseBasicParsing -Method Delete -Uri $deleteUri -Headers @{ "X-Auth-Token" = $Token } | Out-Null
+    Write-Host "Deleted retired boot volume: $VolumeId"
+  } catch {
+    $statusCode = $null
+    if ($null -ne $_.Exception.Response) { $statusCode = [int]$_.Exception.Response.StatusCode }
+    if ($statusCode -eq 404) {
+      Write-Host "Retired boot volume is already absent: $VolumeId"
+      return
+    }
+    throw
+  }
+}
+
 if (-not (Get-Command $TerraformPath -ErrorAction SilentlyContinue) -and -not (Test-Path -LiteralPath $TerraformPath)) {
   throw "Terraform was not found. Install it from https://developer.hashicorp.com/terraform/install or provide -TerraformPath."
 }
@@ -143,23 +159,19 @@ try {
     & $TerraformPath apply -input=false homepage.tfplan
     if ($LASTEXITCODE -ne 0) { throw "Terraform apply failed; the retired boot volume was not deleted." }
     if ($ReplaceInstance -and -not [string]::IsNullOrWhiteSpace($retiredVolumeId)) {
-      $deleteUri = "{0}/volumes/{1}" -f $volumeEndpoint.TrimEnd('/'), $retiredVolumeId
       $deleted = $false
       for ($attempt = 1; $attempt -le 12 -and -not $deleted; $attempt++) {
         try {
-          Invoke-WebRequest -UseBasicParsing -Method Delete -Uri $deleteUri -Headers @{ "X-Auth-Token" = $nhnToken } | Out-Null
+          Remove-NhnVolume $volumeEndpoint $retiredVolumeId $nhnToken
           $deleted = $true
         } catch {
           if ($attempt -eq 12) { throw }
           Start-Sleep -Seconds 5
         }
       }
-      Write-Host "Deleted retired boot volume: $retiredVolumeId"
     }
     if (-not $ReplaceInstance -and -not [string]::IsNullOrWhiteSpace($retiredVolumeId)) {
-      $deleteUri = "{0}/volumes/{1}" -f $volumeEndpoint.TrimEnd('/'), $retiredVolumeId
-      Invoke-WebRequest -UseBasicParsing -Method Delete -Uri $deleteUri -Headers @{ "X-Auth-Token" = $nhnToken } | Out-Null
-      Write-Host "Deleted retired boot volume: $retiredVolumeId"
+      Remove-NhnVolume $volumeEndpoint $retiredVolumeId $nhnToken
     }
   }
 } finally {
