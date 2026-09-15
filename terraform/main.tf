@@ -85,6 +85,13 @@ resource "nhncloud_compute_instance_v2" "homepage" {
     volume_size           = var.root_volume_gb
     delete_on_termination = false
   }
+
+  # The VPC port owns security-group attachment. Reapplying the same group to
+  # both the port and the instance makes the NHN OpenStack API reject it as a
+  # duplicate, so instance-level reconciliation is intentionally disabled.
+  lifecycle {
+    ignore_changes = [security_groups]
+  }
 }
 
 resource "nhncloud_networking_floatingip_v2" "homepage" {
