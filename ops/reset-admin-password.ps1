@@ -1,4 +1,4 @@
-param(
+﻿param(
   [string]$Server = 'ubuntu@133.186.240.44',
   [string]$SshKeyPath = (Join-Path $env:USERPROFILE '.ssh\kimjaehwan_nhn_rsa')
 )
