@@ -24,4 +24,13 @@ caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 systemctl restart kimjaehwan-homepage
 systemctl enable --now kimjaehwan-homepage-backup.timer
 systemctl reload caddy
-curl --fail --silent --show-error http://127.0.0.1:4317/api/health
+
+for attempt in {1..15}; do
+  if curl --fail --silent --show-error http://127.0.0.1:4317/api/health; then
+    exit 0
+  fi
+  sleep 1
+done
+
+echo "The application did not become healthy within 15 seconds." >&2
+exit 1
