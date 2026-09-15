@@ -1,0 +1,12 @@
+[Unit]
+Description=Update DB-IP City Lite for broad visitor region analytics
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=kimhomepage
+Group=kimhomepage
+WorkingDirectory=/srv/kimjaehwan-homepage
+ExecStart=/usr/bin/node /srv/kimjaehwan-homepage/ops/update-city-db.mjs
+TimeoutStartSec=400

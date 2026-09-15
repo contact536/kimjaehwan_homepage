@@ -19,6 +19,8 @@ install -m 0644 "$app_dir/ops/kimjaehwan-homepage-backup.service" /etc/systemd/s
 install -m 0644 "$app_dir/ops/kimjaehwan-homepage-backup.timer" /etc/systemd/system/kimjaehwan-homepage-backup.timer
 install -m 0644 "$app_dir/ops/kimjaehwan-country-db.service" /etc/systemd/system/kimjaehwan-country-db.service
 install -m 0644 "$app_dir/ops/kimjaehwan-country-db.timer" /etc/systemd/system/kimjaehwan-country-db.timer
+install -m 0644 "$app_dir/ops/kimjaehwan-city-db.service" /etc/systemd/system/kimjaehwan-city-db.service
+install -m 0644 "$app_dir/ops/kimjaehwan-city-db.timer" /etc/systemd/system/kimjaehwan-city-db.timer
 install -m 0644 "$app_dir/ops/kimjaehwan-analytics-prune.service" /etc/systemd/system/kimjaehwan-analytics-prune.service
 install -m 0644 "$app_dir/ops/kimjaehwan-analytics-prune.timer" /etc/systemd/system/kimjaehwan-analytics-prune.timer
 install -m 0644 "$app_dir/ops/Caddyfile" /etc/caddy/Caddyfile
@@ -29,9 +31,13 @@ caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 systemctl restart kimjaehwan-homepage
 systemctl enable --now kimjaehwan-homepage-backup.timer
 systemctl enable --now kimjaehwan-country-db.timer
+systemctl enable --now kimjaehwan-city-db.timer
 systemctl enable --now kimjaehwan-analytics-prune.timer
 if [[ ! -f /var/lib/kimjaehwan-homepage/geoip/dbip-country-lite.mmdb ]]; then
   systemctl start kimjaehwan-country-db.service || echo "Country data unavailable; visits will be shown as unknown until the next update." >&2
+fi
+if [[ ! -f /var/lib/kimjaehwan-homepage/geoip/dbip-city-lite.mmdb ]]; then
+  systemctl start kimjaehwan-city-db.service || echo "Region data unavailable; country statistics will continue until the next update." >&2
 fi
 systemctl reload caddy
 

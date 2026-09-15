@@ -1,4 +1,5 @@
 import type { Database } from "./database.ts";
+import type { ApproxLocation } from "./country.ts";
 
 const dateParts = new Intl.DateTimeFormat("en-US", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit",
@@ -37,7 +38,7 @@ export function shouldTrack(request: Request, response: Response) {
 }
 
 export async function recordVisit(db: Database, request: Request, response: Response,
-                                  country = "??", siteUrl = request.url) {
+                                  location: ApproxLocation = { country: "??", region: "" }, siteUrl = request.url) {
   if (!shouldTrack(request, response)) return response;
   const day = koreaDay();
   const old = (request.headers.get("cookie") || "").match(/(?:^|;\s*)research_visit=([a-f0-9]{32})(?:;|$)/)?.[1];
@@ -46,9 +47,10 @@ export async function recordVisit(db: Database, request: Request, response: Resp
   const hash = Array.from(new Uint8Array(digest), x => x.toString(16).padStart(2, "0")).join("");
   const path = new URL(request.url).pathname.replace(/\/index\.html$/, "/") || "/";
   const referrer = referrerHost(request.headers.get("referer"), siteUrl);
-  const code = /^[A-Z]{2}$/.test(country) ? country : "??";
+  const code = /^[A-Z]{2}$/.test(location.country) ? location.country : "??";
+  const region = code === "??" ? "" : location.region.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 80);
   await db.batch([
-    db.prepare("INSERT OR IGNORE INTO analytics_visitors(day,visitor_hash,first_referrer,country) VALUES(?,?,?,?)").bind(day, hash, referrer, code),
+    db.prepare("INSERT OR IGNORE INTO analytics_visitors(day,visitor_hash,first_referrer,country,region) VALUES(?,?,?,?,?)").bind(day, hash, referrer, code, region),
     db.prepare("INSERT INTO analytics_daily(day,path,referrer,country,views) VALUES(?,?,?,?,1) ON CONFLICT(day,path,referrer,country) DO UPDATE SET views=views+1").bind(day, path, referrer, code),
   ]);
   if (lastPrunedDay !== day) {
@@ -75,9 +77,10 @@ export async function analyticsReport(db: Database, days: number) {
   const pages = await db.prepare("SELECT path,SUM(views) AS views FROM analytics_daily WHERE day>=? GROUP BY path ORDER BY views DESC,path LIMIT 10").bind(from).all();
   const referrers = await db.prepare("SELECT first_referrer AS referrer,COUNT(*) AS visitors FROM analytics_visitors WHERE day>=? GROUP BY first_referrer ORDER BY visitors DESC,referrer LIMIT 10").bind(from).all();
   const countries = await db.prepare("SELECT country,COUNT(*) AS visitors FROM analytics_visitors WHERE day>=? GROUP BY country ORDER BY visitors DESC,country LIMIT 10").bind(from).all();
+  const regions = await db.prepare("SELECT country,region,COUNT(*) AS visitors FROM analytics_visitors WHERE day>=? GROUP BY country,region ORDER BY visitors DESC,country,region LIMIT 10").bind(from).all();
   const dailyVisitors = await db.prepare("SELECT day,COUNT(*) AS visitors FROM analytics_visitors WHERE day>=? GROUP BY day ORDER BY day").bind(from).all();
   return { from, to, days, views: views?.total || 0, visitors: visitors?.total || 0,
     daily: series.results.map(row => ({ day: row.day, views: row.views,
       visitors: dailyVisitors.results.find(v => v.day === row.day)?.visitors || 0 })),
-    pages: pages.results, referrers: referrers.results, countries: countries.results };
+    pages: pages.results, referrers: referrers.results, countries: countries.results, regions: regions.results };
 }

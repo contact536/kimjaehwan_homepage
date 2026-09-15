@@ -145,7 +145,7 @@
       const line = document.createElement('div');
       line.className = 'analytics-row';
       const label = document.createElement('span');
-      label.textContent = formatter(row[labelKey]);
+      label.textContent = formatter(row[labelKey], row);
       const value = document.createElement('strong');
       value.textContent = `${Number(row[metric] || 0).toLocaleString('ko-KR')}${unit}`;
       line.append(label, value);
@@ -181,7 +181,10 @@
       analyticsRows('analytics-pages', data.pages || [], 'path');
       analyticsRows('analytics-referrers', data.referrers || [], 'referrer', value => value, 'visitors', '명');
       const names = new Intl.DisplayNames(['ko'], { type: 'region' });
-      analyticsRows('analytics-countries', data.countries || [], 'country', value => value === '??' ? '알 수 없음' : (names.of(value) || value), 'visitors', '명');
+      const countryName = value => value === '??' ? '알 수 없음' : (names.of(value) || value);
+      analyticsRows('analytics-countries', data.countries || [], 'country', countryName, 'visitors', '명');
+      analyticsRows('analytics-regions', data.regions || [], 'region', (value, row) =>
+        `${countryName(row.country)} · ${value || '지역 알 수 없음'}`, 'visitors', '명');
       $('analytics-status').textContent = `${data.from || ''} ~ ${data.to || ''} · 페이지 조회와 하루 단위 방문자를 집계합니다.`;
     } catch (error) {
       $('analytics-status').textContent = `방문 현황을 불러오지 못했습니다: ${error.message}`;

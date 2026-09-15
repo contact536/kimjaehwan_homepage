@@ -55,9 +55,11 @@ NHN Object Storage는 S3 호환 API와 KR1 엔드포인트를 제공합니다. S
 
 관리자 비밀번호를 잊은 경우, NHN SSH 키가 있는 Windows PowerShell에서 저장소 루트의 `./ops/reset-admin-password.ps1`을 실행합니다. 8~128자의 새 비밀번호를 두 번 숨김 입력으로 받으며, SSH 표준 입력으로만 서버에 전달합니다. 서버는 PBKDF2 해시를 운영 DB에 저장하고 이전 관리자 세션을 모두 무효화합니다. 비밀번호는 명령 인수·저장소·복구 파일·명령 출력에 남기지 않습니다. 현재 비밀번호는 요구하지 않습니다.
 
-관리자 화면의 **방문 현황**은 NHN 서버의 공개 HTML 요청을 자체 집계합니다. 관리자·일반적인 봇 요청은 제외하고, 날짜별 방문 해시·첫 유입 사이트·국가 코드와 페이지별 합계만 SQLite에 저장합니다. 원본 IP, 유입 URL의 검색어와 경로, 브라우저 정보는 저장하지 않습니다. 하루짜리 익명 쿠키를 삭제하면 같은 날에도 다시 방문자로 집계될 수 있습니다. 매일 `kimjaehwan-analytics-prune.timer`가 최근 90일 이전 데이터를 삭제하며, 새 방문 시에도 같은 정리를 수행합니다.
+관리자 화면의 **방문 현황**은 NHN 서버의 공개 HTML 요청을 자체 집계합니다. 관리자·일반적인 봇 요청은 제외하고, 날짜별 방문 해시·첫 유입 사이트·국가 코드·가장 넓은 행정구역 이름과 페이지별 합계만 SQLite에 저장합니다. 원본 IP, 유입 URL의 검색어와 경로, 브라우저 정보, 도시·좌표는 저장하지 않습니다. 지역은 기능 적용 이후 새 방문부터 저장되며 과거 통계는 지역 알 수 없음으로 표시됩니다. 하루짜리 익명 쿠키를 삭제하면 같은 날에도 다시 방문자로 집계될 수 있습니다. 매일 `kimjaehwan-analytics-prune.timer`가 최근 90일 이전 데이터를 삭제하며, 새 방문 시에도 같은 정리를 수행합니다.
 
 국가 판정은 무료 [DB-IP Country Lite](https://db-ip.com/db/download/ip-to-country-lite) MMDB를 서버에서 조회합니다. 최초 배포 시 파일을 다운로드하고 매월 systemd 타이머가 갱신합니다. 다운로드 실패나 조회 불가 시 국가는 **알 수 없음**으로 표시하며 페이지 제공은 계속됩니다. 관리자 통계 화면과 공개 사이트에는 DB-IP 출처 링크가 표시됩니다. 진단 명령은 `systemctl status kimjaehwan-country-db.timer`, `journalctl -u kimjaehwan-country-db.service`입니다. 별도의 데이터 파일 경로가 필요하면 서비스 환경에 `COUNTRY_DB_PATH`를 설정합니다.
+
+시·도/주 판정은 무료 [DB-IP City Lite](https://db-ip.com/db/download/ip-to-city-lite) MMDB의 가장 넓은 행정구역 이름만 사용합니다. 도시명·위도·경도는 조회 결과에서 버립니다. 약 120MB의 파일을 서버 디스크에 내려받고 `kimjaehwan-city-db.timer`가 매월 갱신합니다. 데이터가 없거나 판정에 실패하면 Country Lite로 국가 통계만 유지합니다. 진단 명령은 `systemctl status kimjaehwan-city-db.timer`, `journalctl -u kimjaehwan-city-db.service`입니다. 별도 경로가 필요하면 서비스 환경과 갱신 서비스에 `CITY_DB_PATH`를 설정합니다. IP 기반 위치는 VPN·이동통신·회사망에서 실제 방문 위치와 다를 수 있습니다.
 
 `https://kimjaehwan.com/api/health`가 `ok: true`를 반환하는지 확인합니다. 이후 관리자 로그인·저장·비밀번호 변경과 재시작 후 DB 유지까지 점검합니다.
 

@@ -5,8 +5,8 @@ import { createApp } from "./app.ts";
 import { openDatabase } from "./sqlite.ts";
 import { initializeData } from "./database.ts";
 import { originalResponse } from "./original.ts";
-import { countryFromIp } from "./country.ts";
-import { recordVisit } from "./analytics.ts";
+import { locationFromIp } from "./country.ts";
+import { recordVisit, shouldTrack } from "./analytics.ts";
 const { db, close } = openDatabase(
   process.env.DATABASE_PATH || "./data/platform.sqlite",
 );
@@ -26,9 +26,13 @@ app.use("*", async (c, next) => {
 app.use("*", async (c, next) => {
   await next();
   try {
-    const siteUrl = process.env.PUBLIC_ORIGIN || c.req.url;
-    const country = countryFromIp(c.req.header("x-client-ip"), process.env.COUNTRY_DB_PATH || "/var/lib/kimjaehwan-homepage/geoip/dbip-country-lite.mmdb");
-    c.res = await recordVisit(db, c.req.raw, c.res, country, siteUrl);
+    if (shouldTrack(c.req.raw, c.res)) {
+      const siteUrl = process.env.PUBLIC_ORIGIN || c.req.url;
+      const location = locationFromIp(c.req.header("x-client-ip"),
+        process.env.CITY_DB_PATH || "/var/lib/kimjaehwan-homepage/geoip/dbip-city-lite.mmdb",
+        process.env.COUNTRY_DB_PATH || "/var/lib/kimjaehwan-homepage/geoip/dbip-country-lite.mmdb");
+      c.res = await recordVisit(db, c.req.raw, c.res, location, siteUrl);
+    }
   } catch (error) {
     // Analytics must never prevent a public page from loading.
     console.error("Visitor analytics:", error);
