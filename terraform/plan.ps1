@@ -13,7 +13,8 @@ applies the newly generated plan in the same credential-bearing process.
 param(
   [string]$TerraformPath = "terraform",
   [switch]$Apply,
-  [switch]$ReplaceInstance
+  [switch]$ReplaceInstance,
+  [string]$RetiredVolumeId
 )
 
 $ErrorActionPreference = "Stop"
@@ -102,24 +103,31 @@ try {
   $env:TF_VAR_nhn_auth_url = $nhnAuthUrl
   $env:TF_VAR_nhn_api_password = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($passwordBstr)
 
-  $retiredVolumeId = $null
+  $retiredVolumeId = $RetiredVolumeId
   $nhnToken = $null
   $volumeEndpoint = $null
 
   & $TerraformPath init -input=false
 
-  if ($ReplaceInstance) {
-    $currentInstanceId = & $TerraformPath output -raw instance_id
-    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($currentInstanceId)) { throw "Could not identify the current instance for replacement." }
+  if ($ReplaceInstance -or -not [string]::IsNullOrWhiteSpace($retiredVolumeId)) {
     $identity = Get-NhnTokenAndCatalog $nhnAuthUrl $nhnUserName $nhnTenantId $env:TF_VAR_nhn_api_password
     $nhnToken = $identity.access.token.id
-    $computeEndpoint = Get-NhnEndpoint $identity.access.serviceCatalog "compute" "KR1"
     $volumeEndpoint = Get-NhnEndpoint $identity.access.serviceCatalog "volumev3" "KR1"
     if ([string]::IsNullOrWhiteSpace($volumeEndpoint)) { $volumeEndpoint = Get-NhnEndpoint $identity.access.serviceCatalog "volumev2" "KR1" }
-    if ([string]::IsNullOrWhiteSpace($computeEndpoint) -or [string]::IsNullOrWhiteSpace($volumeEndpoint)) { throw "Could not locate NHN compute or volume API endpoints." }
+    if ([string]::IsNullOrWhiteSpace($volumeEndpoint)) { throw "Could not locate the NHN volume API endpoint." }
+  }
+
+  if ($ReplaceInstance -and [string]::IsNullOrWhiteSpace($retiredVolumeId)) {
+    $currentInstanceId = & $TerraformPath output -raw instance_id
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($currentInstanceId)) { throw "Could not identify the current instance for replacement." }
+    $computeEndpoint = Get-NhnEndpoint $identity.access.serviceCatalog "compute" "KR1"
+    if ([string]::IsNullOrWhiteSpace($computeEndpoint)) { throw "Could not locate the NHN compute API endpoint." }
     $attachments = Invoke-RestMethod -Method Get -Uri ("{0}/servers/{1}/os-volume_attachments" -f $computeEndpoint.TrimEnd('/'), $currentInstanceId) -Headers @{ "X-Auth-Token" = $nhnToken }
     $retiredVolumeId = @($attachments.volumeAttachments | Select-Object -First 1).volumeId
     if ([string]::IsNullOrWhiteSpace($retiredVolumeId)) { throw "Could not identify the current boot volume for cleanup." }
+  }
+
+  if ($ReplaceInstance) {
     $stateEntries = & $TerraformPath state list
     if ($stateEntries -notcontains "nhncloud_compute_keypair_v2.homepage") {
       & $TerraformPath import -input=false nhncloud_compute_keypair_v2.homepage $keyPairName
@@ -133,18 +141,24 @@ try {
   & $TerraformPath plan -input=false -out homepage.tfplan
   if ($Apply) {
     & $TerraformPath apply -input=false homepage.tfplan
+    if ($LASTEXITCODE -ne 0) { throw "Terraform apply failed; the retired boot volume was not deleted." }
     if ($ReplaceInstance -and -not [string]::IsNullOrWhiteSpace($retiredVolumeId)) {
       $deleteUri = "{0}/volumes/{1}" -f $volumeEndpoint.TrimEnd('/'), $retiredVolumeId
       $deleted = $false
       for ($attempt = 1; $attempt -le 12 -and -not $deleted; $attempt++) {
         try {
-          Invoke-WebRequest -Method Delete -Uri $deleteUri -Headers @{ "X-Auth-Token" = $nhnToken } | Out-Null
+          Invoke-WebRequest -UseBasicParsing -Method Delete -Uri $deleteUri -Headers @{ "X-Auth-Token" = $nhnToken } | Out-Null
           $deleted = $true
         } catch {
           if ($attempt -eq 12) { throw }
           Start-Sleep -Seconds 5
         }
       }
+      Write-Host "Deleted retired boot volume: $retiredVolumeId"
+    }
+    if (-not $ReplaceInstance -and -not [string]::IsNullOrWhiteSpace($retiredVolumeId)) {
+      $deleteUri = "{0}/volumes/{1}" -f $volumeEndpoint.TrimEnd('/'), $retiredVolumeId
+      Invoke-WebRequest -UseBasicParsing -Method Delete -Uri $deleteUri -Headers @{ "X-Auth-Token" = $nhnToken } | Out-Null
       Write-Host "Deleted retired boot volume: $retiredVolumeId"
     }
   }
