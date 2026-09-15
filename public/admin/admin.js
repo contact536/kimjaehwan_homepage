@@ -129,7 +129,66 @@
     $("workspace").hidden = false;
     $("login-panel").hidden = true;
     load();
+    loadAnalytics();
   }
+  function analyticsRows(id, rows, labelKey, formatter = value => value, metric = 'views', unit = '회') {
+    const host = $(id);
+    host.replaceChildren();
+    if (!rows.length) {
+      const empty = document.createElement('p');
+      empty.textContent = '아직 집계된 방문이 없습니다.';
+      empty.className = 'analytics-empty';
+      host.append(empty);
+      return;
+    }
+    rows.forEach(row => {
+      const line = document.createElement('div');
+      line.className = 'analytics-row';
+      const label = document.createElement('span');
+      label.textContent = formatter(row[labelKey]);
+      const value = document.createElement('strong');
+      value.textContent = `${Number(row[metric] || 0).toLocaleString('ko-KR')}${unit}`;
+      line.append(label, value);
+      host.append(line);
+    });
+  }
+  async function loadAnalytics() {
+    $('analytics-status').textContent = '방문 데이터를 불러오는 중입니다.';
+    const days = [7, 30, 90].includes(Number($('analytics-range').value)) ? Number($('analytics-range').value) : 30;
+    try {
+      const data = await api(`/api/admin/analytics?days=${days}`);
+      const daily = data.daily || [];
+      $('analytics-views').textContent = Number(data.views || 0).toLocaleString('ko-KR');
+      $('analytics-visitors').textContent = Number(data.visitors || 0).toLocaleString('ko-KR');
+      $('analytics-active-days').textContent = String(daily.length);
+      const chart = $('analytics-daily');
+      chart.replaceChildren();
+      const max = Math.max(1, ...daily.map(row => Number(row.views || 0)));
+      daily.forEach(row => {
+        const item = document.createElement('div');
+        item.className = 'analytics-day';
+        const date = document.createElement('span');
+        date.textContent = row.day;
+        const bar = document.createElement('span');
+        bar.className = 'analytics-bar';
+        bar.setAttribute('style', `width:${Math.max(2, Number(row.views || 0) / max * 100)}%`);
+        const count = document.createElement('strong');
+        count.textContent = `${row.views}회 · ${row.visitors}명`;
+        item.append(date, bar, count);
+        chart.append(item);
+      });
+      if (!daily.length) chart.textContent = '아직 집계된 방문이 없습니다.';
+      analyticsRows('analytics-pages', data.pages || [], 'path');
+      analyticsRows('analytics-referrers', data.referrers || [], 'referrer', value => value, 'visitors', '명');
+      const names = new Intl.DisplayNames(['ko'], { type: 'region' });
+      analyticsRows('analytics-countries', data.countries || [], 'country', value => value === '??' ? '알 수 없음' : (names.of(value) || value), 'visitors', '명');
+      $('analytics-status').textContent = `${data.from || ''} ~ ${data.to || ''} · 페이지 조회와 하루 단위 방문자를 집계합니다.`;
+    } catch (error) {
+      $('analytics-status').textContent = `방문 현황을 불러오지 못했습니다: ${error.message}`;
+    }
+  }
+  $('analytics-range').onchange = loadAnalytics;
+  $('analytics-refresh').onclick = loadAnalytics;
   $("login").onsubmit = async (e) => {
     e.preventDefault();
     try {

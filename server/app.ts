@@ -11,6 +11,7 @@ import type { Database } from "./database.ts";
 import { kinds, schemas, writeSchema } from "./validation.ts";
 import pages from "../seed/pages.json" with { type: "json" };
 import { searchResearchFromDatabase, runAgent } from './agent.ts';
+import { analyticsReport } from './analytics.ts';
 export type Bindings = {
   DB: Database;
   ADMIN_PASSWORD?: string;
@@ -180,6 +181,11 @@ export function createApp() {
     return c.json({ok:true});
   });
   app.get("/api/admin/session", (c) => c.json({ authenticated: true }));
+  app.get("/api/admin/analytics", async (c) => {
+    const days = Number(c.req.query("days") || 30);
+    if (![7, 30, 90].includes(days)) return c.json({ error: "Choose 7, 30 or 90 days" }, 400);
+    return c.json(await analyticsReport(c.env.DB, days));
+  });
   app.get('/api/research/status', c => c.json({retrieval:true,agent:{configured:Boolean(c.env.OLLAMA_MODEL),requiresLogin:true,framework:'LangGraph'}}));
   app.post('/api/research/search', async c => {
     const input=z.object({question:z.string().trim().min(1).max(1000)}).strict().safeParse(await c.req.json().catch(()=>null));

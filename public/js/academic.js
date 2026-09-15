@@ -8,3 +8,19 @@
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.academic-tools[open]').forEach(d=>d.open=false);if(mobile.matches&&!menu.hidden){reset();button.focus()}}});
  document.addEventListener('click',e=>{document.querySelectorAll('.academic-tools[open]').forEach(d=>{if(!d.contains(e.target))d.open=false})});
 })();
+(() => {
+ const footer=document.querySelector('.kim-footer');
+ if(!footer)return;
+ const note=document.createElement('p');
+ note.className='kim-small';
+ const privacy=document.createElement('a');
+ privacy.href='/pages/privacy.html';
+ privacy.textContent='방문 통계 안내';
+ const source=document.createElement('a');
+ source.href='https://db-ip.com';
+ source.textContent='IP Geolocation by DB-IP';
+ source.target='_blank';
+ source.rel='noopener noreferrer';
+ note.append(privacy,document.createTextNode(' · '),source);
+ footer.append(note);
+})();

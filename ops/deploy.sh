@@ -17,12 +17,19 @@ sudo -u "$app_user" env npm_config_cache=/var/lib/kimjaehwan-homepage/npm-cache 
 install -m 0644 "$app_dir/ops/kimjaehwan-homepage.service" /etc/systemd/system/kimjaehwan-homepage.service
 install -m 0644 "$app_dir/ops/kimjaehwan-homepage-backup.service" /etc/systemd/system/kimjaehwan-homepage-backup.service
 install -m 0644 "$app_dir/ops/kimjaehwan-homepage-backup.timer" /etc/systemd/system/kimjaehwan-homepage-backup.timer
+install -m 0644 "$app_dir/ops/kimjaehwan-country-db.service" /etc/systemd/system/kimjaehwan-country-db.service
+install -m 0644 "$app_dir/ops/kimjaehwan-country-db.timer" /etc/systemd/system/kimjaehwan-country-db.timer
 install -m 0644 "$app_dir/ops/Caddyfile" /etc/caddy/Caddyfile
+install -d -o "$app_user" -g "$app_group" -m 0700 /var/lib/kimjaehwan-homepage/geoip
 
 systemctl daemon-reload
 caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 systemctl restart kimjaehwan-homepage
 systemctl enable --now kimjaehwan-homepage-backup.timer
+systemctl enable --now kimjaehwan-country-db.timer
+if [[ ! -f /var/lib/kimjaehwan-homepage/geoip/dbip-country-lite.mmdb ]]; then
+  systemctl start kimjaehwan-country-db.service || echo "Country data unavailable; visits will be shown as unknown until the next update." >&2
+fi
 systemctl reload caddy
 
 for attempt in {1..15}; do

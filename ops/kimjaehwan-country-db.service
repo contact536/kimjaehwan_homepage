@@ -1,0 +1,11 @@
+[Unit]
+Description=Update DB-IP Country Lite for kimjaehwan.com visitor analytics
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=kimhomepage
+Group=kimhomepage
+WorkingDirectory=/srv/kimjaehwan-homepage
+ExecStart=/usr/bin/node /srv/kimjaehwan-homepage/ops/update-country-db.mjs

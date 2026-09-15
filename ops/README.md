@@ -53,6 +53,10 @@ NHN Object Storage는 S3 호환 API와 KR1 엔드포인트를 제공합니다. S
 
 ## 운영 점검
 
+관리자 화면의 **방문 현황**은 NHN 서버의 공개 HTML 요청을 자체 집계합니다. 관리자·일반적인 봇 요청은 제외하고, 날짜별 방문 해시·첫 유입 사이트·국가 코드와 페이지별 합계만 SQLite에 저장합니다. 원본 IP, 유입 URL의 검색어와 경로, 브라우저 정보는 저장하지 않습니다. 통계는 방문이 발생한 날을 기준으로 90일 뒤 삭제합니다. 하루짜리 익명 쿠키를 삭제하면 같은 날에도 다시 방문자로 집계될 수 있습니다.
+
+국가 판정은 무료 [DB-IP Country Lite](https://db-ip.com/db/download/ip-to-country-lite) MMDB를 서버에서 조회합니다. 최초 배포 시 파일을 다운로드하고 매월 systemd 타이머가 갱신합니다. 다운로드 실패나 조회 불가 시 국가는 **알 수 없음**으로 표시하며 페이지 제공은 계속됩니다. 관리자 통계 화면과 공개 사이트에는 DB-IP 출처 링크가 표시됩니다. 진단 명령은 `systemctl status kimjaehwan-country-db.timer`, `journalctl -u kimjaehwan-country-db.service`입니다. 별도의 데이터 파일 경로가 필요하면 서비스 환경에 `COUNTRY_DB_PATH`를 설정합니다.
+
 `https://kimjaehwan.com/api/health`가 `ok: true`를 반환하는지 확인합니다. 이후 관리자 로그인·저장·비밀번호 변경과 재시작 후 DB 유지까지 점검합니다.
 
 운영 DB를 복사할 때는 실행 중인 SQLite 파일을 단순 복사하지 않습니다. 일관성 있는 백업을 만든 뒤 권한 600으로 전송하고 복원 검증을 수행합니다.

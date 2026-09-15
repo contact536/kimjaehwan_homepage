@@ -41,6 +41,21 @@
             ><button id="logout" class="secondary">로그아웃</button>
           </div>
         </div>
+        <section class="analytics-panel" aria-labelledby="analytics-title">
+          <div class="analytics-heading">
+            <div><span class="eyebrow">SITE ANALYTICS</span><h2 id="analytics-title">방문 현황</h2></div>
+            <div class="analytics-controls"><label for="analytics-range">조회 기간</label><select id="analytics-range"><option value="7">최근 7일</option><option value="30" selected>최근 30일</option><option value="90">최근 90일</option></select><button id="analytics-refresh" class="secondary" type="button">새로고침</button></div>
+          </div>
+          <p id="analytics-status" class="hint" role="status" aria-live="polite">방문 데이터를 불러오는 중입니다.</p>
+          <div class="analytics-cards"><div><span>페이지 조회</span><strong id="analytics-views">0</strong></div><div><span>하루 단위 방문자 합계</span><strong id="analytics-visitors">0</strong></div><div><span>방문이 있었던 날</span><strong id="analytics-active-days">0</strong></div></div>
+          <div class="analytics-grid">
+            <section class="analytics-chart" aria-labelledby="analytics-daily-title"><h3 id="analytics-daily-title">일별 방문</h3><div id="analytics-daily"></div></section>
+            <section aria-labelledby="analytics-pages-title"><h3 id="analytics-pages-title">인기 페이지</h3><div id="analytics-pages" class="analytics-list"></div></section>
+            <section aria-labelledby="analytics-referrers-title"><h3 id="analytics-referrers-title">유입 경로</h3><div id="analytics-referrers" class="analytics-list"></div></section>
+            <section aria-labelledby="analytics-countries-title"><h3 id="analytics-countries-title">접속 국가</h3><div id="analytics-countries" class="analytics-list"></div></section>
+          </div>
+          <p class="analytics-note">방문자는 하루마다 새로 집계합니다. IP·방문자의 이름·브라우저 정보는 저장하지 않으며 통계는 90일 보관합니다. 국가 정보는 대략적인 IP 기준이며 판정할 수 없으면 ‘알 수 없음’으로 표시합니다. <a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a></p>
+        </section>
         <details class="password-settings"><summary>관리자 비밀번호 변경</summary><form id="password-change"><p class="hint">변경하면 모든 관리자 세션이 종료됩니다. 새 비밀번호로 다시 로그인하세요.</p><label for="current-password">현재 비밀번호</label><input id="current-password" type="password" autocomplete="current-password" required maxlength="512"><label for="new-password">새 비밀번호 (8~128자)</label><input id="new-password" type="password" autocomplete="new-password" required minlength="8" maxlength="128"><label for="confirm-password">새 비밀번호 확인</label><input id="confirm-password" type="password" autocomplete="new-password" required minlength="8" maxlength="128"><button type="submit">비밀번호 변경</button><p id="password-message" role="status" aria-live="polite"></p></form></details><details class="studio-guide">
           <summary>콘텐츠 관리 안내 <span>편집 순서 · 반영 범위 · 문제 해결</span></summary>
           <div class="guide-layout">
