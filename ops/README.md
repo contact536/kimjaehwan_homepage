@@ -35,7 +35,7 @@ BACKUP_RETENTION_DAYS=30
 
 ```powershell
 cd C:/Users/USER/Documents/ChatGPT/kimjaehwankimjaehwan/kimjaehwan-homepage-source
-./ops/configure-offsite-backup.ps1 -Bucket kimjaehwan-homepage-backups
+./ops/configure-offsite-backup.ps1 -Bucket kimjaehwan-com-backups-kr1
 ```
 
 3. 기본값은 endpoint `https://kr1-api-object-storage.nhncloudservice.com`, region `KR1`, 원격 보관 90일입니다. 별도 보관 기간이 필요하면 `-RetentionDays 180`처럼 지정합니다.
