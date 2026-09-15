@@ -4,8 +4,6 @@
 
 network_id       = "existing-company-vpc-uuid"
 key_pair_name    = "existing-ssh-keypair-name"
-image_name       = "exact Ubuntu image name from NHN Create Instance"
-flavor_name      = "exact approved non-U2 flavor name"
 ssh_allowed_cidr = "YOUR_PUBLIC_IP/32"
 
 # Change only after confirming the exact names and capacity in the console.
@@ -14,3 +12,8 @@ root_volume_gb    = 30
 
 # Optional: set only when the company VPC displays a specific subnet UUID.
 # subnet_id = "existing-subnet-uuid"
+
+# Defaults use Ubuntu Server 24.04.3 LTS (2026.03.10) and m2.c2m4 (2 vCPU, 4 GB).
+# Override only if your Pangyo project has a different approved image or flavor.
+# image_name  = "Ubuntu Server 24.04.3 LTS (2026.03.10)"
+# flavor_name = "m2.c2m4"

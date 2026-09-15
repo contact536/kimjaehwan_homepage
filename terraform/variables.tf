@@ -60,11 +60,13 @@ variable "key_pair_name" {
 variable "image_name" {
   description = "Exact Ubuntu image name displayed in NHN Cloud's Create Instance image list."
   type        = string
+  default     = "Ubuntu Server 24.04.3 LTS (2026.03.10)"
 }
 
 variable "flavor_name" {
   description = "Exact approved non-U2 compute flavor name, for example the selected 2 vCPU / 4 GB flavor."
   type        = string
+  default     = "m2.c2m4"
 }
 
 variable "root_volume_gb" {
