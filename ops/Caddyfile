@@ -20,3 +20,5 @@ kimjaehwan.com {
     header_up X-Client-IP {remote_host}
   }
 }
+
+import /etc/caddy/sites-enabled/*.caddy
