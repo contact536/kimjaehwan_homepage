@@ -3,7 +3,6 @@
 # and TF_VAR_nhn_auth_url for credentials instead of writing them to this file.
 
 network_id       = "existing-company-vpc-uuid"
-subnet_id        = "existing-public-subnet-uuid"
 key_pair_name    = "existing-ssh-keypair-name"
 image_id         = "approved-ubuntu-image-uuid"
 flavor_id        = "approved-2vcpu-4gb-flavor-uuid"
@@ -12,3 +11,6 @@ ssh_allowed_cidr = "YOUR_PUBLIC_IP/32"
 # Change only after confirming the exact names and capacity in the console.
 availability_zone = "kr-pub-a"
 root_volume_gb    = 30
+
+# Optional: set only when the company VPC displays a specific subnet UUID.
+# subnet_id = "existing-subnet-uuid"

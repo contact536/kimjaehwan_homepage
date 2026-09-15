@@ -40,8 +40,12 @@ resource "nhncloud_networking_port_v2" "homepage" {
   name       = "${var.instance_name}-port"
   network_id = var.network_id
 
-  fixed_ip {
-    subnet_id = var.subnet_id
+  dynamic "fixed_ip" {
+    for_each = var.subnet_id == null ? [] : [var.subnet_id]
+
+    content {
+      subnet_id = fixed_ip.value
+    }
   }
 }
 

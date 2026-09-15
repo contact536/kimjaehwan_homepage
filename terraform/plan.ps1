@@ -37,15 +37,17 @@ $nhnAuthUrl = Read-Required "NHN Identity URL"
 $apiPassword = Read-Host "NHN API password" -AsSecureString
 
 $networkId = Read-Required "Existing VPC UUID"
-$subnetId = Read-Required "Existing public subnet UUID"
+$subnetId = Read-Host "Existing subnet UUID (optional; leave empty for automatic allocation)"
 $keyPairName = Read-Required "Existing SSH key-pair name"
 $imageId = Read-Required "Approved Ubuntu image UUID"
 $flavorId = Read-Required "Approved non-U2 flavor UUID"
 $sshAllowedCidr = Read-Required "Your public IPv4 CIDR (for example 203.0.113.10/32)"
 
+$subnetLine = if ([string]::IsNullOrWhiteSpace($subnetId)) { "" } else { "subnet_id        = `"$(Escape-TfString $subnetId.Trim())`"" }
+
 $tfvars = @"
 network_id       = "$(Escape-TfString $networkId)"
-subnet_id        = "$(Escape-TfString $subnetId)"
+$subnetLine
 key_pair_name    = "$(Escape-TfString $keyPairName)"
 image_id         = "$(Escape-TfString $imageId)"
 flavor_id        = "$(Escape-TfString $flavorId)"

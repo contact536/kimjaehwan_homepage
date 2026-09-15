@@ -46,8 +46,10 @@ variable "network_id" {
 }
 
 variable "subnet_id" {
-  description = "Existing public subnet UUID in the selected VPC."
+  description = "Optional existing subnet UUID. Leave unset to let NHN allocate a port IP on the selected VPC."
   type        = string
+  default     = null
+  nullable    = true
 }
 
 variable "key_pair_name" {

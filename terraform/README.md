@@ -3,7 +3,7 @@
 This directory creates the infrastructure for the Kim Jae-hwan research homepage in the existing NHN Cloud company project:
 
 - one non-U2 Compute Instance with a 30 GB persistent boot volume;
-- one VPC port on a selected existing public subnet;
+- one VPC port on a selected existing VPC (with an optional subnet selection);
 - one Floating IP associated with that port;
 - one dedicated security group that allows public HTTP/HTTPS and SSH only from the specified administrator CIDR.
 
@@ -15,7 +15,7 @@ It does **not** change Gabia DNS, deploy application secrets, copy the SQLite da
 2. In the NHN Cloud console's existing company project, select **Pangyo (KR1)**.
 3. Create or register an SSH public key under **Compute > Instance > Key Pairs**. Keep the private key outside this repository.
 4. In **Compute > Instance > Management > API Endpoint Setting**, record the Tenant ID, Identity URL, and a newly generated API password. These values must never be committed.
-5. From **Network > VPC**, record the UUID of an existing VPC and a public subnet within it. From the instance-image and flavor screens, record an approved Ubuntu image UUID and an approved non-U2 flavor UUID.
+5. From **Network > VPC**, record the UUID of an existing VPC. If the VPC exposes a subnet UUID, record it as well; otherwise the configuration can allocate the port IP automatically. From the instance-image and flavor screens, record an approved Ubuntu image UUID and an approved non-U2 flavor UUID.
 
 ## Local preparation
 
