@@ -56,10 +56,9 @@ For a fresh, empty instance whose SSH key must be replaced, `-ReplaceInstance -A
 
 1. Use the output `floating_ip` to SSH to the server using the configured key pair.
 2. Follow the deployment sequence in [../ops/README.md](../ops/README.md): install the required Node.js version, clone the private source directory, restore the SQLite backup to `/var/lib/kimjaehwan-homepage/platform.sqlite`, create `/etc/kimjaehwan-homepage.env`, then install the systemd service and Caddyfile.
-3. Use a real, monitored ACME contact email in the Caddy global options before Caddy first requests a certificate. `admin@kimjaehwan.com` is only a placeholder and is not in use.
-4. Verify `http://FLOATING_IP`, the health route, and an HTTPS certificate after the DNS cutover.
-5. Only then update Gabia: replace the GitHub Pages apex A records with the one `floating_ip`, make `www` point to `kimjaehwan.com`, and remove conflicting GitHub Pages records. Keep the GitHub Pages deployment until the NHN site has been verified.
+3. Verify `http://FLOATING_IP`, the health route, and an HTTPS certificate after the DNS cutover.
+4. Only then update Gabia: replace the GitHub Pages apex A records with the one `floating_ip`, make `www` point to `kimjaehwan.com`, and remove conflicting GitHub Pages records. Keep the GitHub Pages deployment until the NHN site has been verified.
 
 ## State and lifecycle
 
-Terraform state identifies resources that incur cost and is intentionally ignored by Git. Store it in an encrypted, access-controlled location before team use; do not upload it to the public repository. The boot volume has `delete_on_termination = false` so a mistaken instance deletion does not delete the site database volume. A deliberate full teardown needs an explicit volume cleanup after a backup is verified.
+Terraform state identifies resources that incur cost and is intentionally ignored by Git. Store it in an encrypted, access-controlled location before team use; do not upload it to the public repository. The boot volume is retained when an instance is terminated, and `prevent_destroy` blocks accidental Terraform deletion. A deliberate retirement requires removing that guard in a reviewed change and deleting the volume only after a backup is verified.

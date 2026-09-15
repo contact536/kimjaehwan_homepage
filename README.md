@@ -7,7 +7,7 @@
 - 이 저장소: HTML/CSS/JavaScript 프론트엔드 + Hono/SQLite 백엔드 + 관리자 + LangGraph/Ollama 연구 도우미
 - 회사 자료 PDF 2개, Pretendard 글꼴 및 라이선스, 경영전공 수정, 회사 홈페이지 링크 포함
 - 운영 DB, 비밀번호, 세션 비밀값, 모델 가중치 및 node_modules는 포함하지 않습니다.
-- 이 저장소에 푸시하는 것만으로 기존 홈페이지가 재배포되지는 않습니다.
+- 이 저장소에 푸시하는 것만으로 운영 서버가 자동 갱신되지는 않습니다. 서버에서 `sudo /srv/kimjaehwan-homepage/ops/deploy.sh`를 실행해 검증된 배포 절차를 사용합니다.
 
 ## 로컬 실행
 
@@ -53,4 +53,4 @@ npm run content:generate는 seed 기준으로 화면을 다시 생성하므로 p
 ## NHN Cloud 이전 검토
 
 [NHN-CLOUD-MIGRATION.md](NHN-CLOUD-MIGRATION.md)에 권장 구조, 사양 가정, 코드 보완점, 데이터 이전·도메인 전환·복구 절차를 정리했습니다.
-현재는 이전 검토 단계이며 NHN 리소스 생성이나 DNS 변경을 수행하지 않았습니다.
+NHN 판교 인스턴스와 `kimjaehwan.com` HTTPS 전환은 완료되었습니다. 운영 절차는 [ops/README.md](ops/README.md)를 기준으로 유지합니다.

@@ -1,5 +1,6 @@
 import {credential,credentialKey,matchesPassword,makeCredential} from './password.ts';
 import { Hono } from "hono";
+import { isIP } from "node:net";
 import { secureHeaders } from "hono/secure-headers";
 import { bodyLimit } from "hono/body-limit";
 import { getCookie, setCookie, deleteCookie } from "hono/cookie";
@@ -42,6 +43,10 @@ async function sameSecret(a: string, b: string) {
   let diff = 0;
   for (let i = 0; i < left.length; i++) diff |= left[i] ^ right[i];
   return diff === 0;
+}
+function clientAttemptKey(value?: string) {
+  const address = value?.trim();
+  return address && isIP(address) !== 0 ? address : "local";
 }
 export function createApp() {
   const app = new Hono<{ Bindings: Bindings }>();
@@ -93,7 +98,9 @@ export function createApp() {
       .safeParse(await c.req.json().catch(() => null));
     if (!parsed.success) return c.json({ error: "Password required" }, 400);
     const now = Date.now();
-    const key = c.req.header("cf-connecting-ip") || "local";
+    // The app is bound to loopback only. Caddy replaces this header with the
+    // TCP peer address before proxying, so a browser cannot choose its bucket.
+    const key = clientAttemptKey(c.req.header("x-client-ip"));
     const attempt = await c.env.DB.prepare(
       "SELECT count,reset_at FROM auth_attempts WHERE key=?",
     )

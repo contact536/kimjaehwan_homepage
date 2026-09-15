@@ -1,0 +1,18 @@
+[Unit]
+Description=Create a verified Kim Jaehwan homepage SQLite backup
+After=kimjaehwan-homepage.service
+Wants=kimjaehwan-homepage.service
+
+[Service]
+Type=oneshot
+User=kimhomepage
+Group=kimhomepage
+WorkingDirectory=/srv/kimjaehwan-homepage
+EnvironmentFile=/etc/kimjaehwan-homepage.env
+ExecStart=/usr/bin/node ops/backup.mjs
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/kimjaehwan-homepage

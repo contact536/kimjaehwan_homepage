@@ -155,7 +155,7 @@ test("login throttling and unconfigured credentials fail closed", async () => {
   const app = createApp();
   const env = { DB: db, ADMIN_PASSWORD: password, SESSION_SECRET: secret };
   try {
-    const login = (bindings: Bindings) =>
+    const login = (bindings: Bindings, clientIp = "203.0.113.10") =>
       app.request(
         "http://localhost/api/auth/login",
         {
@@ -163,6 +163,7 @@ test("login throttling and unconfigured credentials fail closed", async () => {
           headers: {
             origin: "http://localhost",
             "content-type": "application/json",
+            "x-client-ip": clientIp,
           },
           body: JSON.stringify({ password: "wrong" }),
         },
@@ -170,6 +171,7 @@ test("login throttling and unconfigured credentials fail closed", async () => {
       );
     for (let i = 0; i < 10; i++) assert.equal((await login(env)).status, 401);
     assert.equal((await login(env)).status, 429);
+    assert.equal((await login(env, "203.0.113.11")).status, 401);
     assert.equal((await login({ DB: db })).status, 503);
   } finally {
     close();

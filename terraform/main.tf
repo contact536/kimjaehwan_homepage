@@ -89,7 +89,9 @@ resource "nhncloud_compute_instance_v2" "homepage" {
     destination_type      = "volume"
     boot_index            = 0
     volume_size           = var.root_volume_gb
-    delete_on_termination = true
+    # Keep the data volume if the instance is removed outside the recovery
+    # procedure. It must be deleted explicitly after a verified backup.
+    delete_on_termination = false
   }
 
   # The VPC port owns security-group attachment. Reapplying the same group to
@@ -97,6 +99,8 @@ resource "nhncloud_compute_instance_v2" "homepage" {
   # duplicate, so instance-level reconciliation is intentionally disabled.
   lifecycle {
     ignore_changes = [security_groups]
+    # Deliberate retirement requires removing this guard in a reviewed change.
+    prevent_destroy = true
   }
 }
 
