@@ -8,6 +8,11 @@ data "nhncloud_compute_flavor_v2" "homepage" {
   name = var.flavor_name
 }
 
+data "nhncloud_networking_secgroup_v2" "default" {
+  name   = "default"
+  region = var.region
+}
+
 resource "nhncloud_networking_secgroup_v2" "homepage" {
   name   = "${var.instance_name}-web"
   region = var.region
@@ -47,8 +52,9 @@ resource "nhncloud_networking_secgroup_rule_v2" "ssh" {
 }
 
 resource "nhncloud_networking_port_v2" "homepage" {
-  name       = "${var.instance_name}-port"
-  network_id = var.network_id
+  name               = "${var.instance_name}-port"
+  network_id         = var.network_id
+  security_group_ids = [data.nhncloud_networking_secgroup_v2.default.id, nhncloud_networking_secgroup_v2.homepage.id]
 
   dynamic "fixed_ip" {
     for_each = var.subnet_id == null ? [] : [var.subnet_id]

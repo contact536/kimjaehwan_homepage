@@ -40,7 +40,15 @@ For an interactive local preparation that keeps the API password out of `terrafo
 .\plan.ps1 -TerraformPath "C:\path\to\terraform.exe"
 ```
 
-The script detects the current public IPv4 address and restricts SSH to it. It prompts for an SSH CIDR only if that lookup fails, produces `homepage.tfplan`, and never calls `terraform apply`.
+The script detects the current public IPv4 address and restricts SSH to it. It prompts for an SSH CIDR only if that lookup fails and produces `homepage.tfplan`.
+
+After reviewing a plan, use `-Apply` to generate a fresh plan and apply it in the same credential-bearing PowerShell process:
+
+```powershell
+.\plan.ps1 -TerraformPath "C:\path\to\terraform.exe" -Apply
+```
+
+Saved non-secret values in the ignored `terraform.tfvars` file are reused, so only the NHN API credentials are requested again.
 
 ## After the infrastructure is created
 

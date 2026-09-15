@@ -5,12 +5,14 @@ Creates a local, non-secret Terraform input file and produces a read-only NHN Cl
 .DESCRIPTION
 API credentials stay only in this PowerShell process as TF_VAR_* environment variables.
 The generated terraform.tfvars contains infrastructure identifiers but is ignored by Git.
-This script never runs terraform apply.
+Without -Apply, this script only produces a Terraform plan. With -Apply, it
+applies the newly generated plan in the same credential-bearing process.
 #>
 
 [CmdletBinding()]
 param(
-  [string]$TerraformPath = "terraform"
+  [string]$TerraformPath = "terraform",
+  [switch]$Apply
 )
 
 $ErrorActionPreference = "Stop"
@@ -27,6 +29,14 @@ function Escape-TfString([string]$Value) {
   return $Value.Replace("\", "\\").Replace('"', '\"')
 }
 
+function Get-SavedTfVar([string]$Name) {
+  $path = Join-Path $PSScriptRoot "terraform.tfvars"
+  if (-not (Test-Path -LiteralPath $path)) { return $null }
+  $match = [regex]::Match((Get-Content -LiteralPath $path -Raw), "(?m)^\s*$([regex]::Escape($Name))\s*=\s*`"(?<value>[^`"]+)`"\s*$")
+  if ($match.Success) { return $match.Groups['value'].Value }
+  return $null
+}
+
 if (-not (Get-Command $TerraformPath -ErrorAction SilentlyContinue) -and -not (Test-Path -LiteralPath $TerraformPath)) {
   throw "Terraform was not found. Install it from https://developer.hashicorp.com/terraform/install or provide -TerraformPath."
 }
@@ -36,9 +46,11 @@ $nhnTenantId = Read-Required "NHN Tenant ID"
 $nhnAuthUrl = Read-Required "NHN Identity URL"
 $apiPassword = Read-Host "NHN API password" -AsSecureString
 
-$networkId = Read-Required "Existing VPC UUID"
-$subnetId = Read-Host "Existing subnet UUID (optional; leave empty for automatic allocation)"
-$keyPairName = Read-Required "Existing SSH key-pair name"
+$networkId = Get-SavedTfVar "network_id"
+if ([string]::IsNullOrWhiteSpace($networkId)) { $networkId = Read-Required "Existing VPC UUID" }
+$subnetId = Get-SavedTfVar "subnet_id"
+$keyPairName = Get-SavedTfVar "key_pair_name"
+if ([string]::IsNullOrWhiteSpace($keyPairName)) { $keyPairName = Read-Required "Existing SSH key-pair name" }
 try {
   $currentPublicIp = (Invoke-RestMethod -Uri "https://api.ipify.org").Trim()
   if ($currentPublicIp -notmatch "^\d{1,3}(\.\d{1,3}){3}$") { throw "The public-IP service returned an invalid IPv4 address." }
@@ -71,6 +83,9 @@ try {
   & $TerraformPath fmt -check
   & $TerraformPath validate
   & $TerraformPath plan -input=false -out homepage.tfplan
+  if ($Apply) {
+    & $TerraformPath apply -input=false homepage.tfplan
+  }
 } finally {
   [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($passwordBstr)
   Remove-Item Env:TF_VAR_nhn_user_name, Env:TF_VAR_nhn_tenant_id, Env:TF_VAR_nhn_auth_url, Env:TF_VAR_nhn_api_password -ErrorAction SilentlyContinue
