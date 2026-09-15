@@ -57,13 +57,13 @@ variable "key_pair_name" {
   type        = string
 }
 
-variable "image_id" {
-  description = "Approved Ubuntu image UUID from the Pangyo project."
+variable "image_name" {
+  description = "Exact Ubuntu image name displayed in NHN Cloud's Create Instance image list."
   type        = string
 }
 
-variable "flavor_id" {
-  description = "Approved non-U2 compute flavor UUID, for example the selected 2 vCPU / 4 GB flavor."
+variable "flavor_name" {
+  description = "Exact approved non-U2 compute flavor name, for example the selected 2 vCPU / 4 GB flavor."
   type        = string
 }
 

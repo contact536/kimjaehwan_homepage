@@ -15,7 +15,7 @@ It does **not** change Gabia DNS, deploy application secrets, copy the SQLite da
 2. In the NHN Cloud console's existing company project, select **Pangyo (KR1)**.
 3. Create or register an SSH public key under **Compute > Instance > Key Pairs**. Keep the private key outside this repository.
 4. In **Compute > Instance > Management > API Endpoint Setting**, record the Tenant ID, Identity URL, and a newly generated API password. These values must never be committed.
-5. From **Network > VPC**, record the UUID of an existing VPC. If the VPC exposes a subnet UUID, record it as well; otherwise the configuration can allocate the port IP automatically. From the instance-image and flavor screens, record an approved Ubuntu image UUID and an approved non-U2 flavor UUID.
+5. From **Network > VPC**, record the UUID of an existing VPC. If the VPC exposes a subnet UUID, record it as well; otherwise the configuration can allocate the port IP automatically. From **Compute > Instance > Create Instance**, record the exact name of an approved Ubuntu image and a non-U2 flavor. Terraform queries their IDs from NHN at plan time.
 
 ## Local preparation
 

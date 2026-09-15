@@ -1,3 +1,13 @@
+data "nhncloud_images_image_v2" "homepage" {
+  name        = var.image_name
+  most_recent = true
+  visibility  = "public"
+}
+
+data "nhncloud_compute_flavor_v2" "homepage" {
+  name = var.flavor_name
+}
+
 resource "nhncloud_networking_secgroup_v2" "homepage" {
   name   = "${var.instance_name}-web"
   region = var.region
@@ -54,7 +64,7 @@ resource "nhncloud_compute_instance_v2" "homepage" {
   region            = var.region
   availability_zone = var.availability_zone
   key_pair          = var.key_pair_name
-  flavor_id         = var.flavor_id
+  flavor_id         = data.nhncloud_compute_flavor_v2.homepage.id
   security_groups   = ["default", nhncloud_networking_secgroup_v2.homepage.name]
 
   network {
@@ -62,7 +72,7 @@ resource "nhncloud_compute_instance_v2" "homepage" {
   }
 
   block_device {
-    uuid                  = var.image_id
+    uuid                  = data.nhncloud_images_image_v2.homepage.id
     source_type           = "image"
     destination_type      = "volume"
     boot_index            = 0
