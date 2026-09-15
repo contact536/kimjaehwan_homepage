@@ -1,15 +1,17 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { gunzipSync } from 'node:zlib';
+import { execFileSync } from 'node:child_process';
 import { Reader } from 'maxmind';
 
 const destination = process.env.COUNTRY_DB_PATH || '/var/lib/kimjaehwan-homepage/geoip/dbip-country-lite.mmdb';
 const now = new Date();
 const release = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}`;
 const url = `https://download.db-ip.com/free/dbip-country-lite-${release}.mmdb.gz`;
-const response = await fetch(url, { signal: AbortSignal.timeout(60000) });
-if (!response.ok) throw new Error(`DB-IP download failed: HTTP ${response.status}`);
-const zipped = Buffer.from(await response.arrayBuffer());
+// curl negotiates this download endpoint reliably on the NHN host.
+const zipped = execFileSync('curl', ['--fail', '--location', '--silent', '--show-error',
+  '--retry', '2', '--retry-all-errors', '--max-time', '60', url],
+  { timeout: 75000, maxBuffer: 24 * 1024 * 1024 });
 if (zipped.length > 24 * 1024 * 1024) throw new Error('Country database download exceeded size limit');
 const database = gunzipSync(zipped);
 if (database.length > 100 * 1024 * 1024) throw new Error('Country database exceeded size limit');
