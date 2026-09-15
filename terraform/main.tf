@@ -13,6 +13,12 @@ data "nhncloud_networking_secgroup_v2" "default" {
   region = var.region
 }
 
+resource "nhncloud_compute_keypair_v2" "homepage" {
+  name       = var.key_pair_name
+  public_key = file(var.ssh_public_key_path)
+  region     = var.region
+}
+
 resource "nhncloud_networking_secgroup_v2" "homepage" {
   name   = "${var.instance_name}-web"
   region = var.region
@@ -69,7 +75,7 @@ resource "nhncloud_compute_instance_v2" "homepage" {
   name              = var.instance_name
   region            = var.region
   availability_zone = var.availability_zone
-  key_pair          = var.key_pair_name
+  key_pair          = nhncloud_compute_keypair_v2.homepage.name
   flavor_id         = data.nhncloud_compute_flavor_v2.homepage.id
   security_groups   = ["default", nhncloud_networking_secgroup_v2.homepage.name]
 

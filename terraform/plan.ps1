@@ -51,6 +51,8 @@ if ([string]::IsNullOrWhiteSpace($networkId)) { $networkId = Read-Required "Exis
 $subnetId = Get-SavedTfVar "subnet_id"
 $keyPairName = Get-SavedTfVar "key_pair_name"
 if ([string]::IsNullOrWhiteSpace($keyPairName)) { $keyPairName = Read-Required "Existing SSH key-pair name" }
+$sshPublicKeyPath = Get-SavedTfVar "ssh_public_key_path"
+if ([string]::IsNullOrWhiteSpace($sshPublicKeyPath)) { $sshPublicKeyPath = Read-Required "Local SSH public-key path" }
 try {
   $currentPublicIp = (Invoke-RestMethod -Uri "https://api.ipify.org").Trim()
   if ($currentPublicIp -notmatch "^\d{1,3}(\.\d{1,3}){3}$") { throw "The public-IP service returned an invalid IPv4 address." }
@@ -67,6 +69,7 @@ $tfvars = @"
 network_id       = "$(Escape-TfString $networkId)"
 $subnetLine
 key_pair_name    = "$(Escape-TfString $keyPairName)"
+ssh_public_key_path = "$(Escape-TfString $sshPublicKeyPath)"
 ssh_allowed_cidr = "$(Escape-TfString $sshAllowedCidr)"
 "@
 

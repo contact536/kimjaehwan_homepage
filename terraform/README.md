@@ -13,7 +13,7 @@ It does **not** change Gabia DNS, deploy application secrets, copy the SQLite da
 
 1. Install Terraform 1.6 or later.
 2. In the NHN Cloud console's existing company project, select **Pangyo (KR1)**.
-3. Create or register an SSH public key under **Compute > Instance > Key Pairs**. Keep the private key outside this repository.
+3. Create an SSH public key locally, then let Terraform register it under **Compute > Instance > Key Pairs**. Keep the private key outside this repository.
 4. In **Compute > Instance > Management > API Endpoint Setting**, record the Tenant ID, Identity URL, and a newly generated API password. These values must never be committed.
 5. From **Network > VPC**, record the UUID of an existing VPC. If the VPC exposes a subnet UUID, record it as well; otherwise the configuration can allocate the port IP automatically. The defaults select Ubuntu Server 24.04.3 LTS (2026.03.10) and `m2.c2m4` (2 vCPU / 4 GB); override them only if the company project requires a different approved image or flavor.
 

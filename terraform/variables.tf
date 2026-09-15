@@ -57,6 +57,11 @@ variable "key_pair_name" {
   type        = string
 }
 
+variable "ssh_public_key_path" {
+  description = "Local path to the OpenSSH public key that Terraform registers in NHN Cloud."
+  type        = string
+}
+
 variable "image_name" {
   description = "Exact Ubuntu image name displayed in NHN Cloud's Create Instance image list."
   type        = string
