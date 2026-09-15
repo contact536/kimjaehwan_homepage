@@ -1,0 +1,9 @@
+[Unit]
+Description=Prune kimjaehwan.com visitor analytics beyond 90 days
+
+[Service]
+Type=oneshot
+User=kimhomepage
+Group=kimhomepage
+WorkingDirectory=/srv/kimjaehwan-homepage
+ExecStart=/usr/bin/node --experimental-strip-types /srv/kimjaehwan-homepage/ops/prune-analytics.mjs

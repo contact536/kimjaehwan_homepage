@@ -10,6 +10,9 @@ export function koreaDay(date = new Date()) {
   const parts = Object.fromEntries(dateParts.formatToParts(date).map(part => [part.type, part.value]));
   return `${parts.year}-${parts.month}-${parts.day}`;
 }
+export function analyticsCutoff(now = Date.now()) {
+  return koreaDay(new Date(now - 89 * 86400000));
+}
 
 function referrerHost(referer: string | null, siteUrl: string) {
   if (!referer) return "직접 방문";
@@ -49,7 +52,7 @@ export async function recordVisit(db: Database, request: Request, response: Resp
     db.prepare("INSERT INTO analytics_daily(day,path,referrer,country,views) VALUES(?,?,?,?,1) ON CONFLICT(day,path,referrer,country) DO UPDATE SET views=views+1").bind(day, path, referrer, code),
   ]);
   if (lastPrunedDay !== day) {
-    const cutoff = koreaDay(new Date(Date.now() - 90 * 86400000));
+    const cutoff = analyticsCutoff();
     await db.batch([
       db.prepare("DELETE FROM analytics_visitors WHERE day<?").bind(cutoff),
       db.prepare("DELETE FROM analytics_daily WHERE day<?").bind(cutoff),
