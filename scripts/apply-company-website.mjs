@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-const link='<a href="https://xaikorea.ai.kr/" target="_blank" rel="noopener noreferrer">회사 홈페이지 · xaikorea.ai.kr ↗</a>';
+const link='<a href="https://www.xaikorea.ai.kr/" target="_blank" rel="noopener noreferrer">회사 홈페이지 · www.xaikorea.ai.kr ↗</a>';
 for(const file of ['public/index.html','public/pages/contact.html','public/pages/projects.html','public/pages/publications.html']){
  let html=fs.readFileSync(file,'utf8');
  html=html.replace(/<!-- company-website:start -->[\s\S]*?<!-- company-website:end -->/g,'');
