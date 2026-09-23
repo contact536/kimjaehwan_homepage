@@ -15,7 +15,7 @@
     "db:generate": "drizzle-kit generate",
     "check": "tsc --noEmit",
     "verify:front": "node scripts/verify-front.mjs",
-    "content:generate": "node scripts/personalize.mjs && node scripts/finalize-personal.mjs && node scripts/apply-academic.mjs && node scripts/apply-research-rows.mjs && node scripts/apply-research-topics.mjs && node scripts/apply-reading.mjs && node scripts/apply-cv-blocks.mjs && node scripts/apply-author-panel.mjs && node scripts/apply-research-actions.mjs && node scripts/apply-assistant-workspace.mjs && node scripts/bind-research-content.mjs && node scripts/apply-page-finder.mjs && node scripts/apply-company-documents.mjs && node scripts/apply-typography.mjs && node scripts/apply-company-website.mjs && node scripts/apply-company-research-update.mjs",
+    "content:generate": "node scripts/personalize.mjs && node scripts/finalize-personal.mjs && node scripts/apply-academic.mjs && node scripts/apply-research-rows.mjs && node scripts/apply-research-topics.mjs && node scripts/apply-reading.mjs && node scripts/apply-cv-blocks.mjs && node scripts/apply-author-panel.mjs && node scripts/apply-research-actions.mjs && node scripts/apply-assistant-workspace.mjs && node scripts/bind-research-content.mjs && node scripts/apply-page-finder.mjs && node scripts/apply-company-documents.mjs && node scripts/apply-typography.mjs && node scripts/apply-company-website.mjs && node scripts/apply-company-research-update.mjs && node scripts/apply-company-products.mjs",
     "build:frontend": "node --env-file-if-exists=.env --experimental-strip-types scripts/export-frontend.mjs"
   },
   "dependencies": {
