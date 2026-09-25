@@ -354,5 +354,52 @@
         }
       ]
     }
-  }
+  },
+  "academicMemberships": [
+    {
+      "id": "ai-business-association",
+      "date": "2026.02",
+      "organization": "(사)AI경영학회",
+      "category": "정회원",
+      "status": "정회원",
+      "description": "2026년 2월 정회원으로 가입했으며, 현재 학술위원회 이사로 활동하고 있습니다.",
+      "facts": [
+        {
+          "label": "가입 시점",
+          "value": "2026.02"
+        }
+      ],
+      "source": "사용자 제공 이력"
+    },
+    {
+      "id": "ksci-lifetime-member",
+      "date": "2026.03.18",
+      "organization": "한국컴퓨터정보학회",
+      "category": "종신회원",
+      "status": "종신회원",
+      "description": "2026년 3월 18일부터 한국컴퓨터정보학회 종신회원입니다.",
+      "facts": [
+        {
+          "label": "가입일",
+          "value": "2026.03.18"
+        }
+      ],
+      "source": "사용자 제공 이력"
+    },
+    {
+      "id": "kaa-lifetime-member",
+      "date": "2026.06.20",
+      "organization": "한국회계학회",
+      "category": "종신회원",
+      "status": "종신회원",
+      "description": "2026년 6월 20일부터 한국회계학회 종신회원입니다.",
+      "facts": [
+        {
+          "label": "가입일",
+          "value": "2026.06.20"
+        }
+      ],
+      "source": "사용자 제공 이력"
+    }
+  ]
 }

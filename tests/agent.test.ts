@@ -16,9 +16,12 @@ test('research search uses curated profile, preserves degree/application distinc
  assert.match(searchResearch('벤처기업').answer,/20260204030008/);
  assert.match(searchResearch('10-2026-0057344').answer,/하이브리드 검색 기반/);
  assert.match(searchResearch('AI경영학회 이사').answer,/학술위원회/);
+ assert.match(searchResearch('AI경영학회 정회원').answer,/2026년 2월/);
+ assert.match(searchResearch('한국컴퓨터정보학회 종신회원').answer,/2026\.03\.18/);
+ assert.match(searchResearch('한국회계학회 종신회원').answer,/2026\.06\.20/);
  assert.match(searchResearch('특허결정').answer,/지식재산처/);
  assert.match(searchResearch('인재양성 협약').answer,/한국정보통신기술협회/);
- assert.match(searchResearch('회원자격').answer,/한국인공지능협회/);
+ assert.match(searchResearch('XAIKOREA 회사 회원자격').answer,/한국인공지능협회/);
  assert.match(searchResearch('기술자료 임치').answer,/2026\.09\.09/);
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));

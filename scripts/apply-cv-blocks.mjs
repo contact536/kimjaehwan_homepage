@@ -2,10 +2,12 @@ import fs from 'node:fs';
 import profile from '../seed/researcher.json' with {type:'json'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const career=[...(profile.career??[]),...profile.milestones.filter(m=>m.title.includes('취임'))];
+const academicMemberships=[...(profile.academicMemberships??[])].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>m.title.includes('특허'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
-function timeline(items,education=false){return `<ol class="cv-timeline">${items.map(item=>{const state=education?(item.date.includes('입학')?'과정 재학':'학위 취득'):item.status;const links=[item.url?`<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.linkLabel??'공식 홈페이지')} ↗</a>`:'',item.email?`<a href="mailto:${esc(item.email)}">${esc(item.email)}</a>`:''].filter(Boolean).join('');return `<li><div class="cv-date">${esc(item.date)}</div><div class="cv-event"><h3>${esc(item.title)}</h3>${state?`<span class="cv-state">${esc(state)}</span>`:''}<p>${esc(item.description)}</p>${links?`<p class="cv-links">${links}</p>`:''}</div></li>`}).join('')}</ol>`}
+function timeline(items,education=false){return `<ol class="cv-timeline">${items.map(item=>{const state=education?(item.date.includes('입학')?'과정 재학':'학위 취득'):item.status;const links=[item.url?`<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.linkLabel??'공식 홈페이지')} ↗</a>`:'',item.email?`<a href="mailto:${esc(item.email)}">${esc(item.email)}</a>`:''].filter(Boolean).join('');return `<li><div class="cv-date">${esc(item.date)}</div><div class="cv-event"><h3>${esc(item.title??item.organization)}</h3>${state?`<span class="cv-state">${esc(state)}</span>`:''}<p>${esc(item.description)}</p>${links?`<p class="cv-links">${links}</p>`:''}</div></li>`}).join('')}</ol>`}
 const blocks=[
  {id:'career',title:'경력',caption:'연구와 제품 개발',content:timeline(career)},
+ {id:'memberships',title:'학술단체 회원자격',caption:'Professional memberships',content:timeline(academicMemberships)},
  {id:'education',title:'학력',caption:'경영에서 AI 융합으로',content:timeline(profile.education,true)},
  {id:'company',title:'기업 주요 이력',caption:'XAIKOREA',content:timeline(company)},
 ];
@@ -15,4 +17,4 @@ let html=fs.readFileSync(file,'utf8');
 if(!html.includes('/css/cv-blocks.css'))html=html.replace('</head>','<link rel="stylesheet" href="/css/cv-blocks.css"></head>');
 html=html.replace(/(<main[^>]*>)[\s\S]*?(<\/main>)/,(_,open,close)=>open+body+close);
 fs.writeFileSync(file,html);
-console.log(`CV blocks generated: ${career.length} career, ${profile.education.length} education, ${company.length} company milestones.`);
+console.log(`CV blocks generated: ${career.length} career, ${academicMemberships.length} academic memberships, ${profile.education.length} education, ${company.length} company milestones.`);
