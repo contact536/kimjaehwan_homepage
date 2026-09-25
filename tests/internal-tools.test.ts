@@ -4,19 +4,23 @@ import test from 'node:test';
 import researcher from '../seed/researcher.json' with {type: 'json'};
 import {searchResearch} from '../server/agent.ts';
 
-test('three internal tools render with seven local screenshots and clear access boundaries', () => {
+test('three internal tools render on Projects only with seven cropped screenshots', () => {
   const projects = fs.readFileSync('public/pages/projects.html', 'utf8');
   const home = fs.readFileSync('public/index.html', 'utf8');
   assert.equal(researcher.internalTools.length, 3);
   assert.equal((projects.match(/class="internal-tool"/gu) || []).length, 3);
-  assert.equal((projects.match(/<img src="\/assets\/internal-tools\/[^"]+\.jpg"/gu) || []).length, 7);
+  assert.equal((projects.match(/<img src="\/assets\/internal-tools\/[^"]+-v2\.webp"/gu) || []).length, 7);
+  assert.equal((projects.match(/class="internal-tool-gallery internal-tool-gallery-primary"/gu) || []).length, 3);
+  assert.equal((projects.match(/<details class="internal-tool-more">/gu) || []).length, 3);
+  assert.doesNotMatch(home, /internal-tools-home|\/assets\/internal-tools\/|\/css\/internal-tools\.css/u);
+  const research = fs.readFileSync('public/pages/research.html', 'utf8');
+  assert.doesNotMatch(research, /\/assets\/internal-tools\//u);
   assert.match(projects, /회사 내부 연구·운영 도구/u);
   assert.match(projects, /모두 사내 전용이며 외부 접속 주소가 없습니다/u);
   assert.doesNotMatch(projects, /127\.0\.0\.1|localhost|비밀번호/u);
   for (const tool of researcher.internalTools) {
     assert.ok(projects.includes(tool.name), tool.name);
     assert.ok(projects.includes(tool.koreanName), tool.koreanName);
-    assert.ok(home.includes(tool.name), `${tool.name} missing from home`);
     for (const image of tool.images) assert.ok(fs.existsSync(`public${image.src}`), image.src);
   }
 });
