@@ -21,7 +21,7 @@ seed.push({
 seed.push(...profile.milestones.map((record, index) => ({
   kind: 'news',
   id: `news-${index + 1}`,
-  data: {name: `${record.title} — ${record.description}`, date: record.date, url: ''},
+  data: {name: `${record.title} — ${record.description}`, date: record.date, url: record.url ?? ''},
 })));
 seed.push(...(profile.career ?? []).map((record, index) => ({
   kind: 'news',

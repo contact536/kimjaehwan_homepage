@@ -9,7 +9,13 @@ const esc = value => String(value).replace(/[&<>"']/g, character => ({
   "'": '&#39;',
 })[character]);
 
-const entries = [...(profile.companyCredentials ?? []), ...(profile.career ?? [])];
+const dateOrder = entry => {
+  const match = String(entry.date).match(/^(\d{4})\.(\d{2})(?:\.(\d{2}))?/u);
+  return match ? Number(`${match[1]}${match[2]}${match[3] ?? '50'}`) : 0;
+};
+const patentMilestones = profile.milestones.filter(entry => entry.title.includes('특허'));
+const entries = [...(profile.companyCredentials ?? []), ...(profile.career ?? []), ...patentMilestones]
+  .sort((left, right) => dateOrder(right) - dateOrder(left));
 if (!entries.length) throw new Error('No managed records are available for the home Journey.');
 
 const start = '<!-- home-current-journey:start -->';
@@ -22,7 +28,7 @@ const items = entries.map(entry => {
   return `<article class="kim-row"><time${isoDate}>${esc(entry.date)}</time><div><h3>${esc(entry.title)}${entry.status ? ` (${esc(entry.status)})` : ''}</h3><p>${esc(entry.description)}${link}</p></div></article>`;
 }).join('');
 const block = `${start}${items}${end}`;
-const rowTitles = [...entries.map(entry => entry.title), 'XAIKOREA 벤처기업 인증', 'KOITA 연구전담부서 인정'];
+const rowTitles = [...entries.map(entry => entry.title), 'AI 추론 관련 특허 4건 출원', 'XAIKOREA 벤처기업 인증', 'KOITA 연구전담부서 인정'];
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const removeManagedRows = source => rowTitles.reduce((current, title) => current.replace(
   new RegExp(`<article class="kim-row">(?:(?!<\\/article>)[\\s\\S])*?<h3>${escapeRegExp(title)}(?: \\([^<]+\\))?<\\/h3>(?:(?!<\\/article>)[\\s\\S])*?<\\/article>`, 'gu'),
