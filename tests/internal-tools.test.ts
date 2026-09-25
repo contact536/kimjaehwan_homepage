@@ -10,8 +10,9 @@ test('three internal tools render on Projects only with seven cropped screenshot
   assert.equal(researcher.internalTools.length, 3);
   assert.equal((projects.match(/class="internal-tool"/gu) || []).length, 3);
   assert.equal((projects.match(/<img src="\/assets\/internal-tools\/[^"]+-v2\.webp"/gu) || []).length, 7);
-  assert.equal((projects.match(/class="internal-tool-gallery internal-tool-gallery-primary"/gu) || []).length, 3);
-  assert.equal((projects.match(/<details class="internal-tool-more">/gu) || []).length, 3);
+  assert.equal((projects.match(/class="internal-tool-logo"/gu) || []).length, 3);
+  assert.equal((projects.match(/<details class="internal-tool-screens">/gu) || []).length, 3);
+  assert.match(projects, /\/js\/internal-tools\.js\?v=/u);
   assert.doesNotMatch(home, /internal-tools-home|\/assets\/internal-tools\/|\/css\/internal-tools\.css/u);
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
   assert.doesNotMatch(research, /\/assets\/internal-tools\//u);
@@ -21,6 +22,7 @@ test('three internal tools render on Projects only with seven cropped screenshot
   for (const tool of researcher.internalTools) {
     assert.ok(projects.includes(tool.name), tool.name);
     assert.ok(projects.includes(tool.koreanName), tool.koreanName);
+    assert.ok(fs.existsSync(`public/assets/internal-tools/${tool.id}-logo-v1.webp`));
     for (const image of tool.images) assert.ok(fs.existsSync(`public${image.src}`), image.src);
   }
 });
