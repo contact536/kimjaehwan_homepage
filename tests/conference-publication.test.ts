@@ -18,7 +18,7 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   assert.match(html, /Qwen3-14B · vLLM/u);
   assert.match(html, /기업의 기밀 회의 데이터를 외부 클라우드로 전송하지 않고 내부 서버에서 안전하게 처리/u);
   assert.match(html, /회의 기록과 핵심 내용을 빠르게 생성합니다/u);
-  assert.match(html, /해당 공개 자료에서 DOI와 논문별 전체 원문 URL은 확인되지 않았습니다/u);
+  assert.doesNotMatch(html, /첨부된 논문집 표지와 첫 페이지를 기준으로 등록|conference-source-note/u);
   assert.match(html, /https:\/\/conference\.ksci\.re\.kr\/2026-02\//u);
   assert.match(html, /VOIS00821838/u);
   const images = [
