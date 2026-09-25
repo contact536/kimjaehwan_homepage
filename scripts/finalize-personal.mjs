@@ -3,6 +3,7 @@ import p from '../seed/researcher.json' with {type:'json'};
 const seed=JSON.parse(fs.readFileSync('seed/records.json','utf8')).filter(r=>!['profile','news'].includes(r.kind));
 seed.push({kind:'profile',id:'main',data:{name:p.name,tagline:p.role,identity:'CLOA · 세무회계 LLM/RAG · KorTaxArena',email:p.email,publications:0,projects:3,presentations:0,awards:0}});
 seed.push(...p.milestones.map((r,i)=>({kind:'news',id:'news-'+(i+1),data:{name:r.title+' — '+r.description,date:r.date,url:''}})));
+seed.push(...(p.career??[]).map((r,i)=>({kind:'news',id:'career-'+(i+1),data:{name:r.title+' — '+r.description,date:r.date,url:r.url??''}})));
 fs.writeFileSync('seed/records.json',JSON.stringify(seed,null,2)+'\n');
 let tests=fs.readFileSync('tests/original.test.ts','utf8');
 tests=tests.replace("all 39 original HTML/CSS/JS files retain exact source bytes","original style foundations retain exact source bytes").replace('for (const item of manifest)','for (const item of manifest.filter(item => item.path.startsWith(\'css/\')))').replace('profile/news edits preserve markup and escape inserted HTML','home profile edits preserve markup and escape inserted HTML');

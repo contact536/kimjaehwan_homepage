@@ -16,6 +16,9 @@
 .cv-date { font-size:.875rem; color:var(--text-secondary); font-variant-numeric:tabular-nums; margin-bottom:6px; }
 .cv-event h3 { font-size:1.0625rem; line-height:1.6; margin:0 0 8px; word-break:keep-all; overflow-wrap:anywhere; }
 .cv-event p { font-size:1rem; line-height:1.9; margin:10px 0 0; }
+.cv-event .cv-links { display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.875rem; }
+.cv-links a { font-weight:600; text-decoration:none; }
+.cv-links a:hover { text-decoration:underline; text-underline-offset:4px; }
 .cv-state { display:inline-block; font-size:.875rem; padding:2px 9px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:4px; color:var(--text-secondary); }
 .cv-block:target { outline:2px solid var(--accent); outline-offset:10px; border-radius:2px; }
 .cv-page a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }

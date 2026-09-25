@@ -9,6 +9,9 @@
     {"title": "SDG 복수학위 박사과정", "date": "2025.09 입학", "description": "aSSIST와 SDG Management School이 공동으로 진행하는 복수학위 박사과정 재학. 2026년 6월 사실확인서 기준.", "source": "aSSIST 사실확인서"},
     {"title": "한국외국어대학교 MBA", "date": "2025.02 졸업", "description": "한국외국어대학교 경영학 석사(MBA), 경영전공.", "source": "석사 학위증"}
   ],
+  "career": [
+    {"date": "2026.02–현재", "title": "(사)AI경영학회 이사", "description": "AI경영학회 학술위원회 이사로 활동 중.", "status": "현", "url": "https://aiba.or.kr/member", "linkLabel": "AI경영학회 임원진", "email": "aiba2023@naver.com"}
+  ],
   "research": [
     {"id": "cloa", "title": "CLOA", "subtitle": "Citation-Linked Output Architecture", "description": "세법 조문·예규·판례의 근거와 AI 응답을 연결하는 인용 연계 출력 구조. 하이브리드 검색, 다단계 응답 생성, 응답 근거 검증을 중심으로 연구개발합니다.", "tags": ["Grounded AI", "RAG", "Citation"], "status": "연구개발", "source": "회사소개서 · 재직증명서"},
     {"id": "taxia", "title": "TAXiA", "subtitle": "AI for Tax & Accounting", "description": "세무사·회계사 사무소를 위한 B2B SaaS 플랫폼. 세무·회계 도메인에 특화된 LLM 추론과 RAG를 실제 업무에 연결하는 제품입니다. 김재환 대표는 제품 기획과 연구개발 방향을 총괄합니다.", "tags": ["Domain LLM", "B2B SaaS", "Tax AI"], "status": "제품 개발", "source": "회사소개서 · 재직증명서"},

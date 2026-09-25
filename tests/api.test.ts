@@ -36,7 +36,7 @@ test("authentication, validation, conflict protection, filtering, and restart pe
   try {
     let response = await request("/api/health");
     assert.equal(response.status, 200);
-    assert.equal((await json(response)).records, 890);
+    assert.equal((await json(response)).records, 891);
     response = await request("/api/records/conferences?tier=B&q=MEMOCODE");
     let data = await json(response);
     assert.equal(data.total, 1);

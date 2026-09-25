@@ -16842,5 +16842,14 @@
       "date": "2025.02",
       "url": ""
     }
+  },
+  {
+    "kind": "news",
+    "id": "career-1",
+    "data": {
+      "name": "(사)AI경영학회 이사 — AI경영학회 학술위원회 이사로 활동 중.",
+      "date": "2026.02–현재",
+      "url": "https://aiba.or.kr/member"
+    }
   }
 ]
