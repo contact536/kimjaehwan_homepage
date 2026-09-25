@@ -29,7 +29,7 @@ const items = entries.map(entry => {
   return `<article class="kim-row"><time${isoDate}>${esc(entry.date)}</time><div><h3>${esc(entry.title)}${entry.status ? ` (${esc(entry.status)})` : ''}</h3><p>${esc(entry.description)}${link}</p></div></article>`;
 }).join('');
 const block = `${start}${items}${end}`;
-const retiredTitles = ['AI 추론 관련 특허 4건 출원', 'XAIKOREA 벤처기업 인증', 'KOITA 연구전담부서 인정'];
+const retiredTitles = ['AI 추론 관련 특허 4건 출원', 'XAIKOREA 벤처기업 인증', 'KOITA 연구전담부서 인정', 'aSSIST · SDG 박사과정 입학', '한국외국어대학교 MBA 취득'];
 const rowTitles = [...entries.map(entry => entry.title), ...retiredTitles];
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const removeManagedRows = source => rowTitles.reduce((current, title) => current.replace(

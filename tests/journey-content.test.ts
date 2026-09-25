@@ -32,4 +32,7 @@ test('home Journey is complete, chronological and uses specific verified descrip
   assert.match(html, /CLOA와 세무·회계 AI 연구개발/u);
   assert.match(html, /재학 중입니다/u);
   assert.doesNotMatch(html, /회사소개서 기재 기준/u);
+  assert.doesNotMatch(html, /<h3>aSSIST · SDG 박사과정 입학<\/h3>/u);
+  assert.doesNotMatch(html, /<h3>한국외국어대학교 MBA 취득<\/h3>/u);
+  assert.equal((html.match(/2025\.02/gu) || []).length, 1);
 });
