@@ -16838,7 +16838,7 @@
     "kind": "news",
     "id": "news-6",
     "data": {
-      "name": "한국외국어대학교 MBA 취득 — Finance 전공.",
+      "name": "한국외국어대학교 MBA 취득 — 경영전공.",
       "date": "2025.02",
       "url": ""
     }
@@ -16850,6 +16850,28 @@
       "name": "(사)AI경영학회 이사 — AI경영학회 학술위원회 이사로 활동 중.",
       "date": "2026.02–현재",
       "url": "https://aiba.or.kr/member"
+    }
+  },
+  {
+    "kind": "news",
+    "id": "credential-1",
+    "data": {
+      "name": "경기도 AI 멤버십 기업 선정 — XAIKOREA가 경기도 AI 멤버십 기업으로 선정되었습니다. 멤버십 기간은 2026.09.01-2027.08.31입니다.",
+      "date": "2026.09.01",
+      "url": "/documents/xaikorea-ai-membership-2026.pdf",
+      "issuer": "경기도경제과학진흥원",
+      "certificate": "2026-AI-245"
+    }
+  },
+  {
+    "kind": "news",
+    "id": "credential-2",
+    "data": {
+      "name": "기술보호 선도기업 지정 — XAIKOREA가 기술보호 수준확인 심사를 거쳐 기술보호 선도기업으로 지정되었습니다. 지정기간은 2026.06.11-2028.06.10입니다.",
+      "date": "2026.06.11",
+      "url": "/documents/xaikorea-technology-leading-company-2026.pdf",
+      "issuer": "대·중소기업·농어업협력재단",
+      "certificate": "제2026-015호"
     }
   }
 ]

@@ -12,6 +12,10 @@
   "career": [
     {"date": "2026.02–현재", "title": "(사)AI경영학회 이사", "description": "AI경영학회 학술위원회 이사로 활동 중.", "status": "현", "url": "https://aiba.or.kr/member", "linkLabel": "AI경영학회 임원진", "email": "aiba2023@naver.com"}
   ],
+  "companyCredentials": [
+    {"date": "2026.09.01", "title": "경기도 AI 멤버십 기업 선정", "description": "XAIKOREA가 경기도 AI 멤버십 기업으로 선정되었습니다. 멤버십 기간은 2026.09.01-2027.08.31입니다.", "status": "선정", "issuer": "경기도경제과학진흥원", "certificate": "2026-AI-245", "url": "/documents/xaikorea-ai-membership-2026.pdf", "linkLabel": "인증서 보기", "source": "경기도 AI 멤버십 인증서"},
+    {"date": "2026.06.11", "title": "기술보호 선도기업 지정", "description": "XAIKOREA가 기술보호 수준확인 심사를 거쳐 기술보호 선도기업으로 지정되었습니다. 지정기간은 2026.06.11-2028.06.10입니다.", "status": "지정", "issuer": "대·중소기업·농어업협력재단", "certificate": "제2026-015호", "url": "/documents/xaikorea-technology-leading-company-2026.pdf", "linkLabel": "지정서 보기", "source": "기술보호 선도기업 지정서"}
+  ],
   "research": [
     {"id": "cloa", "title": "CLOA", "subtitle": "Citation-Linked Output Architecture", "description": "세법 조문·예규·판례의 근거와 AI 응답을 연결하는 인용 연계 출력 구조. 하이브리드 검색, 다단계 응답 생성, 응답 근거 검증을 중심으로 연구개발합니다.", "tags": ["Grounded AI", "RAG", "Citation"], "status": "연구개발", "source": "회사소개서 · 재직증명서"},
     {"id": "taxia", "title": "TAXiA", "subtitle": "AI for Tax & Accounting", "description": "세무사·회계사 사무소를 위한 B2B SaaS 플랫폼. 세무·회계 도메인에 특화된 LLM 추론과 RAG를 실제 업무에 연결하는 제품입니다. 김재환 대표는 제품 기획과 연구개발 방향을 총괄합니다.", "tags": ["Domain LLM", "B2B SaaS", "Tax AI"], "status": "제품 개발", "source": "회사소개서 · 재직증명서"},

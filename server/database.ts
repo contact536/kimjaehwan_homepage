@@ -19,7 +19,7 @@ export async function initializeData(db: Database) {
   if (
     await db.prepare("SELECT value FROM settings WHERE key = 'seed-v1'").first()
   )
-    { await initializePersonalData(db); await initializeCareerData(db); await initializeResearch(db); return; }
+    { await initializePersonalData(db); await initializeCareerData(db); await initializeCredentialData(db); await initializeResearch(db); return; }
   const now = new Date().toISOString();
   for (let i = 0; i < seed.length; i += 40) {
     await db.batch(
@@ -47,6 +47,7 @@ export async function initializeData(db: Database) {
     .run();
   await initializePersonalData(db);
   await initializeCareerData(db);
+  await initializeCredentialData(db);
   await initializeResearch(db);
 }
 async function initializePersonalData(db: Database) {
@@ -64,6 +65,14 @@ async function initializeCareerData(db: Database) {
   await db.batch([
     ...career.map(row => db.prepare("INSERT INTO records(kind,id,name,payload,revision,updated_at) VALUES(?,?,?,?,1,?) ON CONFLICT(kind,id) DO NOTHING").bind(row.kind,row.id,row.data.name,JSON.stringify(row.data),new Date().toISOString())),
     db.prepare("INSERT INTO settings(key,value) VALUES('kim-career-v1','complete') ON CONFLICT(key) DO NOTHING"),
+  ]);
+}
+async function initializeCredentialData(db: Database) {
+  if (await db.prepare("SELECT value FROM settings WHERE key='kim-company-credentials-v1'").first()) return;
+  const credentials = seed.filter(row => row.kind === 'news' && row.id.startsWith('credential-'));
+  await db.batch([
+    ...credentials.map(row => db.prepare("INSERT INTO records(kind,id,name,payload,revision,updated_at) VALUES(?,?,?,?,1,?) ON CONFLICT(kind,id) DO NOTHING").bind(row.kind,row.id,row.data.name,JSON.stringify(row.data),new Date().toISOString())),
+    db.prepare("INSERT INTO settings(key,value) VALUES('kim-company-credentials-v1','complete') ON CONFLICT(key) DO NOTHING"),
   ]);
 }
 export function unpack(row: Record<string, any>) {

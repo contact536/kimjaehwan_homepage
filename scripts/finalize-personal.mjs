@@ -1,19 +1,50 @@
 import fs from 'node:fs';
-import p from '../seed/researcher.json' with {type:'json'};
-const seed=JSON.parse(fs.readFileSync('seed/records.json','utf8')).filter(r=>!['profile','news'].includes(r.kind));
-seed.push({kind:'profile',id:'main',data:{name:p.name,tagline:p.role,identity:'CLOA · 세무회계 LLM/RAG · KorTaxArena',email:p.email,publications:0,projects:3,presentations:0,awards:0}});
-seed.push(...p.milestones.map((r,i)=>({kind:'news',id:'news-'+(i+1),data:{name:r.title+' — '+r.description,date:r.date,url:''}})));
-seed.push(...(p.career??[]).map((r,i)=>({kind:'news',id:'career-'+(i+1),data:{name:r.title+' — '+r.description,date:r.date,url:r.url??''}})));
-fs.writeFileSync('seed/records.json',JSON.stringify(seed,null,2)+'\n');
-let tests=fs.readFileSync('tests/original.test.ts','utf8');
-tests=tests.replace("all 39 original HTML/CSS/JS files retain exact source bytes","original style foundations retain exact source bytes").replace('for (const item of manifest)','for (const item of manifest.filter(item => item.path.startsWith(\'css/\')))').replace('profile/news edits preserve markup and escape inserted HTML','home profile edits preserve markup and escape inserted HTML');
-fs.writeFileSync('tests/original.test.ts',tests);
-let api=fs.readFileSync('tests/api.test.ts','utf8').replaceAll('893',String(seed.length));fs.writeFileSync('tests/api.test.ts',api);
-fs.writeFileSync('public/js/theme.js',`(()=>{let saved;try{saved=localStorage.getItem('theme')}catch{}const theme=saved||'dark';document.documentElement.dataset.theme=theme;const button=document.createElement('button');button.className='theme-toggle visible';button.textContent=theme==='dark'?'☀':'☾';button.setAttribute('aria-label','밝은 테마와 어두운 테마 전환');button.onclick=()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;button.textContent=next==='dark'?'☀':'☾';try{localStorage.setItem('theme',next)}catch{}};document.body.prepend(button)})();\n`);
-const css='\n.theme-toggle{font-size:22px}.animate-in{opacity:1}.kim-hero .hero-content{position:relative;z-index:1}@media(prefers-reduced-motion:reduce){.animate-in,.reveal{opacity:1!important;transform:none!important}}\n';
-if(!fs.readFileSync('public/css/kim.css','utf8').includes('.theme-toggle{font-size:22px}'))fs.appendFileSync('public/css/kim.css',css);
-const pages=JSON.parse(fs.readFileSync('seed/pages.json','utf8'));
-fs.writeFileSync('public/sitemap.xml','<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+pages.map(p=>'<url><loc>http://127.0.0.1:4321'+p.path+'</loc></url>').join('')+'</urlset>');
-fs.writeFileSync('public/robots.txt','User-agent: *\nDisallow: /admin/\nDisallow: /api/\n');
-let admin=fs.readFileSync('public/admin/index.html','utf8').replaceAll('Research Platform','김재환 연구 플랫폼');fs.writeFileSync('public/admin/index.html',admin);
-console.log('Personal database seed: '+seed.length+' records; identity cleanup and test expectations updated.');
+import profile from '../seed/researcher.json' with {type: 'json'};
+
+const seed = JSON.parse(fs.readFileSync('seed/records.json', 'utf8'))
+  .filter(record => !['profile', 'news'].includes(record.kind));
+
+seed.push({
+  kind: 'profile',
+  id: 'main',
+  data: {
+    name: profile.name,
+    tagline: profile.role,
+    identity: 'CLOA · 세무회계 LLM/RAG · KorTaxArena',
+    email: profile.email,
+    publications: 0,
+    projects: 3,
+    presentations: 0,
+    awards: 0,
+  },
+});
+seed.push(...profile.milestones.map((record, index) => ({
+  kind: 'news',
+  id: `news-${index + 1}`,
+  data: {name: `${record.title} — ${record.description}`, date: record.date, url: ''},
+})));
+seed.push(...(profile.career ?? []).map((record, index) => ({
+  kind: 'news',
+  id: `career-${index + 1}`,
+  data: {name: `${record.title} — ${record.description}`, date: record.date, url: record.url ?? ''},
+})));
+seed.push(...(profile.companyCredentials ?? []).map((record, index) => ({
+  kind: 'news',
+  id: `credential-${index + 1}`,
+  data: {
+    name: `${record.title} — ${record.description}`,
+    date: record.date,
+    url: record.url ?? '',
+    issuer: record.issuer ?? '',
+    certificate: record.certificate ?? '',
+  },
+})));
+
+fs.writeFileSync('seed/records.json', `${JSON.stringify(seed, null, 2)}\n`);
+const totalRecords = seed.length + (profile.research?.length ?? 0);
+const apiTest = fs.readFileSync('tests/api.test.ts', 'utf8').replace(
+  /assert\.equal\(\(await json\(response\)\)\.records, \d+\);/u,
+  `assert.equal((await json(response)).records, ${totalRecords});`,
+);
+fs.writeFileSync('tests/api.test.ts', apiTest);
+console.log(`Personal database seed: ${seed.length} records; expected initialized total: ${totalRecords}.`);
