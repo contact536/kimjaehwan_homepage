@@ -22,9 +22,15 @@ const items = entries.map(entry => {
   return `<article class="kim-row"><time${isoDate}>${esc(entry.date)}</time><div><h3>${esc(entry.title)}${entry.status ? ` (${esc(entry.status)})` : ''}</h3><p>${esc(entry.description)}${link}</p></div></article>`;
 }).join('');
 const block = `${start}${items}${end}`;
+const rowTitles = [...entries.map(entry => entry.title), 'XAIKOREA 벤처기업 인증', 'KOITA 연구전담부서 인정'];
+const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const removeManagedRows = source => rowTitles.reduce((current, title) => current.replace(
+  new RegExp(`<article class="kim-row">(?:(?!<\\/article>)[\\s\\S])*?<h3>${escapeRegExp(title)}(?: \\([^<]+\\))?<\\/h3>(?:(?!<\\/article>)[\\s\\S])*?<\\/article>`, 'gu'),
+  '',
+), source);
 
 const file = 'public/index.html';
-let html = fs.readFileSync(file, 'utf8');
+let html = removeManagedRows(fs.readFileSync(file, 'utf8'));
 if (html.includes(start)) {
   html = html.replace(new RegExp(`${start}[\\s\\S]*?${end}`), block);
 } else {

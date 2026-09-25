@@ -16793,32 +16793,14 @@
     "kind": "news",
     "id": "news-1",
     "data": {
-      "name": "AI 추론 관련 특허 3건 출원 — 회사소개서에 기재된 XAIKOREA의 특허 출원. 개인 발명자 여부와 등록 여부를 의미하지 않습니다.",
-      "date": "2026.02.27",
+      "name": "AI 추론 관련 특허 4건 출원 — XAIKOREA 공식 공개본 기준 특허 출원 4건. 회사 차원의 출원이며 개인의 등록 특허를 의미하지 않습니다.",
+      "date": "2026.03.30",
       "url": ""
     }
   },
   {
     "kind": "news",
     "id": "news-2",
-    "data": {
-      "name": "XAIKOREA 벤처기업 인증 — 회사소개서 기재 기준.",
-      "date": "2026.02.04",
-      "url": ""
-    }
-  },
-  {
-    "kind": "news",
-    "id": "news-3",
-    "data": {
-      "name": "KOITA 연구전담부서 인정 — 회사소개서 기재 기준.",
-      "date": "2026.01.21",
-      "url": ""
-    }
-  },
-  {
-    "kind": "news",
-    "id": "news-4",
     "data": {
       "name": "XAIKOREA 대표이사 겸 연구원 취임 — 경영 총괄, 사업전략 수립, AI 연구개발 및 제품 방향 총괄.",
       "date": "2025.11.06",
@@ -16827,7 +16809,7 @@
   },
   {
     "kind": "news",
-    "id": "news-5",
+    "id": "news-3",
     "data": {
       "name": "aSSIST · SDG 박사과정 입학 — AI융합 및 SDG 복수학위 박사과정.",
       "date": "2025.09",
@@ -16836,7 +16818,7 @@
   },
   {
     "kind": "news",
-    "id": "news-6",
+    "id": "news-4",
     "data": {
       "name": "한국외국어대학교 MBA 취득 — 경영전공.",
       "date": "2025.02",
@@ -16872,6 +16854,28 @@
       "url": "/documents/xaikorea-technology-leading-company-2026.pdf",
       "issuer": "대·중소기업·농어업협력재단",
       "certificate": "제2026-015호"
+    }
+  },
+  {
+    "kind": "news",
+    "id": "credential-3",
+    "data": {
+      "name": "연구개발전담부서 인정 — XAIKOREA의 연구전담부서가 연구개발전담부서로 인정되었습니다. 신고일은 2026.01.21이며 인정번호는 제2026151302호입니다.",
+      "date": "2026.02.20",
+      "url": "/documents/xaikorea-rnd-department-certificate-2026.pdf",
+      "issuer": "한국산업기술진흥협회",
+      "certificate": "제2026151302호"
+    }
+  },
+  {
+    "kind": "news",
+    "id": "credential-4",
+    "data": {
+      "name": "벤처기업 확인 — XAIKOREA가 혁신성장유형 벤처기업으로 확인되었습니다. 발급번호는 제20260204030008호이며 유효기간은 2026.02.04-2029.02.03입니다.",
+      "date": "2026.02.04",
+      "url": "/documents/xaikorea-venture-enterprise-certificate-2026.pdf",
+      "issuer": "벤처기업확인기관 · (사)벤처기업협회",
+      "certificate": "제20260204030008호"
     }
   }
 ]

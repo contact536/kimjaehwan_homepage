@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import profile from '../seed/researcher.json' with {type:'json'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const career=[...(profile.career??[]),...profile.milestones.filter(m=>m.title.includes('취임'))];
-const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>/특허|인증|KOITA/.test(m.title))];
+const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>m.title.includes('특허'))];
 function timeline(items,education=false){return `<ol class="cv-timeline">${items.map(item=>{const state=education?(item.date.includes('입학')?'과정 재학':'학위 취득'):item.status;const links=[item.url?`<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.linkLabel??'공식 홈페이지')} ↗</a>`:'',item.email?`<a href="mailto:${esc(item.email)}">${esc(item.email)}</a>`:''].filter(Boolean).join('');return `<li><div class="cv-date">${esc(item.date)}</div><div class="cv-event"><h3>${esc(item.title)}</h3>${state?`<span class="cv-state">${esc(state)}</span>`:''}<p>${esc(item.description)}</p>${links?`<p class="cv-links">${links}</p>`:''}</div></li>`}).join('')}</ol>`}
 const blocks=[
  {id:'career',title:'경력',caption:'연구와 제품 개발',content:timeline(career)},

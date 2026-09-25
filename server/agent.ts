@@ -15,13 +15,13 @@ const documents:Source[]=[
  ...(researcher.career??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-career',text:[r.date,r.description,r.status,r.email].filter(Boolean).join(' ')})),
  ...(researcher.companyCredentials??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-company',text:[r.date,r.description,r.status,r.issuer,r.certificate].filter(Boolean).join(' ')})),
  ...researcher.research.map(r=>({title:r.title,url:'/pages/research.html#'+r.id,text:r.subtitle+' '+r.description+' '+r.tags.join(' ')})),
- ...researcher.patents.map(r=>({title:r.title,url:'/pages/patents.html',text:'XAIKOREA 기업 특허 '+r.status+' '+r.date})),
+ ...researcher.patents.map(r=>({title:r.title,url:r.url||'/pages/patents.html',text:['XAIKOREA 기업 특허',r.status,r.date,r.number].filter(Boolean).join(' ')})),
  {title:'연락 · 협업',url:'/pages/contact.html',text:'이메일 연락 협업 '+researcher.email},
 ];
 export function searchResearch(question:string, rows?:Awaited<ReturnType<typeof researchRows>>){
  const currentDocuments=documents.map(d=>{const row=rows?.find(r=>d.url==='/pages/research.html#'+r.id);return row?{title:row.data.name,url:d.url,text:row.data.subtitle+' '+row.data.summary+' '+row.data.body}:d;});
  const terms=question.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(t=>t.length>1);
- const synonyms:Record<string,string[]>= {'학력':['mba','박사','학위'],'경력':['대표','연구원','이사'],'연구':['cloa','taxia','kortaxarena'],'세무':['tax','세무'],'이메일':['연락'],'학교':['mba','박사'],'김재환':['대표'],'멤버십':['경기도','ai'],'기술보호':['선도기업','지정'],'이사':['ai경영학회']};
+ const synonyms:Record<string,string[]>= {'학력':['mba','박사','학위'],'경력':['대표','연구원','이사'],'연구':['cloa','taxia','kortaxarena'],'세무':['tax','세무'],'이메일':['연락'],'학교':['mba','박사'],'김재환':['대표'],'멤버십':['경기도','ai'],'기술보호':['선도기업','지정'],'연구전담부서':['연구개발전담부서','2026151302'],'벤처기업':['혁신성장유형','20260204030008'],'이사':['ai경영학회']};
  for(const [key,values] of Object.entries(synonyms))if(question.includes(key))terms.push(...values);
  const scored=currentDocuments.map(d=>({d,score:terms.reduce((n,t)=>n+((d.title+' '+d.text).toLowerCase().includes(t)?1:0),0)})).filter(r=>r.score>0).sort((a,b)=>b.score-a.score).slice(0,5);
  const sources=scored.map(r=>r.d);

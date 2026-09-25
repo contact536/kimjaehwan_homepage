@@ -5,33 +5,181 @@
   "email": "ceo@xaikorea.ai.kr",
   "intro": "세무·회계의 도메인 지식과 인공지능 연구를 연결합니다. XAIKOREA에서 CLOA 엔진, 세무·회계 특화 LLM 추론 및 RAG 파이프라인 연구개발과 TAXiA 제품 방향을 총괄하고 있습니다.",
   "education": [
-    {"title": "aSSIST AI융합 박사과정", "date": "2025.09 입학", "description": "서울과학종합대학원대학교 공학박사 과정 재학. 2026년 5월 재학증명서 및 6월 사실확인서 기준.", "source": "재학증명서 · aSSIST 사실확인서"},
-    {"title": "SDG 복수학위 박사과정", "date": "2025.09 입학", "description": "aSSIST와 SDG Management School이 공동으로 진행하는 복수학위 박사과정 재학. 2026년 6월 사실확인서 기준.", "source": "aSSIST 사실확인서"},
-    {"title": "한국외국어대학교 MBA", "date": "2025.02 졸업", "description": "한국외국어대학교 경영학 석사(MBA), 경영전공.", "source": "석사 학위증"}
+    {
+      "title": "aSSIST AI융합 박사과정",
+      "date": "2025.09 입학",
+      "description": "서울과학종합대학원대학교 공학박사 과정 재학. 2026년 5월 재학증명서 및 6월 사실확인서 기준.",
+      "source": "재학증명서 · aSSIST 사실확인서"
+    },
+    {
+      "title": "SDG 복수학위 박사과정",
+      "date": "2025.09 입학",
+      "description": "aSSIST와 SDG Management School이 공동으로 진행하는 복수학위 박사과정 재학. 2026년 6월 사실확인서 기준.",
+      "source": "aSSIST 사실확인서"
+    },
+    {
+      "title": "한국외국어대학교 MBA",
+      "date": "2025.02 졸업",
+      "description": "한국외국어대학교 경영학 석사(MBA), 경영전공.",
+      "source": "석사 학위증"
+    }
   ],
   "career": [
-    {"date": "2026.02–현재", "title": "(사)AI경영학회 이사", "description": "AI경영학회 학술위원회 이사로 활동 중.", "status": "현", "url": "https://aiba.or.kr/member", "linkLabel": "AI경영학회 임원진", "email": "aiba2023@naver.com"}
+    {
+      "date": "2026.02–현재",
+      "title": "(사)AI경영학회 이사",
+      "description": "AI경영학회 학술위원회 이사로 활동 중.",
+      "status": "현",
+      "url": "https://aiba.or.kr/member",
+      "linkLabel": "AI경영학회 임원진",
+      "email": "aiba2023@naver.com"
+    }
   ],
   "companyCredentials": [
-    {"date": "2026.09.01", "title": "경기도 AI 멤버십 기업 선정", "description": "XAIKOREA가 경기도 AI 멤버십 기업으로 선정되었습니다. 멤버십 기간은 2026.09.01-2027.08.31입니다.", "status": "선정", "issuer": "경기도경제과학진흥원", "certificate": "2026-AI-245", "url": "/documents/xaikorea-ai-membership-2026.pdf", "linkLabel": "인증서 보기", "source": "경기도 AI 멤버십 인증서"},
-    {"date": "2026.06.11", "title": "기술보호 선도기업 지정", "description": "XAIKOREA가 기술보호 수준확인 심사를 거쳐 기술보호 선도기업으로 지정되었습니다. 지정기간은 2026.06.11-2028.06.10입니다.", "status": "지정", "issuer": "대·중소기업·농어업협력재단", "certificate": "제2026-015호", "url": "/documents/xaikorea-technology-leading-company-2026.pdf", "linkLabel": "지정서 보기", "source": "기술보호 선도기업 지정서"}
+    {
+      "date": "2026.09.01",
+      "title": "경기도 AI 멤버십 기업 선정",
+      "description": "XAIKOREA가 경기도 AI 멤버십 기업으로 선정되었습니다. 멤버십 기간은 2026.09.01-2027.08.31입니다.",
+      "status": "선정",
+      "issuer": "경기도경제과학진흥원",
+      "certificate": "2026-AI-245",
+      "url": "/documents/xaikorea-ai-membership-2026.pdf",
+      "linkLabel": "인증서 보기",
+      "source": "경기도 AI 멤버십 인증서"
+    },
+    {
+      "date": "2026.06.11",
+      "title": "기술보호 선도기업 지정",
+      "description": "XAIKOREA가 기술보호 수준확인 심사를 거쳐 기술보호 선도기업으로 지정되었습니다. 지정기간은 2026.06.11-2028.06.10입니다.",
+      "status": "지정",
+      "issuer": "대·중소기업·농어업협력재단",
+      "certificate": "제2026-015호",
+      "url": "/documents/xaikorea-technology-leading-company-2026.pdf",
+      "linkLabel": "지정서 보기",
+      "source": "기술보호 선도기업 지정서"
+    },
+    {
+      "date": "2026.02.20",
+      "title": "연구개발전담부서 인정",
+      "description": "XAIKOREA의 연구전담부서가 연구개발전담부서로 인정되었습니다. 신고일은 2026.01.21이며 인정번호는 제2026151302호입니다.",
+      "status": "인정",
+      "issuer": "한국산업기술진흥협회",
+      "certificate": "제2026151302호",
+      "url": "/documents/xaikorea-rnd-department-certificate-2026.pdf",
+      "linkLabel": "인정서 보기",
+      "source": "연구개발전담부서 인정서"
+    },
+    {
+      "date": "2026.02.04",
+      "title": "벤처기업 확인",
+      "description": "XAIKOREA가 혁신성장유형 벤처기업으로 확인되었습니다. 발급번호는 제20260204030008호이며 유효기간은 2026.02.04-2029.02.03입니다.",
+      "status": "확인",
+      "issuer": "벤처기업확인기관 · (사)벤처기업협회",
+      "certificate": "제20260204030008호",
+      "url": "/documents/xaikorea-venture-enterprise-certificate-2026.pdf",
+      "linkLabel": "확인서 보기",
+      "source": "벤처기업확인서"
+    }
   ],
   "research": [
-    {"id": "cloa", "title": "CLOA", "subtitle": "Citation-Linked Output Architecture", "description": "세법 조문·예규·판례의 근거와 AI 응답을 연결하는 인용 연계 출력 구조. 하이브리드 검색, 다단계 응답 생성, 응답 근거 검증을 중심으로 연구개발합니다.", "tags": ["Grounded AI", "RAG", "Citation"], "status": "연구개발", "source": "회사소개서 · 재직증명서"},
-    {"id": "taxia", "title": "TAXiA", "subtitle": "AI for Tax & Accounting", "description": "세무사·회계사 사무소를 위한 B2B SaaS 플랫폼. 세무·회계 도메인에 특화된 LLM 추론과 RAG를 실제 업무에 연결하는 제품입니다. 김재환 대표는 제품 기획과 연구개발 방향을 총괄합니다.", "tags": ["Domain LLM", "B2B SaaS", "Tax AI"], "status": "제품 개발", "source": "회사소개서 · 재직증명서"},
-    {"id": "kortaxarena", "title": "KorTaxArena", "subtitle": "Korean Tax LLM Benchmark", "description": "한국어 세무 도메인의 LLM 벤치마킹 연구. 세무·회계 문제에 대한 모델 평가를 연구와 제품 개발에 연결합니다. 공개 논문 및 데이터셋 링크는 아직 등록되어 있지 않습니다.", "tags": ["Evaluation", "Benchmark", "Korean LLM"], "status": "연구 진행 중", "source": "회사소개서"}
+    {
+      "id": "cloa",
+      "title": "CLOA",
+      "subtitle": "Citation-Linked Output Architecture",
+      "description": "세법 조문·예규·판례의 근거와 AI 응답을 연결하는 인용 연계 출력 구조. 하이브리드 검색, 다단계 응답 생성, 응답 근거 검증을 중심으로 연구개발합니다.",
+      "tags": [
+        "Grounded AI",
+        "RAG",
+        "Citation"
+      ],
+      "status": "연구개발",
+      "source": "회사소개서 · 재직증명서"
+    },
+    {
+      "id": "taxia",
+      "title": "TAXiA",
+      "subtitle": "AI for Tax & Accounting",
+      "description": "세무사·회계사 사무소를 위한 B2B SaaS 플랫폼. 세무·회계 도메인에 특화된 LLM 추론과 RAG를 실제 업무에 연결하는 제품입니다. 김재환 대표는 제품 기획과 연구개발 방향을 총괄합니다.",
+      "tags": [
+        "Domain LLM",
+        "B2B SaaS",
+        "Tax AI"
+      ],
+      "status": "제품 개발",
+      "source": "회사소개서 · 재직증명서"
+    },
+    {
+      "id": "kortaxarena",
+      "title": "KorTaxArena",
+      "subtitle": "Korean Tax LLM Benchmark",
+      "description": "한국어 세무 도메인의 LLM 벤치마킹 연구. 세무·회계 문제에 대한 모델 평가를 연구와 제품 개발에 연결합니다. 공개 논문 및 데이터셋 링크는 아직 등록되어 있지 않습니다.",
+      "tags": [
+        "Evaluation",
+        "Benchmark",
+        "Korean LLM"
+      ],
+      "status": "연구 진행 중",
+      "source": "회사소개서"
+    }
   ],
   "patents": [
-    {"title": "하이브리드 검색 기반 인공지능 추론 시스템 및 방법", "status": "출원", "date": "2026.02.27"},
-    {"title": "다단계 응답 생성 기반 인공지능 추론 시스템 및 방법", "status": "출원", "date": "2026.02.27"},
-    {"title": "응답의 근거 검증 기반 인공지능 추론 시스템 및 방법", "status": "출원", "date": "2026.02.27"}
+    {
+      "number": "10-2026-0057344",
+      "title": "하이브리드 검색 기반 인공지능 추론 시스템",
+      "status": "출원",
+      "date": "2026.03.30",
+      "pages": 2,
+      "url": "/documents/xaikorea-patent-10-2026-0057344-public-20260926.pdf",
+      "preview": "/assets/patents/10-2026-0057344-public-20260926.webp"
+    },
+    {
+      "number": "10-2026-0036484",
+      "title": "응답의 근거 검증 기반 인공지능 추론 시스템 및 방법",
+      "status": "출원",
+      "date": "2026.02.27",
+      "pages": 1,
+      "url": "/documents/xaikorea-patent-10-2026-0036484-public-20260926.pdf",
+      "preview": "/assets/patents/10-2026-0036484-public-20260926.webp"
+    },
+    {
+      "number": "10-2026-0036483",
+      "title": "다단계 응답 생성 기반 인공지능 추론 시스템 및 방법",
+      "status": "출원",
+      "date": "2026.02.27",
+      "pages": 1,
+      "url": "/documents/xaikorea-patent-10-2026-0036483-public-20260926.pdf",
+      "preview": "/assets/patents/10-2026-0036483-public-20260926.webp"
+    },
+    {
+      "number": "10-2026-0036482",
+      "title": "하이브리드 검색 기반 인공지능 추론 시스템 및 방법",
+      "status": "출원",
+      "date": "2026.02.27",
+      "pages": 1,
+      "url": "/documents/xaikorea-patent-10-2026-0036482-public-20260926.pdf",
+      "preview": "/assets/patents/10-2026-0036482-public-20260926.webp"
+    }
   ],
   "milestones": [
-    {"date": "2026.02.27", "title": "AI 추론 관련 특허 3건 출원", "description": "회사소개서에 기재된 XAIKOREA의 특허 출원. 개인 발명자 여부와 등록 여부를 의미하지 않습니다."},
-    {"date": "2026.02.04", "title": "XAIKOREA 벤처기업 인증", "description": "회사소개서 기재 기준."},
-    {"date": "2026.01.21", "title": "KOITA 연구전담부서 인정", "description": "회사소개서 기재 기준."},
-    {"date": "2025.11.06", "title": "XAIKOREA 대표이사 겸 연구원 취임", "description": "경영 총괄, 사업전략 수립, AI 연구개발 및 제품 방향 총괄."},
-    {"date": "2025.09", "title": "aSSIST · SDG 박사과정 입학", "description": "AI융합 및 SDG 복수학위 박사과정."},
-    {"date": "2025.02", "title": "한국외국어대학교 MBA 취득", "description": "경영전공."}
+    {
+      "date": "2026.03.30",
+      "title": "AI 추론 관련 특허 4건 출원",
+      "description": "XAIKOREA 공식 공개본 기준 특허 출원 4건. 회사 차원의 출원이며 개인의 등록 특허를 의미하지 않습니다."
+    },
+    {
+      "date": "2025.11.06",
+      "title": "XAIKOREA 대표이사 겸 연구원 취임",
+      "description": "경영 총괄, 사업전략 수립, AI 연구개발 및 제품 방향 총괄."
+    },
+    {
+      "date": "2025.09",
+      "title": "aSSIST · SDG 박사과정 입학",
+      "description": "AI융합 및 SDG 복수학위 박사과정."
+    },
+    {
+      "date": "2025.02",
+      "title": "한국외국어대학교 MBA 취득",
+      "description": "경영전공."
+    }
   ]
 }

@@ -1,0 +1,21 @@
+.patent-page{max-width:920px}
+.patent-notice{margin:28px 0 30px;padding:22px 24px;border:1px solid var(--border);border-left:3px solid var(--accent);background:var(--bg-secondary)}
+.patent-notice strong{display:block;margin-bottom:7px;font-size:12px;letter-spacing:.08em;color:var(--text-primary)}
+.patent-notice p{margin:0 0 12px;color:var(--text-secondary);font-size:14px;line-height:1.75}
+.patent-notice a{font-size:13px;font-weight:700}
+.patent-list{border-top:1px solid var(--border)}
+.patent-document{display:grid;grid-template-columns:190px minmax(0,1fr);gap:30px;padding:34px 0;border-bottom:1px solid var(--border);scroll-margin-top:90px}
+.patent-preview{display:flex;align-items:flex-start;justify-content:center;padding:7px;border:1px solid var(--border);border-radius:5px;background:var(--bg-primary);overflow:hidden}
+.patent-preview:hover{border-color:var(--accent)}
+.patent-preview img{display:block;width:100%;height:250px;object-fit:cover;object-position:top;box-shadow:0 5px 18px #0002}
+.patent-copy{min-width:0}
+.patent-sequence{margin:0 0 8px;color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.12em}
+.patent-copy h2{margin:0 0 20px;font-size:21px;line-height:1.5}
+.patent-copy dl{margin:0;display:grid;gap:8px}
+.patent-copy dl div{display:grid;grid-template-columns:74px minmax(0,1fr);gap:12px;font-size:13px;line-height:1.65}
+.patent-copy dt{color:var(--text-tertiary);font-weight:700}
+.patent-copy dd{margin:0;color:var(--text-secondary);word-break:keep-all}
+.patent-copy .reading-links{margin-top:22px}
+.patent-page .reading-toc li a{display:flex;gap:14px;align-items:baseline}.reading-toc li a span{display:inline-block;min-width:135px;color:var(--text-tertiary);font-variant-numeric:tabular-nums}
+@media(max-width:650px){.patent-document{grid-template-columns:105px minmax(0,1fr);gap:17px;padding:27px 0}.patent-preview{padding:4px}.patent-preview img{height:148px}.patent-copy h2{font-size:17px;margin-bottom:15px}.patent-copy dl div{grid-template-columns:62px minmax(0,1fr);gap:8px;font-size:12px}.patent-copy .reading-links{gap:8px 14px}.patent-page .reading-toc li a{display:block}.reading-toc li a span{display:block;min-width:0}}
+@media print{.patent-document{grid-template-columns:120px minmax(0,1fr);break-inside:avoid}.patent-preview img{height:165px}.patent-notice{background:none}}

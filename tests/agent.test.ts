@@ -12,6 +12,9 @@ test('research search uses curated profile, preserves degree/application distinc
  assert.match(searchResearch('특허').answer,/출원/);
  assert.match(searchResearch('경기도 AI 멤버십').answer,/2026-AI-245/);
  assert.match(searchResearch('기술보호 선도기업').answer,/제2026-015호/);
+ assert.match(searchResearch('연구개발전담부서').answer,/2026151302/);
+ assert.match(searchResearch('벤처기업').answer,/20260204030008/);
+ assert.match(searchResearch('10-2026-0057344').answer,/하이브리드 검색 기반/);
  assert.match(searchResearch('AI경영학회 이사').answer,/학술위원회/);
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));
