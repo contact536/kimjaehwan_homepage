@@ -13,7 +13,25 @@ const dateOrder = entry => {
   const match = String(entry.date).match(/^(\d{4})\.(\d{2})(?:\.(\d{2}))?/u);
   return match ? Number(`${match[1]}${match[2]}${match[3] ?? '50'}`) : 0;
 };
-const entries = [...(profile.companyCredentials ?? []), ...(profile.career ?? []), ...(profile.milestones ?? [])]
+const academicMemberships = profile.academicMemberships ?? [];
+const aiBusinessMembership = academicMemberships.find(entry => entry.id === 'ai-business-association');
+const careerEntries = (profile.career ?? []).map(entry => entry.title.includes('AI경영학회') && aiBusinessMembership ? {
+  ...entry,
+  title: `${aiBusinessMembership.organization} ${aiBusinessMembership.category} · 학술위원회 이사`,
+  description: `${aiBusinessMembership.description} AI 경영과 산학 연계 활동에 참여하고 있습니다.`,
+  url: `/pages/company-network.html#${aiBusinessMembership.id}`,
+  linkLabel: '회원자격 보기',
+} : entry);
+const membershipEntries = academicMemberships
+  .filter(entry => entry.id !== 'ai-business-association')
+  .map(entry => ({
+    date: entry.date,
+    title: `${entry.organization} ${entry.category} 가입`,
+    description: entry.description,
+    url: `/pages/company-network.html#${entry.id}`,
+    linkLabel: '회원자격 보기',
+  }));
+const entries = [...(profile.companyCredentials ?? []), ...careerEntries, ...(profile.milestones ?? []), ...membershipEntries]
   .sort((left, right) => dateOrder(right) - dateOrder(left));
 if (!entries.length) throw new Error('No managed records are available for the home Journey.');
 
@@ -29,7 +47,7 @@ const items = entries.map(entry => {
   return `<article class="kim-row"><time${isoDate}>${esc(entry.date)}</time><div><h3>${esc(entry.title)}${entry.status ? ` (${esc(entry.status)})` : ''}</h3><p>${esc(entry.description)}${link}</p></div></article>`;
 }).join('');
 const block = `${start}${items}${end}`;
-const retiredTitles = ['AI 추론 관련 특허 4건 출원', 'XAIKOREA 벤처기업 인증', 'KOITA 연구전담부서 인정', 'aSSIST · SDG 박사과정 입학', '한국외국어대학교 MBA 취득'];
+const retiredTitles = ['AI 추론 관련 특허 4건 출원', 'XAIKOREA 벤처기업 인증', 'KOITA 연구전담부서 인정', 'aSSIST · SDG 박사과정 입학', '한국외국어대학교 MBA 취득', '(사)AI경영학회 이사'];
 const rowTitles = [...entries.map(entry => entry.title), ...retiredTitles];
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const removeManagedRows = source => rowTitles.reduce((current, title) => current.replace(
