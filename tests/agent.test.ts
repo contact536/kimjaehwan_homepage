@@ -10,6 +10,9 @@ test('research search uses curated profile, preserves degree/application distinc
  assert.match(searchResearch('김재환 학력').answer,/박사과정/);
  assert.match(searchResearch('CLOA').answer,/인용/);
  assert.match(searchResearch('특허').answer,/출원/);
+ assert.match(searchResearch('경기도 AI 멤버십').answer,/2026-AI-245/);
+ assert.match(searchResearch('기술보호 선도기업').answer,/제2026-015호/);
+ assert.match(searchResearch('AI경영학회 이사').answer,/학술위원회/);
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));
 });
