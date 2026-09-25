@@ -14,8 +14,10 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   assert.match(html, /2026\.07\.09–07\.11 · 제주대학교 아라캠퍼스/u);
   assert.match(html, /RTF 0\.160/u);
   assert.match(html, /최대 4\.25배/u);
-  assert.match(html, /CER 최대 43%, DER 최대 62%/u);
+  assert.doesNotMatch(html, /CER 최대 43%|DER 최대 62%|후속 과제/u);
   assert.match(html, /Qwen3-14B · vLLM/u);
+  assert.match(html, /기업의 기밀 회의 데이터를 외부 클라우드로 전송하지 않고 내부 서버에서 안전하게 처리/u);
+  assert.match(html, /회의 기록과 핵심 내용을 빠르게 생성합니다/u);
   assert.match(html, /해당 공개 자료에서 DOI와 논문별 전체 원문 URL은 확인되지 않았습니다/u);
   assert.match(html, /https:\/\/conference\.ksci\.re\.kr\/2026-02\//u);
   assert.match(html, /VOIS00821838/u);
