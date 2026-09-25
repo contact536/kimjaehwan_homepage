@@ -14,6 +14,14 @@ test('current AI Business Association board role is shown with official contact 
   assert.match(html, /mailto:aiba2023@naver\.com/u);
 });
 
+test('home journey shows the current AI Business Association board role', () => {
+  const html = fs.readFileSync('public/index.html', 'utf8');
+  const journey = html.match(/<span class="section-number">03\.<\/span> Journey<\/h2>([\s\S]*?)<\/div><\/section>/u)?.[1] ?? '';
+  assert.match(journey, /2026\.02–현재/u);
+  assert.match(journey, /\(사\)AI경영학회 이사 \(현\)/u);
+  assert.match(journey, /https:\/\/aiba\.or\.kr\/member/u);
+});
+
 test('current association role is included in research assistant seed data', () => {
   const records = JSON.parse(fs.readFileSync('seed/records.json', 'utf8')) as Array<{kind:string;id:string;data:{name?:string;url?:string}}>;
   const role = records.find(record => record.kind === 'news' && record.id === 'career-1');
