@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
+import {initializeData} from '../server/database.ts';
+import {openDatabase} from '../server/sqlite.ts';
 
 test('current AI Business Association board role is shown with official contact details', () => {
   const html = fs.readFileSync('public/pages/experience.html', 'utf8');
@@ -18,4 +20,19 @@ test('current association role is included in research assistant seed data', () 
   assert.ok(role);
   assert.match(role.data.name ?? '', /\(사\)AI경영학회 이사/u);
   assert.equal(role.data.url, 'https://aiba.or.kr/member');
+});
+
+test('current association role is added to an existing personal database', async () => {
+  const connection = openDatabase(':memory:');
+  try {
+    await initializeData(connection.db);
+    await connection.db.prepare("DELETE FROM records WHERE kind='news' AND id='career-1'").run();
+    await connection.db.prepare("DELETE FROM settings WHERE key='kim-career-v1'").run();
+    await initializeData(connection.db);
+    const row = await connection.db.prepare("SELECT payload FROM records WHERE kind='news' AND id='career-1'").first();
+    assert.ok(row);
+    assert.match(String(row.payload), /AI경영학회/u);
+  } finally {
+    connection.close();
+  }
 });
