@@ -18,7 +18,7 @@ test('public finder links resolve to existing pages and section anchors',()=>{
  const html=fs.readFileSync('public/index.html','utf8');
  const finder=html.match(/<details class="page-finder">[\s\S]*?<\/details>/)![0];
  const links=[...finder.matchAll(/href="([^"]+)"/g)];
- assert.equal(links.length,11);
+ assert.equal(links.length,12);
  for(const [,href] of links){
   const [pathname,hash]=href.split('#');
   const page=fs.readFileSync('public'+(pathname==='/'?'/index.html':pathname),'utf8');

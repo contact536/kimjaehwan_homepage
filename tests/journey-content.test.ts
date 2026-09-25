@@ -5,7 +5,9 @@ import test from 'node:test';
 test('home Journey is complete, chronological and uses specific verified descriptions', () => {
   const html = fs.readFileSync('public/index.html', 'utf8');
   const expected = [
+    '보안형 회의 AI 기술자료 임치',
     '경기도 AI 멤버십 기업 선정',
+    '하이브리드 검색 기반 AI 추론 시스템 특허결정',
     '기술보호 선도기업 지정',
     'AI 추론 관련 특허 1건 추가 출원',
     '(사)AI경영학회 이사',
@@ -29,6 +31,8 @@ test('home Journey is complete, chronological and uses specific verified descrip
   assert.match(html, /제2026151302호/u);
   assert.match(html, /제20260204030008호/u);
   assert.match(html, /AI 경영과 산학 연계 활동/u);
+  assert.match(html, /설정등록 절차와 구분/u);
+  assert.match(html, /대·중소기업·농어업협력재단에 임치/u);
   assert.match(html, /CLOA와 세무·회계 AI 연구개발/u);
   assert.match(html, /재학 중입니다/u);
   assert.doesNotMatch(html, /회사소개서 기재 기준/u);

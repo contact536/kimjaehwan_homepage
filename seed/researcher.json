@@ -162,6 +162,20 @@
   ],
   "milestones": [
     {
+      "date": "2026.09.09",
+      "title": "보안형 회의 AI 기술자료 임치",
+      "description": "엣지 AI 기반 보안형 온프레미스 회의록 자동작성 디바이스 및 회의 인텔리전스 파이프라인 기술자료를 대·중소기업·농어업협력재단에 임치했습니다.",
+      "url": "/pages/company-network.html#technology-escrow",
+      "linkLabel": "임치 내용 보기"
+    },
+    {
+      "date": "2026.07.29",
+      "title": "하이브리드 검색 기반 AI 추론 시스템 특허결정",
+      "description": "출원번호 10-2026-0057344에 대해 지식재산처 특허결정을 받았습니다. 설정등록 절차와 구분해 표기합니다.",
+      "url": "/pages/patents.html#patent-decision-1020260057344",
+      "linkLabel": "특허결정서 보기"
+    },
+    {
       "date": "2026.03.30",
       "title": "AI 추론 관련 특허 1건 추가 출원",
       "description": "하이브리드 검색 기반 인공지능 추론 시스템(출원번호 10-2026-0057344)을 추가 출원해 XAIKOREA의 공개 특허 출원은 총 4건이 되었습니다.",
@@ -192,5 +206,153 @@
       "title": "한국외국어대학교 경영학 석사(MBA) 취득",
       "description": "한국외국어대학교에서 경영전공 경영학 석사(MBA) 학위를 취득했습니다."
     }
-  ]
+  ],
+  "patentDecisions": [
+    {
+      "number": "10-2026-0057344",
+      "title": "하이브리드 검색 기반 인공지능 추론 시스템",
+      "status": "특허결정",
+      "date": "2026.07.29",
+      "issuer": "지식재산처",
+      "pages": 5,
+      "url": "/documents/xaikorea-patent-decision-10-2026-0057344-public-20260926.pdf",
+      "preview": "/assets/patents/10-2026-0057344-decision-public-20260926.webp",
+      "source": "XAIKOREA 특허결정서 공개용 사본"
+    }
+  ],
+  "companyNetwork": {
+    "sourceUrl": "https://www.xaikorea.ai.kr/about#company-network",
+    "trainingPartnerships": [
+      {
+        "id": "tta-consortium",
+        "organization": "한국정보통신기술협회",
+        "category": "국가인적자원개발컨소시엄",
+        "description": "재직자 교육 수요를 반영한 훈련과정 개발·운영과 직무능력 향상을 위한 협력 내용을 담고 있습니다.",
+        "facts": [
+          {
+            "label": "협력 분야",
+            "value": "교육훈련 수요 반영 · 직업능력개발"
+          },
+          {
+            "label": "문서 기재일",
+            "value": "2026.04.14"
+          }
+        ]
+      },
+      {
+        "id": "seoul-central-training",
+        "organization": "서울특별시 기술교육원 중부캠퍼스",
+        "category": "지역·산업 맞춤형 인력양성",
+        "description": "현장의 교육 수요를 훈련과정에 반영하고, 재직자 역량 향상과 수료생의 취업을 지원하는 협력 범위입니다.",
+        "facts": [
+          {
+            "label": "협력 분야",
+            "value": "직무훈련 설계 · 재직자 교육 · 취업 지원"
+          },
+          {
+            "label": "문서 기재일",
+            "value": "2026.05.05"
+          }
+        ]
+      },
+      {
+        "id": "skku-consortium",
+        "organization": "성균관대학교 산학협력단",
+        "category": "국가인적자원개발컨소시엄",
+        "description": "재직자와 채용예정자를 위한 교육훈련 수요 조사, 과정 개발·운영 등 인적자원개발을 위한 협약입니다.",
+        "facts": [
+          {
+            "label": "협력 분야",
+            "value": "재직자 역량 강화 · 채용예정자 양성"
+          },
+          {
+            "label": "문서 기재월",
+            "value": "2026.05"
+          }
+        ]
+      },
+      {
+        "id": "assortrock-ai-campus",
+        "organization": "어소트락평생교육원",
+        "category": "K-디지털 트레이닝 AI 캠퍼스",
+        "description": "AI 산업 실무인재 양성을 위해 훈련과정 설계, 프로젝트 지도, 멘토링과 취업 지원을 협력 범위로 정했습니다.",
+        "facts": [
+          {
+            "label": "협력 분야",
+            "value": "AI 실무교육 · 프로젝트 지도 · 멘토링"
+          },
+          {
+            "label": "협약일",
+            "value": "2026.01.13"
+          },
+          {
+            "label": "기재 기간",
+            "value": "2026.04.01 - 2028.12.31"
+          }
+        ]
+      }
+    ],
+    "memberships": [
+      {
+        "id": "korean-ai-association",
+        "organization": "한국인공지능협회",
+        "category": "무료 회원",
+        "description": "한국인공지능협회 회원증에 기재된 XAIKOREA의 회원 자격과 기간입니다.",
+        "facts": [
+          {
+            "label": "회원 기간",
+            "value": "2026.03.23 - 2027.03.22"
+          }
+        ]
+      },
+      {
+        "id": "kova",
+        "organization": "벤처기업협회",
+        "category": "정회원",
+        "description": "협회 정관에 따른 XAIKOREA의 정회원 이력입니다.",
+        "facts": [
+          {
+            "label": "회원 기간",
+            "value": "2026.02.10 - 2027.02.09"
+          }
+        ]
+      },
+      {
+        "id": "koita",
+        "organization": "한국산업기술진흥협회",
+        "category": "회원사 · KOITA",
+        "description": "회원증과 회원사 확인서로 확인한 XAIKOREA의 한국산업기술진흥협회 회원 이력입니다.",
+        "facts": [
+          {
+            "label": "회원증 발급",
+            "value": "2026.02.23"
+          },
+          {
+            "label": "회원사 확인",
+            "value": "2026.04.08"
+          }
+        ]
+      }
+    ],
+    "technologyEscrow": {
+      "id": "technology-escrow",
+      "title": "보안형 회의 AI 기술자료 임치",
+      "technology": "엣지 AI 기반 보안형 온프레미스 회의록 자동작성 디바이스 및 회의 인텔리전스 파이프라인",
+      "description": "회의록 자동작성 장치와 회의 인텔리전스 처리 흐름에 관한 기술자료를 대·중소기업·농어업협력재단에 임치했습니다.",
+      "facts": [
+        {
+          "label": "임치기관",
+          "value": "대·중소기업·농어업협력재단"
+        },
+        {
+          "label": "임치기간",
+          "value": "2026.09.08 - 2027.09.07"
+        },
+        {
+          "label": "증서 발급일",
+          "value": "2026.09.09"
+        }
+      ]
+    }
+  }
 }

@@ -19,7 +19,7 @@ export async function initializeData(db: Database) {
   if (
     await db.prepare("SELECT value FROM settings WHERE key = 'seed-v1'").first()
   )
-    { await initializePersonalData(db); await initializeCareerData(db); await initializeCredentialData(db); await initializeCuratedNewsV2(db); await initializeCuratedNewsV3(db); await initializeResearch(db); return; }
+    { await initializePersonalData(db); await initializeCareerData(db); await initializeCredentialData(db); await initializeCuratedNewsV2(db); await initializeCuratedNewsV3(db); await initializeCuratedNewsV4(db); await initializeResearch(db); return; }
   const now = new Date().toISOString();
   for (let i = 0; i < seed.length; i += 40) {
     await db.batch(
@@ -50,6 +50,7 @@ export async function initializeData(db: Database) {
   await initializeCredentialData(db);
   await initializeCuratedNewsV2(db);
   await initializeCuratedNewsV3(db);
+  await initializeCuratedNewsV4(db);
   await initializeResearch(db);
 }
 async function initializePersonalData(db: Database) {
@@ -95,6 +96,16 @@ async function initializeCuratedNewsV3(db: Database) {
     db.prepare("DELETE FROM records WHERE kind='news' AND (id LIKE 'news-%' OR id LIKE 'career-%' OR id LIKE 'credential-%')"),
     ...curated.map(row => db.prepare('INSERT INTO records(kind,id,name,payload,revision,updated_at) VALUES(?,?,?,?,1,?)').bind(row.kind,row.id,row.data.name,JSON.stringify(row.data),now)),
     db.prepare("INSERT INTO settings(key,value) VALUES('kim-curated-news-v3','complete') ON CONFLICT(key) DO NOTHING"),
+  ]);
+}
+async function initializeCuratedNewsV4(db: Database) {
+  if (await db.prepare("SELECT value FROM settings WHERE key='kim-curated-news-v4'").first()) return;
+  const curated = seed.filter(row => row.kind === 'news' && /^(news|career|credential)-/u.test(row.id));
+  const now = new Date().toISOString();
+  await db.batch([
+    db.prepare("DELETE FROM records WHERE kind='news' AND (id LIKE 'news-%' OR id LIKE 'career-%' OR id LIKE 'credential-%')"),
+    ...curated.map(row => db.prepare('INSERT INTO records(kind,id,name,payload,revision,updated_at) VALUES(?,?,?,?,1,?)').bind(row.kind,row.id,row.data.name,JSON.stringify(row.data),now)),
+    db.prepare("INSERT INTO settings(key,value) VALUES('kim-curated-news-v4','complete') ON CONFLICT(key) DO NOTHING"),
   ]);
 }
 export function unpack(row: Record<string, any>) {

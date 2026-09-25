@@ -11,6 +11,7 @@ const pages=[
  ['/pages/conference-tier.html','학회 탐색','컨퍼런스 conference 등급 NeurIPS ICML'],
  ['/pages/journal.html','저널 탐색','학술지 journal 등급'],
  ['/pages/patents.html','지식재산','특허 출원 patent'],
+ ['/pages/company-network.html','산학협력 · 회원 네트워크','인재양성 협약 회원자격 기술자료 임치 company network'],
  ['/pages/contact.html','연락 · 연구 협업','이메일 email contact 문의']
 ];
 const finder='<details class="page-finder"><summary>페이지 찾기</summary><div class="finder-panel"><label for="page-finder-query">연구 주제 또는 페이지 이름</label><input id="page-finder-query" type="search" placeholder="예: CLOA, 세무, CV" autocomplete="off"><p class="finder-count" role="status" aria-live="polite">'+pages.length+'개 바로가기</p><div class="finder-results">'+pages.map(([href,title,terms])=>'<a href="'+href+'" data-keywords="'+terms+'">'+title+'<small>'+terms+'</small></a>').join('')+'</div><p class="finder-empty" hidden>찾는 페이지가 없습니다. 다른 검색어를 입력해 주세요.</p></div></details>';
