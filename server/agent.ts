@@ -6,6 +6,7 @@ import { AIMessage, HumanMessage, SystemMessage } from '@langchain/core/messages
 import { ChatOllama } from '@langchain/ollama';
 import { z } from 'zod';
 import researcher from '../seed/researcher.json' with {type:'json'};
+import serviceDirectory from '../seed/company-services.json' with {type:'json'};
 import type { Database } from './database.ts';
 
 type Source={title:string;url:string;text:string};
@@ -24,6 +25,7 @@ const documents:Source[]=[
  ...(researcher.companyNetwork?.technologyProtectionPrograms??[]).map(r=>({title:r.title,url:'/pages/company-network.html#'+r.id,text:[r.category,r.description,...r.facts.flatMap(f=>[f.label,f.value]),'XAIKOREA 기술보호 지원사업'].join(' ')})),
  ...(researcher.companyNetwork?.technologyEscrow?[{title:researcher.companyNetwork.technologyEscrow.title,url:'/pages/company-network.html#technology-escrow',text:[researcher.companyNetwork.technologyEscrow.technology,researcher.companyNetwork.technologyEscrow.description,...researcher.companyNetwork.technologyEscrow.facts.flatMap(f=>[f.label,f.value]),'XAIKOREA 기술자료 임치'].join(' ')}]:[]),
  ...(researcher.internalTools??[]).map(r=>({title:`${r.name} ${r.koreanName}`,url:'/pages/projects.html#internal-tool-'+r.id,text:[r.category,r.status,r.summary,r.description,...r.features,r.source,'XAIKOREA 회사 내부 도구'].join(' ')})),
+ ...serviceDirectory.services.map(service=>({title:service.name,url:'/pages/projects.html#service-'+service.id,text:[service.category,service.status,service.description,...service.features,service.access,...service.videos.map(video=>`${video.label} ${video.duration}`),'XAIKOREA 회사 공개 서비스'].join(' ')})),
  {title:'연락 · 협업',url:'/pages/contact.html',text:'이메일 연락 협업 '+researcher.email},
 ];
 export function searchResearch(question:string, rows?:Awaited<ReturnType<typeof researchRows>>){

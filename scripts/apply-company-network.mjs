@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import profile from '../seed/researcher.json' with {type: 'json'};
+import {applyAuthorLayout} from './author-layout.mjs';
 
 const esc = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
 const network = profile.companyNetwork;
@@ -36,7 +37,7 @@ page = page.replace(/<title>[\s\S]*?<\/title>/u, '<title>산학협력 · 회원 
 page = page.replace(/<meta name="description" content="[^"]*">/u, '<meta name="description" content="XAIKOREA의 호반건설 PoC 협약, 기술보호 지원사업, 기술자료 임치와 인재양성·회원 네트워크, 김재환의 학술단체 활동.">');
 if (!page.includes('/css/company-network.css')) page = page.replace('</head>', '<link rel="stylesheet" href="/css/company-network.css"></head>');
 page = page.replace(/(<main[^>]*>)[\s\S]*?(<\/main>)/u, (_, open, close) => open + body + close);
-fs.writeFileSync(pageFile, page);
+fs.writeFileSync(pageFile, applyAuthorLayout(page, profile));
 
 const homeStart = '<!-- company-network-home:start -->';
 const homeEnd = '<!-- company-network-home:end -->';

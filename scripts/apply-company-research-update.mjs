@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import profile from '../seed/researcher.json' with {type: 'json'};
+import serviceDirectory from '../seed/company-services.json' with {type: 'json'};
 
 const file = 'public/pages/research.html';
 const start = '<!-- company-research-update:start -->';
@@ -35,6 +36,8 @@ const directions = [
 const cards = directions.map(item => `<article class="company-research-card"><p class="company-research-category">${item.category}</p><h3>${item.title}</h3><p>${item.description}</p><ul>${item.projects.map(project => `<li>${project}</li>`).join('')}</ul></article>`).join('');
 const esc = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
 const network = profile.companyNetwork;
+const decivox = serviceDirectory.services.find(service => service.id === 'decivox');
+const serviceUpdate = `<aside class="research-service-update" aria-labelledby="research-service-update-heading"><p class="kim-overline">RESEARCH INTO PRACTICE</p><h3 id="research-service-update-heading">DECIVOX · 보안형 AI 회의록</h3><p>${esc(decivox.description)}</p><nav aria-label="연구 관련 서비스"><a href="/pages/projects.html#service-decivox">DECIVOX 기능·화면 보기 →</a><a href="/pages/projects.html#company-services">운영·공개 서비스 ${serviceDirectory.services.length}개와 시연 영상 보기 →</a></nav></aside>`;
 const escrowContractDate = network.technologyEscrow.facts.find(item => item.label === '계약 체결일').value;
 const cooperationRecords = [
   ...network.businessCollaborations,
@@ -51,7 +54,7 @@ if (!html.includes('/css/company-research.css'))
 html = html.replace('김재환 XAIKOREA 대표이사 겸 AI 연구원의 개인 연구자 플랫폼. CLOA, TAXiA, KorTaxArena와 세무회계 AI 연구.', '김재환의 CLOA, TAXiA, KorTaxArena 연구와 XAIKOREA의 근거 중심 AI·문서 지능·AI 거버넌스·온프레미스 연구 동향.');
 const closing = html.lastIndexOf('</div></main>');
 if (closing < 0) throw new Error('Research page closing marker was not found');
-const updatedSection = section.replace('COMPANY RESEARCH UPDATE · 2026.09.24', 'COMPANY RESEARCH UPDATE · 2026.09.26').replace('자료 확인일: 2026.09.24', '자료 확인일: 2026.09.26').replace('<section class="company-research-milestones"', `${cooperation}<section class="company-research-milestones"`);
+const updatedSection = section.replace('COMPANY RESEARCH UPDATE · 2026.09.24', 'COMPANY RESEARCH UPDATE · 2026.09.26').replace('자료 확인일: 2026.09.24', '자료 확인일: 2026.09.26').replace('<section class="company-research-milestones"', `${serviceUpdate}${cooperation}<section class="company-research-milestones"`);
 html = html.slice(0, closing) + updatedSection + html.slice(closing);
 fs.writeFileSync(file, html);
 console.log('Applied the official XAIKOREA research and technology update.');

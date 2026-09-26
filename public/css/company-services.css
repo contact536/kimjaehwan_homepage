@@ -24,6 +24,21 @@
 .company-services>footer p{max-width:650px;margin:0}
 .company-services>footer a{flex-shrink:0;font-weight:600;text-decoration:none}
 .company-services a:hover{text-decoration:underline;text-underline-offset:4px}
+.company-services,.company-service-card{scroll-margin-top:100px}
+.company-service-card{position:relative;min-width:0}
+.company-service-card:has(details[open]){z-index:5}
+.company-service-card>header img{flex-shrink:0}
+.company-service-status{display:block;margin-top:4px;font-size:10px;color:var(--text-secondary)}
+.company-service-videos{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.company-service-videos a{padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-weight:600;line-height:1.6}
+.company-service-videos a>span:last-child{font-weight:400;color:var(--text-secondary)}
+.company-service-previews{margin-top:12px}
+.company-service-card:nth-child(even) .internal-tool-panel{left:auto;right:0}
+.company-service-screens .internal-tool-gallery{grid-template-columns:minmax(0,1fr)}
+/* Show the application canvas without the window title bar and Windows taskbar. */
+.company-service-screens .company-service-screen{aspect-ratio:2560/1334}
+.company-service-screens .company-service-screen img{position:absolute;top:-2.55%;left:0;width:100%;height:auto}
+.company-service-videos a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media(max-width:720px){.company-services>header{align-items:flex-start}.company-services-count{display:none}.company-service-grid{grid-template-columns:1fr}.company-services>footer{flex-direction:column}}
 @media(max-width:480px){.company-services{margin-top:52px;padding-top:36px}.company-service-card{padding:20px}.company-service-card>footer{grid-template-columns:1fr}.company-service-card>footer a{text-align:left}}
 @media print{.company-service-grid{grid-template-columns:1fr 1fr}.company-service-card{break-inside:avoid}.company-services>footer a,.company-service-card>footer a{display:none}}

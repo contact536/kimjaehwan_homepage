@@ -1,0 +1,308 @@
+{
+  "checkedAt": "2026.09.26",
+  "sourceUrl": "https://www.xaikorea.ai.kr/work#demos",
+  "services": [
+    {
+      "id": "nh-hub",
+      "name": "NH Open Business Hub",
+      "category": "기업금융 업무",
+      "description": "상담 자료와 팀의 검토 이력을 하나로 연결하는 AI 업무 워크스페이스입니다.",
+      "features": [
+        "상담 자료 연결",
+        "팀 공동 검토",
+        "검토 이력 관리"
+      ],
+      "access": "초대 계정 필요 · NH 오픈이노베이션 시연용",
+      "url": "https://hub.kimjaehwan.com/",
+      "host": "hub.kimjaehwan.com",
+      "logo": "/assets/company-services/nh-hub-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "소개 영상",
+          "duration": "2:57",
+          "url": "https://www.xaikorea.ai.kr/work#video-Av1BkU-re7A"
+        }
+      ]
+    },
+    {
+      "id": "shapfinch",
+      "name": "SHAPFINCH",
+      "category": "주택구매 인텔리전스",
+      "description": "금융·소비 데이터에서 주택구매 신호를 탐색하고 준비된 분석 결과를 살펴보는 공개 서비스입니다.",
+      "features": [
+        "금융·소비 데이터",
+        "주택구매 신호",
+        "분석 결과 탐색"
+      ],
+      "access": "가입 없이 서비스 이용",
+      "url": "https://www.shapfinch.co.kr/login",
+      "host": "www.shapfinch.co.kr",
+      "logo": "/assets/company-services/shapfinch-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "소개 영상",
+          "duration": "2:24",
+          "url": "https://www.xaikorea.ai.kr/work#video-BUaoHwYqNgk"
+        }
+      ]
+    },
+    {
+      "id": "hadong",
+      "name": "모두의 하동",
+      "category": "AI 배리어프리 관람",
+      "description": "관심사에 맞는 이야기, 음성·대본 해설과 사진 읽기로 하동의 차 문화를 만나는 관광 안내 서비스입니다.",
+      "features": [
+        "맞춤형 문화 해설",
+        "음성·대본 안내",
+        "사진 읽기"
+      ],
+      "access": "공개 서비스 · 시연용 관람 콘텐츠",
+      "url": "https://hadong.xaikorea.ai.kr/",
+      "host": "hadong.xaikorea.ai.kr",
+      "logo": "/assets/company-services/hadong-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "소개 영상",
+          "duration": "3:01",
+          "url": "https://www.xaikorea.ai.kr/work#video-E_75i1hjB_A"
+        }
+      ]
+    },
+    {
+      "id": "gongrok",
+      "name": "공록",
+      "category": "공공위원회 회의 기록",
+      "description": "회의 준비와 음성 전사부터 근거 검토, 담당자 승인과 공개본 작성까지 연결하는 AI 작업실입니다.",
+      "features": [
+        "회의 음성 전사",
+        "근거 검토·승인",
+        "공개본 작성"
+      ],
+      "access": "기관 계정 또는 초대 토큰 필요",
+      "url": "https://gongrok.xaikorea.ai.kr/",
+      "host": "gongrok.xaikorea.ai.kr",
+      "logo": "/assets/company-services/gongrok-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "전체 과정",
+          "duration": "8:09",
+          "url": "https://www.xaikorea.ai.kr/work#video-cZw5nyCW7do"
+        }
+      ]
+    },
+    {
+      "id": "brandpilot",
+      "name": "BrandPilot",
+      "category": "브랜드 운영",
+      "description": "브랜드 계약, 상품과 판매보고를 연결하고 계약 조건·마감·검토·승인을 관리하는 워크스페이스입니다.",
+      "features": [
+        "브랜드 계약 관리",
+        "상품·판매보고",
+        "마감·승인 관리"
+      ],
+      "access": "고객 전용 계정 필요",
+      "url": "https://brandpilot.xaikorea.ai.kr/",
+      "host": "brandpilot.xaikorea.ai.kr",
+      "logo": "/assets/company-services/brandpilot-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "상세 영상",
+          "duration": "3:36",
+          "url": "https://www.xaikorea.ai.kr/work#video-uJ16RAnTJUs"
+        },
+        {
+          "label": "57초 요약",
+          "duration": "0:57",
+          "url": "https://www.xaikorea.ai.kr/work#video-SKSuGE5O1_I"
+        }
+      ]
+    },
+    {
+      "id": "markscope",
+      "name": "MARKSCOPE",
+      "category": "상표 검색·출원 준비",
+      "description": "상표 검색과 AI 예비진단부터 상품 선택, 출원 준비와 검토까지 연결하는 지식재산권 업무 지원 플랫폼입니다.",
+      "features": [
+        "상표 검색",
+        "AI 예비진단",
+        "출원 준비·검토"
+      ],
+      "access": "피앤케이 국제특허법률사무소 운영 · XAIKOREA 제작",
+      "url": "https://www.markscope.co.kr/",
+      "host": "www.markscope.co.kr",
+      "logo": "/assets/company-services/markscope-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": []
+    },
+    {
+      "id": "safeflow",
+      "name": "SAFEFLOW",
+      "category": "작업자 안전관제",
+      "description": "작업 시작부터 안전한 복귀까지 위치 확인, 안전 응답과 담당자의 대응 기록을 하나의 흐름으로 연결합니다.",
+      "features": [
+        "위치·작업 확인",
+        "안전 응답·SOS",
+        "관제 대응 기록"
+      ],
+      "access": "로그인 없이 모의 체험 · 관제는 발급 계정 필요",
+      "url": "https://safety.xaikorea.ai.kr/",
+      "host": "safety.xaikorea.ai.kr",
+      "logo": "/assets/company-services/safeflow-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "소개 영상",
+          "duration": "5:02",
+          "url": "https://www.xaikorea.ai.kr/work#video-GJcDKtA7Bag"
+        }
+      ]
+    },
+    {
+      "id": "bizproof",
+      "name": "BizProof",
+      "category": "기업 자격 확인",
+      "description": "하나의 기업 자격으로 구매사 등록과 지원사업 조건을 확인하고 기관별 제출과 검증 결과를 연결합니다.",
+      "features": [
+        "기업 자격 재사용",
+        "기관별 조건 확인",
+        "제출·검증 결과"
+      ],
+      "access": "회원가입 없이 체험 · 가상 기업·합성 데이터 사용",
+      "url": "https://bizproof.xaikorea.ai.kr/",
+      "host": "bizproof.xaikorea.ai.kr",
+      "logo": "/assets/company-services/bizproof-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "상세 영상",
+          "duration": "6:02",
+          "url": "https://www.xaikorea.ai.kr/work#video-SXcI-djasNc"
+        },
+        {
+          "label": "프리뷰",
+          "duration": "2:11",
+          "url": "https://www.xaikorea.ai.kr/work#video-OukZdzcuu1o"
+        }
+      ]
+    },
+    {
+      "id": "luma-inspect",
+      "name": "Luma Inspect",
+      "category": "AI 외관검사",
+      "description": "소량의 정상 이미지를 기준으로 이상을 탐지하고 PCB 샘플의 검사 결과와 히트맵을 함께 살펴봅니다.",
+      "features": [
+        "정상 이미지 기준 학습",
+        "이상 영역 탐지",
+        "결과·히트맵 비교"
+      ],
+      "access": "회원가입 없이 제공된 샘플로 검사 체험",
+      "url": "https://inspect.xaikorea.ai.kr/",
+      "host": "inspect.xaikorea.ai.kr",
+      "logo": "/assets/company-services/luma-inspect-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "전체 과정",
+          "duration": "3:03",
+          "url": "https://www.xaikorea.ai.kr/work#video-y9eTkGmIk44"
+        }
+      ]
+    },
+    {
+      "id": "docmatch",
+      "name": "DocMatch",
+      "category": "AI 거래문서 검증",
+      "description": "송장과 포장명세서의 품목·수량을 추출·대조해 정정, 검토·승인과 보고서 저장까지 연결합니다.",
+      "features": [
+        "PDF·OCR 추출",
+        "품목·수량 대조",
+        "검토·보고서 저장"
+      ],
+      "access": "합성 문서로 체험 · 하루 최대 3회",
+      "url": "https://docmatch.xaikorea.ai.kr/",
+      "host": "docmatch.xaikorea.ai.kr",
+      "logo": "/assets/company-services/docmatch-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "소개 영상",
+          "duration": "3:27",
+          "url": "https://www.xaikorea.ai.kr/work#video-Lg2EXnmC5xE"
+        }
+      ]
+    },
+    {
+      "id": "taxia-ops",
+      "name": "TAXiA OPS",
+      "category": "회계·세무 검토 업무",
+      "description": "업무 접수부터 외부 원장과 전자세금계산서 대사, 예외 검토와 근거 보관까지 연결하는 업무공간입니다.",
+      "features": [
+        "업무 접수·검토자 지정",
+        "원장·증빙 대사",
+        "예외 검토·근거 보관"
+      ],
+      "access": "일부 공개 운영 · 등록된 업무 계정으로 로그인",
+      "url": "https://taxia.xaikorea.ai.kr/",
+      "host": "taxia.xaikorea.ai.kr",
+      "logo": "/assets/company-services/taxia-ops-logo-v1.webp",
+      "status": "서비스 운영 중",
+      "action": "서비스 보기",
+      "videos": [
+        {
+          "label": "업무 시연",
+          "duration": "5:46",
+          "url": "https://www.xaikorea.ai.kr/work#video-EU_SusEFftA"
+        }
+      ]
+    },
+    {
+      "id": "decivox",
+      "name": "DECIVOX",
+      "category": "온디바이스·온프레미스 AI 회의록",
+      "status": "설치형 AI",
+      "description": "호반건설 PoC로 개발하는 보안형 AI 회의록입니다. 조직 내부의 디바이스와 서버에서 녹음·전사·화자 분리부터 AI 요약과 회의록 작성까지 연결합니다.",
+      "features": [
+        "온디바이스·온프레미스",
+        "음성 전사·화자 분리",
+        "AI 요약·회의록"
+      ],
+      "access": "호반건설 PoC · 조직 내부 설치형 · 이용 및 도입은 별도 문의",
+      "url": "https://www.xaikorea.ai.kr/contact",
+      "host": "조직 내부 설치형",
+      "action": "도입 문의",
+      "logo": "/assets/company-services/decivox-logo-20260926.svg",
+      "videos": [],
+      "screens": [
+        {
+          "src": "/assets/company-services/decivox-login-20260926.png",
+          "alt": "DECIVOX 호반 온프레미스 AI 회의록의 로그인 화면",
+          "caption": "로그인",
+          "width": 2560,
+          "height": 1440
+        },
+        {
+          "src": "/assets/company-services/decivox-summary-20260926.png",
+          "alt": "DECIVOX의 핵심 요약과 주요 논의를 보여주는 테스트 계정 화면",
+          "caption": "AI 요약 · 테스트 계정",
+          "width": 2560,
+          "height": 1440
+        }
+      ]
+    }
+  ]
+}

@@ -30,6 +30,10 @@ test('research search uses curated profile, preserves degree/application distinc
  assert.ok(hoban.sources.some(source=>source.url.endsWith('#hoban-poc-agreement')));
  assert.match(searchResearch('핵심기술 모니터링').answer,/한국특허기술진흥원.*2026\.07\.10/);
  assert.match(searchResearch('기술유출방지시스템').answer,/2026\.08\.13 - 2026\.11\.12/);
+ const service=searchResearch('DECIVOX 설치형');
+ assert.match(service.answer,/이용 및 도입은 별도 문의/);
+ assert.ok(service.sources.some(source=>source.url.endsWith('#service-decivox')));
+ assert.match(searchResearch('BrandPilot 소개 시연').answer,/57초 요약 0:57/);
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));
 });
