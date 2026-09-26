@@ -622,6 +622,47 @@
         }
       ],
       "source": "사용자 제공 내부 서비스 화면 · 2026.09.25"
+    },
+    {
+      "id": "github-analyzer",
+      "name": "GitHub Analyzer",
+      "koreanName": "깃허브 애널라이저",
+      "logo": "/assets/internal-tools/github-analyzer-logo-v1.svg",
+      "category": "RAG·온톨로지 기반 코드 분석",
+      "status": "사내 전용 · 외부 주소 없음",
+      "inventor": "윤재성 개발자",
+      "summary": "GitHub 저장소의 코드를 RAG와 온톨로지로 분석해 검색·질의하고, 코드 구조와 관계를 탐색하는 사내 연구 서비스입니다.",
+      "description": "저장소 코드를 검색 가능한 지식으로 구성하고, RAG 기반 질의와 온톨로지 관계 그래프로 코드의 맥락과 구성요소를 이해하는 데 활용합니다.",
+      "features": [
+        "GitHub 저장소 코드·문서 수집과 분석",
+        "RAG 기반 코드 검색·대화",
+        "온톨로지 기반 코드·기능 관계 탐색",
+        "저장소 분석 튜토리얼 생성과 다중 저장소 RAG"
+      ],
+      "images": [
+        {
+          "src": "/assets/internal-tools/github-analyzer-workspace-v1.png",
+          "width": 1914,
+          "height": 945,
+          "alt": "GitHub Analyzer 저장소 분석 작업공간과 연결 상태",
+          "caption": "RAG 검색·대화·온톨로지 분석을 위한 작업공간"
+        },
+        {
+          "src": "/assets/internal-tools/github-analyzer-ingestion-v1.png",
+          "width": 2551,
+          "height": 1398,
+          "alt": "GitHub Analyzer 저장소 자료 수집 진행 화면",
+          "caption": "저장소 자료를 수집해 분석할 지식 기반을 구성하는 과정"
+        },
+        {
+          "src": "/assets/internal-tools/github-analyzer-ontology-v1.png",
+          "width": 2531,
+          "height": 1387,
+          "alt": "GitHub Analyzer 코드 구성요소 간 관계를 표현한 온톨로지 그래프",
+          "caption": "코드와 기능 사이의 연결 관계를 탐색하는 온톨로지 그래프"
+        }
+      ],
+      "source": "사용자 제공 서비스 설명·발명자 정보·화면 · 2026.09.26"
     }
   ]
 }
