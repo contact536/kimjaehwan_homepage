@@ -5,6 +5,7 @@ import test from 'node:test';
 test('home Journey is complete, chronological and uses specific verified descriptions', () => {
   const html = fs.readFileSync('public/index.html', 'utf8');
   const expected = [
+    'D-테스트베드 데이터 연구 참여 계약 완료',
     '보안형 회의 AI 기술자료 임치',
     '경기도 AI 멤버십 기업 선정',
     '기술유출방지시스템 구축 협약 체결',
@@ -19,6 +20,7 @@ test('home Journey is complete, chronological and uses specific verified descrip
     'AI 추론 관련 특허 3건 출원',
     '연구개발전담부서 인정',
     '벤처기업 확인',
+    '특허 출원·등록 지원 바우처 협약 체결',
     'XAIKOREA 대표이사 겸 연구원 취임',
     'aSSIST AI융합 · SDG 복수학위 박사과정 입학',
     '한국외국어대학교 경영학 석사(MBA) 취득',

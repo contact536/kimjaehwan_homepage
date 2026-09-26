@@ -28,5 +28,7 @@
 .network-home-grid p{margin:0;color:var(--text-secondary);font-size:13px;line-height:1.7}
 .network-home-link{margin-top:2px}
 .network-detail-link{display:inline-block;margin-top:18px;font-size:13px;font-weight:700;line-height:1.6}
+.network-research-note{margin:0 0 24px;padding:24px;border-left:3px solid var(--accent);background:var(--bg-primary)}
+.network-research-note h3{margin:0 0 10px;font-size:19px}.network-research-note p{margin:0;color:var(--text-secondary);font-size:14px;line-height:1.75}
 @media(max-width:760px){.company-network-page,.network-section,.network-grid,.network-card{width:100%;min-width:0;max-width:100%;box-sizing:border-box}.network-grid,.network-home-grid{grid-template-columns:minmax(0,1fr)}.network-jump a{max-width:100%;overflow-wrap:anywhere}.network-home-grid article{min-height:0}.network-count{margin-bottom:18px}.network-card{padding:20px;overflow-wrap:anywhere}.network-card dl div{grid-template-columns:82px minmax(0,1fr)}}
 @media print{.network-card,.network-home-grid article{break-inside:avoid}.network-notice,.network-escrow{background:none}}

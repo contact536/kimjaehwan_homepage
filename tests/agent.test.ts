@@ -34,6 +34,14 @@ test('research search uses curated profile, preserves degree/application distinc
  assert.match(service.answer,/이용 및 도입은 별도 문의/);
  assert.ok(service.sources.some(source=>source.url.endsWith('#service-decivox')));
  assert.match(searchResearch('BrandPilot 소개 시연').answer,/57초 요약 0:57/);
+ assert.equal(searchResearch('BrandPilot 소개 시연').sources[0].url,'/pages/projects.html#service-brandpilot');
+ const testbed=searchResearch('D-테스트베드');
+ assert.ok(testbed.sources.some(source=>source.url.endsWith('#d-testbed-2026')));
+ assert.match(testbed.answer,/코스콤.*2026\.09\.21 – 2026\.12\.16.*재식별 금지/);
+ assert.match(searchResearch('특허 바우처 협약').answer,/코어비즈벤처스/);
+ const press=searchResearch('SaaS 개발환경 지원사업 언론보도');
+ assert.ok(press.sources.some(source=>source.url.endsWith('#press-saas-development-2026')));
+ assert.match(press.answer,/머니투데이 보도일 2026-08-03/);
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));
 });

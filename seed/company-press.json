@@ -1,0 +1,72 @@
+{
+  "sourceUrl": "https://www.xaikorea.ai.kr/about#press",
+  "checkedAt": "2026-09-26",
+  "articles": [
+    {
+      "id": "esg-support-2026",
+      "publishedAt": "2026-08-05",
+      "publisher": "머니투데이",
+      "category": "지속가능경영",
+      "title": "경기도 ESG 진단평가 지원사업 선정",
+      "summary": "XAIKOREA의 ESG 진단평가 지원사업 선정 소식입니다. 정보보호, 윤리경영과 운영 체계를 점검하려는 회사의 계획을 소개합니다.",
+      "url": "https://www.mt.co.kr/industry/2026/08/05/2026080410351439263",
+      "relatedLabel": "회사 협력 기반",
+      "relatedUrl": "/pages/company-network.html"
+    },
+    {
+      "id": "saas-development-2026",
+      "publishedAt": "2026-08-03",
+      "publisher": "머니투데이",
+      "category": "서비스 개발",
+      "title": "SaaS 개발환경 지원사업 선정",
+      "summary": "한국AX산업협회가 운영하는 지원사업에 선정된 소식입니다. NHN Cloud 환경을 활용한 기업용 AI 서비스 개발·검증 계획을 다룹니다.",
+      "url": "https://www.mt.co.kr/industry/2026/08/03/2026073115152094806",
+      "relatedLabel": "AI 서비스·프로젝트",
+      "relatedUrl": "/pages/projects.html#company-services"
+    },
+    {
+      "id": "ksci-meeting-ai-2026",
+      "publishedAt": "2026-07-31",
+      "publisher": "머니투데이",
+      "category": "연구 발표",
+      "title": "한국컴퓨터정보학회 보안형 회의 AI 연구 발표",
+      "summary": "김재환과 공동연구진의 온프레미스 회의 인텔리전스 연구를 소개한 기사입니다. 기업 내부에서 음성 암호화·전사·화자분리·요약을 연결하는 접근을 다룹니다.",
+      "url": "https://www.mt.co.kr/industry/2026/07/31/2026072911433182822",
+      "relatedLabel": "학술대회 논문·연구 개요",
+      "relatedUrl": "/pages/publications.html#ksci-2026-edge-ai-paper"
+    },
+    {
+      "id": "technology-ip-support-2026",
+      "publishedAt": "2026-07-29",
+      "publisher": "머니투데이",
+      "category": "기술·지식재산",
+      "title": "기술유출방지시스템 구축·IP나래 프로그램 선정",
+      "summary": "기술자료 보호와 AI 세무 자문 서비스의 특허 전략을 함께 강화하는 지원사업 선정 소식입니다. 보안 인프라 구축과 특허 포트폴리오 수립 계획을 소개합니다.",
+      "url": "https://www.mt.co.kr/industry/2026/07/29/2026072811145243303",
+      "relatedLabel": "기술보호 지원사업",
+      "relatedUrl": "/pages/company-network.html#technology-protection-programs"
+    },
+    {
+      "id": "technology-voucher-2026",
+      "publishedAt": "2026-06-09",
+      "publisher": "머니투데이",
+      "category": "기술보호",
+      "title": "중소벤처기업부 기술보호 바우처 지원사업 선정",
+      "summary": "TAXiA·CLOA의 연구개발 자료와 핵심 기술을 보호하기 위한 지원사업 선정 소식입니다. 기술자료 임치, 접근권한 관리와 보안 체계 강화 방향을 다룹니다.",
+      "url": "https://www.mt.co.kr/industry/2026/06/09/2026060814504982297",
+      "relatedLabel": "기술자료 임치 현황",
+      "relatedUrl": "/pages/company-network.html#technology-escrow"
+    },
+    {
+      "id": "startup-award-2026",
+      "publishedAt": "2026-05-13",
+      "publisher": "머니투데이",
+      "category": "기업 수상",
+      "title": "AI 세무·회계 통합 솔루션 부문 우수스타트업대상",
+      "summary": "XAIKOREA가 머니투데이 주최 2026 대한민국 우수기업대상에서 수상한 소식입니다. TAXiA와 CLOA를 통해 세무·회계 업무에 근거 중심 AI를 적용하는 방향을 소개합니다.",
+      "url": "https://www.mt.co.kr/industry/2026/05/13/2026051309564860066",
+      "relatedLabel": "TAXiA 연구",
+      "relatedUrl": "/pages/research.html#taxia"
+    }
+  ]
+}

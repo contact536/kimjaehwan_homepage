@@ -34,6 +34,7 @@ const membershipEntries = academicMemberships
 const cooperationEntries = [
   ...(profile.companyNetwork?.businessCollaborations ?? []),
   ...(profile.companyNetwork?.technologyProtectionPrograms ?? []),
+  ...(profile.companyNetwork?.researchIpPrograms ?? []),
 ].map(entry => ({
   date: entry.date,
   title: entry.title,

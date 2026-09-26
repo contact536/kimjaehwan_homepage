@@ -226,6 +226,62 @@
     }
   ],
   "companyNetwork": {
+    "researchIpPrograms": [
+      {
+        "id": "patent-voucher-program",
+        "date": "2026.02.04",
+        "title": "특허 출원·등록 지원 바우처 협약 체결",
+        "organization": "특허 출원·등록 지원",
+        "category": "2026년 특허출원·등록비용 바우처",
+        "description": "XAIKOREA는 특허 출원·등록 업무 지원을 위한 바우처 협약을 체결했습니다. 변리사 매칭과 출원·등록 절차 지원을 통해 지식재산 확보를 추진합니다.",
+        "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-voucher-program",
+        "facts": [
+          {
+            "label": "주관기관",
+            "value": "한국중소기업발전협회"
+          },
+          {
+            "label": "운영기관",
+            "value": "코어비즈벤처스"
+          },
+          {
+            "label": "수행기관",
+            "value": "피앤케이국제특허법률사무소"
+          },
+          {
+            "label": "협약일",
+            "value": "2026.02.04"
+          }
+        ]
+      },
+      {
+        "id": "d-testbed-2026",
+        "date": "2026.09.23",
+        "title": "D-테스트베드 데이터 연구 참여 계약 완료",
+        "organization": "D-테스트베드 참여",
+        "category": "2026년 하반기 데이터 연구",
+        "description": "XAIKOREA는 D-테스트베드 사업의 가명정보 처리위탁 계약과 이용자 보안서약을 완료했습니다. 지정된 분석환경에서 승인된 연구 목적으로 데이터를 활용하며, 재식별을 금지하고 분석 결과물은 반출 적정성 심의를 거칩니다.",
+        "sourceUrl": "https://www.xaikorea.ai.kr/about#d-testbed-2026",
+        "facts": [
+          {
+            "label": "수탁기관",
+            "value": "코스콤"
+          },
+          {
+            "label": "계약기간",
+            "value": "2026.09.21 – 2026.12.16"
+          },
+          {
+            "label": "전자서명 완료",
+            "value": "2026.09.23"
+          },
+          {
+            "label": "데이터 원칙",
+            "value": "지정 분석환경 · 승인된 연구 목적 · 재식별 금지 · 분석 결과물 반출 심의"
+          }
+        ]
+      }
+    ],
     "sourceUrl": "https://www.xaikorea.ai.kr/about#company-network",
     "businessCollaborations": [
       {
