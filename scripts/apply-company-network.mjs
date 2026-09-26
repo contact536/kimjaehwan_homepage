@@ -37,7 +37,7 @@ const updatedBody = body
   .replace('기업 협업, 기술보호 지원사업,', '기업 협업, 지식재산·데이터 연구, 기술보호 지원사업,')
   .replace('<a href="#technology-protection-programs">', `<a href="#research-ip-programs">지식재산·데이터 연구 ${network.researchIpPrograms.length}건</a><a href="#technology-protection-programs">`)
   .replace(/0([2-6]) \/ /gu, (_, digit) => `0${Number(digit) + 1} / `)
-  .replace('<section class="network-section" id="technology-protection-programs"', `<section class="network-section" id="research-ip-programs" aria-labelledby="research-ip-heading"><p class="network-section-label">02 / INTELLECTUAL PROPERTY &amp; DATA RESEARCH</p><h2 id="research-ip-heading">지식재산 · 데이터 연구</h2><p class="network-section-intro">특허 출원·등록 지원과 안전한 데이터 연구를 위한 회사 협약 이력입니다.</p><div class="network-grid">${researchIpCards}</div></section><section class="network-section" id="technology-protection-programs"`);
+  .replace('<section class="network-section" id="technology-protection-programs"', `<section class="network-section" id="research-ip-programs" aria-labelledby="research-ip-heading"><p class="network-section-label">02 / INTELLECTUAL PROPERTY &amp; DATA RESEARCH</p><h2 id="research-ip-heading">지식재산 · 데이터 연구</h2><p class="network-section-intro">지식재산 확보와 안전한 데이터 연구를 위한 회사의 지원사업 참여 절차·협약을 소개합니다.</p><div class="network-grid">${researchIpCards}</div></section><section class="network-section" id="technology-protection-programs"`);
 
 const pageFile = 'public/pages/company-network.html';
 let page = fs.readFileSync('public/pages/sources.html', 'utf8');
@@ -55,7 +55,7 @@ const homeFile = 'public/index.html';
 let home = fs.readFileSync(homeFile, 'utf8');
 if (!home.includes('/css/company-network.css')) home = home.replace('</head>', '<link rel="stylesheet" href="/css/company-network.css"></head>');
 home = home.replace(new RegExp(`${homeStart}[\\s\\S]*?${homeEnd}`, 'u'), '');
-const researchIpHome = `<aside class="network-research-note"><h3>지식재산 · 데이터 연구</h3><p>특허 출원·등록 지원 바우처 협약과 D-테스트베드 데이터 연구 참여를 통해 연구 기반을 넓혀갑니다.</p><a class="network-detail-link" href="/pages/company-network.html#research-ip-programs">참여기관 · 기간 · 데이터 보호 원칙 보기 ↗</a></aside>`;
+const researchIpHome = `<aside class="network-research-note"><h3>지식재산 · 데이터 연구</h3><p>특허 출원·등록 지원 바우처, IP 나래 프로그램 참여 준비와 D-테스트베드 데이터 연구를 통해 연구 기반을 넓혀갑니다.</p><a class="network-detail-link" href="/pages/company-network.html#research-ip-programs">참여 절차 · 관련 기관 · 주요 일정 보기 ↗</a></aside>`;
 home = home.replace('<section class="section" id="contact">', `${homeWithCooperation.replace('<a class="btn btn-outline network-home-link"', researchIpHome + '<a class="btn btn-outline network-home-link"')}<section class="section" id="contact">`);
 fs.writeFileSync(homeFile, home);
 

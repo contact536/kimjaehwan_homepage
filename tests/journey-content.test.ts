@@ -9,6 +9,7 @@ test('home Journey is complete, chronological and uses specific verified descrip
     '보안형 회의 AI 기술자료 임치',
     '경기도 AI 멤버십 기업 선정',
     '기술유출방지시스템 구축 협약 체결',
+    'IP 나래 프로그램 참여 서류 작성',
     '하이브리드 검색 기반 AI 추론 시스템 특허결정',
     '핵심기술 모니터링 지원기업 선정',
     '한국회계학회 종신회원 가입',
