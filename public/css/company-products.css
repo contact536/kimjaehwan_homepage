@@ -13,6 +13,16 @@
 .company-product-index{font-size:11px;font-weight:700;letter-spacing:1.15px;color:var(--accent);margin:0 0 24px}
 .company-product-card h3{font-size:19px;line-height:1.45;margin:0 0 10px;overflow-wrap:anywhere}
 .company-product-description{font-size:13px;line-height:1.75;color:var(--text-secondary);margin:0 0 22px}
+.company-product-card{scroll-margin-top:90px;min-width:0}
+.company-product-subtitle{margin:0 0 12px;font-size:12px;font-weight:700;color:var(--accent)}
+.company-product-facts{margin:0 0 12px;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+.company-product-facts>div{padding:9px 0;border-top:1px solid var(--border)}
+.company-product-facts dt{font-weight:700;color:var(--text-secondary)}
+.company-product-facts dd{margin:3px 0 0}
+.company-product-detail-link{display:block;font-size:12px;font-weight:600;line-height:1.7;margin-bottom:12px}
+.company-product-collaboration{margin-bottom:18px;font-size:12px}
+.company-product-collaboration summary{cursor:pointer;font-weight:700;line-height:1.7;color:var(--accent)}
+.company-product-collaboration[open] summary{margin-bottom:12px}
 .company-product-result{margin:auto 0 0;padding-top:13px;border-top:1px solid var(--border);font-size:13px;line-height:1.6}
 .company-product-result span{display:block;font-size:10px;font-weight:700;letter-spacing:.8px;color:var(--text-secondary);margin-bottom:3px}
 .company-products>footer{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-top:22px;color:var(--text-secondary);font-size:12px;line-height:1.8}

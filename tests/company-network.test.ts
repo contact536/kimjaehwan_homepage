@@ -11,7 +11,7 @@ test('company cooperation records render on the home and detailed page', () => {
   assert.equal(network.trainingPartnerships.length, 4);
   assert.equal(network.memberships.length, 3);
   assert.equal(researcher.academicMemberships.length, 3);
-  assert.equal((page.match(/class="network-card"/gu) || []).length, 7);
+  assert.equal((page.match(/class="network-card"/gu) || []).length, 10);
   assert.equal((page.match(/class="network-card network-personal"/gu) || []).length, 3);
   assert.equal((page.match(/class="network-card network-escrow"/gu) || []).length, 1);
   assert.match(home, /Cooperation &amp; network/u);

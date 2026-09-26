@@ -31,7 +31,17 @@ const membershipEntries = academicMemberships
     url: `/pages/company-network.html#${entry.id}`,
     linkLabel: '회원자격 보기',
   }));
-const entries = [...(profile.companyCredentials ?? []), ...careerEntries, ...(profile.milestones ?? []), ...membershipEntries]
+const cooperationEntries = [
+  ...(profile.companyNetwork?.businessCollaborations ?? []),
+  ...(profile.companyNetwork?.technologyProtectionPrograms ?? []),
+].map(entry => ({
+  date: entry.date,
+  title: entry.title,
+  description: entry.description,
+  url: `/pages/company-network.html#${entry.id}`,
+  linkLabel: '협력 내용 보기',
+}));
+const entries = [...(profile.companyCredentials ?? []), ...careerEntries, ...(profile.milestones ?? []), ...membershipEntries, ...cooperationEntries]
   .sort((left, right) => dateOrder(right) - dateOrder(left));
 if (!entries.length) throw new Error('No managed records are available for the home Journey.');
 

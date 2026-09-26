@@ -7,9 +7,12 @@ test('home Journey is complete, chronological and uses specific verified descrip
   const expected = [
     '보안형 회의 AI 기술자료 임치',
     '경기도 AI 멤버십 기업 선정',
+    '기술유출방지시스템 구축 협약 체결',
     '하이브리드 검색 기반 AI 추론 시스템 특허결정',
+    '핵심기술 모니터링 지원기업 선정',
     '한국회계학회 종신회원 가입',
     '기술보호 선도기업 지정',
+    '호반건설 PoC 협업 사업화 지원 협약 체결',
     'AI 추론 관련 특허 1건 추가 출원',
     '한국컴퓨터정보학회 종신회원 가입',
     '(사)AI경영학회 정회원 · 학술위원회 이사',

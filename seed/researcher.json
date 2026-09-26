@@ -169,7 +169,7 @@
     {
       "date": "2026.09.09",
       "title": "보안형 회의 AI 기술자료 임치",
-      "description": "엣지 AI 기반 보안형 온프레미스 회의록 자동작성 디바이스 및 회의 인텔리전스 파이프라인 기술자료를 대·중소기업·농어업협력재단에 임치했습니다.",
+      "description": "2026년 9월 8일 임치계약을 체결하고, 보안형 온프레미스 회의 AI 기술자료를 대·중소기업·농어업협력재단에 임치했습니다. 9월 9일 임치증서를 발급받았습니다.",
       "url": "/pages/company-network.html#technology-escrow",
       "linkLabel": "임치 내용 보기"
     },
@@ -227,6 +227,58 @@
   ],
   "companyNetwork": {
     "sourceUrl": "https://www.xaikorea.ai.kr/about#company-network",
+    "businessCollaborations": [
+      {
+        "id": "hoban-poc-agreement",
+        "date": "2026.04.30",
+        "title": "호반건설 PoC 협업 사업화 지원 협약 체결",
+        "organization": "호반건설 · XAIKOREA",
+        "category": "온프레미스 음성 AI 회의록 · PoC 협업",
+        "description": "경기창조경제혁신센터가 주관하는 PoC 트랙에서 호반건설과 XAIKOREA가 협업 사업화 지원 협약을 체결했습니다. 조직 내부에서 회의 음성을 처리하는 온프레미스 AI 회의록 프로그램을 개발합니다.",
+        "projectName": "DECIVOX · Hoban AI Voice Workspace",
+        "projectDescription": "호반건설 PoC를 위한 온디바이스·온프레미스 AI 회의록입니다. 녹음·전사·화자 분리부터 AI 요약과 회의록 작성까지 연결합니다.",
+        "projectUrl": "/pages/projects.html#hoban-voice-poc",
+        "sourceUrl": "https://www.xaikorea.ai.kr/work#hoban-voice-poc",
+        "facts": [
+          {"label": "지원사업", "value": "2026년 민간주도 오픈이노베이션 지원사업 (PoC 트랙)"},
+          {"label": "주관기관", "value": "경기창조경제혁신센터"},
+          {"label": "수요기업", "value": "호반건설"},
+          {"label": "창업기업", "value": "엑스에이아이코리아"},
+          {"label": "협약일", "value": "2026.04.30"},
+          {"label": "지원기간", "value": "2026.04.30 - 2026.11.30"}
+        ]
+      }
+    ],
+    "technologyProtectionPrograms": [
+      {
+        "id": "core-technology-monitoring",
+        "date": "2026.07.10",
+        "title": "핵심기술 모니터링 지원기업 선정",
+        "organization": "핵심기술 모니터링",
+        "category": "2026년 지원기업 선정",
+        "description": "XAIKOREA가 핵심기술 모니터링 지원사업의 지원기업으로 선정됐습니다. 전문 수행기관과 기술 정의를 마친 뒤 모니터링을 수행하는 사업입니다.",
+        "facts": [
+          {"label": "운영기관", "value": "대·중소기업·농어업협력재단"},
+          {"label": "수행기관", "value": "한국특허기술진흥원"},
+          {"label": "선정 통보일", "value": "2026.07.10"},
+          {"label": "안내된 기간", "value": "2026.07 - 2026.10 · 기술 정의 후 수행"}
+        ]
+      },
+      {
+        "id": "technology-leakage-prevention",
+        "date": "2026.08.12",
+        "title": "기술유출방지시스템 구축 협약 체결",
+        "organization": "기술유출방지시스템 구축",
+        "category": "2026년 구축사업 협약",
+        "description": "기술보호 선도기업 육성사업과 연계된 자체관리형 기술유출방지시스템 구축 협약을 체결했습니다. XAIKOREA는 도입기업으로 참여합니다.",
+        "facts": [
+          {"label": "운영기관", "value": "대·중소기업·농어업협력재단"},
+          {"label": "사업 유형", "value": "선도기업 육성사업 연계 · 자체관리형"},
+          {"label": "협약일", "value": "2026.08.12"},
+          {"label": "협약기간", "value": "2026.08.13 - 2026.11.12"}
+        ]
+      }
+    ],
     "trainingPartnerships": [
       {
         "id": "tta-consortium",
@@ -343,11 +395,15 @@
       "id": "technology-escrow",
       "title": "보안형 회의 AI 기술자료 임치",
       "technology": "엣지 AI 기반 보안형 온프레미스 회의록 자동작성 디바이스 및 회의 인텔리전스 파이프라인",
-      "description": "회의록 자동작성 장치와 회의 인텔리전스 처리 흐름에 관한 기술자료를 대·중소기업·농어업협력재단에 임치했습니다.",
+      "description": "개발 기술의 보호를 위한 임치계약을 체결하고, 회의록 자동작성 장치와 회의 인텔리전스 처리 흐름에 관한 기술자료를 대·중소기업·농어업협력재단에 임치했습니다.",
       "facts": [
         {
           "label": "임치기관",
           "value": "대·중소기업·농어업협력재단"
+        },
+        {
+          "label": "계약 체결일",
+          "value": "2026.09.08"
         },
         {
           "label": "임치기간",

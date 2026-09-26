@@ -23,6 +23,13 @@ test('research search uses curated profile, preserves degree/application distinc
  assert.match(searchResearch('인재양성 협약').answer,/한국정보통신기술협회/);
  assert.match(searchResearch('XAIKOREA 회사 회원자격').answer,/한국인공지능협회/);
  assert.match(searchResearch('기술자료 임치').answer,/2026\.09\.09/);
+ assert.match(searchResearch('임치 계약 체결일').answer,/계약 체결일 2026\.09\.08/);
+ const hoban=searchResearch('DECIVOX 호반건설 PoC');
+ assert.match(hoban.answer,/경기창조경제혁신센터/);
+ assert.match(hoban.answer,/2026\.04\.30 - 2026\.11\.30/);
+ assert.ok(hoban.sources.some(source=>source.url.endsWith('#hoban-poc-agreement')));
+ assert.match(searchResearch('핵심기술 모니터링').answer,/한국특허기술진흥원.*2026\.07\.10/);
+ assert.match(searchResearch('기술유출방지시스템').answer,/2026\.08\.13 - 2026\.11\.12/);
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));
 });
