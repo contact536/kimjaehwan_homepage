@@ -17,7 +17,7 @@ test('regenerating related content retains press, valid source links and the res
       fs.copyFileSync(file, target);
     }
     const generate = () => {
-      for (const script of ['apply-profile-sources','apply-company-network','apply-home-journey','apply-company-research-update','apply-conference-publication','apply-company-press']) {
+      for (const script of ['apply-profile-sources','apply-company-network','apply-home-journey','apply-company-research-update','apply-conference-publication','apply-company-press','apply-journal-manuscripts']) {
         execFileSync(process.execPath, [path.resolve(`scripts/${script}.mjs`)], {cwd:directory});
       }
       return files.map(file => fs.readFileSync(path.join(directory, file), 'utf8'));

@@ -42,6 +42,10 @@ test('research search uses curated profile, preserves degree/application distinc
  const press=searchResearch('SaaS 개발환경 지원사업 언론보도');
  assert.ok(press.sources.some(source=>source.url.endsWith('#press-saas-development-2026')));
  assert.match(press.answer,/머니투데이 보도일 2026-08-03/);
+ const manuscript=searchResearch('온프레미스 학술지 논문 심사');
+ assert.ok(manuscript.sources.some(source=>source.url.endsWith('#jksci-meeting-pipeline-review')));
+ assert.match(manuscript.answer,/한국컴퓨터정보학회논문지 학술지 투고 논문 2차 심사 중 상태 기준일 2026-09-26/);
+ assert.match(manuscript.answer,/게재 확정 또는 출판된 논문이 아님/);
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));
 });

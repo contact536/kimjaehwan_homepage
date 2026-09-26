@@ -1,0 +1,14 @@
+{
+  "manuscripts": [
+    {
+      "id": "jksci-meeting-pipeline-review",
+      "title": "건설기업을 위한 보안형 온프레미스 회의 인텔리전스 파이프라인의 설계 및 개념검증(PoC)",
+      "journal": "한국컴퓨터정보학회논문지",
+      "status": "under_review",
+      "reviewRound": 2,
+      "statusAsOf": "2026-09-26",
+      "summary": "건설기업의 보안 요구를 고려한 온프레미스 회의 인텔리전스 파이프라인의 설계와 개념검증(PoC)을 다루는 연구입니다.",
+      "source": "사용자 제공 학술지 투고·심사 현황 화면 · 2026.09.26"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+.journal-manuscripts{margin:34px 0 46px;scroll-margin-top:140px}
+.journal-manuscripts>header{margin-bottom:20px}
+.journal-manuscripts h2,.research-manuscripts h2{margin:8px 0 14px;font-size:clamp(24px,3vw,30px);line-height:1.45}
+.journal-manuscript-list{display:grid;gap:18px}
+.journal-manuscript{min-width:0;padding:28px;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;background:var(--bg-secondary);scroll-margin-top:140px}
+.journal-manuscript h3{margin:18px 0 22px;font-size:clamp(20px,2.5vw,25px);line-height:1.65;word-break:keep-all;overflow-wrap:anywhere}
+.journal-manuscript .manuscript-status,.research-manuscript-item .manuscript-status{display:inline-block;margin:0;padding:5px 10px;border:1px solid var(--border);border-radius:6px;color:var(--accent);background:var(--bg-primary);font-size:13px;font-weight:700;line-height:1.7}
+.journal-manuscript dl{display:grid;gap:10px;margin:0;padding:17px 0;border-block:1px solid var(--border)}
+.journal-manuscript dl>div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:14px;font-size:14px;line-height:1.7}
+.journal-manuscript dt{color:var(--text-secondary)}.journal-manuscript dd{margin:0}
+.journal-manuscript .manuscript-summary{margin:18px 0;color:var(--text-secondary);font-size:14px;line-height:1.85}
+.manuscript-permalink{font-size:13px;font-weight:600}
+.research-manuscripts{margin:42px 0;padding:26px;border:1px solid var(--border);border-radius:10px;background:var(--bg-secondary);scroll-margin-top:140px}
+.research-manuscript-item{margin-top:22px}.research-manuscript-item+.research-manuscript-item{padding-top:22px;border-top:1px solid var(--border)}
+.research-manuscript-item h3{margin:14px 0 10px;font-size:19px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+.research-manuscript-item>p:last-child{margin:0;font-size:12px;color:var(--text-secondary)}
+.journal-manuscripts a:focus-visible,.research-manuscripts a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:600px){.journal-manuscript,.research-manuscripts{padding:20px}.journal-manuscript dl>div{grid-template-columns:78px minmax(0,1fr);gap:10px;font-size:13px}}
+@media print{.journal-manuscript,.research-manuscripts{break-inside:avoid}.manuscript-permalink{display:none}}

@@ -10,7 +10,7 @@ const conferencePress = press.articles.find(article => article.id === 'ksci-meet
 const sectionWithPress = section.replace('<div class="reading-links">', `<div class="reading-links"><a href="${conferencePress.url}" target="_blank" rel="noopener noreferrer">관련 언론보도 · ${conferencePress.publisher} (${conferencePress.publishedAt.replaceAll('-', '.')}) ↗</a>`);
 let html = fs.readFileSync(file, 'utf8').replace(/<!-- conference-publication:start -->[\s\S]*?<!-- conference-publication:end -->/g, '');
 html = html.replace('<article class="reading-entry" id="kortaxarena-note"', `${sectionWithPress}<article class="reading-entry" id="kortaxarena-note"`);
-html = html.replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="김재환의 학술대회 논문, 저서 Agent Harness Engineering, 연구 자료와 회사 자료.">');
+html = html.replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="김재환의 심사 중인 학술지 논문과 학술대회 논문, 저서 Agent Harness Engineering, 연구 자료와 회사 자료.">');
 if (!html.includes('/css/conference-publication.css')) html = html.replace('</head>', '<link rel="stylesheet" href="/css/conference-publication.css"></head>');
 fs.writeFileSync(file, html);
 
