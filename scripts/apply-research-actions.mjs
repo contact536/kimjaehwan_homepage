@@ -10,10 +10,11 @@ const file='public/pages/research.html';
 let html=fs.readFileSync(file,'utf8').replace(/<!-- research-actions:start -->[\s\S]*?<!-- research-actions:end -->/g,'');
 if(!html.includes('/css/research-actions.css'))html=html.replace('</head>','<link rel="stylesheet" href="/css/research-actions.css"></head>');
 html=html.replace(/(<article class="kim-detail" id="([^"]+)"[^>]*>)([\s\S]*?)(<\/article>)/g,(match,open,id,body,close)=>{
- const r=p.research.find(r=>r.id===id),v=resources[id];
+ const r=p.research.find(r=>r.id===id);
+ const v=r?.documentation?{href:r.documentation.url,label:r.documentation.title,note:r.documentation.description,external:true}:resources[id];
  if(!r||!v)return match;
  const mail=`mailto:${p.email}?subject=${encodeURIComponent(`[연구 협업] ${r.title} 문의`)}`;
- return `${open}${body}<!-- research-actions:start --><div class="research-actions"><nav aria-label="${esc(r.title)} 관련 자료와 문의"><a class="research-resource-link" href="${v.href}"><strong>${v.label} <span aria-hidden="true">→</span></strong><span>${v.note}</span></a><a class="research-inquiry" href="${esc(mail)}">${esc(r.title)} 협업 문의 <span aria-hidden="true">↗</span></a></nav><p>협업 문의는 이메일 앱에서 열립니다. <a href="/pages/contact.html">연락처 보기</a></p></div><!-- research-actions:end -->${close}`;
+ return `${open}${body}<!-- research-actions:start --><div class="research-actions"><nav aria-label="${esc(r.title)} 관련 자료와 문의"><a class="research-resource-link" href="${esc(v.href)}"${v.external?' target="_blank" rel="noopener noreferrer"':''}><strong>${esc(v.label)} <span aria-hidden="true">${v.external?'↗':'→'}</span></strong><span>${esc(v.note)}</span></a><a class="research-inquiry" href="${esc(mail)}">${esc(r.title)} 협업 문의 <span aria-hidden="true">↗</span></a></nav><p>협업 문의는 이메일 앱에서 열립니다. <a href="/pages/contact.html">연락처 보기</a></p></div><!-- research-actions:end -->${close}`;
 });
 fs.writeFileSync(file,html);
 console.log('Added contextual resources and email inquiry links to three research entries.');

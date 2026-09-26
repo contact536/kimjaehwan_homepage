@@ -106,7 +106,12 @@
         "Tax AI"
       ],
       "status": "제품 개발",
-      "source": "회사소개서 · 재직증명서"
+      "source": "회사소개서 · 재직증명서",
+      "documentation": {
+        "url": "https://xaikorea.github.io/taxia/",
+        "title": "TAXIA 공식 문서",
+        "description": "한국 세법 Graph-RAG 라이브러리의 Python·JavaScript SDK, REST API, CLI 사용 안내"
+      }
     },
     {
       "id": "kortaxarena",
