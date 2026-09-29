@@ -9,6 +9,7 @@ import researcher from '../seed/researcher.json' with {type:'json'};
 import serviceDirectory from '../seed/company-services.json' with {type:'json'};
 import press from '../seed/company-press.json' with {type:'json'};
 import submissions from '../seed/journal-manuscripts.json' with {type:'json'};
+import activityData from '../seed/academic-activities.json' with {type:'json'};
 import type { Database } from './database.ts';
 
 type Source={title:string;url:string;text:string};
@@ -19,6 +20,7 @@ const documents:Source[]=[
  ...(researcher.academicMemberships??[]).map(r=>({title:`${r.organization} ${r.category}`,url:'/pages/company-network.html#'+r.id,text:[r.date,r.description,r.category,r.status,r.source,'김재환 개인 학술단체 회원자격'].filter(Boolean).join(' ')})),
  ...(researcher.companyCredentials??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-company',text:[r.date,r.description,r.status,r.issuer,r.certificate].filter(Boolean).join(' ')})),
  ...researcher.research.map(r=>({title:r.title,url:'/pages/research.html#'+r.id,text:r.subtitle+' '+r.description+' '+r.tags.join(' ')})),
+ ...activityData.activities.map(item=>({title:item.title,url:'/pages/research.html#activity-'+item.id,text:['김재환 학술대회·포럼 참가활동',item.participation,'개최일',item.date.replaceAll('-','.'),'장소',item.venue,item.category,item.summary,...item.highlights,'연구와의 연결',item.researchConnection].join(' ')})),
  ...submissions.manuscripts.filter(item=>item.status==='under_review').map(item=>({title:item.title,url:'/pages/publications.html#'+item.id,text:[item.journal,'학술지 투고 논문',`${item.reviewRound}차 심사 중`,'상태 기준일',item.statusAsOf,item.summary,'심사 중인 원고이며 게재 확정 또는 출판된 논문이 아님'].join(' ')})),
  ...researcher.patents.map(r=>({title:r.title,url:r.url||'/pages/patents.html',text:['XAIKOREA 기업 특허',r.status,r.date,r.number].filter(Boolean).join(' ')})),
  ...(researcher.patentDecisions??[]).map(r=>({title:`${r.title} 특허결정`,url:'/pages/patents.html#patent-decision-'+r.number.replaceAll('-',''),text:['XAIKOREA 기업 특허결정',r.status,r.date,r.number,r.issuer,'설정등록 절차와 구분'].filter(Boolean).join(' ')})),

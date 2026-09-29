@@ -1,0 +1,21 @@
+.academic-activities{margin:48px 0;scroll-margin-top:140px}
+.academic-activities>header{margin-bottom:24px}
+.academic-activities h2{margin:10px 0 16px;font-size:clamp(25px,3vw,32px);line-height:1.45}
+.academic-activities>header>p:last-child{margin:0;color:var(--text-secondary);line-height:1.85}
+.academic-activity-list{display:grid;gap:24px}
+.academic-activity{min-width:0;padding:28px;border:1px solid var(--border);border-radius:12px;background:var(--bg-secondary);scroll-margin-top:140px;overflow-wrap:anywhere}
+.activity-meta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;color:var(--text-secondary);font-size:13px;font-variant-numeric:tabular-nums}
+.activity-meta span{padding:3px 9px;border:1px solid var(--border);border-radius:6px;background:var(--bg-primary);color:var(--accent);font-weight:700}
+.activity-category{margin:18px 0 8px;color:var(--accent);font-size:12px;font-weight:700}
+.academic-activity h3{margin:0 0 10px;font-size:clamp(20px,2.5vw,25px);line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+.activity-venue{margin:0 0 18px;color:var(--text-secondary);font-size:13px;line-height:1.75}
+.activity-summary{margin:0;color:var(--text-primary);font-size:15px;line-height:1.85}
+.activity-insights{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:24px;padding-top:22px;border-top:1px solid var(--border)}
+.activity-insights h4{margin:0 0 12px;font-size:14px;font-weight:700}
+.activity-insights ul{margin:0;padding-left:19px}.activity-insights li+li{margin-top:10px}
+.activity-insights li,.activity-insights aside p{color:var(--text-secondary);font-size:14px;line-height:1.85}
+.activity-insights aside{min-width:0;padding-left:22px;border-left:2px solid var(--accent)}
+.activity-insights aside p{margin:0 0 14px}.activity-insights a{font-size:13px;font-weight:600}
+.academic-activities a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:760px){.academic-activity{padding:21px}.activity-insights{grid-template-columns:minmax(0,1fr);gap:22px}.activity-insights aside{padding-left:16px}.activity-summary{font-size:14px}}
+@media print{.academic-activity{break-inside:avoid}.activity-insights{grid-template-columns:minmax(0,1fr)}}
