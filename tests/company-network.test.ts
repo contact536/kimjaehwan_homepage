@@ -10,10 +10,10 @@ test('company cooperation records render on the home and detailed page', () => {
   const page = fs.readFileSync('public/pages/company-network.html', 'utf8');
   const experience = fs.readFileSync('public/pages/experience.html', 'utf8');
   const network = researcher.companyNetwork;
-  assert.equal(network.trainingPartnerships.length, 4);
+  assert.equal(network.trainingPartnerships.length, 5);
   assert.equal(network.memberships.length, 3);
   assert.equal(researcher.academicMemberships.length, 3);
-  assert.equal((page.match(/class="network-card"/gu) || []).length, 13);
+  assert.equal((page.match(/class="network-card"/gu) || []).length, 14);
   assert.equal((page.match(/class="network-card network-personal"/gu) || []).length, 3);
   assert.equal((page.match(/class="network-card network-escrow"/gu) || []).length, 1);
   assert.match(home, /Cooperation &amp; network/u);
