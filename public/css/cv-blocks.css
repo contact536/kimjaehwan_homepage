@@ -21,9 +21,21 @@
 .cv-links a:hover { text-decoration:underline; text-underline-offset:4px; }
 .cv-state { display:inline-block; font-size:.875rem; padding:2px 9px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:4px; color:var(--text-secondary); }
 .cv-timeline>li[id]{scroll-margin-top:150px}
-.cv-activity-photo{margin:24px 0 0;min-width:0;max-width:100%}
+.cv-photos{margin-top:20px;min-width:0}
+.cv-photos>summary{padding:10px 0;color:var(--accent);font-size:.9375rem;font-weight:600;cursor:pointer}
+.cv-photos>summary>span{margin-left:8px;font-size:.8125rem;font-weight:400;color:var(--text-secondary)}
+.cv-event .cv-photo-hint{margin:0 0 12px;color:var(--text-secondary);font-size:.8125rem;line-height:1.6}
+.cv-photo-touch-hint{display:none}
+.cv-photo-panel{max-height:70vh;overflow:auto;overscroll-behavior:contain;border:1px solid var(--border);border-radius:10px;background:var(--bg-card)}
+.cv-photo-panel>header{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-card);font-size:.875rem}
+.cv-photo-close{min-height:36px;padding:6px 10px;font:inherit;color:var(--text-primary);background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;cursor:pointer}
+.cv-photo-gallery{display:grid;gap:22px;padding:16px}
+.cv-photos>summary:focus-visible,.cv-photo-close:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.cv-activity-photo{margin:0;min-width:0;max-width:100%}
 .cv-activity-photo img{display:block;width:100%;max-width:100%;height:auto;border:1px solid var(--border);border-radius:10px;box-sizing:border-box}
 .cv-activity-photo figcaption{margin-top:10px;color:var(--text-secondary);font-size:.8125rem;line-height:1.7}
+@media(hover:none),(pointer:coarse){.cv-photo-hover-hint{display:none}.cv-photo-touch-hint{display:inline}.cv-photo-panel{max-height:none}}
+@media print{.cv-photos{display:none}}
 .cv-block:target { outline:2px solid var(--accent); outline-offset:10px; border-radius:2px; }
 .cv-page a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
 @media(max-width:760px) { .cv-layout { grid-template-columns:1fr; gap:32px; margin-top:28px; } .cv-overview { position:static; } .cv-overview nav { display:flex; flex-wrap:wrap; gap:10px 22px; border:0; margin:16px 0; } .cv-overview nav a { gap:10px; } .cv-block { scroll-margin-top:150px; } }

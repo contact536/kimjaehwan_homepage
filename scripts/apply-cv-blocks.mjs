@@ -6,7 +6,14 @@ const career=[...(profile.career??[]),...profile.milestones.filter(m=>m.title.in
 const academicMemberships=[...(profile.academicMemberships??[])].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 const academicActivities=[...activityData.activities].sort((a,b)=>b.date.localeCompare(a.date)).map(item=>({date:item.date.replaceAll('-','.'),title:item.title,status:item.participation,description:item.summary,url:`/pages/research.html#activity-${item.id}`,linkLabel:'주요 내용 · 연구와의 연결'}));
 const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>m.title.includes('특허'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
-function timeline(items,education=false){return `<ol class="cv-timeline">${items.map(item=>{const state=education?(item.date.includes('입학')?'과정 재학':'학위 취득'):item.status;const links=[item.url?`<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.linkLabel??'공식 홈페이지')} ↗</a>`:'',item.email?`<a href="mailto:${esc(item.email)}">${esc(item.email)}</a>`:''].filter(Boolean).join('');const photo=item.photo?`<figure class="cv-activity-photo"><img src="${esc(item.photo.src)}" alt="${esc(item.photo.alt)}" width="${esc(item.photo.width)}" height="${esc(item.photo.height)}" loading="lazy" decoding="async"><figcaption>${esc(item.photo.caption)}</figcaption></figure>`:'';return `<li${item.id?` id="cv-${esc(item.id)}" tabindex="-1"`:''}><div class="cv-date">${esc(item.date)}</div><div class="cv-event"><h3>${esc(item.title??item.organization)}</h3>${state?`<span class="cv-state">${esc(state)}</span>`:''}<p>${esc(item.description)}</p>${links?`<p class="cv-links">${links}</p>`:''}${photo}</div></li>`}).join('')}</ol>`}
+function photoGallery(item) {
+ const photos=item.photos??[];
+ if(!photos.length)return '';
+ const panelId=`cv-${item.id}-photos`;
+ const figures=photos.map(photo=>`<figure class="cv-activity-photo"><img src="${esc(photo.src)}" alt="${esc(photo.alt)}" width="${esc(photo.width)}" height="${esc(photo.height)}" loading="lazy" decoding="async"><figcaption>${esc(photo.caption)}</figcaption></figure>`).join('');
+ return `<details class="cv-photos"><summary aria-controls="${esc(panelId)}">행사 사진 보기 <span>${photos.length}장</span></summary><p class="cv-photo-hint"><span class="cv-photo-hover-hint">마우스를 올려 미리 보거나 눌러 펼쳐 두세요.</span><span class="cv-photo-touch-hint">눌러서 사진을 펼치거나 접을 수 있습니다.</span></p><div class="cv-photo-panel" id="${esc(panelId)}"><header><strong>위촉 행사 사진</strong><button class="cv-photo-close" type="button" hidden>닫기 ×</button></header><div class="cv-photo-gallery">${figures}</div></div></details>`;
+}
+function timeline(items,education=false){return `<ol class="cv-timeline">${items.map(item=>{const state=education?(item.date.includes('입학')?'과정 재학':'학위 취득'):item.status;const links=[item.url?`<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.linkLabel??'공식 홈페이지')} ↗</a>`:'',item.email?`<a href="mailto:${esc(item.email)}">${esc(item.email)}</a>`:''].filter(Boolean).join('');return `<li${item.id?` id="cv-${esc(item.id)}" tabindex="-1"`:''}><div class="cv-date">${esc(item.date)}</div><div class="cv-event"><h3>${esc(item.title??item.organization)}</h3>${state?`<span class="cv-state">${esc(state)}</span>`:''}<p>${esc(item.description)}</p>${links?`<p class="cv-links">${links}</p>`:''}${photoGallery(item)}</div></li>`}).join('')}</ol>`}
 const blocks=[
  {id:'career',title:'경력 · 대외활동',caption:'연구·경영과 전문위원 활동',content:timeline(career)},
  {id:'memberships',title:'학술단체 회원자격',caption:'Professional memberships',content:timeline(academicMemberships)},
@@ -18,6 +25,7 @@ const body=`<div class="kim-page cv-page"><p class="kim-overline">JAEHWAN KIM / 
 const file='public/pages/experience.html';
 let html=fs.readFileSync(file,'utf8');
 if(!html.includes('/css/cv-blocks.css'))html=html.replace('</head>','<link rel="stylesheet" href="/css/cv-blocks.css"></head>');
+if(!html.includes('/js/cv-photos.js'))html=html.replace('</body>','<script src="/js/cv-photos.js" defer></script></body>');
 html=html.replace(/(<main[^>]*>)[\s\S]*?(<\/main>)/,(_,open,close)=>open+body+close);
 fs.writeFileSync(file,html);
 console.log(`CV blocks generated: ${career.length} career, ${academicMemberships.length} academic memberships, ${profile.education.length} education, ${company.length} company milestones.`);

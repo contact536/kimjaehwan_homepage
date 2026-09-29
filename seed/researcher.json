@@ -44,13 +44,25 @@
       "linkLabel": "연맹 공식 홈페이지",
       "detailUrl": "/pages/experience.html#cv-gaca-esg-2026",
       "detailLabel": "위촉 활동 보기",
-      "photo": {
+      "photos": [{
         "src": "/assets/activities/gaca-appointment-2026-09-29.png",
         "alt": "세계맑은공기기후연맹 전문위원 위촉장 수여 장면",
         "width": 4000,
         "height": 2252,
-        "caption": "2026.09.29 · 세계맑은공기기후연맹 전문위원 위촉 행사"
-      }
+        "caption": "2026.09.29 · 세계맑은공기기후연맹 전문위원 위촉장 수여"
+      }, {
+        "src": "/assets/activities/gaca-ceremony-2026-09-29.png",
+        "alt": "세계맑은공기기후연맹 전문위원 위촉 및 역할 안내 행사 현장",
+        "width": 4000,
+        "height": 2252,
+        "caption": "2026.09.29 · 전문위원 위촉 및 역할 안내 행사 현장"
+      }, {
+        "src": "/assets/activities/gaca-group-2026-09-29.png",
+        "alt": "세계맑은공기기후연맹 위촉 행사 참석자 단체사진",
+        "width": 4000,
+        "height": 2252,
+        "caption": "2026.09.29 · 세계맑은공기기후연맹 행사 기념 단체사진"
+      }]
     }
   ],
   "companyCredentials": [
