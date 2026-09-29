@@ -33,6 +33,24 @@
       "url": "https://aiba.or.kr/member",
       "linkLabel": "AI경영학회 임원진",
       "email": "aiba2023@naver.com"
+    },
+    {
+      "id": "gaca-esg-2026",
+      "date": "2026.09.29",
+      "title": "(사)세계맑은공기기후연맹 ESG위원회 전문위원",
+      "description": "2026년 9월 29일 세계맑은공기기후연맹(GACA)의 ESG위원회 전문위원으로 위촉되었습니다. 맑은 공기와 기후환경 개선, ESG 가치 확산 및 지속가능한 미래를 위한 연맹 활동에 참여합니다.",
+      "status": "현",
+      "url": "https://worldairday.org/",
+      "linkLabel": "연맹 공식 홈페이지",
+      "detailUrl": "/pages/experience.html#cv-gaca-esg-2026",
+      "detailLabel": "위촉 활동 보기",
+      "photo": {
+        "src": "/assets/activities/gaca-appointment-2026-09-29.png",
+        "alt": "세계맑은공기기후연맹 전문위원 위촉장 수여 장면",
+        "width": 4000,
+        "height": 2252,
+        "caption": "2026.09.29 · 세계맑은공기기후연맹 전문위원 위촉 행사"
+      }
     }
   ],
   "companyCredentials": [

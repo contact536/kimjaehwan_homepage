@@ -21,7 +21,7 @@ const careerEntries = (profile.career ?? []).map(entry => entry.title.includes('
   description: `${aiBusinessMembership.description} AI 경영과 산학 연계 활동에 참여하고 있습니다.`,
   url: `/pages/company-network.html#${aiBusinessMembership.id}`,
   linkLabel: '회원자격 보기',
-} : entry);
+} : entry.detailUrl ? {...entry, url:entry.detailUrl, linkLabel:entry.detailLabel} : entry);
 const membershipEntries = academicMemberships
   .filter(entry => entry.id !== 'ai-business-association')
   .map(entry => ({

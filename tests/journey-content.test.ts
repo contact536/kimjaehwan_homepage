@@ -5,6 +5,7 @@ import test from 'node:test';
 test('home Journey is complete, chronological and uses specific verified descriptions', () => {
   const html = fs.readFileSync('public/index.html', 'utf8');
   const expected = [
+    '(사)세계맑은공기기후연맹 ESG위원회 전문위원',
     'D-테스트베드 데이터 연구 참여 계약 완료',
     '보안형 회의 AI 기술자료 임치',
     '경기도 AI 멤버십 기업 선정',

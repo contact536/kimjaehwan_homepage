@@ -20,6 +20,10 @@
 .cv-links a { font-weight:600; text-decoration:none; }
 .cv-links a:hover { text-decoration:underline; text-underline-offset:4px; }
 .cv-state { display:inline-block; font-size:.875rem; padding:2px 9px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:4px; color:var(--text-secondary); }
+.cv-timeline>li[id]{scroll-margin-top:150px}
+.cv-activity-photo{margin:24px 0 0;min-width:0;max-width:100%}
+.cv-activity-photo img{display:block;width:100%;max-width:100%;height:auto;border:1px solid var(--border);border-radius:10px;box-sizing:border-box}
+.cv-activity-photo figcaption{margin-top:10px;color:var(--text-secondary);font-size:.8125rem;line-height:1.7}
 .cv-block:target { outline:2px solid var(--accent); outline-offset:10px; border-radius:2px; }
 .cv-page a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
 @media(max-width:760px) { .cv-layout { grid-template-columns:1fr; gap:32px; margin-top:28px; } .cv-overview { position:static; } .cv-overview nav { display:flex; flex-wrap:wrap; gap:10px 22px; border:0; margin:16px 0; } .cv-overview nav a { gap:10px; } .cv-block { scroll-margin-top:150px; } }

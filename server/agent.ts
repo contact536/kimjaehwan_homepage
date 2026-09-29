@@ -16,7 +16,7 @@ type Source={title:string;url:string;text:string};
 const documents:Source[]=[
  {title:'김재환 소개',url:'/pages/about.html',text:researcher.intro+' '+researcher.role},
  ...researcher.education.map(r=>({title:r.title,url:'/pages/experience.html',text:r.date+' '+r.description})),
- ...(researcher.career??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-career',text:[r.date,r.description,r.status,r.email].filter(Boolean).join(' ')})),
+ ...(researcher.career??[]).map(r=>({title:r.title,url:r.detailUrl||r.url||'/pages/experience.html#cv-career',text:[r.date,r.description,r.status,r.email].filter(Boolean).join(' ')})),
  ...(researcher.academicMemberships??[]).map(r=>({title:`${r.organization} ${r.category}`,url:'/pages/company-network.html#'+r.id,text:[r.date,r.description,r.category,r.status,r.source,'김재환 개인 학술단체 회원자격'].filter(Boolean).join(' ')})),
  ...(researcher.companyCredentials??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-company',text:[r.date,r.description,r.status,r.issuer,r.certificate].filter(Boolean).join(' ')})),
  ...researcher.research.map(r=>({title:r.title,url:'/pages/research.html#'+r.id,text:r.subtitle+' '+r.description+' '+r.tags.join(' ')})),
