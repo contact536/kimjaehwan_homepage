@@ -14,7 +14,7 @@ html = html.replace('증명서 원본은 공개하지 않습니다.', '학력·�
 html = html.replace('공개 가능한 기업 인증서는 논문·자료 페이지에서 제공합니다.', '공개 가능한 기업 인증서와 개인정보를 가린 특허출원 통지서는 논문·자료 및 지식재산 페이지에서 제공합니다.');
 const activityStart = '<!-- academic-activities-source:start -->';
 const activityEnd = '<!-- academic-activities-source:end -->';
-const activitySource = `${activityStart}<li><a href="/pages/research.html#academic-activities">학술대회 · 포럼 참가활동 요약</a>: 김재환의 참가활동 결과보고서 주요 내용과 연구 연계 시사점</li>${activityEnd}`;
+const activitySource = `${activityStart}<li><a href="/pages/research.html#academic-activities">학술대회 · 포럼 참가활동 요약</a>: 김재환의 참가활동 결과보고서 주요 내용 및 행사 관련 언론보도</li>${activityEnd}`;
 html = html.replace(new RegExp(`${activityStart}[\\s\\S]*?${activityEnd}`, 'gu'), '');
 html = html.replace(end, activitySource + end);
 const appointmentStart = '<!-- professional-appointment-source:start -->';

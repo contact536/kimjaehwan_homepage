@@ -28,6 +28,12 @@ test('company cooperation records render on the home and detailed page', () => {
     assert.ok(page.includes(item.category), item.category);
     assert.ok(page.includes(item.date), item.date);
     assert.ok(experience.includes(item.organization), `${item.organization} missing from CV`);
+    const membership = page.match(new RegExp(`<article class="network-card network-personal" id="${item.id}"[\\s\\S]*?</article>`, 'u'))?.[0] ?? '';
+    const cvMembership = experience.match(new RegExp(`<li id="cv-${item.id}"[\\s\\S]*?</li>`, 'u'))?.[0] ?? '';
+    for (const content of [membership,cvMembership]) {
+      assert.ok(content.includes(`href="${item.url}" target="_blank" rel="noopener noreferrer"`));
+      assert.ok(content.includes(item.linkLabel));
+    }
   }
   assert.match(home, /개인 학술단체 회원자격/u);
   assert.ok(page.includes(network.technologyEscrow.technology));

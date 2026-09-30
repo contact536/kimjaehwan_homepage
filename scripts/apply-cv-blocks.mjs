@@ -4,7 +4,7 @@ import activityData from '../seed/academic-activities.json' with {type:'json'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const career=[...(profile.career??[]),...profile.milestones.filter(m=>m.title.includes('취임'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 const academicMemberships=[...(profile.academicMemberships??[])].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
-const academicActivities=[...activityData.activities].sort((a,b)=>b.date.localeCompare(a.date)).map(item=>({id:item.id,date:item.date.replaceAll('-','.'),title:item.title,status:item.participation,description:item.summary,url:`/pages/research.html#activity-${item.id}`,linkLabel:'주요 내용 · 연구와의 연결',activityPressCount:item.articles?.length??0}));
+const academicActivities=[...activityData.activities].sort((a,b)=>b.date.localeCompare(a.date)).map(item=>({id:item.id,date:item.date.replaceAll('-','.'),title:item.title,status:item.participation,description:item.summary,url:`/pages/research.html#activity-${item.id}`,linkLabel:'참가활동 주요 내용',activityPressCount:item.articles?.length??0}));
 const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>m.title.includes('특허'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 function photoGallery(item) {
  const photos=item.photos??[];

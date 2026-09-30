@@ -15,7 +15,7 @@ const trainingCards = network.trainingPartnerships.map(item => card(item, '인�
 const membershipCards = network.memberships.map(item => card(item, '회원자격')).join('');
 const academicMembershipCards = [...(profile.academicMemberships ?? [])]
   .sort((left, right) => String(right.date).localeCompare(String(left.date), 'ko'))
-  .map(item => `<article class="network-card network-personal" id="${esc(item.id)}" tabindex="-1"><p class="network-card-type">김재환 · 개인 학술회원</p><h3>${esc(item.organization)}</h3><p class="network-category">${esc(item.category)}</p><p>${esc(item.description)}</p>${facts(item.facts)}</article>`)
+  .map(item => `<article class="network-card network-personal" id="${esc(item.id)}" tabindex="-1"><p class="network-card-type">김재환 · 개인 학술회원</p><h3>${esc(item.organization)}</h3><p class="network-category">${esc(item.category)}</p><p>${esc(item.description)}</p>${facts(item.facts)}<a class="network-detail-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(item.organization)} 공식 홈페이지 (새 탭)">${esc(item.linkLabel)} ↗</a></article>`)
   .join('');
 const escrow = network.technologyEscrow;
 const escrowCard = `<article class="network-card network-escrow" id="${esc(escrow.id)}-record" tabindex="-1"><p class="network-card-type">기술자료 임치</p><h3>${esc(escrow.title)}</h3><p class="network-category">${esc(escrow.technology)}</p><p>${esc(escrow.description)}</p>${facts(escrow.facts)}</article>`;

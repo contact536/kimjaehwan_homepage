@@ -10,12 +10,10 @@
 .academic-activity h3{margin:0 0 10px;font-size:clamp(20px,2.5vw,25px);line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
 .activity-venue{margin:0 0 18px;color:var(--text-secondary);font-size:13px;line-height:1.75}
 .activity-summary{margin:0;color:var(--text-primary);font-size:15px;line-height:1.85}
-.activity-insights{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:24px;padding-top:22px;border-top:1px solid var(--border)}
+.activity-insights{margin-top:24px;padding-top:22px;border-top:1px solid var(--border)}
 .activity-insights h4{margin:0 0 12px;font-size:14px;font-weight:700}
 .activity-insights ul{margin:0;padding-left:19px}.activity-insights li+li{margin-top:10px}
-.activity-insights li,.activity-insights aside p{color:var(--text-secondary);font-size:14px;line-height:1.85}
-.activity-insights aside{min-width:0;padding-left:22px;border-left:2px solid var(--accent)}
-.activity-insights aside p{margin:0 0 14px}.activity-insights a{font-size:13px;font-weight:600}
+.activity-insights li{color:var(--text-secondary);font-size:14px;line-height:1.85}
 .academic-activities a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .activity-press{margin-top:24px;padding-top:22px;border-top:1px solid var(--border);scroll-margin-top:140px}
 .activity-press h4{margin:0 0 14px;font-size:14px;line-height:1.6}
@@ -26,5 +24,5 @@
 .activity-press-title{display:inline-block;font-size:15px;font-weight:600;line-height:1.8;text-decoration:none;word-break:keep-all;overflow-wrap:anywhere}
 .activity-press-title:hover{text-decoration:underline;text-underline-offset:4px}
 .activity-press-summary{margin:8px 0 0;color:var(--text-secondary);font-size:13px;line-height:1.85}
-@media(max-width:760px){.academic-activity{padding:21px}.activity-insights{grid-template-columns:minmax(0,1fr);gap:22px}.activity-insights aside{padding-left:16px}.activity-summary{font-size:14px}}
-@media print{.academic-activity{break-inside:avoid}.activity-insights{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){.academic-activity{padding:21px}.activity-summary{font-size:14px}}
+@media print{.academic-activity{break-inside:avoid}}

@@ -11,7 +11,8 @@ test('participation summaries use event dates and link CV and search to public t
   assert.equal(activityData.activities.length,3);
   assert.doesNotMatch(section, /<img|<iframe|<object|<embed|\.pdf|download|학번|연락처|서명|참가사진|참여 사진|file:\/\/|[CD]:[\\/]/u);
   const links = [...section.matchAll(/href="([^"]+)"/gu)].map(match=>match[1]);
-  assert.deepEqual(links,activityData.activities.flatMap(item=>['#taxia',...item.articles.map(article=>article.url)]));
+  assert.deepEqual(links,activityData.activities.flatMap(item=>item.articles.map(article=>article.url)));
+  assert.doesNotMatch(section,/TAXiA|세무·회계|연구와의 연결|#taxia/iu);
   const dates = ['2025-12-30','2025-12-04','2025-11-27'];
   for (const [index,item] of activityData.activities.entries()) {
     assert.equal(item.date,dates[index]);
@@ -22,7 +23,8 @@ test('participation summaries use event dates and link CV and search to public t
     assert.ok(cv.includes(`href="${target}"`));
     const result = searchResearch(item.title);
     assert.equal(result.sources[0].url,target);
-    assert.ok(result.answer.includes(item.researchConnection));
+    assert.ok(result.answer.includes(item.summary));
+    assert.doesNotMatch(result.answer,/TAXiA|세무·회계|연구와의 연결/iu);
     assert.match(result.answer,/참가·청강/u);
     assert.ok(cv.includes(`href="${target}-press"`));
     for (const article of item.articles) {
