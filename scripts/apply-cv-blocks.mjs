@@ -4,7 +4,7 @@ import activityData from '../seed/academic-activities.json' with {type:'json'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const career=[...(profile.career??[]),...profile.milestones.filter(m=>m.title.includes('취임'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 const academicMemberships=[...(profile.academicMemberships??[])].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
-const academicActivities=[...activityData.activities].sort((a,b)=>b.date.localeCompare(a.date)).map(item=>({date:item.date.replaceAll('-','.'),title:item.title,status:item.participation,description:item.summary,url:`/pages/research.html#activity-${item.id}`,linkLabel:'주요 내용 · 연구와의 연결'}));
+const academicActivities=[...activityData.activities].sort((a,b)=>b.date.localeCompare(a.date)).map(item=>({id:item.id,date:item.date.replaceAll('-','.'),title:item.title,status:item.participation,description:item.summary,url:`/pages/research.html#activity-${item.id}`,linkLabel:'주요 내용 · 연구와의 연결',activityPressCount:item.articles?.length??0}));
 const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>m.title.includes('특허'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 function photoGallery(item) {
  const photos=item.photos??[];
@@ -14,6 +14,7 @@ function photoGallery(item) {
  return `<details class="cv-photos"><summary aria-controls="${esc(panelId)}">행사 사진 보기 <span>${photos.length}장</span></summary><p class="cv-photo-hint"><span class="cv-photo-hover-hint">마우스를 올려 미리 보거나 눌러 펼쳐 두세요.</span><span class="cv-photo-touch-hint">눌러서 사진을 펼치거나 접을 수 있습니다.</span></p><div class="cv-photo-panel" id="${esc(panelId)}"><header><strong>위촉 행사 사진</strong><button class="cv-photo-close" type="button" hidden>닫기 ×</button></header><div class="cv-photo-gallery">${figures}</div></div></details>`;
 }
 function relatedPress(item) {
+ if(item.activityPressCount)return `<p class="cv-links"><a href="/pages/research.html#activity-${esc(item.id)}-press">행사 관련 보도 ${item.activityPressCount}건 보기 →</a></p>`;
  const coverage=item.pressCoverage;
  if(!coverage?.articles?.length)return '';
  const id=`cv-${item.id}-press`;

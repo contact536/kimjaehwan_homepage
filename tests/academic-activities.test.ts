@@ -10,7 +10,8 @@ test('participation summaries use event dates and link CV and search to public t
   const cv = fs.readFileSync('public/pages/experience.html','utf8');
   assert.equal(activityData.activities.length,3);
   assert.doesNotMatch(section, /<img|<iframe|<object|<embed|\.pdf|download|학번|연락처|서명|참가사진|참여 사진|file:\/\/|[CD]:[\\/]/u);
-  assert.deepEqual([...section.matchAll(/href="([^"]+)"/gu)].map(match=>match[1]),['#taxia','#taxia','#taxia']);
+  const links = [...section.matchAll(/href="([^"]+)"/gu)].map(match=>match[1]);
+  assert.deepEqual(links,activityData.activities.flatMap(item=>['#taxia',...item.articles.map(article=>article.url)]));
   const dates = ['2025-12-30','2025-12-04','2025-11-27'];
   for (const [index,item] of activityData.activities.entries()) {
     assert.equal(item.date,dates[index]);
@@ -23,5 +24,14 @@ test('participation summaries use event dates and link CV and search to public t
     assert.equal(result.sources[0].url,target);
     assert.ok(result.answer.includes(item.researchConnection));
     assert.match(result.answer,/참가·청강/u);
+    assert.ok(cv.includes(`href="${target}-press"`));
+    for (const article of item.articles) {
+      assert.equal(new URL(article.url).protocol,'https:');
+      assert.equal(links.filter(url=>url===article.url).length,1);
+      const articleResult = searchResearch(article.title);
+      assert.equal(articleResult.sources[0].url,article.url);
+      assert.ok(articleResult.answer.includes(article.publisher));
+      assert.ok(articleResult.answer.includes(article.publishedAt));
+    }
   }
 });
