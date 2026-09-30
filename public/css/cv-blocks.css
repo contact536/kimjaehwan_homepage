@@ -21,6 +21,15 @@
 .cv-links a:hover { text-decoration:underline; text-underline-offset:4px; }
 .cv-state { display:inline-block; font-size:.875rem; padding:2px 9px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:4px; color:var(--text-secondary); }
 .cv-timeline>li[id]{scroll-margin-top:150px}
+.cv-related-press{margin-top:24px;scroll-margin-top:120px;word-break:keep-all;overflow-wrap:anywhere}
+.cv-related-press h4{margin:0;font-size:.9375rem;line-height:1.6}
+.cv-event .cv-press-intro{margin:8px 0 12px;color:var(--text-secondary);font-size:.875rem;line-height:1.8}
+.cv-related-press ul{list-style:none;display:grid;gap:12px;margin:0;padding:0}
+.cv-related-press li{padding:16px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card)}
+.cv-event .cv-press-meta{margin:0 0 8px;color:var(--text-secondary);font-size:.75rem;line-height:1.6;font-variant-numeric:tabular-nums}
+.cv-press-title{display:inline-block;font-size:.9375rem;font-weight:600;line-height:1.7;text-decoration:none}
+.cv-press-title:hover{text-decoration:underline;text-underline-offset:4px}
+.cv-event .cv-press-summary{margin:8px 0 0;color:var(--text-secondary);font-size:.8125rem;line-height:1.8}
 .cv-photos{margin-top:20px;min-width:0}
 .cv-photos>summary{padding:10px 0;color:var(--accent);font-size:.9375rem;font-weight:600;cursor:pointer}
 .cv-photos>summary>span{margin-left:8px;font-size:.8125rem;font-weight:400;color:var(--text-secondary)}

@@ -44,6 +44,25 @@
       "linkLabel": "연맹 공식 홈페이지",
       "detailUrl": "/pages/experience.html#cv-gaca-esg-2026",
       "detailLabel": "위촉 활동 보기",
+      "pressCoverage": {
+        "summary": "2026년 9월 29일 열린 ESG위원회 출범식과 위원 임명장 수여, 연맹의 주요 활동 방향을 소개한 행사 보도입니다.",
+        "articles": [
+          {
+            "publisher": "한국시사경제",
+            "publishedAt": "2026-09-29",
+            "title": "세계맑은공기기후연맹 ESG위원회 출범…“기후환경, 논의 넘어 실행으로”",
+            "summary": "기후환경·조직경영·대외협력·인증사업 4개 분과의 구성과 Good Air 프로젝트 추진 방향을 소개합니다.",
+            "url": "https://www.hksisaeconomy.com/news/article.html?no=1251203"
+          },
+          {
+            "publisher": "코리아타임뉴스",
+            "publishedAt": "2026-09-29",
+            "title": "세계맑은공기기후연맹 ESG위원회 공식 출범…기후환경 해법 ‘현장 실행’에 방점",
+            "summary": "환경정책을 도시·학교·기업의 현장 사업으로 연결하는 협력체계와 ESG위원회의 운영 방향을 다룹니다.",
+            "url": "https://www.koreatimenews.com/news/article.html?no=1273756"
+          }
+        ]
+      },
       "photos": [{
         "src": "/assets/activities/gaca-appointment-2026-09-29.png",
         "alt": "세계맑은공기기후연맹 전문위원 위촉장 수여 장면",

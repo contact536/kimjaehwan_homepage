@@ -19,7 +19,10 @@ html = html.replace(new RegExp(`${activityStart}[\\s\\S]*?${activityEnd}`, 'gu')
 html = html.replace(end, activitySource + end);
 const appointmentStart = '<!-- professional-appointment-source:start -->';
 const appointmentEnd = '<!-- professional-appointment-source:end -->';
-const appointmentSource = `${appointmentStart}<li><a href="/pages/experience.html#cv-gaca-esg-2026">세계맑은공기기후연맹 ESG위원회 전문위원 위촉</a>: 김재환 본인 제공 위촉 사실·행사 사진 및 연맹 공식 소개 · 2026.09.29</li>${appointmentEnd}`;
+const appointmentPress = profile.career.find(item=>item.id==='gaca-esg-2026')?.pressCoverage?.articles??[];
+const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const appointmentPressLinks=appointmentPress.map(article=>`<a href="${esc(article.url)}" target="_blank" rel="noopener noreferrer">${esc(article.publisher)}</a> (${esc(article.publishedAt.replaceAll('-','.'))})`).join(' · ');
+const appointmentSource = `${appointmentStart}<li><a href="/pages/experience.html#cv-gaca-esg-2026">세계맑은공기기후연맹 ESG위원회 전문위원 위촉</a>: 김재환 본인 제공 위촉 사실·행사 사진 및 연맹 공식 소개 · 2026.09.29${appointmentPressLinks?`<br>ESG위원회 출범식 관련 보도: ${appointmentPressLinks}`:''}</li>${appointmentEnd}`;
 html = html.replace(new RegExp(`${appointmentStart}[\\s\\S]*?${appointmentEnd}`, 'gu'), '');
 html = html.replace(end, appointmentSource + end);
 fs.writeFileSync(file, html);
