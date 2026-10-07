@@ -765,6 +765,68 @@
         }
       ],
       "source": "사용자 제공 서비스 설명·발명자 정보·화면 · 2026.09.26"
+    },
+    {
+      "id": "ondam",
+      "name": "ONDAM",
+      "koreanName": "온담",
+      "logo": "/assets/internal-tools/ondam-logo-v1.svg",
+      "category": "로컬 데이터 보호·결과 저장",
+      "phase": "development",
+      "status": "개발 중 · 사내 전용 · 외부 주소 없음",
+      "summary": "D-테스트베드 데이터 연구를 참고해, CSV·Excel 자료의 보호 방식을 확인하고 처리 결과와 보고서를 로컬에 저장하도록 개발 중인 도구입니다.",
+      "description": "자료 선택, 보호 방식 확인, 결과 저장의 세 단계로 데이터 보호 작업을 구성합니다. 여러 파일과 Excel 시트에서 처리 대상을 선택하고 원본을 미리 확인하는 로컬 작업 흐름을 개발하고 있습니다.",
+      "features": [
+        "CSV·Excel 다중 파일과 시트 선택",
+        "처리 대상 포함·제외와 원본 미리보기",
+        "자료별 보호 방식 확인",
+        "처리 결과·보고서 로컬 저장"
+      ],
+      "researchContext": {
+        "label": "D-테스트베드 연구 배경",
+        "url": "/pages/company-network.html#d-testbed-2026"
+      },
+      "images": [
+        {
+          "src": "/assets/internal-tools/ondam-workspace-v1.png",
+          "width": 1682,
+          "height": 1248,
+          "alt": "개발 중인 온담의 CSV·Excel 자료 선택과 데이터 보호 작업 화면",
+          "caption": "개발 화면 · 자료 선택 → 보호 방식 확인 → 결과 저장"
+        }
+      ],
+      "source": "사용자 제공 개발 중 프로젝트 설명·화면 · 2026.10.08"
+    },
+    {
+      "id": "privia",
+      "name": "PRIVIA",
+      "koreanName": "개인정보 보호 작업 공간",
+      "logo": "/assets/internal-tools/privia-logo-v1.svg",
+      "category": "금융 데이터 보호 연구",
+      "phase": "development",
+      "status": "개발 중 · 사내 전용 · 외부 주소 없음",
+      "summary": "합성데이터 시연과 실제 자료 처리 작업을 구분하고, 개인정보 보호 처리·검토·결과 확인을 하나의 작업 공간으로 연결하도록 개발 중인 서비스입니다.",
+      "description": "D-테스트베드의 데이터 보호 원칙을 참고하는 사내 연구 프로젝트입니다. 합성데이터를 이용한 ARX 일반화·OpenDP 통계 시연과 CSV·Excel 자료 등록, 목적·처리안 검토, 결과 확인을 위한 온프레미스 작업 공간을 개발하고 있습니다. 실제 연구 데이터의 이용과 결과물 반출은 해당 사업의 승인 절차에 따릅니다.",
+      "features": [
+        "합성데이터 시연과 실제 작업 공간 분리",
+        "ARX 일반화·OpenDP 통계 시연",
+        "CSV·Excel 자료 등록과 처리안 확인",
+        "처리·검토·결과 확인을 연결하는 온프레미스 작업 흐름"
+      ],
+      "researchContext": {
+        "label": "D-테스트베드 연구 배경",
+        "url": "/pages/company-network.html#d-testbed-2026"
+      },
+      "images": [
+        {
+          "src": "/assets/internal-tools/privia-start-v1.png",
+          "width": 2142,
+          "height": 1431,
+          "alt": "개발 중인 PRIVIA의 합성데이터 시연과 실제 자료 작업 공간 선택 화면",
+          "caption": "개발 화면 · 합성데이터 시연과 실제 자료 처리 작업 공간 선택"
+        }
+      ],
+      "source": "사용자 제공 개발 중 프로젝트 설명·화면 · 2026.10.08"
     }
   ]
 }

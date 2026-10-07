@@ -4,14 +4,14 @@ import test from 'node:test';
 import researcher from '../seed/researcher.json' with {type: 'json'};
 import {searchResearch} from '../server/agent.ts';
 
-test('four internal tools render on Projects only with ten screenshots and inventor attribution', () => {
+test('six internal tools render on Projects only with screenshots and accurate development status', () => {
   const projects = fs.readFileSync('public/pages/projects.html', 'utf8');
   const home = fs.readFileSync('public/index.html', 'utf8');
-  assert.equal(researcher.internalTools.length, 4);
-  assert.equal((projects.match(/class="internal-tool"/gu) || []).length, 4);
-  assert.equal((projects.match(/<img src="\/assets\/internal-tools\/[^"]+\.(?:webp|png)"/gu) || []).length, 10);
-  assert.equal((projects.match(/class="internal-tool-logo"/gu) || []).length, 4);
-  assert.equal((projects.match(/<details class="internal-tool-screens">/gu) || []).length, 4);
+  assert.equal(researcher.internalTools.length, 6);
+  assert.equal((projects.match(/class="internal-tool"/gu) || []).length, 6);
+  assert.equal((projects.match(/<img src="\/assets\/internal-tools\/[^"]+\.(?:webp|png)"/gu) || []).length, 12);
+  assert.equal((projects.match(/class="internal-tool-logo"/gu) || []).length, 6);
+  assert.equal((projects.match(/<details class="internal-tool-screens">/gu) || []).length, 6);
   assert.match(projects, /\/js\/internal-tools\.js\?v=/u);
   assert.doesNotMatch(home, /internal-tools-home|\/assets\/internal-tools\/|\/css\/internal-tools\.css/u);
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
@@ -24,6 +24,13 @@ test('four internal tools render on Projects only with ten screenshots and inven
   assert.match(analyzer, /RAG와 온톨로지로 분석/u);
   assert.equal((analyzer.match(/class="internal-tool-preview"/gu) ?? []).length, 3);
   assert.doesNotMatch(analyzer, /href="https?:/u);
+  for (const id of ['ondam', 'privia']) {
+    const card = projects.match(new RegExp(`<article class="internal-tool" id="internal-tool-${id}"[\\s\\S]*?</article>`, 'u'))?.[0] ?? '';
+    assert.match(card, /class="internal-tool-phase">개발 중<\/span>/u);
+    assert.match(card, /href="\/pages\/company-network\.html#d-testbed-2026"/u);
+    assert.match(card, /사내 전용 · 외부 주소 없음/u);
+    assert.doesNotMatch(card, /href="https?:/u);
+  }
   for (const tool of researcher.internalTools) {
     assert.ok(projects.includes(tool.name), tool.name);
     assert.ok(projects.includes(tool.koreanName), tool.koreanName);
@@ -40,4 +47,11 @@ test('research assistant explains each internal tool from curated data', () => {
   assert.match(analyzer.answer, /발명자 윤재성 개발자/u);
   assert.ok(analyzer.sources.some(source => source.url.endsWith('#internal-tool-github-analyzer')));
   assert.match(searchResearch('깃허브 코드 분석').answer, /RAG와 온톨로지/u);
+  const ondam = searchResearch('온담');
+  assert.ok(ondam.sources.some(source => source.url.endsWith('#internal-tool-ondam')));
+  assert.match(ondam.answer, /CSV·Excel.*개발 중/u);
+  const privia = searchResearch('PRIVIA');
+  assert.ok(privia.sources.some(source => source.url.endsWith('#internal-tool-privia')));
+  assert.match(privia.answer, /합성데이터.*개발 중/u);
+  assert.match(privia.answer, /D-테스트베드/u);
 });
