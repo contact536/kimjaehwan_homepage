@@ -9,7 +9,7 @@ test('six internal tools render on Projects only with screenshots and accurate d
   const home = fs.readFileSync('public/index.html', 'utf8');
   assert.equal(researcher.internalTools.length, 6);
   assert.equal((projects.match(/class="internal-tool"/gu) || []).length, 6);
-  assert.equal((projects.match(/<img src="\/assets\/internal-tools\/[^"]+\.(?:webp|png)"/gu) || []).length, 12);
+  assert.equal((projects.match(/<img src="\/assets\/internal-tools\/[^"]+\.(?:webp|png)"/gu) || []).length, 13);
   assert.equal((projects.match(/class="internal-tool-logo"/gu) || []).length, 6);
   assert.equal((projects.match(/<details class="internal-tool-screens">/gu) || []).length, 6);
   assert.match(projects, /\/js\/internal-tools\.js\?v=/u);
@@ -24,6 +24,9 @@ test('six internal tools render on Projects only with screenshots and accurate d
   assert.match(analyzer, /RAG와 온톨로지로 분석/u);
   assert.equal((analyzer.match(/class="internal-tool-preview"/gu) ?? []).length, 3);
   assert.doesNotMatch(analyzer, /href="https?:/u);
+  const privia = researcher.internalTools.find(tool => tool.id === 'privia')!;
+  assert.equal(privia.images.length, 2);
+  assert.ok(privia.images.some(image => image.src.endsWith('privia-workspace-v1.png')));
   for (const id of ['ondam', 'privia']) {
     const card = projects.match(new RegExp(`<article class="internal-tool" id="internal-tool-${id}"[\\s\\S]*?</article>`, 'u'))?.[0] ?? '';
     assert.match(card, /<footer><p>개발 중 · 사내 전용 · 외부 주소 없음<\/p>/u);

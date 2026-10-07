@@ -822,6 +822,13 @@
           "height": 1431,
           "alt": "개발 중인 PRIVIA의 합성데이터 시연과 실제 자료 작업 공간 선택 화면",
           "caption": "개발 화면 · 합성데이터 시연과 실제 자료 처리 작업 공간 선택"
+        },
+        {
+          "src": "/assets/internal-tools/privia-workspace-v1.png",
+          "width": 2142,
+          "height": 1431,
+          "alt": "개발 중인 PRIVIA의 금융 데이터 작업 공간과 CSV·Excel 자료 등록 화면",
+          "caption": "개발 화면 · 자료 등록 → 목적과 처리안 확인 → 결과 확인"
         }
       ],
       "source": "사용자 제공 개발 중 프로젝트 설명·화면 · 2026.10.08"
