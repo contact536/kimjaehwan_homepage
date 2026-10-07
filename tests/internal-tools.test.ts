@@ -26,11 +26,11 @@ test('six internal tools render on Projects only with screenshots and accurate d
   assert.doesNotMatch(analyzer, /href="https?:/u);
   for (const id of ['ondam', 'privia']) {
     const card = projects.match(new RegExp(`<article class="internal-tool" id="internal-tool-${id}"[\\s\\S]*?</article>`, 'u'))?.[0] ?? '';
-    assert.match(card, /class="internal-tool-phase">개발 중<\/span>/u);
-    assert.match(card, /href="\/pages\/company-network\.html#d-testbed-2026"/u);
+    assert.match(card, /<footer><p>개발 중 · 사내 전용 · 외부 주소 없음<\/p>/u);
     assert.match(card, /사내 전용 · 외부 주소 없음/u);
     assert.doesNotMatch(card, /href="https?:/u);
   }
+  assert.match(projects, /class="internal-tools-research-context">ONDAM · PRIVIA[^<]*<a href="\/pages\/company-network\.html#d-testbed-2026"/u);
   for (const tool of researcher.internalTools) {
     assert.ok(projects.includes(tool.name), tool.name);
     assert.ok(projects.includes(tool.koreanName), tool.koreanName);
@@ -49,9 +49,9 @@ test('research assistant explains each internal tool from curated data', () => {
   assert.match(searchResearch('깃허브 코드 분석').answer, /RAG와 온톨로지/u);
   const ondam = searchResearch('온담');
   assert.ok(ondam.sources.some(source => source.url.endsWith('#internal-tool-ondam')));
-  assert.match(ondam.answer, /CSV·Excel.*개발 중/u);
+  assert.match(ondam.answer, /CSV·Excel.*개발하고/u);
   const privia = searchResearch('PRIVIA');
   assert.ok(privia.sources.some(source => source.url.endsWith('#internal-tool-privia')));
-  assert.match(privia.answer, /합성데이터.*개발 중/u);
+  assert.match(privia.answer, /합성데이터.*개발하고/u);
   assert.match(privia.answer, /D-테스트베드/u);
 });
