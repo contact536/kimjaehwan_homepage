@@ -5,9 +5,15 @@ import {applyAuthorLayout} from './author-layout.mjs';
 const esc = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
 const network = profile.companyNetwork;
 if (!network) throw new Error('companyNetwork is missing from seed/researcher.json.');
+const filings = profile.companyCredentials.filter(item => item.id === 'location-based-services-filing');
 
 const facts = items => `<dl>${items.map(item => `<div><dt>${esc(item.label)}</dt><dd>${esc(item.value)}</dd></div>`).join('')}</dl>`;
 const card = (item, type) => `<article class="network-card" id="${esc(item.id)}" tabindex="-1"><p class="network-card-type">${esc(type)}</p><h3>${esc(item.organization)}</h3><p class="network-category">${esc(item.category)}</p><p>${esc(item.description)}</p>${facts(item.facts)}</article>`;
+const companyBasisCards = [
+  ...filings.map(item => card({...item, organization:'SAFEFLOW 위치기반서비스사업 신고'}, 'XAIKOREA · 사업 신고').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 ABOUT에서 확인 ↗</a><br><a class="network-detail-link" href="/pages/projects.html#service-safeflow">SAFEFLOW 서비스 소개 →</a></article>`)),
+  ...network.startupCommunities.map(item => card(item, 'XAIKOREA · 입주기업').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">배민스타트업스퀘어 공식 입주사 소개 ↗</a></article>`)),
+].join('');
+const companyBasisSection = `<section class="network-section" id="company-operating-foundation" aria-labelledby="company-basis-heading"><p class="network-section-label">01 / COMPANY OPERATIONS &amp; STARTUP COMMUNITY</p><h2 id="company-basis-heading">기업 운영 · 입주 기반</h2><p class="network-section-intro">XAIKOREA의 서비스 사업 신고와 공식 입주기업 소개입니다. 자료 확인일: ${esc(network.checkedAt)}</p><div class="network-grid">${companyBasisCards}</div></section>`;
 const collaborationCards = network.businessCollaborations.map(item => card(item, '협업 사업화 지원 협약').replace('</article>', `<a class="network-detail-link" href="${esc(item.projectUrl)}">${esc(item.projectName)} 프로젝트 보기 ↗</a></article>`)).join('');
 const protectionCards = network.technologyProtectionPrograms.map(item => card(item, '기술보호 지원사업')).join('');
 const researchIpCards = network.researchIpPrograms.map(item => card(item, '지식재산 · 데이터 연구').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 공개 요약 보기 ↗</a></article>`)).join('');
@@ -45,6 +51,9 @@ page = page.replace(/<title>[\s\S]*?<\/title>/u, '<title>산학협력 · 회원 
 page = page.replace(/<meta name="description" content="[^"]*">/u, '<meta name="description" content="XAIKOREA의 호반건설 PoC 협약, 기술보호 지원사업, 기술자료 임치와 인재양성·회원 네트워크, 김재환의 학술단체 활동.">');
 if (!page.includes('/css/company-network.css')) page = page.replace('</head>', '<link rel="stylesheet" href="/css/company-network.css"></head>');
 page = page.replace(/(<main[^>]*>)[\s\S]*?(<\/main>)/u, (_, open, close) => open + updatedBody + close);
+page = page.replace('<a href="#business-collaboration">', '<a href="#company-operating-foundation">기업 운영·입주 기반 2건</a><a href="#business-collaboration">')
+  .replace(/0([1-7]) \/ /gu, (_, digit) => `0${Number(digit) + 1} / `)
+  .replace('<section class="network-section" id="business-collaboration"', companyBasisSection + '<section class="network-section" id="business-collaboration"');
 fs.writeFileSync(pageFile, applyAuthorLayout(page, profile));
 
 const homeStart = '<!-- company-network-home:start -->';
@@ -57,6 +66,8 @@ if (!home.includes('/css/company-network.css')) home = home.replace('</head>', '
 home = home.replace(new RegExp(`${homeStart}[\\s\\S]*?${homeEnd}`, 'u'), '');
 const researchIpHome = `<aside class="network-research-note"><h3>지식재산 · 데이터 연구</h3><p>특허 출원·등록 지원 바우처, IP 나래 프로그램 참여 준비와 D-테스트베드 데이터 연구를 통해 연구 기반을 넓혀갑니다.</p><a class="network-detail-link" href="/pages/company-network.html#research-ip-programs">참여 절차 · 관련 기관 · 주요 일정 보기 ↗</a></aside>`;
 home = home.replace('<section class="section" id="contact">', `${homeWithCooperation.replace('<a class="btn btn-outline network-home-link"', researchIpHome + '<a class="btn btn-outline network-home-link"')}<section class="section" id="contact">`);
+const companyBasisHome = `<aside class="network-research-note"><h3>기업 운영 · 입주 기반</h3><p>SAFEFLOW 위치기반서비스사업 신고와 배민스타트업스퀘어 공식 입주기업 소개를 확인할 수 있습니다.</p><a class="network-detail-link" href="/pages/company-network.html#company-operating-foundation">신고 이력 · 입주 소개 보기 →</a></aside>`;
+home = home.replace('<a class="btn btn-outline network-home-link"', companyBasisHome + '<a class="btn btn-outline network-home-link"');
 fs.writeFileSync(homeFile, home);
 
 const pagesFile = 'seed/pages.json';

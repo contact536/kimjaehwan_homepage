@@ -167,7 +167,12 @@
           "duration": "5:02",
           "url": "https://www.xaikorea.ai.kr/work#video-GJcDKtA7Bag"
         }
-      ]
+      ],
+      "recordLink": {
+        "label": "위치기반서비스사업 신고 내용 →",
+        "url": "/pages/company-network.html#location-based-services-filing",
+        "summary": "2026.10.08 · 위치기반서비스사업 신고 완료 · 제1692호"
+      }
     },
     {
       "id": "bizproof",

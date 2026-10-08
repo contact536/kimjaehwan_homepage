@@ -4,13 +4,13 @@ import test from 'node:test';
 import {initializeData} from '../server/database.ts';
 import {openDatabase} from '../server/sqlite.ts';
 
-test('four official company credentials are shown consistently across public and assistant data', () => {
+test('five official company credentials and filings are shown consistently across public and assistant data', () => {
   const home = fs.readFileSync('public/index.html', 'utf8');
   const cv = fs.readFileSync('public/pages/experience.html', 'utf8');
   const sources = fs.readFileSync('public/pages/sources.html', 'utf8');
   const records = JSON.parse(fs.readFileSync('seed/records.json', 'utf8')) as Array<{kind:string;id:string;data:{name?:string;url?:string;certificate?:string}}>;
   const credentials = records.filter(record => record.kind === 'news' && record.id.startsWith('credential-'));
-  assert.equal(credentials.length, 4);
+  assert.equal(credentials.length, 5);
   for (const html of [home, cv]) {
     assert.match(html, /경기도 AI 멤버십 기업 선정/u);
     assert.match(html, /기술보호 선도기업 지정/u);
@@ -18,6 +18,8 @@ test('four official company credentials are shown consistently across public and
     assert.match(html, /제2026151302호|\/documents\/xaikorea-rnd-department-certificate-2026\.pdf/u);
     assert.match(html, /벤처기업 확인/u);
     assert.match(html, /2026\.02\.04-2029\.02\.03/u);
+    assert.match(html, /XAIKOREA SAFEFLOW 위치기반서비스사업 신고/u);
+    assert.match(html, /제1692호/u);
   }
   assert.equal((home.match(/연구개발전담부서 인정/gu) || []).length, 1);
   assert.equal((home.match(/벤처기업 확인/gu) || []).length, 1);
@@ -38,7 +40,7 @@ test('versioned migration refreshes curated records while preserving administrat
     await connection.db.prepare("DELETE FROM settings WHERE key='kim-curated-news-v2'").run();
     await initializeData(connection.db);
     const {results} = await connection.db.prepare("SELECT id,payload FROM records WHERE kind='news' AND (id LIKE 'credential-%' OR id='custom-admin') ORDER BY id").all();
-    assert.equal(results.filter(row => String(row.id).startsWith('credential-')).length, 4);
+    assert.equal(results.filter(row => String(row.id).startsWith('credential-')).length, 5);
     assert.ok(results.some(row => row.id === 'custom-admin'));
     const payload = results.map(row => String(row.payload)).join('\n');
     assert.match(payload, /2026151302/u);
@@ -46,4 +48,22 @@ test('versioned migration refreshes curated records while preserving administrat
   } finally {
     connection.close();
   }
+});
+
+test('filing migration adds only the new record and preserves edited news across repeated startup', async () => {
+  const connection = openDatabase(':memory:');
+  try {
+    await initializeData(connection.db);
+    await connection.db.prepare("DELETE FROM records WHERE kind='news' AND id='credential-5'").run();
+    await connection.db.prepare("DELETE FROM settings WHERE key='kim-company-filing-20261008'").run();
+    await connection.db.prepare("UPDATE records SET name='관리자 수정 이력', payload='{\"name\":\"관리자 수정 이력\"}', revision=7 WHERE kind='news' AND id='credential-1'").run();
+    await initializeData(connection.db);
+    await initializeData(connection.db);
+    const existing=await connection.db.prepare("SELECT name, revision FROM records WHERE kind='news' AND id='credential-1'").first();
+    assert.equal(existing?.name,'관리자 수정 이력');
+    assert.equal(existing?.revision,7);
+    const added=await connection.db.prepare("SELECT payload, revision FROM records WHERE kind='news' AND id='credential-5'").first();
+    assert.equal(added?.revision,1);
+    assert.equal(JSON.parse(String(added?.payload)).certificate,'제1692호');
+  } finally { connection.close(); }
 });

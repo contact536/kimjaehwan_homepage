@@ -16904,5 +16904,16 @@
       "issuer": "벤처기업확인기관 · (사)벤처기업협회",
       "certificate": "제20260204030008호"
     }
+  },
+  {
+    "kind": "news",
+    "id": "credential-5",
+    "data": {
+      "name": "XAIKOREA SAFEFLOW 위치기반서비스사업 신고 — XAIKOREA는 작업자 위치·구역 확인 및 안전관리 서비스 SAFEFLOW를 사업 종류로 하여 위치기반서비스사업 신고를 완료했습니다. 방송미디어통신위원회가 발급한 신고 확인서의 신고번호는 제1692호입니다.",
+      "date": "2026.10.08",
+      "url": "/pages/company-network.html#location-based-services-filing",
+      "issuer": "방송미디어통신위원회",
+      "certificate": "제1692호"
+    }
   }
 ]

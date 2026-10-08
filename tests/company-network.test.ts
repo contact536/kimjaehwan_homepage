@@ -13,7 +13,7 @@ test('company cooperation records render on the home and detailed page', () => {
   assert.equal(network.trainingPartnerships.length, 5);
   assert.equal(network.memberships.length, 3);
   assert.equal(researcher.academicMemberships.length, 3);
-  assert.equal((page.match(/class="network-card"/gu) || []).length, 14);
+  assert.equal((page.match(/class="network-card"/gu) || []).length, 16);
   assert.equal((page.match(/class="network-card network-personal"/gu) || []).length, 3);
   assert.equal((page.match(/class="network-card network-escrow"/gu) || []).length, 1);
   assert.match(home, /Cooperation &amp; network/u);
@@ -81,7 +81,7 @@ test('regenerating the company network retains exactly one researcher sidebar an
     assert.equal(twice, once);
     assert.equal((twice.match(/class="author-panel"/gu) || []).length, 1);
     assert.match(twice, /aria-label="연구자 관련 링크"/u);
-    for (const id of ['patent-voucher-program','ip-narae-2026','d-testbed-2026','hoban-poc-agreement','core-technology-monitoring','technology-leakage-prevention','academic-memberships']) assert.ok(twice.includes(`id="${id}"`));
+    for (const id of ['location-based-services-filing','baemin-startup-square','patent-voucher-program','ip-narae-2026','d-testbed-2026','hoban-poc-agreement','core-technology-monitoring','technology-leakage-prevention','academic-memberships']) assert.ok(twice.includes(`id="${id}"`));
     assert.ok(fs.readFileSync('public/pages/company-network.html','utf8').includes('class="author-panel"'));
   } finally {
     const resolved = path.resolve(directory);

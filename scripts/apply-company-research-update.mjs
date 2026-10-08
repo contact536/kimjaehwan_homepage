@@ -36,6 +36,8 @@ const directions = [
 const cards = directions.map(item => `<article class="company-research-card"><p class="company-research-category">${item.category}</p><h3>${item.title}</h3><p>${item.description}</p><ul>${item.projects.map(project => `<li>${project}</li>`).join('')}</ul></article>`).join('');
 const esc = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[character]);
 const network = profile.companyNetwork;
+const filing = profile.companyCredentials.find(item => item.id === 'location-based-services-filing');
+const companyBasisUpdate = `<aside class="research-service-update" aria-labelledby="research-company-basis"><p class="kim-overline">COMPANY OPERATIONS &amp; STARTUP COMMUNITY</p><h3 id="research-company-basis">기업 운영 · 입주 기반</h3><p>SAFEFLOW의 작업자 위치·구역 확인 및 안전관리 서비스에 대한 위치기반서비스사업 신고를 완료했습니다. 배민스타트업스퀘어 공식 입주사 소개에는 핀테크 분야의 세무 증빙 AI 워크프로세스로 XAIKOREA가 등재되어 있습니다.</p><nav aria-label="회사 운영 및 입주 이력"><a href="/pages/company-network.html#${esc(filing.id)}">위치기반서비스사업 신고 내용 →</a><a href="/pages/company-network.html#baemin-startup-square">배민스타트업스퀘어 입주 소개 →</a></nav></aside>`;
 const decivox = serviceDirectory.services.find(service => service.id === 'decivox');
 const serviceUpdate = `<aside class="research-service-update" aria-labelledby="research-service-update-heading"><p class="kim-overline">RESEARCH INTO PRACTICE</p><h3 id="research-service-update-heading">DECIVOX · 보안형 AI 회의록</h3><p>${esc(decivox.description)}</p><nav aria-label="연구 관련 서비스"><a href="/pages/projects.html#service-decivox">DECIVOX 기능·화면 보기 →</a><a href="/pages/projects.html#company-services">운영·공개 서비스 ${serviceDirectory.services.length}개와 시연 영상 보기 →</a></nav></aside>`;
 const developmentUpdates = serviceDirectory.developmentProjects.map(project => `<aside class="research-service-update" aria-labelledby="research-${esc(project.id)}"><p class="kim-overline">IN DEVELOPMENT</p><h3 id="research-${esc(project.id)}">${esc(project.title)}</h3><p>${esc(project.summary)}</p><nav aria-label="개발 중인 세무·회계 AI 프로젝트"><a href="/pages/projects.html#${esc(project.id)}">개발 버전 소개·화면 보기 →</a></nav></aside>`).join('');
@@ -57,6 +59,9 @@ html = html.replace('김재환 XAIKOREA 대표이사 겸 AI 연구원의 개인 
 const closing = html.lastIndexOf('</div></main>');
 if (closing < 0) throw new Error('Research page closing marker was not found');
 const updatedSection = section.replace('COMPANY RESEARCH UPDATE · 2026.09.24', `COMPANY RESEARCH UPDATE · ${serviceDirectory.checkedAt}`).replace('자료 확인일: 2026.09.24', `자료 확인일: ${serviceDirectory.checkedAt}`).replace('<section class="company-research-milestones"', `${serviceUpdate}${developmentUpdates}${cooperation}<section class="company-research-milestones"`);
-html = html.slice(0, closing) + updatedSection + html.slice(closing);
+const aboutSection = updatedSection
+  .replace(`${developmentUpdates}${cooperation}`, `${developmentUpdates}${companyBasisUpdate}${cooperation}`)
+  .replace('<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol>', `<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol><li><time datetime="2026-10-08">2026.10.08</time><a href="${esc(filing.url)}">SAFEFLOW 위치기반서비스사업 신고 확인서 발급 ↗</a></li>`);
+html = html.slice(0, closing) + aboutSection + html.slice(closing);
 fs.writeFileSync(file, html);
 console.log('Applied the official XAIKOREA research and technology update.');

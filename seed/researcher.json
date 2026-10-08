@@ -128,6 +128,38 @@
       "url": "/documents/xaikorea-venture-enterprise-certificate-2026.pdf",
       "linkLabel": "확인서 보기",
       "source": "벤처기업확인서"
+    },
+    {
+      "id": "location-based-services-filing",
+      "date": "2026.10.08",
+      "title": "XAIKOREA SAFEFLOW 위치기반서비스사업 신고",
+      "description": "XAIKOREA는 작업자 위치·구역 확인 및 안전관리 서비스 SAFEFLOW를 사업 종류로 하여 위치기반서비스사업 신고를 완료했습니다. 방송미디어통신위원회가 발급한 신고 확인서의 신고번호는 제1692호입니다.",
+      "status": "신고 완료",
+      "issuer": "방송미디어통신위원회",
+      "certificate": "제1692호",
+      "url": "/pages/company-network.html#location-based-services-filing",
+      "linkLabel": "신고 내용 보기",
+      "source": "XAIKOREA ABOUT 공개 신고 이력",
+      "sourceUrl": "https://www.xaikorea.ai.kr/about#company-credentials",
+      "category": "위치기반서비스사업 신고",
+      "facts": [
+        {
+          "label": "사업 종류",
+          "value": "SAFEFLOW · 작업자 위치·구역 확인 및 안전관리 서비스"
+        },
+        {
+          "label": "발급기관",
+          "value": "방송미디어통신위원회"
+        },
+        {
+          "label": "신고번호",
+          "value": "제1692호"
+        },
+        {
+          "label": "발급일",
+          "value": "2026.10.08"
+        }
+      ]
     }
   ],
   "research": [
@@ -275,6 +307,38 @@
     }
   ],
   "companyNetwork": {
+    "checkedAt": "2026.10.08",
+    "startupCommunities": [
+      {
+        "id": "baemin-startup-square",
+        "organization": "배민스타트업스퀘어",
+        "category": "공식 입주 스타트업 소개 · 핀테크",
+        "description": "XAIKOREA가 우아한형제들의 배민스타트업스퀘어 공식 입주 스타트업 소개에 등재되어 있습니다. 핀테크 분야에서 외식업 사장님의 세무 증빙 업무를 지원하는 근거 기반 AI 워크프로세스를 소개합니다.",
+        "sourceUrl": "https://startup.woowahan.com/about/startups/0/20",
+        "facts": [
+          {
+            "label": "운영사",
+            "value": "우아한형제들"
+          },
+          {
+            "label": "소개 기업",
+            "value": "엑스에이아이코리아"
+          },
+          {
+            "label": "공식 소개 분야",
+            "value": "핀테크"
+          },
+          {
+            "label": "주요 서비스",
+            "value": "외식업 사장님을 위한 근거 기반 세무 증빙 AI 워크프로세스"
+          },
+          {
+            "label": "자료 확인일",
+            "value": "2026.10.08"
+          }
+        ]
+      }
+    ],
     "researchIpPrograms": [
       {
         "id": "patent-voucher-program",
