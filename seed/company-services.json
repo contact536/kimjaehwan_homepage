@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026.10.08",
+  "checkedAt": "2026.10.12",
   "sourceUrl": "https://www.xaikorea.ai.kr/work#demos",
   "services": [
     {
@@ -394,6 +394,74 @@
               "height": 957,
               "alt": "TAXiA Flow의 검토 질문과 근거 자료 및 검토 이력 화면",
               "caption": "Flow 리서치 · 개발 화면"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taxia-one",
+      "title": "TAXiA-ONE",
+      "summary": "음식점 사장님을 위한 웹·안드로이드 프로그램입니다. 매출과 비용 자료를 한곳에 모아 수입·지출과 확인할 거래를 살펴보고, 부가세 신고 준비로 이어지는 업무 공간을 개발하고 있습니다.",
+      "sourceUrl": "https://www.xaikorea.ai.kr/work#service-taxia-one",
+      "notice": "가상 음식점 자료를 사용하는 개발 버전입니다. 실제 금융정보 연결과 세무신고는 제공되지 않습니다.",
+      "versions": [
+        {
+          "id": "taxia-one",
+          "name": "TAXiA-ONE",
+          "category": "음식점 경영·세금 신고 준비",
+          "status": "개발 중",
+          "design": "웹·안드로이드 · 매출·비용 확인과 신고 준비",
+          "description": "흩어진 매출·비용 자료를 모아 가게의 수입과 지출, 확인이 필요한 거래를 살펴보고 부가세 신고 준비 현황을 관리하는 음식점 사장님용 업무 공간입니다.",
+          "features": [
+            "매출·비용 통합현황",
+            "확인할 거래 점검",
+            "부가세 신고 준비"
+          ],
+          "access": "초대받은 발급 계정으로 사전 체험 · 안드로이드 앱은 별도 안내",
+          "url": "https://one.taxia.ai.kr/login",
+          "host": "one.taxia.ai.kr",
+          "action": "개발 버전 보기",
+          "logo": "/assets/company-services/taxia-one-logo-20261011.png",
+          "videos": [],
+          "screens": [
+            {
+              "src": "/assets/company-services/taxia-one-web-login-20261011.png",
+              "width": 1440,
+              "height": 1050,
+              "alt": "TAXiA-ONE 웹 개발 버전의 초대 계정 로그인 화면",
+              "caption": "웹 로그인 · 개발 화면"
+            },
+            {
+              "src": "/assets/company-services/taxia-one-web-dashboard-20261011.png",
+              "width": 1440,
+              "height": 1334,
+              "alt": "가상 음식점 자료로 매출·비용과 신고 준비 현황을 보여주는 TAXiA-ONE 웹 화면",
+              "caption": "웹 통합현황 · 가상 음식점 자료"
+            },
+            {
+              "src": "/assets/company-services/taxia-one-android-welcome-20261011.png",
+              "width": 1080,
+              "height": 2400,
+              "alt": "TAXiA-ONE 안드로이드 개발 버전의 시작 화면",
+              "caption": "안드로이드 시작 · 개발 화면",
+              "presentation": "portrait"
+            },
+            {
+              "src": "/assets/company-services/taxia-one-android-login-20261011.png",
+              "width": 1080,
+              "height": 2400,
+              "alt": "TAXiA-ONE 안드로이드 개발 버전의 로그인 화면",
+              "caption": "안드로이드 로그인 · 개발 화면",
+              "presentation": "portrait"
+            },
+            {
+              "src": "/assets/company-services/taxia-one-android-dashboard-20261011.png",
+              "width": 1080,
+              "height": 2400,
+              "alt": "가상 음식점의 매출·비용과 신고 준비 현황을 보여주는 TAXiA-ONE 안드로이드 홈",
+              "caption": "안드로이드 홈 · 가상 음식점 자료",
+              "presentation": "portrait"
             }
           ]
         }

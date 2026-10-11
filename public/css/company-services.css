@@ -40,6 +40,7 @@
 .company-service-previews{margin-top:12px}
 .company-service-card:nth-child(even) .internal-tool-panel{left:auto;right:0}
 .company-service-screens .internal-tool-gallery{grid-template-columns:minmax(0,1fr)}
+.company-service-screens .company-service-screen--portrait{aspect-ratio:9/20;width:min(100%,280px);margin-inline:auto}
 /* Show the application canvas without the window title bar and Windows taskbar. */
 .company-service-screens .company-service-screen--desktop{aspect-ratio:2560/1334}
 .company-service-screens .company-service-screen--desktop img{position:absolute;top:-2.55%;left:0;width:100%;height:auto}

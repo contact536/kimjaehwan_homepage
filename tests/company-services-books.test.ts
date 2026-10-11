@@ -9,7 +9,7 @@ test('all live company services are listed with official links and local logos',
   const services = ['NH Open Business Hub', 'SHAPFINCH', '모두의 하동', '공록', 'BrandPilot', 'MARKSCOPE', 'SAFEFLOW', 'BizProof', 'Luma Inspect', 'DocMatch', 'TAXiA OPS', 'DECIVOX'];
   const operating = html.match(/<section class="company-services" id="company-services"[\s\S]*?<\/section>/u)![0];
   assert.equal((operating.match(/class="company-service-card"/gu) || []).length, 12);
-  assert.equal((html.match(/class="company-service-card"/gu) || []).length, 14);
+  assert.equal((html.match(/class="company-service-card"/gu) || []).length, 15);
   for (const service of services) assert.ok(html.includes(`>${service}<`), service);
   const logos = [...html.matchAll(/src="(\/assets\/company-services\/[^"]+-logo-(?:v1\.webp|20260926\.svg))"/gu)];
   assert.equal(logos.length, 12);
@@ -30,7 +30,7 @@ test('all live company services are listed with official links and local logos',
   assert.match(development, /같은 세무·회계 AI 워크스페이스 프로젝트/u);
   assert.match(development, /서로 다른 디자인/u);
   assert.doesNotMatch(development, /서비스 운영 중/u);
-  assert.equal(directory.developmentProjects.length, 1);
+  assert.equal(directory.developmentProjects.length, 2);
   assert.equal(directory.developmentProjects[0].versions.length, 2);
   for (const version of directory.developmentProjects[0].versions) {
     const card = development.match(new RegExp(`<article class="company-service-card" id="service-${version.id}">[\\s\\S]*?</article>`, 'u'))![0];
@@ -46,6 +46,24 @@ test('all live company services are listed with official links and local logos',
     assert.ok(answer.sources.some(source=>source.url.endsWith('#service-'+version.id)));
   }
   assert.match(research, /href="\/pages\/projects\.html#taxia-desk-flow"/u);
+  const one = directory.developmentProjects.find(project => project.id === 'taxia-one')!;
+  const oneSection = html.match(/<section class="company-services company-development" id="taxia-one"[\s\S]*?<\/section>/u)![0];
+  assert.equal(one.versions.length, 1);
+  assert.equal((oneSection.match(/class="company-service-card"/gu) ?? []).length, 1);
+  assert.match(oneSection, /개발 중/u);
+  assert.match(oneSection, /초대받은 발급 계정으로 사전 체험/u);
+  assert.match(oneSection, /https:\/\/one\.taxia\.ai\.kr\/login/u);
+  assert.ok(oneSection.includes(one.notice!));
+  assert.doesNotMatch(oneSection, /서비스 운영 중|서로 다른 디자인/u);
+  assert.equal(one.versions[0].screens.length, 5);
+  assert.equal((oneSection.match(/company-service-screen--portrait/gu) ?? []).length, 3);
+  assert.ok(fs.existsSync(`public${one.versions[0].logo}`));
+  for (const screen of one.versions[0].screens) assert.ok(fs.existsSync(`public${screen.src}`));
+  assert.match(research, /href="\/pages\/projects\.html#taxia-one"/u);
+  assert.ok(research.includes(one.notice!));
+  const oneAnswer = searchResearch('TAXiA-ONE');
+  assert.ok(oneAnswer.sources.some(source => source.url.endsWith('#service-taxia-one')));
+  assert.ok(oneAnswer.answer.includes(one.notice!));
 });
 
 test('Agent Harness Engineering is presented as a book with cover and verified metadata', () => {
