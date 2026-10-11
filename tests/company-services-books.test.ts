@@ -53,17 +53,17 @@ test('all live company services are listed with official links and local logos',
   assert.match(oneSection, /개발 중/u);
   assert.match(oneSection, /초대받은 발급 계정으로 사전 체험/u);
   assert.match(oneSection, /https:\/\/one\.taxia\.ai\.kr\/login/u);
-  assert.ok(oneSection.includes(one.notice!));
+  assert.doesNotMatch(oneSection, /가상 음식점 자료를 사용하는 개발 버전|실제 금융정보 연결과 세무신고|자료 확인일: [^<]* ·\s*<\/p>/u);
   assert.doesNotMatch(oneSection, /서비스 운영 중|서로 다른 디자인/u);
   assert.equal(one.versions[0].screens.length, 5);
   assert.equal((oneSection.match(/company-service-screen--portrait/gu) ?? []).length, 3);
   assert.ok(fs.existsSync(`public${one.versions[0].logo}`));
   for (const screen of one.versions[0].screens) assert.ok(fs.existsSync(`public${screen.src}`));
   assert.match(research, /href="\/pages\/projects\.html#taxia-one"/u);
-  assert.ok(research.includes(one.notice!));
+  assert.doesNotMatch(research, /가상 음식점 자료를 사용하는 개발 버전|실제 금융정보 연결과 세무신고/u);
   const oneAnswer = searchResearch('TAXiA-ONE');
   assert.ok(oneAnswer.sources.some(source => source.url.endsWith('#service-taxia-one')));
-  assert.ok(oneAnswer.answer.includes(one.notice!));
+  assert.doesNotMatch(oneAnswer.answer, /가상 음식점 자료를 사용하는 개발 버전|실제 금융정보 연결과 세무신고/u);
 });
 
 test('Agent Harness Engineering is presented as a book with cover and verified metadata', () => {
