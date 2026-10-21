@@ -16915,5 +16915,16 @@
       "issuer": "방송미디어통신위원회",
       "certificate": "제1692호"
     }
+  },
+  {
+    "kind": "news",
+    "id": "credential-6",
+    "data": {
+      "name": "XAIKOREA 소프트웨어사업자 일반현황 관리 확인 — XAIKOREA가 한국인공지능소프트웨어산업협회로부터 소프트웨어사업자 일반현황 관리확인서를 발급받았습니다. 컴퓨터관련 서비스, 패키지소프트웨어 개발·공급, 디지털콘텐츠 개발과 데이터베이스 제작·검색서비스 사업분야가 기재되어 있습니다.",
+      "date": "2026.10.21",
+      "url": "/pages/company-network.html#software-business-confirmation",
+      "issuer": "한국인공지능소프트웨어산업협회",
+      "certificate": "B26-341120-001"
+    }
   }
 ]

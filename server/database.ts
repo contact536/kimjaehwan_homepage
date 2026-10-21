@@ -19,7 +19,7 @@ export async function initializeData(db: Database) {
   if (
     await db.prepare("SELECT value FROM settings WHERE key = 'seed-v1'").first()
   )
-    { await initializePersonalData(db); await initializeCareerData(db); await initializeCredentialData(db); await initializeCuratedNewsV2(db); await initializeCuratedNewsV3(db); await initializeCuratedNewsV4(db); await initializeCompanyFiling(db); await initializeResearch(db); return; }
+    { await initializePersonalData(db); await initializeCareerData(db); await initializeCredentialData(db); await initializeCuratedNewsV2(db); await initializeCuratedNewsV3(db); await initializeCuratedNewsV4(db); await initializeCompanyFiling(db); await initializeSoftwareBusinessConfirmation(db); await initializeResearch(db); return; }
   const now = new Date().toISOString();
   for (let i = 0; i < seed.length; i += 40) {
     await db.batch(
@@ -52,7 +52,18 @@ export async function initializeData(db: Database) {
   await initializeCuratedNewsV3(db);
   await initializeCuratedNewsV4(db);
   await initializeCompanyFiling(db);
+  await initializeSoftwareBusinessConfirmation(db);
   await initializeResearch(db);
+}
+async function initializeSoftwareBusinessConfirmation(db: Database) {
+  if (await db.prepare("SELECT value FROM settings WHERE key='kim-software-business-20261021'").first()) return;
+  const confirmation = seed.find(row => row.kind === 'news' && row.id === 'credential-6');
+  if (!confirmation) throw new Error('Software business confirmation record is missing');
+  await db.batch([
+    db.prepare("INSERT INTO records(kind,id,name,payload,revision,updated_at) VALUES(?,?,?,?,1,?) ON CONFLICT(kind,id) DO NOTHING")
+      .bind(confirmation.kind,confirmation.id,confirmation.data.name,JSON.stringify(confirmation.data),new Date().toISOString()),
+    db.prepare("INSERT INTO settings(key,value) VALUES('kim-software-business-20261021','complete') ON CONFLICT(key) DO NOTHING"),
+  ]);
 }
 async function initializeCompanyFiling(db: Database) {
   if (await db.prepare("SELECT value FROM settings WHERE key='kim-company-filing-20261008'").first()) return;

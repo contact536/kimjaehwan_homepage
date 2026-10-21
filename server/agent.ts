@@ -19,7 +19,7 @@ const documents:Source[]=[
  ...(researcher.career??[]).map(r=>({title:r.title,url:r.detailUrl||r.url||'/pages/experience.html#cv-career',text:[r.date,r.description,r.status,r.email].filter(Boolean).join(' ')})),
  ...(researcher.career??[]).flatMap(r=>(r.pressCoverage?.articles??[]).map(article=>({title:article.title,url:article.url,text:['행사 관련 언론보도',article.publisher,'보도일',article.publishedAt,r.pressCoverage?.summary,article.summary].join(' ')}))),
  ...(researcher.academicMemberships??[]).map(r=>({title:`${r.organization} ${r.category}`,url:'/pages/company-network.html#'+r.id,text:[r.date,r.description,r.category,r.status,r.source,'김재환 개인 학술단체 회원자격'].filter(Boolean).join(' ')})),
- ...(researcher.companyCredentials??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-company',text:[r.date,r.description,r.status,r.issuer,r.certificate].filter(Boolean).join(' ')})),
+ ...(researcher.companyCredentials??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-company',text:[r.date,r.description,r.status,r.issuer,r.certificate,...(r.facts??[]).flatMap(f=>[f.label,f.value])].filter(Boolean).join(' ')})),
  ...researcher.research.map(r=>({title:r.title,url:'/pages/research.html#'+r.id,text:r.subtitle+' '+r.description+' '+r.tags.join(' ')})),
  ...activityData.activities.map(item=>({title:item.title,url:'/pages/research.html#activity-'+item.id,text:['김재환 학술대회·포럼 참가활동',item.participation,'개최일',item.date.replaceAll('-','.'),'장소',item.venue,item.category,item.summary,...item.highlights].join(' ')})),
  ...activityData.activities.flatMap(item=>(item.articles??[]).map(article=>({title:article.title,url:article.url,text:[item.title,'행사 관련 보도',article.publisher,'보도일',article.publishedAt,article.summary].join(' ')}))),
