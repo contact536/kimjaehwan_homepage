@@ -16926,5 +16926,15 @@
       "issuer": "한국인공지능소프트웨어산업협회",
       "certificate": "B26-341120-001"
     }
+  },
+  {
+    "kind": "news",
+    "id": "credential-7",
+    "data": {
+      "name": "XAIKOREA 나라장터 경쟁입찰참가자격 등록 갱신 — XAIKOREA는 나라장터 물품·용역 분야의 경쟁입찰 참가자로 등록되어 있으며, 2026년 10월 23일 등록 정보를 갱신했습니다. 최초 등록일은 2026년 5월 11일이며, 인공지능(AI)소프트웨어 공급과 패키지소프트웨어 개발·공급 업종이 포함됩니다.",
+      "date": "2026.10.23",
+      "url": "/pages/company-network.html#public-procurement-registration",
+      "issuer": "서울지방조달청"
+    }
   }
 ]

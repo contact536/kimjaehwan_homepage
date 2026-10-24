@@ -204,6 +204,45 @@
           "value": "컴퓨터관련 서비스사업 · 패키지소프트웨어 개발·공급사업 · 디지털콘텐츠 개발서비스사업 · 데이터베이스 제작 및 검색서비스사업"
         }
       ]
+    },
+    {
+      "id": "public-procurement-registration",
+      "date": "2026.10.23",
+      "title": "XAIKOREA 나라장터 경쟁입찰참가자격 등록 갱신",
+      "description": "XAIKOREA는 나라장터 물품·용역 분야의 경쟁입찰 참가자로 등록되어 있으며, 2026년 10월 23일 등록 정보를 갱신했습니다. 최초 등록일은 2026년 5월 11일이며, 인공지능(AI)소프트웨어 공급과 패키지소프트웨어 개발·공급 업종이 포함됩니다.",
+      "status": "등록 갱신",
+      "issuer": "서울지방조달청",
+      "url": "/pages/company-network.html#public-procurement-registration",
+      "linkLabel": "등록 내용 보기",
+      "source": "XAIKOREA ABOUT 공개 공공조달 등록 이력",
+      "sourceUrl": "https://www.xaikorea.ai.kr/about#company-credentials",
+      "category": "물품·용역 분야 · 공공조달",
+      "facts": [
+        {
+          "label": "발급기관",
+          "value": "서울지방조달청"
+        },
+        {
+          "label": "등록 분야",
+          "value": "물품 · 용역"
+        },
+        {
+          "label": "갱신일",
+          "value": "2026.10.23"
+        },
+        {
+          "label": "최초 등록일",
+          "value": "2026.05.11"
+        },
+        {
+          "label": "등록 물품",
+          "value": "인공지능(AI)소프트웨어 · 4323269801"
+        },
+        {
+          "label": "등록 업종",
+          "value": "소프트웨어사업자(패키지소프트웨어개발·공급사업) · 1426 / 기타자유업종 · 9999"
+        }
+      ]
     }
   ],
   "research": [
@@ -351,7 +390,7 @@
     }
   ],
   "companyNetwork": {
-    "checkedAt": "2026.10.21",
+    "checkedAt": "2026.10.25",
     "startupCommunities": [
       {
         "id": "baemin-startup-square",
@@ -444,9 +483,13 @@
         "title": "D-테스트베드 데이터 연구 참여 계약 완료",
         "organization": "D-테스트베드 참여",
         "category": "2026년 하반기 데이터 연구",
-        "description": "XAIKOREA는 D-테스트베드 사업의 가명정보 처리위탁 계약과 이용자 보안서약을 완료했습니다. 지정된 분석환경에서 승인된 연구 목적으로 데이터를 활용하며, 재식별을 금지하고 분석 결과물은 반출 적정성 심의를 거칩니다.",
+        "description": "XAIKOREA는 SHAPFINCH의 D-테스트베드 참여를 위한 가명정보 처리위탁 계약과 이용자 보안서약을 완료했습니다. 코스콤이 데이터 보관·관리와 분석환경 운영을 담당하며, 승인된 연구 목적으로 데이터를 활용하고 재식별을 금지합니다. 분석 결과물은 반출 적정성 심의를 거칩니다.",
         "sourceUrl": "https://www.xaikorea.ai.kr/about#d-testbed-2026",
         "facts": [
+          {
+            "label": "관련 서비스",
+            "value": "SHAPFINCH"
+          },
           {
             "label": "수탁기관",
             "value": "코스콤"
@@ -462,6 +505,37 @@
           {
             "label": "데이터 원칙",
             "value": "지정 분석환경 · 승인된 연구 목적 · 재식별 금지 · 분석 결과물 반출 심의"
+          }
+        ]
+      },
+      {
+        "id": "credit-ai-learning-platform",
+        "date": "2026.10.13",
+        "title": "SHAPFINCH 한국신용정보원 AI 러닝 플랫폼 이용계약·보안서약",
+        "organization": "한국신용정보원 AI 러닝 플랫폼",
+        "category": "SHAPFINCH 금융데이터 연구",
+        "description": "XAIKOREA는 한국신용정보원 AI 러닝 플랫폼 이용계약·보안서약을 바탕으로 SHAPFINCH의 금융 분석 고도화 연구를 추진합니다. 금융·보험정보의 활용 가능성과 예측 모델의 설명가능성·안정성을 검증하며, 폐쇄형 원격분석환경과 승인된 결과물의 반출 절차를 따릅니다.",
+        "sourceUrl": "https://www.xaikorea.ai.kr/about#credit-ai-learning-platform",
+        "facts": [
+          {
+            "label": "플랫폼 제공기관",
+            "value": "한국신용정보원"
+          },
+          {
+            "label": "관련 서비스",
+            "value": "SHAPFINCH"
+          },
+          {
+            "label": "계약·서약일",
+            "value": "2026.10.13"
+          },
+          {
+            "label": "연구 분야",
+            "value": "금융수요 분석 · 설명가능한 예측 모델"
+          },
+          {
+            "label": "데이터 원칙",
+            "value": "승인된 연구 범위 · 재식별 금지 · 결과물 반출 심사"
           }
         ]
       }

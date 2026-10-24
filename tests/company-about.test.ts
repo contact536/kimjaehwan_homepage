@@ -16,7 +16,7 @@ test('ABOUT additions retain company attribution, official sources, and dated fi
  assert.match(software,/조달청 입찰참가용/u);
  for(const field of ['컴퓨터관련 서비스사업','패키지소프트웨어 개발·공급사업','디지털콘텐츠 개발서비스사업','데이터베이스 제작 및 검색서비스사업'])assert.ok(software.includes(field));
  assert.match(software,/href="https:\/\/www\.xaikorea\.ai\.kr\/about#company-credentials"/u);
- assert.match(network,/기업 운영·입주 기반 3건/u);
+ assert.match(network,/기업 운영·입주 기반 4건/u);
  assert.match(filing,/XAIKOREA · 사업 신고/u);
  assert.match(filing,/방송미디어통신위원회/u);
  assert.match(filing,/신고번호<\/dt><dd>제1692호/u);

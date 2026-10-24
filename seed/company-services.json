@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026.10.12",
+  "checkedAt": "2026.10.25",
   "sourceUrl": "https://www.xaikorea.ai.kr/work#demos",
   "services": [
     {
@@ -48,7 +48,12 @@
           "duration": "2:24",
           "url": "https://www.xaikorea.ai.kr/work#video-BUaoHwYqNgk"
         }
-      ]
+      ],
+      "recordLink": {
+        "summary": "D-테스트베드와 한국신용정보원 AI 러닝 플랫폼을 활용해 금융 분석과 예측 모델의 설명가능성·안정성을 연구합니다.",
+        "url": "/pages/research.html#research-shapfinch-data",
+        "label": "SHAPFINCH 데이터 연구 보기 →"
+      }
     },
     {
       "id": "hadong",

@@ -7,18 +7,20 @@ const network = profile.companyNetwork;
 if (!network) throw new Error('companyNetwork is missing from seed/researcher.json.');
 const filings = profile.companyCredentials.filter(item => item.id === 'location-based-services-filing');
 const businessConfirmations = profile.companyCredentials.filter(item => item.id === 'software-business-confirmation');
+const procurementRegistrations = profile.companyCredentials.filter(item => item.id === 'public-procurement-registration');
 
 const facts = items => `<dl>${items.map(item => `<div><dt>${esc(item.label)}</dt><dd>${esc(item.value)}</dd></div>`).join('')}</dl>`;
 const card = (item, type) => `<article class="network-card" id="${esc(item.id)}" tabindex="-1"><p class="network-card-type">${esc(type)}</p><h3>${esc(item.organization)}</h3><p class="network-category">${esc(item.category)}</p><p>${esc(item.description)}</p>${facts(item.facts)}</article>`;
 const companyBasisCards = [
+  ...procurementRegistrations.map(item => card({...item, organization:'나라장터 경쟁입찰참가자격 등록'}, 'XAIKOREA · 공공조달 등록').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 ABOUT에서 확인 ↗</a></article>`)),
   ...businessConfirmations.map(item => card({...item, organization:item.title.replace(/^XAIKOREA /u, '')}, 'XAIKOREA · 사업자 확인').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 ABOUT에서 확인 ↗</a></article>`)),
   ...filings.map(item => card({...item, organization:'SAFEFLOW 위치기반서비스사업 신고'}, 'XAIKOREA · 사업 신고').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 ABOUT에서 확인 ↗</a><br><a class="network-detail-link" href="/pages/projects.html#service-safeflow">SAFEFLOW 서비스 소개 →</a></article>`)),
   ...network.startupCommunities.map(item => card(item, 'XAIKOREA · 입주기업').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">배민스타트업스퀘어 공식 입주사 소개 ↗</a></article>`)),
 ].join('');
-const companyBasisSection = `<section class="network-section" id="company-operating-foundation" aria-labelledby="company-basis-heading"><p class="network-section-label">01 / COMPANY OPERATIONS &amp; STARTUP COMMUNITY</p><h2 id="company-basis-heading">기업 운영 · 입주 기반</h2><p class="network-section-intro">XAIKOREA의 소프트웨어사업자 확인, 서비스 사업 신고와 공식 입주기업 소개입니다. 자료 확인일: ${esc(network.checkedAt)}</p><div class="network-grid">${companyBasisCards}</div></section>`;
+const companyBasisSection = `<section class="network-section" id="company-operating-foundation" aria-labelledby="company-basis-heading"><p class="network-section-label">01 / COMPANY OPERATIONS &amp; STARTUP COMMUNITY</p><h2 id="company-basis-heading">기업 운영 · 입주 기반</h2><p class="network-section-intro">XAIKOREA의 공공조달 등록, 소프트웨어사업자 확인, 서비스 사업 신고와 공식 입주기업 소개입니다. 자료 확인일: ${esc(network.checkedAt)}</p><div class="network-grid">${companyBasisCards}</div></section>`;
 const collaborationCards = network.businessCollaborations.map(item => card(item, '협업 사업화 지원 협약').replace('</article>', `<a class="network-detail-link" href="${esc(item.projectUrl)}">${esc(item.projectName)} 프로젝트 보기 ↗</a></article>`)).join('');
 const protectionCards = network.technologyProtectionPrograms.map(item => card(item, '기술보호 지원사업')).join('');
-const researchIpCards = network.researchIpPrograms.map(item => card(item, '지식재산 · 데이터 연구').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 공개 요약 보기 ↗</a></article>`)).join('');
+const researchIpCards = network.researchIpPrograms.map(item => card(item, '지식재산 · 데이터 연구').replace('</article>', `<a class="network-detail-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 공개 요약 보기 ↗</a>${item.facts.some(fact => fact.label === '관련 서비스' && fact.value === 'SHAPFINCH') ? '<br><a class="network-detail-link" href="/pages/projects.html#service-shapfinch">SHAPFINCH 서비스 소개 →</a>' : ''}</article>`)).join('');
 const trainingCards = network.trainingPartnerships.map(item => card(item, '인재양성 협약')).join('');
 const membershipCards = network.memberships.map(item => card(item, '회원자격')).join('');
 const academicMembershipCards = [...(profile.academicMemberships ?? [])]
@@ -45,7 +47,7 @@ const updatedBody = body
   .replace('기업 협업, 기술보호 지원사업,', '기업 협업, 지식재산·데이터 연구, 기술보호 지원사업,')
   .replace('<a href="#technology-protection-programs">', `<a href="#research-ip-programs">지식재산·데이터 연구 ${network.researchIpPrograms.length}건</a><a href="#technology-protection-programs">`)
   .replace(/0([2-6]) \/ /gu, (_, digit) => `0${Number(digit) + 1} / `)
-  .replace('<section class="network-section" id="technology-protection-programs"', `<section class="network-section" id="research-ip-programs" aria-labelledby="research-ip-heading"><p class="network-section-label">02 / INTELLECTUAL PROPERTY &amp; DATA RESEARCH</p><h2 id="research-ip-heading">지식재산 · 데이터 연구</h2><p class="network-section-intro">지식재산 확보와 안전한 데이터 연구를 위한 회사의 지원사업 참여 절차·협약을 소개합니다.</p><div class="network-grid">${researchIpCards}</div></section><section class="network-section" id="technology-protection-programs"`);
+  .replace('<section class="network-section" id="technology-protection-programs"', `<section class="network-section" id="research-ip-programs" aria-labelledby="research-ip-heading"><p class="network-section-label">02 / INTELLECTUAL PROPERTY &amp; DATA RESEARCH</p><h2 id="research-ip-heading">지식재산 · 데이터 연구</h2><p class="network-section-intro">지식재산 확보와 안전한 데이터 연구를 위한 회사의 지원사업 참여·협약과 분석 플랫폼 이용계약을 소개합니다.</p><div class="network-grid">${researchIpCards}</div></section><section class="network-section" id="technology-protection-programs"`);
 
 const pageFile = 'public/pages/company-network.html';
 let page = fs.readFileSync('public/pages/sources.html', 'utf8');
@@ -53,7 +55,7 @@ page = page.replace(/<title>[\s\S]*?<\/title>/u, '<title>산학협력 · 회원 
 page = page.replace(/<meta name="description" content="[^"]*">/u, '<meta name="description" content="XAIKOREA의 호반건설 PoC 협약, 기술보호 지원사업, 기술자료 임치와 인재양성·회원 네트워크, 김재환의 학술단체 활동.">');
 if (!page.includes('/css/company-network.css')) page = page.replace('</head>', '<link rel="stylesheet" href="/css/company-network.css"></head>');
 page = page.replace(/(<main[^>]*>)[\s\S]*?(<\/main>)/u, (_, open, close) => open + updatedBody + close);
-page = page.replace('<a href="#business-collaboration">', `<a href="#company-operating-foundation">기업 운영·입주 기반 ${filings.length + businessConfirmations.length + network.startupCommunities.length}건</a><a href="#business-collaboration">`)
+page = page.replace('<a href="#business-collaboration">', `<a href="#company-operating-foundation">기업 운영·입주 기반 ${filings.length + businessConfirmations.length + procurementRegistrations.length + network.startupCommunities.length}건</a><a href="#business-collaboration">`)
   .replace(/0([1-7]) \/ /gu, (_, digit) => `0${Number(digit) + 1} / `)
   .replace('<section class="network-section" id="business-collaboration"', companyBasisSection + '<section class="network-section" id="business-collaboration"');
 fs.writeFileSync(pageFile, applyAuthorLayout(page, profile));
@@ -66,9 +68,9 @@ const homeFile = 'public/index.html';
 let home = fs.readFileSync(homeFile, 'utf8');
 if (!home.includes('/css/company-network.css')) home = home.replace('</head>', '<link rel="stylesheet" href="/css/company-network.css"></head>');
 home = home.replace(new RegExp(`${homeStart}[\\s\\S]*?${homeEnd}`, 'u'), '');
-const researchIpHome = `<aside class="network-research-note"><h3>지식재산 · 데이터 연구</h3><p>특허 출원·등록 지원 바우처, IP 나래 프로그램 참여 준비와 D-테스트베드 데이터 연구를 통해 연구 기반을 넓혀갑니다.</p><a class="network-detail-link" href="/pages/company-network.html#research-ip-programs">참여 절차 · 관련 기관 · 주요 일정 보기 ↗</a></aside>`;
+const researchIpHome = `<aside class="network-research-note"><h3>지식재산 · 데이터 연구</h3><p>특허 출원·등록 지원 바우처와 IP 나래 프로그램을 통해 지식재산 확보를 추진하고, D-테스트베드·한국신용정보원 AI 러닝 플랫폼을 활용한 SHAPFINCH 금융데이터 연구를 진행합니다.</p><a class="network-detail-link" href="/pages/company-network.html#research-ip-programs">참여 절차 · 관련 기관 · 주요 일정 보기 ↗</a></aside>`;
 home = home.replace('<section class="section" id="contact">', `${homeWithCooperation.replace('<a class="btn btn-outline network-home-link"', researchIpHome + '<a class="btn btn-outline network-home-link"')}<section class="section" id="contact">`);
-const companyBasisHome = `<aside class="network-research-note"><h3>기업 운영 · 입주 기반</h3><p>소프트웨어사업자 일반현황 관리 확인, SAFEFLOW 위치기반서비스사업 신고와 배민스타트업스퀘어 공식 입주기업 소개를 확인할 수 있습니다.</p><a class="network-detail-link" href="/pages/company-network.html#company-operating-foundation">사업자 확인 · 신고 이력 · 입주 소개 보기 →</a></aside>`;
+const companyBasisHome = `<aside class="network-research-note"><h3>기업 운영 · 입주 기반</h3><p>나라장터 경쟁입찰참가자격 등록, 소프트웨어사업자 일반현황 관리 확인, SAFEFLOW 위치기반서비스사업 신고와 배민스타트업스퀘어 공식 입주기업 소개를 확인할 수 있습니다.</p><a class="network-detail-link" href="/pages/company-network.html#company-operating-foundation">공공조달 등록 · 사업자 확인 · 입주 소개 보기 →</a></aside>`;
 home = home.replace('<a class="btn btn-outline network-home-link"', companyBasisHome + '<a class="btn btn-outline network-home-link"');
 fs.writeFileSync(homeFile, home);
 

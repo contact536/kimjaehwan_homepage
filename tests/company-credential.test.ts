@@ -4,13 +4,13 @@ import test from 'node:test';
 import {initializeData} from '../server/database.ts';
 import {openDatabase} from '../server/sqlite.ts';
 
-test('six official company credentials and filings are shown consistently across public and assistant data', () => {
+test('seven official company credentials and filings are shown consistently across public and assistant data', () => {
   const home = fs.readFileSync('public/index.html', 'utf8');
   const cv = fs.readFileSync('public/pages/experience.html', 'utf8');
   const sources = fs.readFileSync('public/pages/sources.html', 'utf8');
   const records = JSON.parse(fs.readFileSync('seed/records.json', 'utf8')) as Array<{kind:string;id:string;data:{name?:string;url?:string;certificate?:string}}>;
   const credentials = records.filter(record => record.kind === 'news' && record.id.startsWith('credential-'));
-  assert.equal(credentials.length, 6);
+  assert.equal(credentials.length, 7);
   for (const html of [home, cv]) {
     assert.match(html, /경기도 AI 멤버십 기업 선정/u);
     assert.match(html, /기술보호 선도기업 지정/u);
@@ -43,7 +43,7 @@ test('versioned migration refreshes curated records while preserving administrat
     await connection.db.prepare("DELETE FROM settings WHERE key='kim-curated-news-v2'").run();
     await initializeData(connection.db);
     const {results} = await connection.db.prepare("SELECT id,payload FROM records WHERE kind='news' AND (id LIKE 'credential-%' OR id='custom-admin') ORDER BY id").all();
-    assert.equal(results.filter(row => String(row.id).startsWith('credential-')).length, 6);
+    assert.equal(results.filter(row => String(row.id).startsWith('credential-')).length, 7);
     assert.ok(results.some(row => row.id === 'custom-admin'));
     const payload = results.map(row => String(row.payload)).join('\n');
     assert.match(payload, /2026151302/u);
@@ -92,5 +92,32 @@ test('software business confirmation migration preserves existing and edited rec
     assert.equal(updated?.revision, 3);
     const count = await connection.db.prepare("SELECT count(*) AS count FROM records WHERE kind='news' AND id='credential-6'").first();
     assert.equal(count?.count, 1);
+  } finally { connection.close(); }
+});
+
+test('procurement migration upgrades existing databases without overwriting administrator edits', async () => {
+  const connection = openDatabase(':memory:');
+  try {
+    await initializeData(connection.db);
+    await connection.db.prepare("DELETE FROM records WHERE kind='news' AND id='credential-7'").run();
+    await connection.db.prepare("DELETE FROM settings WHERE key='kim-procurement-20261025'").run();
+    await connection.db.prepare("UPDATE records SET name='기존 관리자 편집', revision=8 WHERE kind='news' AND id='credential-6'").run();
+    await initializeData(connection.db);
+    const added = await connection.db.prepare("SELECT payload,revision FROM records WHERE kind='news' AND id='credential-7'").first();
+    const payload = JSON.parse(String(added?.payload));
+    assert.equal(added?.revision, 1);
+    assert.equal(payload.date, '2026.10.23');
+    assert.equal(payload.url, '/pages/company-network.html#public-procurement-registration');
+    assert.match(payload.name, /최초 등록일은 2026년 5월 11일/u);
+    await connection.db.prepare("UPDATE records SET name='새 이력 관리자 편집', revision=4 WHERE kind='news' AND id='credential-7'").run();
+    // A retry with the marker missing must also preserve the edited record.
+    await connection.db.prepare("DELETE FROM settings WHERE key='kim-procurement-20261025'").run();
+    await initializeData(connection.db);
+    await initializeData(connection.db);
+    const {results} = await connection.db.prepare("SELECT id,name,revision FROM records WHERE kind='news' AND id IN ('credential-6','credential-7') ORDER BY id").all();
+    assert.deepEqual(results.map(row => [row.id, row.name, row.revision]), [
+      ['credential-6', '기존 관리자 편집', 8],
+      ['credential-7', '새 이력 관리자 편집', 4],
+    ]);
   } finally { connection.close(); }
 });
