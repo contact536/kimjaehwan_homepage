@@ -1024,9 +1024,26 @@
       "status": "우선심사결정",
       "title": "엣지 기반 보안형 회의 음성 처리 시스템 및 방법",
       "timelineTitle": "XAIKOREA 보안형 회의 음성 처리 특허 우선심사결정",
-      "description": "XAIKOREA가 2026년 10월 22일 출원한 엣지 기반 보안형 회의 음성 처리 시스템 및 방법에 대해, 10월 28일 우선심사를 진행하기로 결정되었습니다.",
+      "description": "XAIKOREA는 엣지 기반 보안형 회의 음성 처리 시스템 및 방법을 2026년 10월 22일 출원하고, 같은 날 우선심사를 신청했습니다. 10월 28일 우선심사를 진행하기로 결정되었습니다.",
       "statusNote": "우선심사 진행에 관한 결정으로, 특허결정·설정등록과 구분합니다.",
       "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-priority-10-2026-0204905",
+      "processSteps": [
+        {
+          "title": "특허출원",
+          "date": "2026.10.22",
+          "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-application-10-2026-0204905"
+        },
+        {
+          "title": "우선심사신청",
+          "date": "2026.10.22",
+          "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-priority-request-10-2026-0204905"
+        },
+        {
+          "title": "우선심사결정",
+          "date": "2026.10.28",
+          "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-priority-10-2026-0204905"
+        }
+      ],
       "facts": [
         {
           "label": "출원번호",

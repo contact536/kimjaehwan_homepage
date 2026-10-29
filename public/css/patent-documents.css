@@ -12,6 +12,13 @@
 .patent-document.patent-update{grid-template-columns:minmax(0,1fr);padding:28px 24px;margin:18px 0;border:1px solid var(--border);border-radius:8px;background:var(--bg-secondary)}
 .patent-update .patent-copy>p:not(.patent-sequence){font-size:14px;line-height:1.8;color:var(--text-secondary);margin:0 0 20px}
 .patent-update .patent-copy>.patent-status-note{margin:18px 0 0;font-size:12px}
+.patent-process{margin:24px 0}
+.patent-process h3{margin:0 0 12px;font-size:14px}
+.patent-process ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.patent-process li{min-width:0;padding:14px;border:1px solid var(--border);border-top:2px solid var(--accent);border-radius:4px;background:var(--bg-primary)}
+.patent-process time{display:block;margin-bottom:6px;color:var(--text-secondary);font-size:12px;font-variant-numeric:tabular-nums}
+.patent-process a{font-size:13px;font-weight:700;line-height:1.6}
+@media(max-width:650px){.patent-process ol{grid-template-columns:1fr}.patent-process li{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}.patent-process time{margin:0}}
 .patent-sequence{margin:0 0 8px;color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.12em}
 .patent-copy h2{margin:0 0 20px;font-size:21px;line-height:1.5}
 .patent-copy dl{margin:0;display:grid;gap:8px}

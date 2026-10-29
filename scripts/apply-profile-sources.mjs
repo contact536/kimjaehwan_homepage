@@ -28,7 +28,10 @@ html = html.replace(end, appointmentSource + `<li><a href="/pages/company-networ
 const patentSourceStart = '<!-- patent-progress-source:start -->';
 const patentSourceEnd = '<!-- patent-progress-source:end -->';
 html = html.replace(new RegExp(`${patentSourceStart}[\\s\\S]*?${patentSourceEnd}`, 'gu'), '');
-const patentProgressSources = `${patentSourceStart}${(profile.patentUpdates ?? []).map(record => `<li><a href="/pages/patents.html#${esc(record.id)}">${esc(record.title)} · ${esc(record.status)}</a>: ${esc(record.dateLabel)} ${esc(record.date)} · <a href="${esc(record.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 ABOUT 공개 이력</a></li>`).join('')}${patentSourceEnd}`;
+const patentProgressSources = `${patentSourceStart}${(profile.patentUpdates ?? []).map(record => {
+  const references = record.processSteps?.length ? record.processSteps.map(step => `<a href="${esc(step.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(step.title)}</a> (${esc(step.date)})`).join(' · ') : `<a href="${esc(record.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 ABOUT 공개 이력</a>`;
+  return `<li><a href="/pages/patents.html#${esc(record.id)}">${esc(record.title)} · ${esc(record.status)}</a>: ${esc(record.dateLabel)} ${esc(record.date)} · ${references}</li>`;
+}).join('')}${patentSourceEnd}`;
 html = html.replace(end, patentProgressSources + end);
 fs.writeFileSync(file, html);
 console.log('Profile source list updated with official company documents.');
