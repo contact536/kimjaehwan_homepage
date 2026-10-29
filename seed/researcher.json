@@ -1015,5 +1015,61 @@
       ],
       "source": "사용자 제공 개발 중 프로젝트 설명·화면 · 2026.10.08"
     }
+  ],
+  "patentUpdates": [
+    {
+      "id": "patent-priority-1020260204905",
+      "date": "2026.10.28",
+      "dateLabel": "결정일",
+      "status": "우선심사결정",
+      "title": "엣지 기반 보안형 회의 음성 처리 시스템 및 방법",
+      "timelineTitle": "XAIKOREA 보안형 회의 음성 처리 특허 우선심사결정",
+      "description": "XAIKOREA가 2026년 10월 22일 출원한 엣지 기반 보안형 회의 음성 처리 시스템 및 방법에 대해, 10월 28일 우선심사를 진행하기로 결정되었습니다.",
+      "statusNote": "우선심사 진행에 관한 결정으로, 특허결정·설정등록과 구분합니다.",
+      "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-priority-10-2026-0204905",
+      "facts": [
+        {
+          "label": "출원번호",
+          "value": "10-2026-0204905"
+        },
+        {
+          "label": "출원일",
+          "value": "2026.10.22"
+        },
+        {
+          "label": "발행기관",
+          "value": "지식재산처"
+        },
+        {
+          "label": "출원인",
+          "value": "주식회사 엑스에이아이코리아"
+        }
+      ]
+    },
+    {
+      "id": "patent-divisional-20261023",
+      "date": "2026.10.23",
+      "dateLabel": "문서일자",
+      "status": "분할출원",
+      "title": "의미 단위 기반 문서 청크 생성 기능을 갖는 하이브리드 검색 기반 인공지능 추론 시스템",
+      "timelineTitle": "XAIKOREA 문서 청크 생성·하이브리드 검색 특허 분할출원",
+      "description": "XAIKOREA는 의미 단위로 문서 청크를 생성하는 기능을 갖춘 하이브리드 검색 기반 AI 추론 시스템의 분할출원서를 공개했습니다. 원출원은 하이브리드 검색 기반 인공지능 추론 시스템(10-2026-0057344)이며, 문서일자는 2026년 10월 23일입니다.",
+      "statusNote": "분할출원 이력이며, 원출원의 특허결정 이력과 별도로 표시합니다.",
+      "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-divisional-20261023",
+      "facts": [
+        {
+          "label": "출원구분",
+          "value": "분할출원"
+        },
+        {
+          "label": "원출원번호",
+          "value": "10-2026-0057344"
+        },
+        {
+          "label": "출원인",
+          "value": "주식회사 엑스에이아이코리아"
+        }
+      ]
+    }
   ]
 }

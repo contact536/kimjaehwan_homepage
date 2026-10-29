@@ -5,7 +5,8 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const career=[...(profile.career??[]),...profile.milestones.filter(m=>m.title.includes('취임'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 const academicMemberships=[...(profile.academicMemberships??[])].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 const academicActivities=[...activityData.activities].sort((a,b)=>b.date.localeCompare(a.date)).map(item=>({id:item.id,date:item.date.replaceAll('-','.'),title:item.title,status:item.participation,description:item.summary,url:`/pages/research.html#activity-${item.id}`,linkLabel:'참가활동 주요 내용',activityPressCount:item.articles?.length??0}));
-const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>m.title.includes('특허'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
+const patentUpdates=(profile.patentUpdates??[]).map(item=>({...item,title:item.timelineTitle,url:`/pages/patents.html#${item.id}`,linkLabel:'특허 이력 보기'}));
+const company=[...(profile.companyCredentials??[]),...profile.milestones.filter(m=>m.title.includes('특허')),...patentUpdates].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
 function photoGallery(item) {
  const photos=item.photos??[];
  if(!photos.length)return '';

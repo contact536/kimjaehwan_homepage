@@ -42,7 +42,8 @@ const cooperationEntries = [
   url: `/pages/company-network.html#${entry.id}`,
   linkLabel: '협력 내용 보기',
 }));
-const entries = [...(profile.companyCredentials ?? []), ...careerEntries, ...(profile.milestones ?? []), ...membershipEntries, ...cooperationEntries]
+const patentEntries = (profile.patentUpdates ?? []).map(item => ({date:item.date,title:item.timelineTitle,description:item.description,url:`/pages/patents.html#${item.id}`,linkLabel:'특허 이력 보기'}));
+const entries = [...(profile.companyCredentials ?? []), ...careerEntries, ...(profile.milestones ?? []), ...membershipEntries, ...cooperationEntries, ...patentEntries]
   .sort((left, right) => dateOrder(right) - dateOrder(left));
 if (!entries.length) throw new Error('No managed records are available for the home Journey.');
 

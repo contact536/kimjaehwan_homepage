@@ -40,6 +40,7 @@ const filing = profile.companyCredentials.find(item => item.id === 'location-bas
 const softwareBusiness = profile.companyCredentials.find(item => item.id === 'software-business-confirmation');
 const procurement = profile.companyCredentials.find(item => item.id === 'public-procurement-registration');
 const checkedAt = [serviceDirectory.checkedAt, network.checkedAt].sort().at(-1);
+const patentUpdate = `<section class="research-service-update" aria-labelledby="research-patent-progress"><p class="kim-overline">INTELLECTUAL PROPERTY / RESEARCH PROGRESS</p><h3 id="research-patent-progress">AI 추론 · 보안형 회의 기술의 지식재산 이력</h3><div class="company-research-grid">${(profile.patentUpdates ?? []).map(item => `<article class="company-research-card"><p class="company-research-category">${esc(item.status)} · ${esc(item.date)}</p><h4>${esc(item.title)}</h4><p>${esc(item.description)}</p><a href="/pages/patents.html#${esc(item.id)}">출원·심사 이력 보기 →</a></article>`).join('')}</div></section>`;
 const companyBasisUpdate = `<aside class="research-service-update" aria-labelledby="research-company-basis"><p class="kim-overline">COMPANY OPERATIONS &amp; STARTUP COMMUNITY</p><h3 id="research-company-basis">기업 운영 · 입주 기반</h3><p>${esc(softwareBusiness.description)} 발급일은 ${esc(softwareBusiness.date)}입니다.</p><p>SAFEFLOW의 작업자 위치·구역 확인 및 안전관리 서비스에 대한 위치기반서비스사업 신고를 완료했습니다. 배민스타트업스퀘어 공식 입주사 소개에는 핀테크 분야의 세무 증빙 AI 워크프로세스로 XAIKOREA가 등재되어 있습니다.</p><nav aria-label="회사 운영 및 입주 이력"><a href="${esc(softwareBusiness.url)}">소프트웨어사업자 확인 내용 →</a><a href="/pages/company-network.html#${esc(filing.id)}">위치기반서비스사업 신고 내용 →</a><a href="/pages/company-network.html#baemin-startup-square">배민스타트업스퀘어 입주 소개 →</a></nav></aside>`;
 const decivox = serviceDirectory.services.find(service => service.id === 'decivox');
 const shapfinchResearch = network.researchIpPrograms.filter(item => ['d-testbed-2026', 'credit-ai-learning-platform'].includes(item.id));
@@ -69,7 +70,10 @@ const aboutSection = updatedSection
   .replace('<h3 id="research-company-basis">기업 운영 · 입주 기반</h3>', `<h3 id="research-company-basis">기업 운영 · 입주 기반</h3><p>${esc(procurement.description)}</p>`)
   .replace('<nav aria-label="회사 운영 및 입주 이력">', `<nav aria-label="회사 운영 및 입주 이력"><a href="${esc(procurement.url)}">나라장터 공공조달 등록 내용 →</a>`)
   .replace('<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol>', `<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol><li><time datetime="${softwareBusiness.date.replaceAll('.', '-')}">${esc(softwareBusiness.date)}</time><a href="${esc(softwareBusiness.url)}">소프트웨어사업자 일반현황 관리확인서 발급 ↗</a></li><li><time datetime="2026-10-08">2026.10.08</time><a href="${esc(filing.url)}">SAFEFLOW 위치기반서비스사업 신고 확인서 발급 ↗</a></li>`);
-const currentSection = aboutSection.replace('<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol>', `<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol><li><time datetime="${procurement.date.replaceAll('.', '-')}">${esc(procurement.date)}</time><a href="${esc(procurement.url)}">나라장터 경쟁입찰참가자격 등록 갱신 ↗</a></li>`);
+const currentSection = aboutSection
+  .replace(serviceUpdate, patentUpdate + serviceUpdate)
+  .replace('<nav aria-label="XAIKOREA 공식 자료">', '<nav aria-label="XAIKOREA 공식 자료"><a href="/pages/projects.html#company-service-visuals">서비스 설명 도식 안내 →</a>')
+  .replace('<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol>', `<h3 id="company-research-milestones-title">최근 공개 이력</h3><ol><li><time datetime="${procurement.date.replaceAll('.', '-')}">${esc(procurement.date)}</time><a href="${esc(procurement.url)}">나라장터 경쟁입찰참가자격 등록 갱신 ↗</a></li>`);
 html = html.slice(0, closing) + currentSection + html.slice(closing);
 fs.writeFileSync(file, html);
 console.log('Applied the official XAIKOREA research and technology update.');

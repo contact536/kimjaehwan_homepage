@@ -25,5 +25,10 @@ const appointmentPressLinks=appointmentPress.map(article=>`<a href="${esc(articl
 const appointmentSource = `${appointmentStart}<li><a href="/pages/experience.html#cv-gaca-esg-2026">세계맑은공기기후연맹 ESG위원회 전문위원 위촉</a>: 김재환 본인 제공 위촉 사실·행사 사진 및 연맹 공식 소개 · 2026.09.29${appointmentPressLinks?`<br>ESG위원회 출범식 관련 보도: ${appointmentPressLinks}`:''}</li>${appointmentEnd}`;
 html = html.replace(new RegExp(`${appointmentStart}[\\s\\S]*?${appointmentEnd}`, 'gu'), '');
 html = html.replace(end, appointmentSource + `<li><a href="/pages/company-network.html#location-based-services-filing">SAFEFLOW 위치기반서비스사업 신고</a>: XAIKOREA ABOUT 공개 이력 · 방송미디어통신위원회 · 제1692호 · 발급일 2026.10.08</li><li><a href="https://startup.woowahan.com/about/startups/0/20" target="_blank" rel="noopener noreferrer">배민스타트업스퀘어 공식 입주 스타트업 소개</a>: XAIKOREA · 핀테크 분야 · 자료 확인일 2026.10.08</li>` + end);
+const patentSourceStart = '<!-- patent-progress-source:start -->';
+const patentSourceEnd = '<!-- patent-progress-source:end -->';
+html = html.replace(new RegExp(`${patentSourceStart}[\\s\\S]*?${patentSourceEnd}`, 'gu'), '');
+const patentProgressSources = `${patentSourceStart}${(profile.patentUpdates ?? []).map(record => `<li><a href="/pages/patents.html#${esc(record.id)}">${esc(record.title)} · ${esc(record.status)}</a>: ${esc(record.dateLabel)} ${esc(record.date)} · <a href="${esc(record.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 ABOUT 공개 이력</a></li>`).join('')}${patentSourceEnd}`;
+html = html.replace(end, patentProgressSources + end);
 fs.writeFileSync(file, html);
 console.log('Profile source list updated with official company documents.');

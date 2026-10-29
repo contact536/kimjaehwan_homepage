@@ -10,7 +10,8 @@ const esc = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;
 
 function previews(service) {
   if (!service.screens?.length) return '';
-  return `<div class="company-service-previews"><details class="internal-tool-screens company-service-screens"><summary aria-controls="${esc(service.id)}-screens">화면 미리보기 <span>${service.screens.length}장</span></summary><div class="internal-tool-panel" id="${esc(service.id)}-screens"><header><strong>${esc(service.name)} 화면</strong><button type="button" class="internal-tool-close" aria-label="${esc(service.name)} 화면 미리보기 닫기" hidden>닫기 ×</button></header><div class="internal-tool-gallery" aria-label="${esc(service.name)} 화면">${service.screens.map(screen => `<figure><a class="internal-tool-preview company-service-screen${service.id === 'decivox' ? ' company-service-screen--desktop' : ''}${screen.presentation === 'portrait' ? ' company-service-screen--portrait' : ''}" href="${esc(screen.src)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(screen.alt)} 크게 보기 (새 탭)"><img src="${esc(screen.src)}" alt="${esc(screen.alt)}" width="${screen.width}" height="${screen.height}" loading="lazy" decoding="async"><span aria-hidden="true">크게 보기 ↗</span></a><figcaption>${esc(screen.caption)}</figcaption></figure>`).join('')}</div></div></details></div>`;
+  const label = service.previewLabel ?? '화면';
+  return `<div class="company-service-previews"><details class="internal-tool-screens company-service-screens"><summary aria-controls="${esc(service.id)}-screens">${esc(label)} 미리보기 <span>${service.screens.length}장</span></summary><div class="internal-tool-panel" id="${esc(service.id)}-screens"><header><strong>${esc(service.name)} ${esc(label)}</strong><button type="button" class="internal-tool-close" aria-label="${esc(service.name)} ${esc(label)} 미리보기 닫기" hidden>닫기 ×</button></header><div class="internal-tool-gallery" aria-label="${esc(service.name)} ${esc(label)}">${service.screens.map(screen => `<figure><a class="internal-tool-preview company-service-screen${service.previewLabel ? ' company-service-screen--illustration' : ''}${screen.presentation === 'portrait' ? ' company-service-screen--portrait' : ''}" href="${esc(screen.src)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(screen.alt)} 크게 보기 (새 탭)"><img src="${esc(screen.src)}" alt="${esc(screen.alt)}" width="${screen.width}" height="${screen.height}" loading="lazy" decoding="async"><span aria-hidden="true">크게 보기 ↗</span></a><figcaption>${esc(screen.caption)}</figcaption></figure>`).join('')}</div></div></details></div>`;
 }
 
 function renderCard(service, index) {
@@ -34,7 +35,7 @@ else {
   html = html.includes(productMarker) ? html.replace(productMarker, `${completeSection}${productMarker}`) : html.replace('</div></main>', `${completeSection}</div></main>`);
 }
 html = html.replace(/<link\b[^>]*href="\/css\/company-services\.css(?:\?[^"]*)?"[^>]*>/gu, '');
-html = html.replace('</head>', '<link rel="stylesheet" href="/css/company-services.css?v=20261012-1"></head>');
+html = html.replace('</head>', '<link rel="stylesheet" href="/css/company-services.css?v=20261030-1"></head>');
 if (!html.includes('/css/internal-tools.css')) html = html.replace('</head>', '<link rel="stylesheet" href="/css/internal-tools.css?v=20260926-3"></head>');
 if (!html.includes('/js/internal-tools.js')) html = html.replace('</body>', '<script src="/js/internal-tools.js?v=20260926-3" defer></script></body>');
 fs.writeFileSync(file, html);

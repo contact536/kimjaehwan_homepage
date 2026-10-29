@@ -21,7 +21,8 @@ test('all live company services are listed with official links and local logos',
   assert.match(decivox, /도입 문의/u);
   assert.doesNotMatch(decivox, /서비스 보기|서비스 운영 중/u);
   assert.match(decivox, /href="https:\/\/www\.xaikorea\.ai\.kr\/contact"/u);
-  assert.equal((decivox.match(/<img src="\/assets\/company-services\/decivox-(?:login|summary)-20260926\.png"/gu) || []).length, 2);
+  assert.equal((decivox.match(/<img src="\/assets\/company-services\/decivox-(?:capture|summary)-diagram-20261030\.webp"/gu) || []).length, 2);
+  assert.match(decivox, /서비스 설명 도식 미리보기/u);
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
   assert.match(research, /href="\/pages\/projects\.html#service-decivox"/u);
   assert.match(research, /href="\/pages\/projects\.html#company-services"/u);

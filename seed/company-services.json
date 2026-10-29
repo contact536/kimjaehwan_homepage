@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026.10.25",
+  "checkedAt": "2026.10.30",
   "sourceUrl": "https://www.xaikorea.ai.kr/work#demos",
   "services": [
     {
@@ -299,20 +299,21 @@
       "videos": [],
       "screens": [
         {
-          "src": "/assets/company-services/decivox-login-20260926.png",
-          "alt": "DECIVOX 호반 온프레미스 AI 회의록의 로그인 화면",
-          "caption": "로그인",
-          "width": 2560,
-          "height": 1440
+          "src": "/assets/company-services/decivox-capture-diagram-20261030.webp",
+          "alt": "DECIVOX의 녹음과 화자 분리 과정을 설명하는 도식",
+          "caption": "녹음·화자 분리 · 서비스 설명 도식",
+          "width": 1600,
+          "height": 900
         },
         {
-          "src": "/assets/company-services/decivox-summary-20260926.png",
-          "alt": "DECIVOX의 핵심 요약과 주요 논의를 보여주는 테스트 계정 화면",
-          "caption": "AI 요약 · 테스트 계정",
-          "width": 2560,
-          "height": 1440
+          "src": "/assets/company-services/decivox-summary-diagram-20261030.webp",
+          "alt": "DECIVOX의 AI 요약과 회의록 작성 과정을 설명하는 도식",
+          "caption": "AI 요약·회의록 · 서비스 설명 도식",
+          "width": 1600,
+          "height": 900
         }
-      ]
+      ],
+      "previewLabel": "서비스 설명 도식"
     }
   ],
   "developmentProjects": [
@@ -472,5 +473,23 @@
         }
       ]
     }
-  ]
+  ],
+  "visualNotes": {
+    "checkedAt": "2026.10.30",
+    "sourceUrl": "https://www.xaikorea.ai.kr/work#service-visuals",
+    "title": "도식으로 살펴보는 AI·데이터 처리",
+    "description": "회사 WORK에 공개된 3D 장면과 설명 도식으로 근거 탐색, 문서·음성 처리, 내부 AI 운영의 흐름을 살펴볼 수 있습니다.",
+    "topics": [
+      "근거 탐색 · Evidence Finder",
+      "세무 검토 · Tax Navigator / TAXiA",
+      "문서 비교 · Policy Review / DocMatch",
+      "음성 기록 · DECIVOX",
+      "회의록 작성 · DECIVOX / 공록",
+      "현장형 연산 · Edge AI Lab",
+      "데이터 통제 · Secure Edge Gateway",
+      "내부 운영 · On-Premise AI",
+      "지식 체계화 · Knowledge Engineering",
+      "신뢰 운영 · AI Governance"
+    ]
+  }
 }
