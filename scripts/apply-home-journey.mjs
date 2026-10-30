@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import profile from '../seed/researcher.json' with {type: 'json'};
+import submissions from '../seed/journal-manuscripts.json' with {type: 'json'};
 
 const esc = value => String(value).replace(/[&<>"']/g, character => ({
   '&': '&amp;',
@@ -43,7 +44,14 @@ const cooperationEntries = [
   linkLabel: '협력 내용 보기',
 }));
 const patentEntries = (profile.patentUpdates ?? []).map(item => ({date:item.date,title:item.timelineTitle,description:item.description,url:`/pages/patents.html#${item.id}`,linkLabel:'특허 이력 보기'}));
-const entries = [...(profile.companyCredentials ?? []), ...careerEntries, ...(profile.milestones ?? []), ...membershipEntries, ...cooperationEntries, ...patentEntries]
+const manuscriptEntries = submissions.manuscripts.filter(item => ['under_review', 'review_completed'].includes(item.status)).map(item => ({
+  date: item.statusAsOf.replaceAll('-', '.'),
+  title: `${item.journal} ${item.statusLabel}`,
+  description: `온프레미스 회의 인텔리전스 파이프라인의 산출물 검증·체크포인트 복구 연구입니다. ${item.statusAsOf.replaceAll('-', '.')} 기준 ${item.previousDecision}를 거쳐 ${item.statusLabel} 상태입니다.`,
+  url: `/pages/publications.html#${item.id}`,
+  linkLabel: '투고 현황 보기',
+}));
+const entries = [...(profile.companyCredentials ?? []), ...careerEntries, ...(profile.milestones ?? []), ...membershipEntries, ...cooperationEntries, ...patentEntries, ...manuscriptEntries]
   .sort((left, right) => dateOrder(right) - dateOrder(left));
 if (!entries.length) throw new Error('No managed records are available for the home Journey.');
 

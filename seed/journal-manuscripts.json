@@ -3,12 +3,17 @@
     {
       "id": "jksci-meeting-pipeline-review",
       "title": "건설기업을 위한 보안형 온프레미스 회의 인텔리전스 파이프라인의 설계 및 개념검증(PoC)",
+      "titleEn": "Design and PoC Validation of a Secure On-Premises Meeting Intelligence Pipeline for Construction Enterprises",
       "journal": "한국컴퓨터정보학회논문지",
-      "status": "under_review",
-      "reviewRound": 2,
-      "statusAsOf": "2026-09-26",
-      "summary": "건설기업의 보안 요구를 고려한 온프레미스 회의 인텔리전스 파이프라인의 설계와 개념검증(PoC)을 다루는 연구입니다.",
-      "source": "사용자 제공 학술지 투고·심사 현황 화면 · 2026.09.26"
+      "status": "review_completed",
+      "statusLabel": "3차 심사완료",
+      "previousDecision": "2차 수정 후 게재",
+      "reviewRound": 3,
+      "statusAsOf": "2026-10-30",
+      "summary": "온프레미스 회의 인텔리전스 파이프라인의 산출물 검증과 체크포인트 복구를 구체화하고 평가하는 연구입니다. 동일한 음성인식(ASR) 모델·설정에서 전체 재시작, 구문 검사 기반 재사용, 해시·실행조건 결합 검증을 비교해 장애 상황의 전사 보존과 정상 구간 재사용 효과를 살펴봅니다.",
+      "resultsSummary": "AMI test 녹음 16개의 처음 120초를 30초 구간으로 처리한 총 912회 실험(무장애 48회·장애 주입 864회)에서 전체 재시작과 결합 검증은 모든 장애 실행의 기준 전사를 보존했습니다. 세 번째 구간 저장 후 단순 중단 조건에서 녹음별 복구 지연 중앙값의 평균은 결합 검증 26.19초, 전체 재시작 83.52초였으며, 녹음별 쌍체 지연 감소는 약 57.3초였습니다.",
+      "keywords": ["온프레미스 AI", "회의 인텔리전스", "산출물 무결성", "체크포인트 복구", "장애 주입"],
+      "source": "사용자 제공 학술지 투고정보·3차 심사 현황 화면 · 2026.10.30"
     }
   ]
 }
