@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import profile from '../seed/researcher.json' with {type:'json'};
+import {overview,scopeLinks} from './research-overview-content.mjs';
 import activityData from '../seed/academic-activities.json' with {type:'json'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const career=[...(profile.career??[]),...profile.milestones.filter(m=>m.title.includes('취임'))].sort((a,b)=>String(b.date).localeCompare(String(a.date),'ko'));
@@ -24,13 +25,14 @@ function relatedPress(item) {
 }
 function timeline(items,education=false){return `<ol class="cv-timeline">${items.map(item=>{const state=education?(item.date.includes('입학')?'과정 재학':'학위 취득'):item.status;const links=[item.url?`<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.linkLabel??'공식 홈페이지')} ↗</a>`:'',item.email?`<a href="mailto:${esc(item.email)}">${esc(item.email)}</a>`:''].filter(Boolean).join('');return `<li${item.id?` id="cv-${esc(item.id)}" tabindex="-1"`:''}><div class="cv-date">${esc(item.date)}</div><div class="cv-event"><h3>${esc(item.title??item.organization)}</h3>${state?`<span class="cv-state">${esc(state)}</span>`:''}<p>${esc(item.description)}</p>${links?`<p class="cv-links">${links}</p>`:''}${relatedPress(item)}${photoGallery(item)}</div></li>`}).join('')}</ol>`}
 const blocks=[
+ {id:'research',title:'연구 관심 분야',caption:'AI · INDUSTRY · SDG',content:`<p>${esc(overview.intro)}</p><nav class="research-scope-links" aria-label="CV 연구 분야">${scopeLinks()}</nav><p class="cv-links"><a href="/pages/publications.html">연구 원고 · 논문 현황 →</a></p>`},
  {id:'career',title:'경력 · 대외활동',caption:'연구·경영과 전문위원 활동',content:timeline(career)},
  {id:'memberships',title:'학술단체 회원자격',caption:'Professional memberships',content:timeline(academicMemberships)},
  {id:'activities',title:'학술대회 · 포럼 참가',caption:'Conferences & forums',content:timeline(academicActivities)},
  {id:'education',title:'학력',caption:'경영에서 AI 융합으로',content:timeline(profile.education,true)},
  {id:'company',title:'기업 주요 이력',caption:'XAIKOREA',content:timeline(company)},
 ];
-const body=`<div class="kim-page cv-page"><p class="kim-overline">JAEHWAN KIM / CURRICULUM VITAE</p><h1>학력 · 경력</h1><p class="kim-lead">경영과 도메인 전문성을 AI 연구개발에 연결합니다.</p><div class="cv-layout"><aside class="cv-overview"><p class="cv-name">${esc(profile.name)} <span>${esc(profile.englishName)}</span></p><p>${esc(profile.role)}</p><nav aria-label="CV 섹션">${blocks.map(b=>`<a href="#cv-${b.id}">${b.title} <span aria-hidden="true">↓</span></a>`).join('')}</nav><a class="cv-contact" href="mailto:${esc(profile.email)}">${esc(profile.email)}</a><a class="cv-source" href="/pages/sources.html">자료 기준 확인 →</a></aside><div class="cv-blocks">${blocks.map(b=>`<section class="cv-block" id="cv-${b.id}" aria-labelledby="cv-${b.id}-heading" tabindex="-1"><p class="cv-caption">${b.caption}</p><h2 id="cv-${b.id}-heading">${b.title}</h2>${b.content}</section>`).join('')}</div></div></div>`;
+const body=`<div class="kim-page cv-page"><p class="kim-overline">JAEHWAN KIM / CURRICULUM VITAE</p><h1>학력 · 경력</h1><p class="kim-lead">AI 검증과 산업 응용, 지속가능한 전환을 연구하며 경영·산학 협력 활동을 이어갑니다.</p><div class="cv-layout"><aside class="cv-overview"><p class="cv-name">${esc(profile.name)} <span>${esc(profile.englishName)}</span></p><p>${esc(profile.role)}</p><nav aria-label="CV 섹션">${blocks.map(b=>`<a href="#cv-${b.id}">${b.title} <span aria-hidden="true">↓</span></a>`).join('')}</nav><a class="cv-contact" href="mailto:${esc(profile.email)}">${esc(profile.email)}</a><a class="cv-source" href="/pages/sources.html">자료 기준 확인 →</a></aside><div class="cv-blocks">${blocks.map(b=>`<section class="cv-block" id="cv-${b.id}" aria-labelledby="cv-${b.id}-heading" tabindex="-1"><p class="cv-caption">${b.caption}</p><h2 id="cv-${b.id}-heading">${b.title}</h2>${b.content}</section>`).join('')}</div></div></div>`;
 const file='public/pages/experience.html';
 let html=fs.readFileSync(file,'utf8');
 if(!html.includes('/css/cv-blocks.css'))html=html.replace('</head>','<link rel="stylesheet" href="/css/cv-blocks.css"></head>');

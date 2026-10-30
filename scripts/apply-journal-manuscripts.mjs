@@ -14,11 +14,15 @@ const researchSection = manuscripts.length ? `<section class="research-manuscrip
 const css = '<link rel="stylesheet" href="/css/journal-manuscripts.css">';
 function update(file, key, section, anchor, after = false) {
   const start = `<!-- ${key}:start -->`, end = `<!-- ${key}:end -->`;
-  let html = fs.readFileSync(file, 'utf8').replace(new RegExp(`${start}[\\s\\S]*?${end}`, 'gu'), '');
-  if (!html.includes(anchor)) throw new Error(`Missing manuscript insertion anchor in ${file}`);
+  let html = fs.readFileSync(file, 'utf8');
+  const existing = new RegExp(`${start}[\\s\\S]*?${end}`, 'gu');
   if (!html.includes('/css/journal-manuscripts.css')) html = html.replace('</head>', css + '</head>');
   const block = start + section + end;
-  html = html.replace(anchor, after ? anchor + block : block + anchor);
+  if (html.includes(start)) html = html.replace(existing, block);
+  else {
+    if (!html.includes(anchor)) throw new Error(`Missing manuscript insertion anchor in ${file}`);
+    html = html.replace(anchor, after ? anchor + block : block + anchor);
+  }
   fs.writeFileSync(file, html);
 }
 update('public/pages/publications.html', 'journal-manuscripts', publicationSection, '<p class="kim-lead">진행 중인 연구와 공개 자료를 정리합니다.</p>', true);

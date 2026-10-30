@@ -62,7 +62,7 @@ html = html.replace(new RegExp(`${start}[\\s\\S]*?${end}`, 'g'), '');
 if (!html.includes('/css/company-research.css'))
   html = html.replace('</head>', '<link rel="stylesheet" href="/css/company-research.css"></head>');
 html = html.replace('김재환 XAIKOREA 대표이사 겸 AI 연구원의 개인 연구자 플랫폼. CLOA, TAXiA, KorTaxArena와 세무회계 AI 연구.', '김재환의 CLOA, TAXiA, KorTaxArena 연구와 XAIKOREA의 근거 중심 AI·문서 지능·AI 거버넌스·온프레미스 연구 동향.');
-const closing = html.lastIndexOf('</div></main>');
+const closing = html.lastIndexOf(html.includes('<!-- research-directory:end -->') ? '</div></div><!-- research-directory:end --></main>' : '</div></main>');
 if (closing < 0) throw new Error('Research page closing marker was not found');
 const updatedSection = section.replace('COMPANY RESEARCH UPDATE · 2026.09.24', `COMPANY RESEARCH UPDATE · ${checkedAt}`).replace('자료 확인일: 2026.09.24', `자료 확인일: ${checkedAt}`).replace('<section class="company-research-milestones"', `${serviceUpdate}${developmentUpdates}${cooperation}<section class="company-research-milestones"`);
 const aboutSection = updatedSection

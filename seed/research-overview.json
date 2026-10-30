@@ -1,0 +1,50 @@
+{
+  "updatedAt": "2026-10-31",
+  "intro": "AI의 응답과 분석 결과를 어떤 근거로 신뢰하고 활용할 수 있는지 연구합니다. 근거 기반·도메인 AI에서 출발해 LLM 생성 코드 평가, 온프레미스 회의 AI, 산업용 Vision과 제조 AI, 금융데이터 분석, SDG·환경·에너지 연구로 범위를 넓히고 있습니다.",
+  "practice": "XAIKOREA에서 CLOA 엔진과 세무·회계 AI 연구개발 및 TAXiA 제품 방향을 총괄하며, aSSIST AI융합·SDG 복수학위 박사과정에서 연구를 이어가고 있습니다.",
+  "collaboration": "근거 기반 AI·RAG, LLM 테스트, 온프레미스 AI, 산업용 Vision·제조 AI, 금융데이터 분석과 환경·에너지 연구의 협업을 제안해 주세요.",
+  "areas": [
+    {
+      "id": "grounded-domain-ai",
+      "title": "근거 기반 · 도메인 AI",
+      "label": "CLOA · TAXiA",
+      "summary": "원문 근거를 AI 응답에 연결하고, 세무·회계 지식을 실제 업무에서 활용하는 LLM·RAG 구조를 연구개발합니다.",
+      "links": [{"label": "CLOA", "anchor": "cloa"}, {"label": "TAXiA", "anchor": "taxia"}]
+    },
+    {
+      "id": "llm-testing",
+      "title": "LLM 생성 코드 평가",
+      "label": "KorTaxArena · 연구 중",
+      "summary": "테스트 선택 기준이 포화된 뒤의 추가 테스트 구성과 정답 판정 기준이 생성 프로그램의 오류 발견에 미치는 영향을 살펴봅니다.",
+      "links": [{"label": "KorTaxArena 연구", "anchor": "kortaxarena"}]
+    },
+    {
+      "id": "on-premises-ai",
+      "title": "온프레미스 회의 AI",
+      "label": "회의 인텔리전스 · 투고 논문",
+      "summary": "조직 내부에서 회의 음성을 처리하는 파이프라인의 산출물 검증과 체크포인트 복구를 설계하고 평가합니다.",
+      "links": [{"label": "연구 · 심사 현황", "anchor": "journal-under-review"}]
+    },
+    {
+      "id": "manufacturing-ai",
+      "title": "산업용 Vision · 제조 AI",
+      "label": "Vision · Multi AI Agent 리뷰 · 연구 중",
+      "summary": "이상탐지 모델의 상호 보완적 검출을 평가하고, 제조 AI·멀티에이전트 결과를 품질 의사결정에 연결하는 근거를 검토합니다.",
+      "links": [{"label": "Vision 연구", "anchor": "vision-research"}, {"label": "제조 AI 리뷰", "anchor": "manufacturing-agent-research"}]
+    },
+    {
+      "id": "financial-data",
+      "title": "금융데이터 · 설명가능성",
+      "label": "SHAPFINCH · 회사 연구 활동",
+      "summary": "D-테스트베드와 한국신용정보원 AI 러닝 플랫폼을 활용해 금융데이터 활용과 예측 모델의 설명가능성·안정성을 연구합니다.",
+      "links": [{"label": "SHAPFINCH 연구", "anchor": "research-shapfinch-data"}]
+    },
+    {
+      "id": "sdg-transition",
+      "title": "SDG · 환경 · 에너지",
+      "label": "환경혁신 · 탄소 · 기술 측정 · 연구 중",
+      "summary": "기업의 환경혁신과 관리행태, 에너지·탄소 및 설비 전환, AI 특허 측정을 공개자료와 모형을 통해 연구합니다.",
+      "links": [{"label": "7개 연구 주제", "anchor": "sdg-research"}]
+    }
+  ]
+}
