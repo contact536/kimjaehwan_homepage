@@ -38,13 +38,6 @@
 .company-service-videos a{padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-weight:600;line-height:1.6}
 .company-service-videos a>span:last-child{font-weight:400;color:var(--text-secondary)}
 .company-service-previews{margin-top:12px}
-.company-service-preview-hint{margin:0 0 10px;font-size:11px;line-height:1.7;color:var(--text-secondary)}
-.company-service-preview-options{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.company-service-preview-options .internal-tool-screens{position:static;min-width:0}
-.company-service-preview-options summary{display:block;padding:9px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-secondary);font-size:12px;line-height:1.6;list-style:none}
-.company-service-preview-options summary::-webkit-details-marker{display:none}
-.company-service-preview-options summary:hover,.company-service-preview-options details[open]>summary{border-color:var(--accent);background:var(--bg-card)}
-.company-service-preview-options summary>span{float:right;margin-left:5px;color:inherit}
 .company-service-card:nth-child(even) .internal-tool-panel{left:auto;right:0}
 .company-service-screens .internal-tool-gallery{grid-template-columns:minmax(0,1fr)}
 .company-service-screens .company-service-screen--illustration{aspect-ratio:16/9}
@@ -54,6 +47,5 @@
 .company-service-screens .company-service-screen--desktop img{position:absolute;top:-2.55%;left:0;width:100%;height:auto}
 .company-service-videos a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media(max-width:720px){.company-services>header{align-items:flex-start}.company-services-count{display:none}.company-service-grid{grid-template-columns:1fr}.company-services>footer{flex-direction:column}}
-@media(max-width:720px){.company-service-preview-options details[open]{grid-column:1/-1}.company-service-preview-options .internal-tool-panel{position:static;width:100%;max-height:none;margin-top:8px;padding:12px;box-shadow:none}}
 @media(max-width:480px){.company-services{margin-top:52px;padding-top:36px}.company-service-card{padding:20px}.company-service-card>footer{grid-template-columns:1fr}.company-service-card>footer a{text-align:left}}
 @media print{.company-service-grid{grid-template-columns:1fr 1fr}.company-service-card{break-inside:avoid}.company-services>footer a,.company-service-card>footer a{display:none}}

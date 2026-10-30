@@ -11,13 +11,7 @@ const esc = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;
 function previews(service) {
   if (!service.screens?.length) return '';
   const label = service.previewLabel ?? '화면';
-  const individual = service.previewMode === 'individual';
-  const groups = individual
-    ? service.screens.map((screen, index) => ({id:`${service.id}-screen-${index + 1}`,label:screen.label,summary:`${esc(screen.label)} <span aria-hidden="true">↗</span>`,screens:[screen]}))
-    : [{id:`${service.id}-screens`,label,summary:`${esc(label)} 미리보기 <span>${service.screens.length}장</span>`,screens:service.screens}];
-  const hint = individual ? '<p class="company-service-preview-hint"><span class="internal-tools-hover-hint">항목에 마우스를 올려 미리보고, 이미지를 눌러 크게 확인하세요.</span><span class="internal-tools-touch-hint">항목을 눌러 미리보고, 이미지를 눌러 크게 확인하세요.</span></p>' : '';
-  const panels = groups.map(group => `<details class="internal-tool-screens company-service-screens"><summary aria-controls="${esc(group.id)}"${individual ? ` aria-label="${esc(group.label)} 미리보기"` : ''}>${group.summary}</summary><div class="internal-tool-panel" id="${esc(group.id)}"><header><strong>${esc(service.name)} · ${esc(group.label)}</strong><button type="button" class="internal-tool-close" aria-label="${esc(service.name)} ${esc(group.label)} 미리보기 닫기" hidden>닫기 ×</button></header><div class="internal-tool-gallery" aria-label="${esc(service.name)} ${esc(group.label)}">${group.screens.map(screen => `<figure><a class="internal-tool-preview company-service-screen${service.previewLabel ? ' company-service-screen--illustration' : ''}${screen.presentation === 'portrait' ? ' company-service-screen--portrait' : ''}" href="${esc(screen.src)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(screen.alt)} 크게 보기 (새 탭)"><img src="${esc(screen.src)}" alt="${esc(screen.alt)}" width="${screen.width}" height="${screen.height}" loading="lazy" decoding="async"><span aria-hidden="true">크게 보기 ↗</span></a><figcaption>${esc(screen.caption)}</figcaption></figure>`).join('')}</div></div></details>`).join('');
-  return `<div class="company-service-previews">${hint}${individual ? `<div class="company-service-preview-options">${panels}</div>` : panels}</div>`;
+  return `<div class="company-service-previews"><details class="internal-tool-screens company-service-screens"><summary aria-controls="${esc(service.id)}-screens">${esc(label)} 미리보기 <span>${service.screens.length}장</span></summary><div class="internal-tool-panel" id="${esc(service.id)}-screens"><header><strong>${esc(service.name)} ${esc(label)}</strong><button type="button" class="internal-tool-close" aria-label="${esc(service.name)} ${esc(label)} 미리보기 닫기" hidden>닫기 ×</button></header><div class="internal-tool-gallery" aria-label="${esc(service.name)} ${esc(label)}">${service.screens.map(screen => `<figure><a class="internal-tool-preview company-service-screen${service.previewLabel ? ' company-service-screen--illustration' : service.id === 'decivox' ? ' company-service-screen--desktop' : ''}${screen.presentation === 'portrait' ? ' company-service-screen--portrait' : ''}" href="${esc(screen.src)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(screen.alt)} 크게 보기 (새 탭)"><img src="${esc(screen.src)}" alt="${esc(screen.alt)}" width="${screen.width}" height="${screen.height}" loading="lazy" decoding="async"><span aria-hidden="true">크게 보기 ↗</span></a><figcaption>${esc(screen.caption)}</figcaption></figure>`).join('')}</div></div></details></div>`;
 }
 
 function renderCard(service, index) {
@@ -41,7 +35,7 @@ else {
   html = html.includes(productMarker) ? html.replace(productMarker, `${completeSection}${productMarker}`) : html.replace('</div></main>', `${completeSection}</div></main>`);
 }
 html = html.replace(/<link\b[^>]*href="\/css\/company-services\.css(?:\?[^"]*)?"[^>]*>/gu, '');
-html = html.replace('</head>', '<link rel="stylesheet" href="/css/company-services.css?v=20261030-2"></head>');
+html = html.replace('</head>', '<link rel="stylesheet" href="/css/company-services.css?v=20261030-3"></head>');
 if (!html.includes('/css/internal-tools.css')) html = html.replace('</head>', '<link rel="stylesheet" href="/css/internal-tools.css?v=20260926-3"></head>');
 if (!html.includes('/js/internal-tools.js')) html = html.replace('</body>', '<script src="/js/internal-tools.js?v=20260926-3" defer></script></body>');
 fs.writeFileSync(file, html);

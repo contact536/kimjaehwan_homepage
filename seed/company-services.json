@@ -299,26 +299,20 @@
       "videos": [],
       "screens": [
         {
-          "src": "/assets/company-services/decivox-capture-diagram-20261030.webp",
-          "label": "녹음·화자 분리",
-          "alt": "회의용 마이크로 여러 화자의 음성을 기록하는 일러스트",
-          "caption": "녹음·화자 분리 · 서비스 설명 이미지",
-          "sourceUrl": "https://www.xaikorea.ai.kr/assets/images/editorial/meeting-capture-20261026-v2.webp",
-          "width": 1600,
-          "height": 900
+          "src": "/assets/company-services/decivox-login-20260926.png",
+          "alt": "DECIVOX 호반 온프레미스 AI 회의록의 로그인 화면",
+          "caption": "로그인",
+          "width": 2560,
+          "height": 1440
         },
         {
-          "src": "/assets/company-services/decivox-summary-diagram-20261030.webp",
-          "label": "AI 요약·회의록",
-          "alt": "녹음한 대화를 요약과 실행 항목으로 정리하는 회의록 일러스트",
-          "caption": "AI 요약·회의록 · 서비스 설명 이미지",
-          "sourceUrl": "https://www.xaikorea.ai.kr/assets/images/editorial/meeting-summary-20261026-v2.webp",
-          "width": 1600,
-          "height": 900
+          "src": "/assets/company-services/decivox-summary-20260926.png",
+          "alt": "DECIVOX의 핵심 요약과 주요 논의를 보여주는 테스트 계정 화면",
+          "caption": "AI 요약 · 테스트 계정",
+          "width": 2560,
+          "height": 1440
         }
-      ],
-      "previewLabel": "서비스 설명 이미지",
-      "previewMode": "individual"
+      ]
     }
   ],
   "developmentProjects": [
