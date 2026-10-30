@@ -9,6 +9,7 @@ import researcher from '../seed/researcher.json' with {type:'json'};
 import serviceDirectory from '../seed/company-services.json' with {type:'json'};
 import press from '../seed/company-press.json' with {type:'json'};
 import submissions from '../seed/journal-manuscripts.json' with {type:'json'};
+import sdg from '../seed/sdg-manuscripts.json' with {type:'json'};
 import activityData from '../seed/academic-activities.json' with {type:'json'};
 import type { Database } from './database.ts';
 
@@ -24,6 +25,8 @@ const documents:Source[]=[
  ...activityData.activities.map(item=>({title:item.title,url:'/pages/research.html#activity-'+item.id,text:['김재환 학술대회·포럼 참가활동',item.participation,'개최일',item.date.replaceAll('-','.'),'장소',item.venue,item.category,item.summary,...item.highlights].join(' ')})),
  ...activityData.activities.flatMap(item=>(item.articles??[]).map(article=>({title:article.title,url:article.url,text:[item.title,'행사 관련 보도',article.publisher,'보도일',article.publishedAt,article.summary].join(' ')}))),
  ...submissions.manuscripts.filter(item=>['under_review','review_completed'].includes(item.status)).map(item=>({title:item.title,url:'/pages/publications.html#'+item.id,text:[item.journal,'학술지 투고 논문',item.statusLabel,'상태 기준일',item.statusAsOf,'직전 심사결과',item.previousDecision,item.titleEn,item.summary,item.resultsSummary,...item.keywords,'최종 게재 확정·출판 여부는 별도로 확인해야 함'].join(' ')})),
+ {title:'연구 중인 SDG 논문',url:'/pages/publications.html#sdg-manuscripts',text:['SDG 연구 원고 7개 주제',sdg.statusLabel,'기준일',sdg.updatedAt,...sdg.manuscripts.map(item=>item.shortTitle),'KIS 두 버전을 포함한 첫 페이지 8장 공개. 전체 원문은 비공개.'].join(' ')},
+ ...sdg.manuscripts.map(item=>({title:item.title,url:'/pages/publications.html#'+item.id,text:['SDG 연구 원고',sdg.statusLabel,item.shortTitle,item.subtitle,item.summary,item.approach,...item.keywords,'공개 범위: 원고 첫 페이지. 투고·게재 실적과 구분하는 진행 중 연구.'].join(' ')})),
  ...researcher.patents.map(r=>({title:r.title,url:r.url||'/pages/patents.html',text:['XAIKOREA 기업 특허',r.status,r.date,r.number].filter(Boolean).join(' ')})),
  ...(researcher.patentDecisions??[]).map(r=>({title:`${r.title} 특허결정`,url:'/pages/patents.html#patent-decision-'+r.number.replaceAll('-',''),text:['XAIKOREA 기업 특허결정',r.status,r.date,r.number,r.issuer,'설정등록 절차와 구분'].filter(Boolean).join(' ')})),
  ...(researcher.patentUpdates??[]).map(r=>({title:`${r.title} · ${r.status}`,url:'/pages/patents.html#'+r.id,text:['XAIKOREA 회사 특허 이력',r.dateLabel,r.date,r.description,r.statusNote,...r.facts.flatMap(f=>[f.label,f.value]),...(r.processSteps??[]).flatMap(step=>[step.title,step.date])].join(' ')})),

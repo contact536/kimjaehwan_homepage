@@ -1,0 +1,197 @@
+{
+  "updatedAt": "2026-10-31",
+  "status": "research_in_progress",
+  "statusLabel": "연구 중",
+  "groups": [
+    {
+      "id": "environment",
+      "title": "환경혁신 · 기업행태"
+    },
+    {
+      "id": "energy-carbon",
+      "title": "에너지 · 탄소 · 설비 전환"
+    },
+    {
+      "id": "technology-measurement",
+      "title": "AI 기술 측정 · 특허 분석"
+    }
+  ],
+  "manuscripts": [
+    {
+      "id": "sdg-kis-environmental-innovation",
+      "group": "environment",
+      "shortTitle": "KIS 제조업 환경혁신과 정부지원",
+      "title": "환경편익 혁신 지표와 정부지원 연관성의 해석 범위",
+      "subtitle": "KIS 2024 제조업의 보고 기준·규모 통제·비교대상 분석",
+      "summary": "KIS 2024 제조업 4,595개사 자료로 환경편익 보고와 정부지원 활용의 연관성을 탐색합니다. 보고 기준, 기업규모 통제와 비교대상 선정에 따라 분석 결과의 해석 범위가 어떻게 달라지는지 살펴봅니다.",
+      "approach": "조사가중 로짓 · 응답 재분류 · 비교대상 진단",
+      "keywords": [
+        "환경혁신",
+        "정부지원",
+        "기업규모",
+        "KIS 2024"
+      ],
+      "firstPages": [
+        {
+          "image": "/assets/publications/sdg/kis-edit-first-page-20261030.png",
+          "label": "편집 원고 · 첫 페이지",
+          "title": "환경편익 혁신 지표와 정부지원 연관성의 해석 범위",
+          "width": 1274,
+          "height": 1800
+        },
+        {
+          "image": "/assets/publications/sdg/kis-hwp-first-page-20261030.png",
+          "label": "별도 구성 원고 · 첫 페이지",
+          "title": "환경편익 보고의 정의와 기업규모 통제에 따라 정부지원 연관성은 어떻게 달라지는가?",
+          "width": 1274,
+          "height": 1800
+        }
+      ]
+    },
+    {
+      "id": "sdg-manufacturing-electricity-intensity",
+      "group": "energy-carbon",
+      "shortTitle": "제조업 전력집약도의 조건부 예측",
+      "title": "한국 제조업 6개 공표 업종 전력집약도의 조건부 단기예측",
+      "subtitle": "단순 기준 대비 개선과 오차 집계 목적",
+      "summary": "한국 제조업 6개 공표 업종의 1995–2023년 자료로 1·2년 단기예측을 비교합니다. 같은 미래 부가가치를 제공하는 조건에서 단순 지속성 기준과 예측 절차를 비교하고, 업종·연도 및 오차 집계 방식에 따른 평가 차이를 검토합니다.",
+      "approach": "공개 집계계열 · 조건부 예측 · 기준모형 및 오차 비교",
+      "keywords": [
+        "전력집약도",
+        "조건부 예측",
+        "공개 집계자료",
+        "예측 평가"
+      ],
+      "firstPages": [
+        {
+          "image": "/assets/publications/sdg/aggregate-first-page-20261030.png",
+          "label": "연구 원고 · 첫 페이지",
+          "title": "한국 제조업 6개 공표 업종 전력집약도의 조건부 단기예측",
+          "width": 1274,
+          "height": 1800
+        }
+      ]
+    },
+    {
+      "id": "sdg-greenhouse-gas-panel",
+      "group": "energy-carbon",
+      "shortTitle": "공개 온실가스 기록의 패널 구축",
+      "title": "한국 공개 온실가스 보고기록의 패널 구축 규칙과 조건부 추론 민감성",
+      "subtitle": "",
+      "summary": "2011–2024년 한국의 업체·사업장 지정 온실가스 보고기록을 연결하는 패널 구축 규칙을 연구합니다. 업종 안정성 및 유효 기록의 기준이 표본 구성, 이력 보존과 고정효과 분석의 조건부 추론에 미치는 영향을 비교합니다.",
+      "approach": "기록 연계 · 업종 분류 · 고정효과 및 군집 강건 추론",
+      "keywords": [
+        "온실가스",
+        "패널 구축",
+        "자료 이력",
+        "추론 민감성"
+      ],
+      "firstPages": [
+        {
+          "image": "/assets/publications/sdg/greenhouse-panel-first-page-20261030.png",
+          "label": "연구 원고 · 첫 페이지",
+          "title": "한국 공개 온실가스 보고기록의 패널 구축 규칙과 조건부 추론 민감성",
+          "width": 1273,
+          "height": 1800
+        }
+      ]
+    },
+    {
+      "id": "sdg-energy-co2-statistics",
+      "group": "energy-carbon",
+      "shortTitle": "전기·열 CO₂ 공개통계의 연계",
+      "title": "한국 전기 및 열 CO₂ 공개통계의 연계와 비교 절차",
+      "subtitle": "",
+      "summary": "한국의 에너지밸런스와 전기·열 생산 부문 CO₂ 인벤토리를 원자료 셀과 공개 계수로 연결합니다. 집계량의 대응 관계를 확인하고 공개 계수 기준선과 회귀 재구성을 비교해, 통계 간 비교 및 배분에 필요한 자료와 검증 절차를 정리합니다.",
+      "approach": "원자료 셀 대응 · 공개 계수 기준선 · 재현 가능한 비교",
+      "keywords": [
+        "CO₂ 인벤토리",
+        "에너지밸런스",
+        "공개통계",
+        "계산 재현"
+      ],
+      "firstPages": [
+        {
+          "image": "/assets/publications/sdg/energy-co2-first-page-20261030.png",
+          "label": "연구 원고 · 첫 페이지",
+          "title": "한국 전기 및 열 CO₂ 공개통계의 연계와 비교 절차",
+          "width": 1273,
+          "height": 1800
+        }
+      ]
+    },
+    {
+      "id": "sdg-wbes-innovation-environment",
+      "group": "environment",
+      "shortTitle": "기업 혁신활동과 환경 관리행태",
+      "title": "한국 사업체의 R&D 지출·공정혁신과 에너지 관리조치 및 CO₂ 모니터링의 탐색적 비교",
+      "subtitle": "",
+      "summary": "한국 2024 세계은행 기업조사(WBES)의 공통 유효응답 1,480개 사업체를 대상으로 연구개발 지출·공정혁신과 환경 관리행태를 탐색합니다. 에너지 관리조치와 CO₂ 모니터링을 구분해 보고 조합과 조정 확률 차이를 비교합니다.",
+      "approach": "사업체 조사 · 가중 로짓 · 환경행태 항목별 비교",
+      "keywords": [
+        "WBES",
+        "R&D",
+        "공정혁신",
+        "에너지 관리",
+        "CO₂ 모니터링"
+      ],
+      "firstPages": [
+        {
+          "image": "/assets/publications/sdg/wbes-first-page-20261030.png",
+          "label": "연구 원고 · 첫 페이지",
+          "title": "한국 사업체의 R&D 지출·공정혁신과 에너지 관리조치 및 CO₂ 모니터링의 탐색적 비교",
+          "width": 1273,
+          "height": 1800
+        }
+      ]
+    },
+    {
+      "id": "sdg-equipment-stock-dynamics",
+      "group": "energy-carbon",
+      "shortTitle": "설비 효율과 서비스 공급의 동학",
+      "title": "설비 효율개선과 서비스 공급의 상충 조건",
+      "subtitle": "예산·조달 순서·재고 보충의 동학",
+      "summary": "한정된 투자예산에서 고효율 설비 도입이 설치용량과 서비스 공급에 연결되는 조건을 시스템다이내믹스로 연구합니다. 설비의 빈티지 재고와 설치 지연을 반영하고, 조달 우선순위·구입가격·재고 보충 규칙을 합성 실험으로 비교합니다.",
+      "approach": "시스템다이내믹스 · 빈티지 재고 · 합성 시나리오 실험",
+      "keywords": [
+        "설비 효율",
+        "시스템다이내믹스",
+        "예산 제약",
+        "조달 우선순위"
+      ],
+      "firstPages": [
+        {
+          "image": "/assets/publications/sdg/equipment-stock-first-page-20261030.png",
+          "label": "연구 원고 · 첫 페이지",
+          "title": "설비 효율개선과 서비스 공급의 상충 조건",
+          "width": 1336,
+          "height": 1800
+        }
+      ]
+    },
+    {
+      "id": "sdg-ai-patent-candidate-rules",
+      "group": "technology-measurement",
+      "shortTitle": "AI 특허 후보규칙과 기업 순위",
+      "title": "AI 특허 후보집합과 기업 순위의 민감도",
+      "subtitle": "2024년 탐색 자료와 별도 연도·기업 자료의 고정 규칙 대조",
+      "summary": "AI 특허 검색규칙에 따라 후보 출원과 기업 순위가 어떻게 달라지는지 연구합니다. 탐색 단계에서 정한 다섯 규칙을 별도 15개사·22개 기업연도의 고유 출원 16,248건에 적용하고, 공백 처리·후보집합의 겹침·순위와 동률을 함께 비교합니다.",
+      "approach": "고정 검색규칙 · 후보집합 비교 · 기업 순위 민감도 분석",
+      "keywords": [
+        "AI 특허",
+        "검색규칙",
+        "후보집합",
+        "기업 순위"
+      ],
+      "firstPages": [
+        {
+          "image": "/assets/publications/sdg/ai-patent-rules-first-page-20261030.png",
+          "label": "연구 원고 · 첫 페이지",
+          "title": "AI 특허 후보집합과 기업 순위의 민감도",
+          "width": 1314,
+          "height": 1800
+        }
+      ]
+    }
+  ]
+}

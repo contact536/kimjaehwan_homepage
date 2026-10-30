@@ -47,6 +47,11 @@ test('research search uses curated profile, preserves degree/application distinc
  assert.match(manuscript.answer,/한국컴퓨터정보학회논문지 학술지 투고 논문 3차 심사완료 상태 기준일 2026-10-30/);
  assert.match(manuscript.answer,/2차 수정 후 게재/);
  assert.match(manuscript.answer,/최종 게재 확정·출판 여부는 별도로 확인/);
+ const sdg=searchResearch('연구 중인 SDG 논문');
+ assert.ok(sdg.sources.some(source=>source.url.endsWith('#sdg-manuscripts')));
+ assert.match(sdg.answer,/SDG 연구 원고 7개 주제 연구 중/);
+ assert.match(sdg.answer,/첫 페이지 8장 공개. 전체 원문은 비공개/);
+ assert.ok(searchResearch('KIS 제조업 환경혁신과 정부지원').sources.some(source=>source.url.endsWith('#sdg-kis-environmental-innovation')));
  assert.deepEqual(searchResearch('zzzxxyy9977').sources,[]);
  assert.ok(!JSON.stringify(searchResearch('연락처')).includes('010-'));
 });
