@@ -34,7 +34,11 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   assert.match(review, /상태 기준일<\/dt><dd><time datetime="2026-10-30">/u);
   assert.match(review, /AMI test 녹음 16개.*912회.*26\.19초.*83\.52초/u);
   assert.match(review, /산출물 무결성/u);
-  assert.doesNotMatch(review, /dbpiaone|scatId|\.hwp|<img|제34권|RTF|doi\.org|게재 확정|수정후재심/u);
+  assert.doesNotMatch(review, /dbpiaone|scatId|\.hwp|\.pdf|<iframe|<embed|제34권|RTF|doi\.org|게재 확정|수정후재심/u);
+  assert.equal((review.match(/<img /gu) || []).length, 1);
+  assert.match(review, /jksci-meeting-pipeline-first-page-20261031\.png/u);
+  assert.match(review, /저자 포함 원고 · 첫 페이지/u);
+  assert.ok(fs.existsSync('public/assets/publications/jksci-meeting-pipeline-first-page-20261031.png'));
   assert.equal((html.match(/id="jksci-meeting-pipeline-review"/gu) || []).length, 1);
   assert.ok(html.indexOf('id="jksci-meeting-pipeline-review"') < html.indexOf('id="ksci-2026-edge-ai-paper"'));
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
