@@ -22,7 +22,10 @@ test('all live company services are listed with official links and local logos',
   assert.doesNotMatch(decivox, /서비스 보기|서비스 운영 중/u);
   assert.match(decivox, /href="https:\/\/www\.xaikorea\.ai\.kr\/contact"/u);
   assert.equal((decivox.match(/<img src="\/assets\/company-services\/decivox-(?:capture|summary)-diagram-20261030\.webp"/gu) || []).length, 2);
-  assert.match(decivox, /서비스 설명 도식 미리보기/u);
+  assert.equal((decivox.match(/<details class="internal-tool-screens company-service-screens">/gu) || []).length, 2);
+  assert.match(decivox, /aria-label="녹음·화자 분리 미리보기"/u);
+  assert.match(decivox, /aria-label="AI 요약·회의록 미리보기"/u);
+  assert.doesNotMatch(decivox, /서비스 설명 도식 미리보기/u);
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
   assert.match(research, /href="\/pages\/projects\.html#service-decivox"/u);
   assert.match(research, /href="\/pages\/projects\.html#company-services"/u);
