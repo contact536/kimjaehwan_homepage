@@ -4,7 +4,7 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const resources={
  cloa:{href:'/pages/patents.html',label:'관련 특허 출원',note:'XAIKOREA의 검색·응답 생성·근거 검증 관련 출원 현황'},
  taxia:{href:'/pages/experience.html#cv-career',label:'담당 역할과 경력',note:'제품 기획 및 연구개발 방향을 총괄하는 김재환 대표의 경력'},
- kortaxarena:{href:'/pages/publications.html#kortaxarena-note',label:'공개 자료 현황',note:'논문·데이터셋·코드 링크의 등록 상태'},
+ kortaxarena:{href:'/pages/publications.html#kortaxarena-note',label:'연구 원고 · 첫 페이지 보기',note:'연구 중인 영문 개정 49안 · 첫 페이지 미리보기'},
 };
 const file='public/pages/research.html';
 let html=fs.readFileSync(file,'utf8').replace(/<!-- research-actions:start -->[\s\S]*?<!-- research-actions:end -->/g,'');

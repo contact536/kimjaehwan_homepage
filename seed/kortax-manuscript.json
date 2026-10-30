@@ -1,0 +1,19 @@
+{
+  "id": "kortaxarena-note",
+  "project": "KorTaxArena",
+  "title": "Completion after Early Test-Selection Saturation: An Exploratory Study of 540 LLM Generation Attempts",
+  "titleKo": "테스트 선택의 조기 포화 이후 추가 테스트 구성: LLM 생성 시도 540건에 대한 탐색 연구",
+  "status": "research_in_progress",
+  "statusLabel": "연구 중",
+  "version": "영문 개정 49안",
+  "updatedAt": "2026-10-31",
+  "summary": "테스트 선택 기준이 더 이상 새로운 정보를 주지 않을 때, 남은 실행 예산으로 어떤 테스트를 추가할지 연구합니다. 추가 테스트의 구성 방식과 정답 판정 기준이 LLM 생성 프로그램의 오류 발견에 미치는 영향을 살펴봅니다.",
+  "approach": "18개 합성 산술 과제와 6개 모델 구성의 생성 시도 540건을 바탕으로, 동일한 핵심 테스트 집합 뒤에 무작위·입력 다양성·reset-greedy·total-gain 방식으로 테스트를 추가하는 네 가지 정책을 비교하는 탐색 연구입니다.",
+  "keywords": ["테스트 선택", "변이 테스트", "LLM 생성 프로그램", "정답 판정", "실증 소프트웨어 공학"],
+  "firstPage": {
+    "image": "/assets/publications/kortaxarena-revision-49-first-page-20261031.png",
+    "width": 1522,
+    "height": 2000,
+    "label": "연구 중인 영문 원고 · 개정 49안 · 첫 페이지"
+  }
+}

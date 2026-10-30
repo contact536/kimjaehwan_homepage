@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const topics = [
   {id:'cloa', title:'근거 기반 AI', name:'CLOA', question:'AI 응답의 근거를 어떻게 확인할 수 있을까요?', approach:'세법 근거와 응답을 연결하고, 인용과 응답 근거를 검증하는 구조를 연구합니다.'},
   {id:'taxia', title:'세무·회계 실무 AI', name:'TAXiA', question:'도메인 지식을 실제 업무에 어떻게 연결할까요?', approach:'세무·회계 특화 LLM과 RAG를 사무소의 업무에 연결하는 제품을 개발합니다.'},
-  {id:'kortaxarena', title:'한국어 LLM 평가', name:'KorTaxArena', question:'세무 분야의 모델 성능을 어떻게 비교할까요?', approach:'한국어 세무 도메인의 LLM을 비교·평가하는 벤치마킹 연구를 진행합니다.'},
+  {id:'kortaxarena', title:'LLM 테스트 연구', name:'KorTaxArena', question:'어떤 추가 테스트가 프로그램의 오류를 드러낼까요?', approach:'테스트 선택 기준이 포화된 뒤의 추가 테스트 구성 방식과 정답 판정 기준을 비교합니다.'},
 ];
 const start='<!-- research-topics:start -->', end='<!-- research-topics:end -->';
 function navigation(home) {

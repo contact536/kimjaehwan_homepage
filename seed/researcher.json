@@ -280,15 +280,15 @@
     {
       "id": "kortaxarena",
       "title": "KorTaxArena",
-      "subtitle": "Korean Tax LLM Benchmark",
-      "description": "한국어 세무 도메인의 LLM 벤치마킹 연구. 세무·회계 문제에 대한 모델 평가를 연구와 제품 개발에 연결합니다. 공개 논문 및 데이터셋 링크는 아직 등록되어 있지 않습니다.",
+      "subtitle": "LLM 생성 프로그램 · 테스트 선택",
+      "description": "LLM 생성 프로그램의 테스트 선택과 오류 발견을 다루는 탐색 연구입니다. 최신 영문 개정 49안은 18개 합성 산술 과제와 6개 모델 구성의 생성 시도 540건을 바탕으로 추가 테스트 구성 방식과 정답 판정 기준을 비교합니다. 연구 중인 원고의 첫 페이지를 논문·자료 페이지에서 소개합니다.",
       "tags": [
-        "Evaluation",
-        "Benchmark",
-        "Korean LLM"
+        "Test Selection",
+        "Generated Programs",
+        "Test Oracles"
       ],
       "status": "연구 진행 중",
-      "source": "회사소개서"
+      "source": "사용자 제공 KorTaxArena 영문 개정 49안 · 연구 중"
     }
   ],
   "patents": [

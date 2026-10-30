@@ -10,6 +10,7 @@ import serviceDirectory from '../seed/company-services.json' with {type:'json'};
 import press from '../seed/company-press.json' with {type:'json'};
 import submissions from '../seed/journal-manuscripts.json' with {type:'json'};
 import sdg from '../seed/sdg-manuscripts.json' with {type:'json'};
+import kortax from '../seed/kortax-manuscript.json' with {type:'json'};
 import activityData from '../seed/academic-activities.json' with {type:'json'};
 import type { Database } from './database.ts';
 
@@ -22,6 +23,7 @@ const documents:Source[]=[
  ...(researcher.academicMemberships??[]).map(r=>({title:`${r.organization} ${r.category}`,url:'/pages/company-network.html#'+r.id,text:[r.date,r.description,r.category,r.status,r.source,'김재환 개인 학술단체 회원자격'].filter(Boolean).join(' ')})),
  ...(researcher.companyCredentials??[]).map(r=>({title:r.title,url:r.url||'/pages/experience.html#cv-company',text:[r.date,r.description,r.status,r.issuer,r.certificate,...(r.facts??[]).flatMap(f=>[f.label,f.value])].filter(Boolean).join(' ')})),
  ...researcher.research.map(r=>({title:r.title,url:'/pages/research.html#'+r.id,text:r.subtitle+' '+r.description+' '+r.tags.join(' ')})),
+ {title:'KorTaxArena 연구 원고',url:'/pages/publications.html#'+kortax.id,text:[kortax.statusLabel,kortax.version,kortax.title,kortax.titleKo,kortax.summary,kortax.approach,...kortax.keywords,'공개 범위: 첫 페이지 이미지 1장.'].join(' ')},
  ...activityData.activities.map(item=>({title:item.title,url:'/pages/research.html#activity-'+item.id,text:['김재환 학술대회·포럼 참가활동',item.participation,'개최일',item.date.replaceAll('-','.'),'장소',item.venue,item.category,item.summary,...item.highlights].join(' ')})),
  ...activityData.activities.flatMap(item=>(item.articles??[]).map(article=>({title:article.title,url:article.url,text:[item.title,'행사 관련 보도',article.publisher,'보도일',article.publishedAt,article.summary].join(' ')}))),
  ...submissions.manuscripts.filter(item=>['under_review','review_completed'].includes(item.status)).map(item=>({title:item.title,url:'/pages/publications.html#'+item.id,text:[item.journal,'학술지 투고 논문',item.statusLabel,'상태 기준일',item.statusAsOf,'직전 심사결과',item.previousDecision,item.titleEn,item.summary,item.resultsSummary,...item.keywords,'최종 게재 확정·출판 여부는 별도로 확인해야 함'].join(' ')})),
