@@ -11,6 +11,7 @@ import type { Database } from "./database.ts";
 import { kinds, schemas, writeSchema } from "./validation.ts";
 import pages from "../seed/pages.json" with { type: "json" };
 import { searchResearchFromDatabase, runAgent } from './agent.ts';
+import { searchEnglishResearch } from './english-research.ts';
 import { analyticsReport } from './analytics.ts';
 export type Bindings = {
   DB: Database;
@@ -189,15 +190,15 @@ export function createApp() {
   });
   app.get('/api/research/status', c => c.json({retrieval:true,agent:{configured:Boolean(c.env.OLLAMA_MODEL),requiresLogin:true,framework:'LangGraph'}}));
   app.post('/api/research/search', async c => {
-    const input=z.object({question:z.string().trim().min(1).max(1000)}).strict().safeParse(await c.req.json().catch(()=>null));
+    const input=z.object({question:z.string().trim().min(1).max(1000),language:z.enum(['ko','en']).optional()}).strict().safeParse(await c.req.json().catch(()=>null));
     if(!input.success)return c.json({error:'질문은 1~1,000자로 입력해 주세요.'},400);
-    return c.json(await searchResearchFromDatabase(input.data.question,c.env.DB));
+    return c.json(input.data.language==='en'?searchEnglishResearch(input.data.question):await searchResearchFromDatabase(input.data.question,c.env.DB));
   });
   app.post('/api/admin/agent', async c => {
-    const input=z.object({question:z.string().trim().min(1).max(1000)}).strict().safeParse(await c.req.json().catch(()=>null));
+    const input=z.object({question:z.string().trim().min(1).max(1000),language:z.enum(['ko','en']).optional()}).strict().safeParse(await c.req.json().catch(()=>null));
     if(!input.success)return c.json({error:'질문은 1~1,000자로 입력해 주세요.'},400);
     if(!c.env.OLLAMA_MODEL)return c.json({error:'Ollama 모델이 설정되지 않았습니다. 서버의 OLLAMA_MODEL을 설정해 주세요.'},503);
-    try{return c.json(await runAgent(input.data.question,c.env.DB,c.env))}
+    try{return c.json(await runAgent(input.data.question,c.env.DB,c.env,undefined,input.data.language))}
     catch{return c.json({error:'모델 응답을 완료하지 못했습니다. Ollama 연결과 도구 호출 지원 모델을 확인해 주세요.'},502)}
   });
   app.get("/api/records/:kind", async (c) => {

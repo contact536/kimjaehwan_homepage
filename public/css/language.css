@@ -1,0 +1,30 @@
+.academic-nav { max-width:1200px; gap:16px; }
+.academic-nav nav { gap:16px; order:1; }
+.language-switch { display:flex; flex:none; gap:2px; padding:2px; border:1px solid var(--border); border-radius:7px; background:var(--bg-secondary); order:2; }
+.language-switch button { min-height:40px; padding:6px 9px; border:0; border-radius:5px; background:transparent; color:var(--text-secondary); font:inherit; font-size:13px; white-space:nowrap; cursor:pointer; }
+.language-switch button[aria-pressed="true"] { background:var(--bg-primary); color:var(--accent); font-weight:700; box-shadow:0 1px 3px #0001; }
+.language-switch button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.language-notice { position:fixed; z-index:200; bottom:20px; left:50%; transform:translateX(-50%); width:max-content; max-width:calc(100vw - 32px); padding:12px 18px; border:1px solid var(--border); border-radius:8px; color:var(--text-primary); background:var(--bg-primary); box-shadow:0 4px 24px #0002; font-size:14px; }
+main [id], main[id] { scroll-margin-top:calc(var(--site-header-height, 100px) + 24px)!important; }
+@media(min-width:961px) { .research-sidebar { top:calc(var(--site-header-height, 100px) + 24px); max-height:calc(100vh - var(--site-header-height, 100px) - 44px); } }
+html[lang="en"] body { word-break:normal; overflow-wrap:break-word; }
+html[lang="en"] :is(h1,h2,h3,h4,p,li,dd,figcaption) { word-break:normal; }
+html[lang="en"] .academic-brand span { display:none; }
+html[lang="en"] .kim-footer>a:first-child span { display:none; }
+html[lang="en"] :is(.manuscript-title-en,.conference-title-en,.reading-deck) { display:none; }
+html[lang="en"] .kim-english { display:none; }
+html[lang="en"] .journal-manuscript dl>div { grid-template-columns:minmax(90px,130px) minmax(0,1fr); }
+@media(max-width:1100px) {
+  .academic-nav { flex-wrap:wrap; }
+  .academic-nav nav { width:100%; flex-wrap:wrap; order:3; }
+  .language-switch { margin-left:auto; order:1; }
+}
+@media(max-width:600px) {
+  .academic-nav { gap:10px; }
+  .academic-brand { order:0; }
+  .academic-menu-toggle { order:1; margin-left:auto; min-height:44px; }
+  .language-switch { order:2; margin-left:0; }
+  .academic-nav nav { order:3; }
+  .language-switch button { min-height:44px; }
+  html[lang="en"] .journal-manuscript dl>div { grid-template-columns:1fr; gap:3px; }
+}

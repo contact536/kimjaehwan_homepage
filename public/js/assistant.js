@@ -9,7 +9,8 @@
  $('agentSubmit').disabled=true;$('agentCancel').hidden=false;$('agentMode').disabled=true;
  $('agentStatus').textContent='자료를 확인하고 있습니다…';$('agentAnswer').replaceChildren();$('agentSources').replaceChildren();$('agentSources').hidden=true;$('agentTrace').hidden=true;$('agentTraceList').replaceChildren();const mode=$('agentMode').value;
  try{
- const res=await fetch(mode==='ollama'?'/api/admin/agent':'/api/research/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question}),signal:controller.signal});const data=await res.json();if(!res.ok)throw Error(res.status===401?'관리자 로그인 후 다시 질문해 주세요.':data.error||'요청을 처리하지 못했습니다.');
+ const language=globalThis.siteLanguage?.current||'ko';
+ const res=await fetch(mode==='ollama'?'/api/admin/agent':'/api/research/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question,language}),signal:controller.signal});const data=await res.json();if(!res.ok)throw Error(res.status===401?'관리자 로그인 후 다시 질문해 주세요.':data.error||'요청을 처리하지 못했습니다.');
  $('agentAnswer').textContent=data.answer;
  for(const source of data.sources||[]){if(typeof source.url!=='string'||!source.url.startsWith('/')||source.url.startsWith('//'))continue;const a=document.createElement('a');a.textContent=source.title+' →';a.href=source.url;$('agentSources').append(a);}
  $('agentSources').hidden=!$('agentSources').children.length;

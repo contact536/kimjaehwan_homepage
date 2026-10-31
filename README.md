@@ -32,6 +32,17 @@ setup이 생성하는 .env에서 관리자 비밀번호를 확인하세요. 기�
 서버의 .env에 OLLAMA_BASE_URL 및 OLLAMA_MODEL을 설정하세요. 기존 로컬 검증 모델은 qwen2.5:7b입니다.
 모델 서버는 공개 인터넷에 노출하지 마세요.
 
+## 한국어·영어 선택
+
+공개 페이지 상단에서 한국어와 영어를 선택합니다. `?lang=ko` / `?lang=en` 링크가 저장된 언어 선택보다 우선하며, 페이지 이동 시 선택 언어와 문서 위치를 유지합니다. 관리자와 원본 PDF·이미지는 번역 대상에 포함하지 않습니다.
+
+- `public/locales/en.json`: 정규화한 한국어 원문과 영어 번역의 대응표. 공개 문구를 수정할 때 번역도 함께 갱신합니다.
+- `public/js/language.js`, `public/css/language.css`: 언어 전환, 동적 UI 번역, 내부 링크와 모바일 메뉴.
+- `scripts/apply-language-menu.mjs`: 공개 HTML에 공통 메뉴를 적용하며 `content:generate` 마지막 단계에서도 실행합니다.
+- `server/english-research.ts`: 공개 seed와 같은 번역표를 사용하는 영문 자료 검색. 연구 주제를 추가할 때 검색 자료도 보완합니다.
+
+변경 후 `npm test`, `npm run check`와 함께 PC·모바일의 양방향 전환, 페이지 찾기, 미리보기, 다운로드를 확인합니다. 번역 파일을 불러오지 못하면 한국어를 유지하고 다시 선택할 수 있습니다.
+
 ## 구조 및 검증
 
 - public/: 홈페이지, 관리자, 글꼴, 공개 PDF
