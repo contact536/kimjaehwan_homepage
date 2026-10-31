@@ -5,8 +5,7 @@
 }
 
 /* Keep the current page visible while another navigation item is explored. */
-#academicMenu>a { position:relative; text-decoration:none; }
-#academicMenu>a[aria-current="page"] { border-bottom-color:transparent; }
+#academicMenu>a { position:relative; text-decoration:none; font-weight:500; border-bottom:0; }
 #academicMenu>a::after { content:""; position:absolute; inset:auto 0 -2px; height:2px; background:var(--accent); transform:scaleX(0); transform-origin:left; pointer-events:none; }
 #academicMenu>a[aria-current="page"]::after,#academicMenu>a:focus-visible::after { transform:scaleX(1); }
 #academicMenu>a:focus-visible { color:var(--accent); }

@@ -1,4 +1,5 @@
 /* A common research map for the biography, manuscripts and CV. */
+.kim-page>.company-website + .kim-lead { margin-top:12px; }
 .research-topics { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
 .research-topic { --topic-color:var(--accent); --topic-surface:var(--bg-secondary); position:relative; }
 .research-topics .research-topic { border:1px solid var(--border); border-top:3px solid var(--topic-color); border-radius:8px; padding:24px; gap:12px; }
