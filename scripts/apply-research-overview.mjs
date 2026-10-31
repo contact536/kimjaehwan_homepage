@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import submissions from '../seed/journal-manuscripts.json' with {type:'json'};
 import {overview,esc,topicCards,scopeLinks,manuscriptLinks,researchDetails} from './research-overview-content.mjs';
 import {plannedResearchSection} from './d-testbed-research-plan-content.mjs';
+import {educationRows,doctoralIdentity} from './education-content.mjs';
 
 const date=overview.updatedAt.replaceAll('-','.');
 const meetingManuscript=submissions.manuscripts.find(item=>item.id==='jksci-meeting-pipeline-review');
@@ -37,12 +38,14 @@ for(const [name,description] of Object.entries(descriptions)) {
   html=html.replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${esc(description)}">`);
   html=html.replace(/<!-- research-scope:start -->[\s\S]*?<!-- research-scope:end -->/g,'');
   if(name==='index') {
+    html=html.replace(/<p class="hero-identity">[\s\S]*?<\/p>/,doctoralIdentity());
     let paragraph=0;
     html=html.replace(/<p class="academic-bio">[\s\S]*?<\/p>/g,match=>++paragraph<=2?`<p class="academic-bio">${esc(paragraph===1?overview.intro:overview.practice)}</p>`:match);
     html=html.replace(/<section class="section" id="research">[\s\S]*?<\/section>/,`<section class="section" id="research"><div class="container"><h2 class="section-title"><span class="section-number">02.</span> Research</h2><p class="kim-section-intro">${summary}</p>${topicCards(true)}${researchDetails()}<nav class="research-follow-links" aria-label="연구 자료와 프로젝트"><a href="/pages/publications.html">연구 원고 · 논문 현황 →</a><a href="/pages/projects.html">회사 프로젝트 · 내부 도구 →</a></nav></div></section>`);
     html=html.replace('근거 기반 AI, 세무·회계 도메인 연구 및 산학 협력을 제안해 주세요.',esc(overview.collaboration));
   }
   if(name==='about') {
+    html=html.replace(/(<h2 class="kim-heading">학력<\/h2>)[\s\S]*?(?=<h2 class="kim-heading">)/,(_,heading)=>heading+educationRows());
     html=html.replace(/(<p class="kim-subtitle">[^<]*<\/p>)<p>[\s\S]*?<\/p>/,`$1<p>${esc(overview.intro)}</p>`);
     html=html.replace('<h2 class="kim-heading">학력</h2>',`<!-- research-scope:start --><section class="research-scope" aria-labelledby="about-research-heading"><h2 id="about-research-heading">연구 관심 분야</h2><p>${esc(overview.practice)}</p><nav class="research-scope-links" aria-label="연구 분야 바로가기">${scopeLinks()}</nav></section><!-- research-scope:end --><h2 class="kim-heading">학력</h2>`);
     html=html.replace('>연구와 실무</h2>','>연구개발 · 제품 경험</h2>');
