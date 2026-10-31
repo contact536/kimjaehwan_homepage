@@ -60,6 +60,8 @@ for(const [name,description] of Object.entries(descriptions)) {
     html=html.replace(/(<main[^>]*>)([\s\S]*?)(<\/main>)/,(_,open,body,close)=>`${open}<!-- research-directory:start --><div class="research-directory-layout">${sidebar}<!-- research-directory:content -->${body}</div><!-- research-directory:end -->${close}`);
   }
   if(name==='publications') {
+    if(!html.includes('/css/paper-preview.css')) html=html.replace('</head>','<link rel="stylesheet" href="/css/paper-preview.css"></head>');
+    if(!html.includes('/js/paper-preview.js')) html=html.replace('</head>','<script defer src="/js/paper-preview.js"></script></head>');
     html=html.replace(/<p class="kim-lead">[\s\S]*?<\/p>/,`<p class="kim-lead">진행 중인 연구 원고, 학술지 심사 현황과 학술대회 논문·저서를 소개합니다.</p><!-- research-scope:start --><nav class="manuscript-index" aria-label="논문과 자료 주제별 바로가기">${manuscriptLinks.map(l=>`<a href="${l.href}">${esc(l.label)}</a>`).join('')}</nav><!-- research-scope:end -->`);
   }
   if(name==='projects') html=html.replace(/<p class="kim-lead">[\s\S]*?<\/p>/,'<p class="kim-lead">연구를 실제 업무로 연결하는 XAIKOREA의 프로젝트와 사내 도구, 서비스·제품을 소개합니다.</p><!-- research-scope:start --><nav class="research-follow-links" aria-label="프로젝트 탐색"><a href="#internal-tools">회사 내부 연구·운영 도구 ↓</a><a href="#company-services">운영·공개 서비스 ↓</a><a href="/pages/research.html">연구 분야 · 논문 연구 →</a></nav><!-- research-scope:end -->');
