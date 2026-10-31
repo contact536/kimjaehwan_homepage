@@ -2,8 +2,16 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
 
-test('company documents show accessible previews linked to all six PDFs', () => {
-  const html = fs.readFileSync('public/pages/publications.html', 'utf8');
+test('company documents are separate from publications and remain available through related reading', () => {
+  const publications = fs.readFileSync('public/pages/publications.html', 'utf8');
+  assert.doesNotMatch(publications, /class="document-card"|\/assets\/documents\/|\/css\/company-documents\.css/u);
+  const related = publications.match(/<nav class="reading-related"[\s\S]*?<\/nav>/u)?.[0] ?? '';
+  assert.match(related, /id="company-documents" href="\/pages\/company-documents\.html"/u);
+  const index = publications.match(/<nav class="manuscript-index"[\s\S]*?<\/nav>/u)?.[0] ?? '';
+  assert.doesNotMatch(index, /company-documents/u);
+  const html = fs.readFileSync('public/pages/company-documents.html', 'utf8');
+  assert.match(html, /href="\/pages\/publications\.html"/u);
+  assert.equal((html.match(/class="author-panel"/gu) || []).length, 1);
   const covers = [...html.matchAll(/<img src="(\/assets\/documents\/[^"]+\.(?:png|webp))" alt="([^"]+)" width="(\d+)" height="(\d+)"/gu)];
   assert.equal(covers.length, 6);
   for (const [, source, alt, width, height] of covers) {

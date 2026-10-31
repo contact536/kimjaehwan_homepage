@@ -16,7 +16,6 @@ export const manuscriptLinks = [
   {href:'#'+manufacturing.id,label:'제조 AI 리뷰 · '+manufacturing.statusLabel},
   {href:'#ksci-2026-edge-ai-paper',label:'학술대회 논문'},
   {href:'#books-title',label:'저서'},
-  {href:'#company-documents',label:'회사 공개 자료'},
 ];
 export function topicCards(home=false) {
   return `<!-- research-topics:start --><div class="research-topics" aria-label="연구 분야별 탐색">${overview.areas.map((area,i)=>`<article class="research-topic" data-topic="${area.id}">${home?area.links.filter(l=>['cloa','taxia','kortaxarena'].includes(l.anchor)).map(l=>`<span id="research-${l.anchor}" class="research-anchor"></span>`).join(''):''}<p class="topic-label">${String(i+1).padStart(2,'0')} / ${esc(area.label)}</p><h3 class="topic-heading">${esc(area.title)}</h3><p class="topic-approach">${esc(area.summary)}</p><nav class="topic-destination" aria-label="${esc(area.title)} 상세">${area.links.map(l=>`<a href="${home?'/pages/research.html':''}#${l.anchor}">${esc(l.label)} <span aria-hidden="true">→</span></a>`).join('')}</nav></article>`).join('')}</div><!-- research-topics:end -->`;

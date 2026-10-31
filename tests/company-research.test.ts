@@ -3,12 +3,15 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 test('company links use the official www host and research updates keep attribution clear', () => {
-  for (const file of ['public/index.html', 'public/pages/contact.html', 'public/pages/projects.html', 'public/pages/publications.html']) {
+  for (const file of ['public/index.html', 'public/pages/contact.html', 'public/pages/projects.html']) {
     const html = fs.readFileSync(file, 'utf8');
     assert.match(html, /href="https:\/\/www\.xaikorea\.ai\.kr\/"/u, file);
     assert.match(html, />회사 홈페이지 · www\.xaikorea\.ai\.kr ↗<\/a>/u, file);
     assert.doesNotMatch(html, /https:\/\/xaikorea\.ai\.kr\//u, file);
   }
+  const companyDocuments = fs.readFileSync('public/pages/company-documents.html', 'utf8');
+  assert.match(companyDocuments, /href="https:\/\/www\.xaikorea\.ai\.kr\/about#company-credentials"/u);
+  assert.doesNotMatch(companyDocuments, /https:\/\/xaikorea\.ai\.kr\//u);
 
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
   assert.equal((research.match(/company-research-update:start/g) || []).length, 1);

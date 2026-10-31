@@ -9,7 +9,7 @@ test('regenerating related content retains press, valid source links and the res
   const root = path.resolve('.tools');
   fs.mkdirSync(root, {recursive:true});
   const directory = fs.mkdtempSync(path.join(root, 'kim-press-regeneration-'));
-  const files = ['public/index.html','public/pages/research.html','public/pages/publications.html','public/pages/sources.html','public/pages/company-network.html','seed/pages.json','public/pages/experience.html','public/pages/about.html','public/pages/projects.html','public/pages/contact.html','public/pages/assistant.html'];
+  const files = ['public/index.html','public/pages/research.html','public/pages/publications.html','public/pages/sources.html','public/pages/company-network.html','seed/pages.json','public/pages/experience.html','public/pages/about.html','public/pages/projects.html','public/pages/contact.html','public/pages/assistant.html','public/pages/company-documents.html'];
   try {
     for (const file of files) {
       const target = path.join(directory, file);
@@ -17,7 +17,7 @@ test('regenerating related content retains press, valid source links and the res
       fs.copyFileSync(file, target);
     }
     const generate = () => {
-      for (const script of ['apply-profile-sources','apply-company-network','apply-home-journey','apply-company-research-update','apply-conference-publication','apply-company-press','apply-journal-manuscripts','apply-academic-activities','apply-cv-blocks','apply-sdg-manuscripts','apply-kortax-manuscript','apply-vision-manuscript','apply-manufacturing-agent-manuscript','apply-research-overview']) {
+      for (const script of ['apply-company-documents','apply-profile-sources','apply-company-network','apply-home-journey','apply-company-research-update','apply-conference-publication','apply-company-press','apply-journal-manuscripts','apply-academic-activities','apply-cv-blocks','apply-sdg-manuscripts','apply-kortax-manuscript','apply-vision-manuscript','apply-manufacturing-agent-manuscript','apply-research-overview']) {
         execFileSync(process.execPath, [path.resolve(`scripts/${script}.mjs`)], {cwd:directory});
       }
       return files.map(file => fs.readFileSync(path.join(directory, file), 'utf8'));

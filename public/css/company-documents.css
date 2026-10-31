@@ -1,4 +1,5 @@
 #company-documents>article{border-top:1px solid var(--border)}
+.company-documents-page>.reading-links{margin-bottom:32px}
 .document-card{display:grid;grid-template-columns:170px minmax(0,1fr);gap:24px;padding:26px 0;align-items:start}
 .document-card:last-child{padding-bottom:0}
 .document-cover{display:flex;align-items:center;justify-content:center;min-height:226px;padding:8px;border:1px solid var(--border);border-radius:5px;background:var(--bg-primary);overflow:hidden}

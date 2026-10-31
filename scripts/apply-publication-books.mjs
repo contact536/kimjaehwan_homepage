@@ -7,7 +7,7 @@ const section = `${start}<section class="book-publications" aria-labelledby="boo
 
 let html = fs.readFileSync(file, 'utf8').replace(/<!-- books:start -->[\s\S]*?<!-- books:end -->/g, '');
 html = html.replace('<article class="reading-entry" id="kortaxarena-note"', `${section}<article class="reading-entry" id="kortaxarena-note"`);
-html = html.replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="김재환의 저서 Agent Harness Engineering, 연구 자료, 회사소개서와 사업 IR 자료.">');
+html = html.replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="김재환의 저서 Agent Harness Engineering과 논문 · 연구 자료.">');
 if (!html.includes('/css/book-publications.css')) html = html.replace('</head>', '<link rel="stylesheet" href="/css/book-publications.css"></head>');
 fs.writeFileSync(file, html);
 
