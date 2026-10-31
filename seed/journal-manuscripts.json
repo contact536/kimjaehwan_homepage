@@ -19,6 +19,13 @@
         "height": 2000,
         "label": "저자 포함 원고 · 첫 페이지"
       },
+      "fullText": {
+        "url": "/assets/publications/jksci-meeting-pipeline-full-text-20261030.pdf",
+        "downloadName": "JKSCI_원문_저자포함.pdf",
+        "label": "저자 포함 원고",
+        "pages": 17,
+        "bytes": 1235874
+      },
       "source": "사용자 제공 학술지 투고정보·3차 총평완료 및 게재가능 판정 화면 · 2026.10.31 확인"
     }
   ]

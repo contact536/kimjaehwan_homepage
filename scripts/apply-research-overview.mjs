@@ -23,7 +23,7 @@ const descriptions={
   'about':'김재환 XAIKOREA 대표이사·AI 연구원 소개. aSSIST AI융합·SDG 복수학위 박사과정과 AI 검증·산업 응용·환경·에너지 연구 분야.',
   'research':'김재환의 연구 분야와 진행 현황. CLOA·TAXiA, KorTaxArena, 회의 인텔리전스, Vision·제조 AI 리뷰, SHAPFINCH, SDG 연구.',
   'projects':'XAIKOREA의 연구개발 프로젝트, 사내 연구·운영 도구, 공개 서비스와 개발 중인 AI 제품을 소개합니다.',
-  'publications':'김재환의 연구 중인 SDG·KorTaxArena·Vision·제조 AI 리뷰 원고, 회의 인텔리전스 논문 심사 현황, 학술대회 논문과 저서. 연구 원고는 첫 페이지를 소개합니다.',
+  'publications':'김재환의 연구 중인 SDG·KorTaxArena·Vision·제조 AI 리뷰 원고, 회의 인텔리전스 논문 심사 현황, 학술대회 논문과 저서. 회의 인텔리전스 논문 원문 PDF와 연구 중인 원고의 첫 페이지를 제공합니다.',
   'experience':'김재환의 연구 관심 분야, 학력·경력, 학술단체 회원자격, 학술대회 참가와 XAIKOREA 주요 이력.',
   'contact':'김재환 연구 협업 연락처. AI 근거·검증, 온프레미스 AI, 산업용 Vision·제조 AI, 금융데이터, SDG·환경·에너지 연구.',
   'assistant':'김재환의 AI·SDG 연구 분야, 진행 중인 원고와 심사 현황, 경력 및 XAIKOREA 프로젝트를 등록 자료에서 검색합니다.',
@@ -48,7 +48,7 @@ for(const [name,description] of Object.entries(descriptions)) {
   if(name==='research') {
     html=html.replace(/<!-- research-topics:start -->[\s\S]*?<!-- research-topics:end -->/g,'');
     html=html.replace(/<nav class="academic-toc"[^>]*>[\s\S]*?<\/nav>/,'');
-    html=html.replace('<h1>연구</h1>',`<h1>연구</h1><!-- research-scope:start --><section class="research-overview" id="research-overview" aria-labelledby="research-overview-heading"><h2 id="research-overview-heading">연구 분야 한눈에</h2><p class="kim-lead">${esc(overview.intro)}</p><p class="research-scope-date">연구 현황 기준 <time datetime="${overview.updatedAt}">${date}</time></p>${topicCards()}<nav class="research-follow-links" aria-label="논문과 프로젝트"><a href="/pages/publications.html">연구 원고 · 첫 페이지 →</a><a href="/pages/projects.html">회사 프로젝트 · 내부 도구 →</a></nav></section><!-- research-scope:end -->`);
+    html=html.replace('<h1>연구</h1>',`<h1>연구</h1><!-- research-scope:start --><section class="research-overview" id="research-overview" aria-labelledby="research-overview-heading"><h2 id="research-overview-heading">연구 분야 한눈에</h2><p class="kim-lead">${esc(overview.intro)}</p><p class="research-scope-date">연구 현황 기준 <time datetime="${overview.updatedAt}">${date}</time></p>${topicCards()}<nav class="research-follow-links" aria-label="논문과 프로젝트"><a href="/pages/publications.html">논문 원문 · 연구 원고 →</a><a href="/pages/projects.html">회사 프로젝트 · 내부 도구 →</a></nav></section><!-- research-scope:end -->`);
     html=html.replace(/<!-- research-directory:start -->[\s\S]*?<!-- research-directory:content -->/,'').replace('</div><!-- research-directory:end -->','');
     const sidebar=`<aside class="research-sidebar" aria-label="연구 페이지 목차"><p>연구 탐색</p><nav>${sectionLinks.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}</nav><a class="research-sidebar-all" href="/pages/publications.html">논문 · 자료 →</a></aside>`;
     html=html.replace(/(<main[^>]*>)([\s\S]*?)(<\/main>)/,(_,open,body,close)=>`${open}<!-- research-directory:start --><div class="research-directory-layout">${sidebar}<!-- research-directory:content -->${body}</div><!-- research-directory:end -->${close}`);
@@ -58,7 +58,7 @@ for(const [name,description] of Object.entries(descriptions)) {
   }
   if(name==='projects') html=html.replace(/<p class="kim-lead">[\s\S]*?<\/p>/,'<p class="kim-lead">연구를 실제 업무로 연결하는 XAIKOREA의 프로젝트와 사내 도구, 서비스·제품을 소개합니다.</p><!-- research-scope:start --><nav class="research-follow-links" aria-label="프로젝트 탐색"><a href="#internal-tools">회사 내부 연구·운영 도구 ↓</a><a href="#company-services">운영·공개 서비스 ↓</a><a href="/pages/research.html">연구 분야 · 논문 연구 →</a></nav><!-- research-scope:end -->');
   if(name==='contact') html=html.replace(/(<h2>함께 연구할 주제를 기다립니다\.<\/h2>)<p>[\s\S]*?<\/p>/,`$1<p>${esc(overview.collaboration)}</p>`);
-  if(name==='sources') html=html.replace('<h1>프로필 자료 기준</h1>',`<h1>프로필 자료 기준</h1><!-- research-scope:start --><section class="research-scope" aria-labelledby="research-source-heading"><h2 id="research-source-heading">최신 연구 소개 기준</h2><p>2026년 10월 31일까지 제공된 SDG 7개 주제의 원고, KorTaxArena 영문 개정 49안, Vision 영문 원고 v26, 제조 AI 리뷰 P21과 회의 인텔리전스 논문 원고·심사 화면을 반영했습니다.</p><p>진행 중인 원고는 연구 중으로, 회의 인텔리전스 논문은 ${esc(meetingManuscript.statusLabel)}로 표시합니다. 연구 원고의 공개 범위는 첫 페이지입니다.</p><a href="/pages/publications.html">연구 개요 · 첫 페이지 보기 →</a></section><!-- research-scope:end -->`);
+  if(name==='sources') html=html.replace('<h1>프로필 자료 기준</h1>',`<h1>프로필 자료 기준</h1><!-- research-scope:start --><section class="research-scope" aria-labelledby="research-source-heading"><h2 id="research-source-heading">최신 연구 소개 기준</h2><p>2026년 10월 31일까지 제공된 SDG 7개 주제의 원고, KorTaxArena 영문 개정 49안, Vision 영문 원고 v26, 제조 AI 리뷰 P21과 회의 인텔리전스 논문 원고·심사 화면을 반영했습니다.</p><p>진행 중인 원고는 연구 중으로, 회의 인텔리전스 논문은 ${esc(meetingManuscript.statusLabel)}로 표시합니다. 회의 인텔리전스 논문은 저자 포함 원고 전체 PDF를 열람·다운로드할 수 있으며, 연구 중인 다른 원고는 첫 페이지를 소개합니다.</p><a href="/pages/publications.html">연구 개요 · 원문 및 미리보기 →</a></section><!-- research-scope:end -->`);
   if(!html.includes('/css/research-overview.css')) html=html.replace('</head>','<link rel="stylesheet" href="/css/research-overview.css"></head>');
   fs.writeFileSync(file,html);
 }

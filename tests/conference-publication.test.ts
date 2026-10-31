@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import test from 'node:test';
 
 test('KSCI 2026 conference paper is presented with verified metadata and source images', () => {
@@ -34,7 +35,7 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   assert.match(review, /상태 기준일<\/dt><dd><time datetime="2026-10-31">/u);
   assert.match(review, /AMI test 녹음 16개.*912회.*26\.19초.*83\.52초/u);
   assert.match(review, /산출물 무결성/u);
-  assert.doesNotMatch(review, /dbpiaone|scatId|\.hwp|\.pdf|<iframe|<embed|제34권|RTF|doi\.org|게재 확정|수정후재심/u);
+  assert.doesNotMatch(review, /dbpiaone|scatId|\.hwp|<iframe|<embed|제34권|RTF|doi\.org|게재 확정|수정후재심/u);
   assert.equal((review.match(/<img /gu) || []).length, 1);
   assert.match(review, /jksci-meeting-pipeline-first-page-20261031\.png/u);
   assert.match(review, /저자 포함 원고 · 첫 페이지/u);
@@ -44,5 +45,14 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
   assert.match(research, /href="\/pages\/publications\.html#jksci-meeting-pipeline-review"/u);
   assert.match(research, /한국컴퓨터정보학회논문지 · 3차 총평완료 · 게재가능/u);
+  const pdfUrl = '/assets/publications/jksci-meeting-pipeline-full-text-20261030.pdf';
+  for (const section of [review, research]) {
+    assert.ok(section.includes(`href="${pdfUrl}" target="_blank" rel="noopener"`));
+    assert.ok(section.includes(`href="${pdfUrl}" download="JKSCI_원문_저자포함.pdf"`));
+    assert.match(section, /저자 포함 원고 · PDF · 17쪽/u);
+  }
+  const pdf = fs.readFileSync('public' + pdfUrl);
+  assert.equal(pdf.subarray(0, 5).toString(), '%PDF-');
+  assert.equal(createHash('sha256').update(pdf).digest('hex'), '7c80625bd2219b790257c86de71cb4b243cf1bbb496c12f857ebbaf8e4fa028f');
   assert.doesNotMatch(research + review, /2차 심사 중|3차 심사완료/u);
 });
