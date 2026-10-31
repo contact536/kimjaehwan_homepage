@@ -35,9 +35,9 @@
     {
       "id": "financial-data",
       "title": "금융데이터 · 설명가능성",
-      "label": "SHAPFINCH · 회사 연구 활동",
-      "summary": "D-테스트베드와 한국신용정보원 AI 러닝 플랫폼을 활용해 금융데이터 활용과 예측 모델의 설명가능성·안정성을 연구합니다.",
-      "links": [{"label": "SHAPFINCH 연구", "anchor": "research-shapfinch-data"}]
+      "label": "SHAPFINCH · D-테스트베드 예정 연구",
+      "summary": "금융데이터의 예측가치·설명가능성을 연구하며, D-테스트베드 데이터 수령 후 정보 결합·예측 견고성·목표 타당성·의사결정 지원에 관한 4개 연구를 계획합니다.",
+      "links": [{"label": "SHAPFINCH 연구", "anchor": "research-shapfinch-data"}, {"label": "D-테스트베드 예정 연구", "anchor": "research-d-testbed-plan"}]
     },
     {
       "id": "sdg-transition",

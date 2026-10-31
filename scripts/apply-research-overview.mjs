@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import submissions from '../seed/journal-manuscripts.json' with {type:'json'};
 import {overview,esc,topicCards,scopeLinks,manuscriptLinks,researchDetails} from './research-overview-content.mjs';
+import {plannedResearchSection} from './d-testbed-research-plan-content.mjs';
 
 const date=overview.updatedAt.replaceAll('-','.');
 const meetingManuscript=submissions.manuscripts.find(item=>item.id==='jksci-meeting-pipeline-review');
@@ -13,6 +14,7 @@ const sectionLinks=[
   ['#manufacturing-agent-research','제조 AI 리뷰'],
   ['#journal-under-review','회의 AI · 심사 현황'],
   ['#sdg-research','SDG · 환경·에너지'],
+  ['#research-d-testbed-plan','D-테스트베드 · 예정 연구'],
   ['#research-shapfinch-data','금융데이터 연구'],
   ['#academic-activities','학술대회 · 포럼'],
   ['#company-research-title','회사 연구·기술 동향'],
@@ -46,6 +48,10 @@ for(const [name,description] of Object.entries(descriptions)) {
     html=html.replace('>연구와 실무</h2>','>연구개발 · 제품 경험</h2>');
   }
   if(name==='research') {
+    html=html.replace(/<!-- d-testbed-research-plan:start -->[\s\S]*?<!-- d-testbed-research-plan:end -->/g,'');
+    const planAnchor='<!-- academic-activities:start -->';
+    if(!html.includes(planAnchor)) throw new Error('Missing planned research insertion anchor');
+    html=html.replace(planAnchor,plannedResearchSection()+planAnchor);
     html=html.replace(/<!-- research-topics:start -->[\s\S]*?<!-- research-topics:end -->/g,'');
     html=html.replace(/<nav class="academic-toc"[^>]*>[\s\S]*?<\/nav>/,'');
     html=html.replace('<h1>연구</h1>',`<h1>연구</h1><!-- research-scope:start --><section class="research-overview" id="research-overview" aria-labelledby="research-overview-heading"><h2 id="research-overview-heading">연구 분야 한눈에</h2><p class="kim-lead">${esc(overview.intro)}</p><p class="research-scope-date">연구 현황 기준 <time datetime="${overview.updatedAt}">${date}</time></p>${topicCards()}<nav class="research-follow-links" aria-label="논문과 프로젝트"><a href="/pages/publications.html">논문 원문 · 연구 원고 →</a><a href="/pages/projects.html">회사 프로젝트 · 내부 도구 →</a></nav></section><!-- research-scope:end -->`);
