@@ -29,7 +29,7 @@ test('all live company services are listed with official links and local logos',
   assert.match(research, /href="\/pages\/projects\.html#company-services"/u);
   assert.match(html, /회사 포트폴리오이며 김재환 개인의 단독 개발 실적을 뜻하지 않습니다/u);
   const development = html.match(/<section class="company-services company-development" id="taxia-desk-flow"[\s\S]*?<\/section>/u)![0];
-  assert.match(development, /같은 세무·회계 AI 워크스페이스 프로젝트/u);
+  assert.match(development, /하나의 세무·회계 AI 업무 공간/u);
   assert.match(development, /서로 다른 디자인/u);
   assert.doesNotMatch(development, /서비스 운영 중/u);
   assert.equal(directory.developmentProjects.length, 2);
@@ -44,7 +44,7 @@ test('all live company services are listed with official links and local logos',
     for (const screen of version.screens) assert.ok(fs.existsSync(`public${screen.src}`));
     const answer = searchResearch(version.name);
     assert.match(answer.answer, /개발 중/u);
-    assert.match(answer.answer, /같은 세무·회계 AI 워크스페이스 프로젝트/u);
+    assert.match(answer.answer, /하나의 세무·회계 AI 업무 공간/u);
     assert.ok(answer.sources.some(source=>source.url.endsWith('#service-'+version.id)));
   }
   assert.match(research, /href="\/pages\/projects\.html#taxia-desk-flow"/u);

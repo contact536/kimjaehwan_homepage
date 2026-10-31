@@ -19,7 +19,7 @@ const aiBusinessMembership = academicMemberships.find(entry => entry.id === 'ai-
 const careerEntries = (profile.career ?? []).map(entry => entry.title.includes('AI경영학회') && aiBusinessMembership ? {
   ...entry,
   title: `${aiBusinessMembership.organization} ${aiBusinessMembership.category} · 학술위원회 이사`,
-  description: `${aiBusinessMembership.description} AI 경영과 산학 연계 활동에 참여하고 있습니다.`,
+  description: entry.description,
   url: `/pages/company-network.html#${aiBusinessMembership.id}`,
   linkLabel: '회원자격 보기',
 } : entry.detailUrl ? {...entry, url:entry.detailUrl, linkLabel:entry.detailLabel} : entry);
@@ -47,7 +47,7 @@ const patentEntries = (profile.patentUpdates ?? []).map(item => ({date:item.date
 const manuscriptEntries = submissions.manuscripts.filter(item => ['under_review', 'review_completed'].includes(item.status)).map(item => ({
   date: item.statusAsOf.replaceAll('-', '.'),
   title: `${item.journal} ${item.statusLabel}`,
-  description: `온프레미스 회의 인텔리전스 파이프라인의 산출물 검증·체크포인트 복구 연구입니다. ${item.statusAsOf.replaceAll('-', '.')} 기준 ${item.previousDecision}를 거쳐 ${item.statusLabel} 상태입니다.`,
+  description: `온프레미스 회의 인텔리전스 파이프라인의 산출물 검증과 체크포인트 복구에 관한 연구입니다. ${item.statusAsOf.replaceAll('-', '.')} 기준, 직전 판정은 ‘${item.previousDecision}’이며 현재 ‘${item.statusLabel}’ 상태입니다.`,
   url: `/pages/publications.html#${item.id}`,
   linkLabel: '투고 현황 보기',
 }));
@@ -79,7 +79,7 @@ const file = 'public/index.html';
 const heading = '<h2 class="section-title"><span class="section-number">03.</span> Journey</h2>';
 const introStart = '<!-- home-journey-intro:start -->';
 const introEnd = '<!-- home-journey-intro:end -->';
-const intro = `${introStart}<p class="kim-section-intro">학업과 연구, 경영 활동 및 XAIKOREA의 주요 기술·기업 이력을 시간순으로 정리했습니다.</p>${introEnd}`;
+const intro = `${introStart}<p class="kim-section-intro">학업·연구·경영 활동과 XAIKOREA의 주요 기술·기업 이력을 시간순으로 소개합니다.</p>${introEnd}`;
 let html = removeManagedRows(fs.readFileSync(file, 'utf8'));
 if (!html.includes(heading)) throw new Error('Home Journey heading was not found.');
 if (html.includes(introStart)) html = html.replace(new RegExp(`${introStart}[\\s\\S]*?${introEnd}`), intro);

@@ -7,8 +7,8 @@ test('four patent applications map exact numbers, titles, notices and previews',
   const html = fs.readFileSync('public/pages/patents.html', 'utf8');
   assert.equal(researcher.patents.length, 4);
   assert.equal((html.match(/class="patent-document"/gu) || []).length, 4);
-  assert.match(html, /개인정보 가림본/u);
-  assert.match(html, /회사 차원 지식재산 이력/u);
+  assert.match(html, /개인정보와 민감정보는 가림 처리/u);
+  assert.match(html, /XAIKOREA의 지식재산 이력/u);
   for (const patent of researcher.patents) {
     assert.ok(html.includes(patent.number), patent.number);
     assert.ok(html.includes(patent.title), patent.title);
@@ -25,7 +25,7 @@ test('patent decision is a separate verified record with a public redacted docum
   assert.equal(researcher.patentDecisions.length, 1);
   assert.equal((html.match(/class="patent-document patent-decision"/gu) || []).length, 1);
   assert.match(html, /특허결정 1건 · 출원 4건/u);
-  assert.match(html, /특허결정과 설정등록은 서로 다른 절차/u);
+  assert.match(html, /특허결정과 설정등록은 각각 구분/u);
   for (const decision of researcher.patentDecisions) {
     assert.ok(html.includes(decision.number), decision.number);
     assert.ok(html.includes(decision.title), decision.title);

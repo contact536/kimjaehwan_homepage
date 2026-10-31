@@ -16,7 +16,7 @@ test('Journey separates the three initial patent filings from the later fourth f
     assert.match(html, /10-2026-0057344/u);
     assert.match(html, /2026\.07\.29/u);
     assert.match(html, /하이브리드 검색 기반 AI 추론 시스템 특허결정/u);
-    assert.match(html, /설정등록 절차와 구분/u);
+    assert.match(html, /특허결정과 설정등록 완료는 구분/u);
     assert.doesNotMatch(html, /개인 발명자 여부와 등록 여부/u);
     assert.doesNotMatch(html, /AI 추론 관련 특허 4건 출원<\/h3>/u);
   }

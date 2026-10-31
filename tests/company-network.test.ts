@@ -18,7 +18,7 @@ test('company cooperation records render on the home and detailed page', () => {
   assert.equal((page.match(/class="network-card network-escrow"/gu) || []).length, 1);
   assert.match(home, /Cooperation &amp; network/u);
   assert.match(home, /협력 · 회원 네트워크 전체 보기/u);
-  assert.match(page, /XAIKOREA의 회사 활동/u);
+  assert.match(page, /XAIKOREA의 활동/u);
   for (const item of [...network.trainingPartnerships, ...network.memberships]) {
     assert.ok(page.includes(item.organization), item.organization);
     assert.ok(page.includes(item.category), item.category);

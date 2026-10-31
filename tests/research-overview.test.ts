@@ -40,7 +40,7 @@ test('D-testbed plans remain prospective and separate from submitted manuscripts
   const research=fs.readFileSync('public/pages/research.html','utf8');
   const planned=research.match(/<!-- d-testbed-research-plan:start -->[\s\S]*?<!-- d-testbed-research-plan:end -->/)![0];
   assert.match(planned,/연구 예정 · 데이터 수령 후 착수/);
-  assert.match(planned,/학술지·학술대회는 목표 투고처로 검토 중/);
+  assert.match(planned,/학술지·학술대회는 목표 투고처로 검토하고 있습니다/);
   assert.equal((planned.match(/class="planned-research-card"/g)??[]).length,4);
   assert.equal(research.split(`id="${financialPlan.id}"`).length-1,1);
   assert.match(research,/<aside class="research-sidebar"[\s\S]*?href="#research-d-testbed-plan"/);
@@ -53,7 +53,7 @@ test('D-testbed plans remain prospective and separate from submitted manuscripts
     assert.ok(result.sources.some(source=>source.url.endsWith('#'+paper.id)));
     assert.match(result.answer,/연구 예정 · 데이터 수령 후 착수/);
   }
-  assert.match(planned,/실제 주택 구매를 확인할 자료의 가용성/);
+  assert.match(planned,/실제 주택 구매를 확인할 수 있는 자료가 제공되는지 먼저 점검/);
   assert.match(planned,/분석가 대상 평가를 설계할 예정/);
   assert.doesNotMatch(planned,/게재가능|심사완료|게재 확정|href="[^"]+\.pdf"/);
   assert.ok(searchResearch('D 테스트 베드 예정 연구').sources.some(source=>source.url.endsWith('#research-d-testbed-plan')));

@@ -3,12 +3,12 @@
   "englishName": "Jaehwan Kim",
   "role": "XAIKOREA 대표이사 · AI 연구원",
   "email": "ceo@xaikorea.ai.kr",
-  "intro": "AI의 응답과 분석 결과를 어떤 근거로 신뢰하고 활용할 수 있는지 연구합니다. 근거 기반·도메인 AI에서 출발해 LLM 생성 코드 평가, 온프레미스 회의 AI, 산업용 Vision과 제조 AI, 금융데이터 분석, SDG·환경·에너지 연구로 범위를 넓히고 있습니다.",
+  "intro": "AI 응답과 분석 결과를 신뢰하고 활용하는 데 필요한 근거를 연구합니다. 근거 기반·도메인 특화 AI를 출발점으로, LLM 생성 코드 평가, 온프레미스 회의 AI, 산업용 비전과 제조 AI, 금융데이터 분석, SDG·환경·에너지 분야로 연구를 확장하고 있습니다.",
   "education": [
     {
       "title": "aSSIST AI융합 박사과정",
       "date": "2025.09 입학",
-      "description": "서울과학종합대학원대학교 공학박사 과정 재학. 2026년 5월 재학증명서 및 6월 사실확인서 기준.",
+      "description": "서울과학종합대학원대학교 공학박사 과정에 재학 중입니다. 2026년 5월 재학증명서와 6월 사실확인서를 기준으로 합니다.",
       "source": "재학증명서 · aSSIST 사실확인서",
       "institution": {
         "name": "aSSIST University",
@@ -21,7 +21,7 @@
     {
       "title": "SDG 복수학위 박사과정",
       "date": "2025.09 입학",
-      "description": "aSSIST와 SDG Management School이 공동으로 진행하는 복수학위 박사과정 재학. 2026년 6월 사실확인서 기준.",
+      "description": "aSSIST와 SDG Management School이 공동 운영하는 복수학위 박사과정에 재학 중입니다. 2026년 6월 사실확인서를 기준으로 합니다.",
       "source": "aSSIST 사실확인서",
       "institution": {
         "name": "SDG Management School",
@@ -34,7 +34,7 @@
     {
       "title": "한국외국어대학교 MBA",
       "date": "2025.02 졸업",
-      "description": "한국외국어대학교 경영학 석사(MBA), 경영전공.",
+      "description": "한국외국어대학교에서 경영전공 경영학 석사(MBA) 학위를 취득했습니다.",
       "source": "석사 학위증",
       "institution": {
         "name": "한국외국어대학교",
@@ -49,7 +49,7 @@
     {
       "date": "2026.02–현재",
       "title": "(사)AI경영학회 이사",
-      "description": "2026년 2월부터 AI경영학회 학술위원회 이사로 활동 중이며, AI 경영과 산학 연계 활동에 참여하고 있습니다.",
+      "description": "2026년 2월부터 AI경영학회 학술위원회 이사로 활동하며 AI 경영과 산학 연계 활동에 참여하고 있습니다.",
       "status": "현",
       "url": "https://aiba.or.kr/member",
       "linkLabel": "AI경영학회 임원진",
@@ -59,14 +59,14 @@
       "id": "gaca-esg-2026",
       "date": "2026.09.29",
       "title": "(사)세계맑은공기기후연맹 ESG위원회 전문위원",
-      "description": "2026년 9월 29일 세계맑은공기기후연맹(GACA)의 ESG위원회 전문위원으로 위촉되었습니다. 맑은 공기와 기후환경 개선, ESG 가치 확산 및 지속가능한 미래를 위한 연맹 활동에 참여합니다.",
+      "description": "2026년 9월 29일 세계맑은공기기후연맹(GACA) ESG위원회 전문위원으로 위촉되었습니다. 맑은 공기와 기후환경 개선, ESG 가치 확산과 지속가능한 미래를 위한 연맹 활동에 참여합니다.",
       "status": "현",
       "url": "https://worldairday.org/",
       "linkLabel": "연맹 공식 홈페이지",
       "detailUrl": "/pages/experience.html#cv-gaca-esg-2026",
       "detailLabel": "위촉 활동 보기",
       "pressCoverage": {
-        "summary": "2026년 9월 29일 열린 ESG위원회 출범식과 위원 임명장 수여, 연맹의 주요 활동 방향을 소개한 행사 보도입니다.",
+        "summary": "2026년 9월 29일 ESG위원회 출범식과 위원 임명장 수여 행사, 연맹의 주요 활동 방향을 다룬 보도입니다.",
         "articles": [
           {
             "publisher": "한국시사경제",
@@ -154,7 +154,7 @@
       "id": "location-based-services-filing",
       "date": "2026.10.08",
       "title": "XAIKOREA SAFEFLOW 위치기반서비스사업 신고",
-      "description": "XAIKOREA는 작업자 위치·구역 확인 및 안전관리 서비스 SAFEFLOW를 사업 종류로 하여 위치기반서비스사업 신고를 완료했습니다. 방송미디어통신위원회가 발급한 신고 확인서의 신고번호는 제1692호입니다.",
+      "description": "XAIKOREA는 작업자 위치·구역 확인 및 안전관리 서비스인 SAFEFLOW의 위치기반서비스사업 신고를 완료했습니다. 방송미디어통신위원회가 발급한 신고 확인서의 신고번호는 제1692호입니다.",
       "status": "신고 완료",
       "issuer": "방송미디어통신위원회",
       "certificate": "제1692호",
@@ -186,7 +186,7 @@
       "id": "software-business-confirmation",
       "date": "2026.10.21",
       "title": "XAIKOREA 소프트웨어사업자 일반현황 관리 확인",
-      "description": "XAIKOREA가 한국인공지능소프트웨어산업협회로부터 소프트웨어사업자 일반현황 관리확인서를 발급받았습니다. 컴퓨터관련 서비스, 패키지소프트웨어 개발·공급, 디지털콘텐츠 개발과 데이터베이스 제작·검색서비스 사업분야가 기재되어 있습니다.",
+      "description": "XAIKOREA는 한국인공지능소프트웨어산업협회로부터 소프트웨어사업자 일반현황 관리확인서를 발급받았습니다. 확인서에는 컴퓨터관련 서비스, 패키지소프트웨어 개발·공급, 디지털콘텐츠 개발, 데이터베이스 제작·검색서비스 분야가 기재되어 있습니다.",
       "status": "확인서 발급",
       "issuer": "한국인공지능소프트웨어산업협회",
       "certificate": "B26-341120-001",
@@ -271,7 +271,7 @@
       "id": "cloa",
       "title": "CLOA",
       "subtitle": "Citation-Linked Output Architecture",
-      "description": "세법 조문·예규·판례의 근거와 AI 응답을 연결하는 인용 연계 출력 구조. 하이브리드 검색, 다단계 응답 생성, 응답 근거 검증을 중심으로 연구개발합니다.",
+      "description": "CLOA는 세법 조문·예규·판례를 AI 응답의 근거로 연결하는 인용 연계 출력 구조입니다. 하이브리드 검색, 다단계 응답 생성과 응답 근거 검증을 중심으로 연구개발합니다.",
       "tags": [
         "Grounded AI",
         "RAG",
@@ -284,7 +284,7 @@
       "id": "taxia",
       "title": "TAXiA",
       "subtitle": "AI for Tax & Accounting",
-      "description": "세무사·회계사 사무소를 위한 B2B SaaS 플랫폼. 세무·회계 도메인에 특화된 LLM 추론과 RAG를 실제 업무에 연결하는 제품입니다. 김재환 대표는 제품 기획과 연구개발 방향을 총괄합니다.",
+      "description": "TAXiA는 세무사·회계사 사무소를 위한 B2B SaaS 플랫폼입니다. 세무·회계에 특화된 LLM 추론과 RAG를 실무에 활용할 수 있도록 개발하며, 김재환 대표가 제품 기획과 연구개발 방향을 총괄합니다.",
       "tags": [
         "Domain LLM",
         "B2B SaaS",
@@ -302,7 +302,7 @@
       "id": "kortaxarena",
       "title": "KorTaxArena",
       "subtitle": "LLM 생성 프로그램 · 테스트 선택",
-      "description": "LLM 생성 프로그램의 테스트 선택과 오류 발견을 다루는 탐색 연구입니다. 최신 영문 개정 49안은 18개 합성 산술 과제와 6개 모델 구성의 생성 시도 540건을 바탕으로 추가 테스트 구성 방식과 정답 판정 기준을 비교합니다. 연구 중인 원고의 첫 페이지를 논문·자료 페이지에서 소개합니다.",
+      "description": "LLM 생성 프로그램의 테스트 선택과 오류 발견을 다루는 탐색적 연구입니다. 영문 개정 49안에서는 18개 합성 산술 과제와 6개 모델 구성에서 수행한 생성 시도 540건을 바탕으로 추가 테스트 구성 방식과 정답 판정 기준을 비교합니다. 연구 중인 원고의 첫 페이지는 논문·자료 페이지에서 확인할 수 있습니다.",
       "tags": [
         "Test Selection",
         "Generated Programs",
@@ -361,7 +361,7 @@
     {
       "date": "2026.07.29",
       "title": "하이브리드 검색 기반 AI 추론 시스템 특허결정",
-      "description": "출원번호 10-2026-0057344에 대해 지식재산처 특허결정을 받았습니다. 설정등록 절차와 구분해 표기합니다.",
+      "description": "지식재산처로부터 출원번호 10-2026-0057344에 대한 특허결정을 받았습니다. 특허결정과 설정등록 완료는 구분해 표시합니다.",
       "url": "/pages/patents.html#patent-decision-1020260057344",
       "linkLabel": "특허결정서 보기"
     },
@@ -382,7 +382,7 @@
     {
       "date": "2025.11.06",
       "title": "XAIKOREA 대표이사 겸 연구원 취임",
-      "description": "대표이사로 경영·사업 전략을 총괄하고, AI 연구원으로 CLOA와 세무·회계 AI 연구개발 및 제품 방향을 이끌고 있습니다.",
+      "description": "대표이사로서 경영·사업 전략을 총괄하며, AI 연구원으로서 CLOA 개발, 세무·회계 AI 연구개발과 제품 전략을 이끌고 있습니다.",
       "url": "https://www.xaikorea.ai.kr/about",
       "linkLabel": "회사 소개 보기"
     },
@@ -417,7 +417,7 @@
         "id": "baemin-startup-square",
         "organization": "배민스타트업스퀘어",
         "category": "공식 입주 스타트업 소개 · 핀테크",
-        "description": "XAIKOREA가 우아한형제들의 배민스타트업스퀘어 공식 입주 스타트업 소개에 등재되어 있습니다. 핀테크 분야에서 외식업 사장님의 세무 증빙 업무를 지원하는 근거 기반 AI 워크프로세스를 소개합니다.",
+        "description": "XAIKOREA는 우아한형제들이 운영하는 배민스타트업스퀘어의 공식 입주 스타트업으로 소개되어 있습니다. 핀테크 분야에서 음식점 운영자의 세무 증빙 업무를 지원하는 근거 기반 AI 업무 절차를 소개합니다.",
         "sourceUrl": "https://startup.woowahan.com/about/startups/0/20",
         "facts": [
           {
@@ -450,7 +450,7 @@
         "title": "특허 출원·등록 지원 바우처 협약 체결",
         "organization": "특허 출원·등록 지원",
         "category": "2026년 특허출원·등록비용 바우처",
-        "description": "XAIKOREA는 특허 출원·등록 업무 지원을 위한 바우처 협약을 체결했습니다. 변리사 매칭과 출원·등록 절차 지원을 통해 지식재산 확보를 추진합니다.",
+        "description": "XAIKOREA는 특허 출원·등록을 지원하는 바우처 협약을 체결했습니다. 변리사 매칭과 출원·등록 절차 지원을 통해 지식재산 확보를 추진합니다.",
         "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-voucher-program",
         "facts": [
           {
@@ -477,7 +477,7 @@
         "title": "IP 나래 프로그램 참여 서류 작성",
         "organization": "IP 나래 프로그램",
         "category": "2026년 지식재산 지원사업 참여 절차",
-        "description": "XAIKOREA는 IP 나래 프로그램 참여를 위한 서약·동의 서류를 작성했습니다. 신청 기술에 대한 이해를 바탕으로 신규 지식재산 창출과 특허 출원을 준비합니다.",
+        "description": "XAIKOREA는 IP 나래 프로그램 참여에 필요한 서약·동의 서류를 작성했습니다. 신청 기술을 바탕으로 새로운 지식재산을 창출하고 특허 출원을 준비합니다.",
         "sourceUrl": "https://www.xaikorea.ai.kr/about#ip-narae-2026",
         "facts": [
           {
@@ -504,7 +504,7 @@
         "title": "D-테스트베드 데이터 연구 참여 계약 완료",
         "organization": "D-테스트베드 참여",
         "category": "2026년 하반기 데이터 연구",
-        "description": "XAIKOREA는 SHAPFINCH의 D-테스트베드 참여를 위한 가명정보 처리위탁 계약과 이용자 보안서약을 완료했습니다. 코스콤이 데이터 보관·관리와 분석환경 운영을 담당하며, 승인된 연구 목적으로 데이터를 활용하고 재식별을 금지합니다. 분석 결과물은 반출 적정성 심의를 거칩니다.",
+        "description": "XAIKOREA는 SHAPFINCH의 D-테스트베드 참여를 위한 가명정보 처리위탁 계약을 체결하고 이용자 보안서약을 완료했습니다. 코스콤이 데이터 보관·관리와 분석환경 운영을 담당합니다. 데이터는 승인된 연구 목적으로만 활용하며, 재식별을 금지하고 분석 결과물은 반출 적정성 심의를 거칩니다.",
         "sourceUrl": "https://www.xaikorea.ai.kr/about#d-testbed-2026",
         "facts": [
           {
@@ -535,7 +535,7 @@
         "title": "SHAPFINCH 한국신용정보원 AI 러닝 플랫폼 이용계약·보안서약",
         "organization": "한국신용정보원 AI 러닝 플랫폼",
         "category": "SHAPFINCH 금융데이터 연구",
-        "description": "XAIKOREA는 한국신용정보원 AI 러닝 플랫폼 이용계약·보안서약을 바탕으로 SHAPFINCH의 금융 분석 고도화 연구를 추진합니다. 금융·보험정보의 활용 가능성과 예측 모델의 설명가능성·안정성을 검증하며, 폐쇄형 원격분석환경과 승인된 결과물의 반출 절차를 따릅니다.",
+        "description": "XAIKOREA는 한국신용정보원 AI 러닝 플랫폼 이용계약과 보안서약에 따라 SHAPFINCH 금융 분석 연구를 추진합니다. 금융·보험정보의 활용 가능성과 예측 모델의 설명가능성·안정성을 검증하며, 폐쇄형 원격 분석환경에서 연구하고 승인 절차를 거쳐 결과물을 반출합니다.",
         "sourceUrl": "https://www.xaikorea.ai.kr/about#credit-ai-learning-platform",
         "facts": [
           {
@@ -571,7 +571,7 @@
         "category": "온프레미스 음성 AI 회의록 · PoC 협업",
         "description": "경기창조경제혁신센터가 주관하는 PoC 트랙에서 호반건설과 XAIKOREA가 협업 사업화 지원 협약을 체결했습니다. 조직 내부에서 회의 음성을 처리하는 온프레미스 AI 회의록 프로그램을 개발합니다.",
         "projectName": "DECIVOX · Hoban AI Voice Workspace",
-        "projectDescription": "호반건설 PoC를 위한 온디바이스·온프레미스 AI 회의록입니다. 녹음·전사·화자 분리부터 AI 요약과 회의록 작성까지 연결합니다.",
+        "projectDescription": "호반건설 PoC를 위한 온디바이스·온프레미스 AI 회의록 서비스입니다. 녹음·전사·화자 분리, AI 요약과 회의록 작성을 지원합니다.",
         "projectUrl": "/pages/projects.html#hoban-voice-poc",
         "sourceUrl": "https://www.xaikorea.ai.kr/work#hoban-voice-poc",
         "facts": [
@@ -591,7 +591,7 @@
         "title": "핵심기술 모니터링 지원기업 선정",
         "organization": "핵심기술 모니터링",
         "category": "2026년 지원기업 선정",
-        "description": "XAIKOREA가 핵심기술 모니터링 지원사업의 지원기업으로 선정됐습니다. 전문 수행기관과 기술 정의를 마친 뒤 모니터링을 수행하는 사업입니다.",
+        "description": "XAIKOREA가 핵심기술 모니터링 지원사업의 지원기업으로 선정되었습니다. 전문 수행기관과 모니터링 대상 기술을 정의한 후 모니터링을 진행합니다.",
         "facts": [
           {"label": "운영기관", "value": "대·중소기업·농어업협력재단"},
           {"label": "수행기관", "value": "한국특허기술진흥원"},
@@ -619,7 +619,7 @@
         "id": "gbsa-ai-training-center",
         "organization": "경기도경제과학진흥원",
         "category": "AI 특화 공동훈련센터",
-        "description": "국가인적자원개발컨소시엄 협약을 통해 직무분석과 교육훈련 수요를 반영한 과정 개발·운영, 재직자의 직무역량 향상과 채용예정자 양성을 협력 범위로 정했습니다.",
+        "description": "국가인적자원개발컨소시엄 협약을 통해 직무분석과 교육훈련 수요에 기반한 과정 개발·운영, 재직자 직무역량 향상과 채용예정자 양성에 협력합니다.",
         "facts": [
           {
             "label": "지원사업",
@@ -639,7 +639,7 @@
         "id": "tta-consortium",
         "organization": "한국정보통신기술협회",
         "category": "국가인적자원개발컨소시엄",
-        "description": "재직자 교육 수요를 반영한 훈련과정 개발·운영과 직무능력 향상을 위한 협력 내용을 담고 있습니다.",
+        "description": "재직자의 교육 수요를 반영한 훈련과정 개발·운영과 직무능력 향상을 위한 협약입니다.",
         "facts": [
           {
             "label": "협력 분야",
@@ -655,7 +655,7 @@
         "id": "seoul-central-training",
         "organization": "서울특별시 기술교육원 중부캠퍼스",
         "category": "지역·산업 맞춤형 인력양성",
-        "description": "현장의 교육 수요를 훈련과정에 반영하고, 재직자 역량 향상과 수료생의 취업을 지원하는 협력 범위입니다.",
+        "description": "현장의 교육 수요를 훈련과정에 반영하고, 재직자의 역량 향상과 수료생의 취업 지원에 협력합니다.",
         "facts": [
           {
             "label": "협력 분야",
@@ -671,7 +671,7 @@
         "id": "skku-consortium",
         "organization": "성균관대학교 산학협력단",
         "category": "국가인적자원개발컨소시엄",
-        "description": "재직자와 채용예정자를 위한 교육훈련 수요 조사, 과정 개발·운영 등 인적자원개발을 위한 협약입니다.",
+        "description": "재직자와 채용예정자의 교육훈련 수요를 조사하고, 과정 개발·운영을 통해 인적자원개발에 협력하는 협약입니다.",
         "facts": [
           {
             "label": "협력 분야",
@@ -687,7 +687,7 @@
         "id": "assortrock-ai-campus",
         "organization": "어소트락평생교육원",
         "category": "K-디지털 트레이닝 AI 캠퍼스",
-        "description": "AI 산업 실무인재 양성을 위해 훈련과정 설계, 프로젝트 지도, 멘토링과 취업 지원을 협력 범위로 정했습니다.",
+        "description": "AI 분야 실무인재 양성을 위해 훈련과정 설계, 프로젝트 지도, 멘토링과 취업 지원에 협력합니다.",
         "facts": [
           {
             "label": "협력 분야",
@@ -709,7 +709,7 @@
         "id": "korean-ai-association",
         "organization": "한국인공지능협회",
         "category": "무료 회원",
-        "description": "한국인공지능협회 회원증에 기재된 XAIKOREA의 회원 자격과 기간입니다.",
+        "description": "회원증을 기준으로 확인한 XAIKOREA의 한국인공지능협회 회원자격과 가입 기간입니다.",
         "facts": [
           {
             "label": "회원 기간",
@@ -721,7 +721,7 @@
         "id": "kova",
         "organization": "벤처기업협회",
         "category": "정회원",
-        "description": "협회 정관에 따른 XAIKOREA의 정회원 이력입니다.",
+        "description": "협회 정관에 따른 XAIKOREA의 벤처기업협회 정회원 이력입니다.",
         "facts": [
           {
             "label": "회원 기간",
@@ -733,7 +733,7 @@
         "id": "koita",
         "organization": "한국산업기술진흥협회",
         "category": "회원사 · KOITA",
-        "description": "회원증과 회원사 확인서로 확인한 XAIKOREA의 한국산업기술진흥협회 회원 이력입니다.",
+        "description": "회원증과 회원사 확인서를 기준으로 확인한 XAIKOREA의 한국산업기술진흥협회 회원 이력입니다.",
         "facts": [
           {
             "label": "회원증 발급",
@@ -750,7 +750,7 @@
       "id": "technology-escrow",
       "title": "보안형 회의 AI 기술자료 임치",
       "technology": "엣지 AI 기반 보안형 온프레미스 회의록 자동작성 디바이스 및 회의 인텔리전스 파이프라인",
-      "description": "개발 기술의 보호를 위한 임치계약을 체결하고, 회의록 자동작성 장치와 회의 인텔리전스 처리 흐름에 관한 기술자료를 대·중소기업·농어업협력재단에 임치했습니다.",
+      "description": "개발 기술을 보호하기 위한 임치계약을 체결하고, 회의록 자동작성 장치와 회의 인텔리전스 처리 과정에 관한 기술자료를 대·중소기업·농어업협력재단에 임치했습니다.",
       "facts": [
         {
           "label": "임치기관",
@@ -831,7 +831,7 @@
       "koreanName": "MONKRAG",
       "category": "온프레미스 RAG 통합 서비스",
       "status": "사내 전용 · 외부 주소 없음",
-      "summary": "온프레미스 환경에서 내부자료를 찾고 검색하며, 학습과 RAG 구축까지 연결하는 통합 서비스입니다.",
+      "summary": "온프레미스 환경에서 내부 자료 검색, 모델 학습과 RAG 구축을 통합 지원하는 서비스입니다.",
       "description": "외부로 내부자료를 보내지 않고 문서 수집과 권한 관리, 근거 검색, 지식 구성, 모델 학습과 RAG 운영을 하나의 흐름으로 관리합니다.",
       "features": [
         "문서 반입과 컬렉션·권한 관리",
@@ -870,7 +870,7 @@
       "koreanName": "랩토메이트",
       "category": "서적 스캔 문서 재생성 서비스",
       "status": "사내 전용 · 외부 주소 없음",
-      "summary": "서적 스캔이미지를 인식·검수·교정해 정확한 문서파일로 재생성하는 서비스입니다.",
+      "summary": "서적의 스캔 이미지를 인식·검수·교정해 정확한 문서 파일로 재생성하는 서비스입니다.",
       "description": "스캔된 서적의 페이지 구조와 글자를 복원하고 원본과 대조해 오류를 교정한 뒤, 편집 가능한 문서파일로 저장하는 과정을 지원합니다.",
       "features": [
         "서적 PDF·스캔이미지 불러오기",
@@ -902,7 +902,7 @@
       "koreanName": "아울메이트",
       "category": "랩토메이트 정확도 향상 모델 학습 서비스",
       "status": "사내 전용 · 외부 주소 없음",
-      "summary": "랩토메이트의 서적 인식과 문서 재생성 정확도를 높이기 위한 학습 데이터를 만들고 모델을 학습하는 서비스입니다.",
+      "summary": "랩토메이트의 서적 인식과 문서 재생성 정확도를 높이기 위해 학습 데이터를 제작하고 모델을 학습하는 서비스입니다.",
       "description": "스캔이미지와 교정 결과를 학습 데이터로 구성하고, 학습 작업과 결과를 관리해 랩토메이트 인식 모델을 지속적으로 개선합니다.",
       "features": [
         "스캔이미지와 교정 결과 데이터 구성",
@@ -936,7 +936,7 @@
       "category": "RAG·온톨로지 기반 코드 분석",
       "status": "사내 전용 · 외부 주소 없음",
       "inventor": "윤재성 개발자",
-      "summary": "GitHub 저장소의 코드를 RAG와 온톨로지로 분석해 검색·질의하고, 코드 구조와 관계를 탐색하는 사내 연구 서비스입니다.",
+      "summary": "GitHub 저장소의 코드를 RAG와 온톨로지로 분석하는 사내 연구 서비스입니다. 코드 검색·질의와 구조·관계 탐색을 지원합니다.",
       "description": "저장소 코드를 검색 가능한 지식으로 구성하고, RAG 기반 질의와 온톨로지 관계 그래프로 코드의 맥락과 구성요소를 이해하는 데 활용합니다.",
       "features": [
         "GitHub 저장소 코드·문서 수집과 분석",
@@ -976,7 +976,7 @@
       "logo": "/assets/internal-tools/ondam-logo-v1.svg",
       "category": "로컬 데이터 보호·결과 저장",
       "status": "개발 중 · 사내 전용 · 외부 주소 없음",
-      "summary": "CSV·Excel 자료의 보호 방식을 확인하고, 처리 결과와 보고서를 로컬에 저장하는 사내 데이터 보호 도구를 개발하고 있습니다.",
+      "summary": "CSV·Excel 자료의 보호 방식을 확인하고, 처리 결과와 보고서를 로컬에 저장할 수 있는 사내 데이터 보호 도구를 개발하고 있습니다.",
       "description": "D-테스트베드 데이터 연구를 참고해 자료 선택, 보호 방식 확인, 결과 저장의 세 단계로 데이터 보호 작업을 구성합니다. 여러 파일과 Excel 시트에서 처리 대상을 선택하고 원본을 미리 확인하는 로컬 작업 흐름을 개발하고 있습니다.",
       "features": [
         "CSV·Excel 다중 파일과 시트 선택",
@@ -1006,7 +1006,7 @@
       "logo": "/assets/internal-tools/privia-logo-v1.svg",
       "category": "금융 데이터 보호 연구",
       "status": "개발 중 · 사내 전용 · 외부 주소 없음",
-      "summary": "합성데이터 시연과 실제 자료 처리를 구분하고, 개인정보 보호 처리·검토·결과 확인을 연결하는 사내 작업 공간을 개발하고 있습니다.",
+      "summary": "합성데이터 시연과 실제 자료 처리 환경을 구분하고, 개인정보 보호 처리부터 검토·결과 확인까지 지원하는 사내 작업 공간을 개발하고 있습니다.",
       "description": "D-테스트베드의 데이터 보호 원칙을 참고하는 사내 연구 프로젝트입니다. 합성데이터를 이용한 ARX 일반화·OpenDP 통계 시연과 CSV·Excel 자료 등록, 목적·처리안 검토, 결과 확인을 위한 온프레미스 작업 공간을 개발하고 있습니다. 실제 연구 데이터의 이용과 결과물 반출은 해당 사업의 승인 절차에 따릅니다.",
       "features": [
         "합성데이터 시연과 실제 작업 공간 분리",
@@ -1045,7 +1045,7 @@
       "status": "우선심사결정",
       "title": "엣지 기반 보안형 회의 음성 처리 시스템 및 방법",
       "timelineTitle": "XAIKOREA 보안형 회의 음성 처리 특허 우선심사결정",
-      "description": "XAIKOREA는 엣지 기반 보안형 회의 음성 처리 시스템 및 방법을 2026년 10월 22일 출원하고, 같은 날 우선심사를 신청했습니다. 10월 28일 우선심사를 진행하기로 결정되었습니다.",
+      "description": "XAIKOREA는 2026년 10월 22일 엣지 기반 보안형 회의 음성 처리 시스템 및 방법을 출원하고 우선심사를 신청했습니다. 10월 28일 우선심사 진행이 결정되었습니다.",
       "statusNote": "우선심사 진행에 관한 결정으로, 특허결정·설정등록과 구분합니다.",
       "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-priority-10-2026-0204905",
       "processSteps": [
@@ -1091,7 +1091,7 @@
       "status": "분할출원",
       "title": "의미 단위 기반 문서 청크 생성 기능을 갖는 하이브리드 검색 기반 인공지능 추론 시스템",
       "timelineTitle": "XAIKOREA 문서 청크 생성·하이브리드 검색 특허 분할출원",
-      "description": "XAIKOREA는 의미 단위로 문서 청크를 생성하는 기능을 갖춘 하이브리드 검색 기반 AI 추론 시스템의 분할출원서를 공개했습니다. 원출원은 하이브리드 검색 기반 인공지능 추론 시스템(10-2026-0057344)이며, 문서일자는 2026년 10월 23일입니다.",
+      "description": "XAIKOREA는 의미 단위 문서 청크 생성 기능을 갖춘 하이브리드 검색 기반 AI 추론 시스템의 분할출원서를 공개했습니다. 원출원은 하이브리드 검색 기반 인공지능 추론 시스템(10-2026-0057344)이며, 문서일자는 2026년 10월 23일입니다.",
       "statusNote": "분할출원 이력이며, 원출원의 특허결정 이력과 별도로 표시합니다.",
       "sourceUrl": "https://www.xaikorea.ai.kr/about#patent-divisional-20261023",
       "facts": [

@@ -8,7 +8,7 @@ const links = article => `<div class="company-press-links"><a href="${esc(articl
 const cards = articles.map(article => `<article class="company-press-card" id="press-${esc(article.id)}"><p class="company-press-category">${esc(article.category)}</p>${metadata(article)}<h3>${esc(article.title)}</h3><p class="company-press-summary">${esc(article.summary)}</p>${links(article)}</article>`).join('');
 const start = '<!-- company-press:start -->';
 const end = '<!-- company-press:end -->';
-const section = `${start}<section class="company-press" id="company-press" aria-labelledby="company-press-heading"><header><p class="kim-overline">IN THE PRESS</p><h2 id="company-press-heading">언론 속 연구 · 기업 활동</h2><p>보안형 AI 연구 발표부터 서비스 개발, 지식재산과 기업 운영까지. 언론에 소개된 XAIKOREA의 활동과 관련 연구를 함께 살펴봅니다.</p></header><div class="company-press-grid">${cards}</div><footer><a href="${esc(press.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 홈페이지 언론보도 모아보기 ↗</a></footer></section>${end}`;
+const section = `${start}<section class="company-press" id="company-press" aria-labelledby="company-press-heading"><header><p class="kim-overline">IN THE PRESS</p><h2 id="company-press-heading">언론 속 연구 · 기업 활동</h2><p>보안형 AI 연구 발표, 서비스 개발, 지식재산과 기업 운영 등 언론에 소개된 XAIKOREA의 활동을 관련 연구와 함께 살펴봅니다.</p></header><div class="company-press-grid">${cards}</div><footer><a href="${esc(press.sourceUrl)}" target="_blank" rel="noopener noreferrer">회사 홈페이지 언론보도 모아보기 ↗</a></footer></section>${end}`;
 const css = '<link rel="stylesheet" href="/css/company-press.css">';
 const strip = (html, first, last) => html.replace(new RegExp(`${first}[\\s\\S]*?${last}`, 'gu'), '');
 

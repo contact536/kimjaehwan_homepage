@@ -8,7 +8,7 @@ test('current AI Business Association board role is shown with official contact 
   const html = fs.readFileSync('public/pages/experience.html', 'utf8');
   assert.match(html, /2026\.02–현재/u);
   assert.match(html, /\(사\)AI경영학회 이사/u);
-  assert.match(html, /AI경영학회 학술위원회 이사로 활동 중/u);
+  assert.match(html, /AI경영학회 학술위원회 이사로 활동하며/u);
   assert.match(html, /<span class="cv-state">현<\/span>/u);
   assert.match(html, /https:\/\/aiba\.or\.kr\/member/u);
   assert.match(html, /mailto:aiba2023@naver\.com/u);

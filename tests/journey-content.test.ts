@@ -35,7 +35,7 @@ test('home Journey is complete, chronological and uses specific verified descrip
     assert.equal(html.split(`<h3>${title}`).length - 1, 1, title);
     previous = position;
   }
-  assert.match(html, /학업과 연구, 경영 활동/u);
+  assert.match(html, /학업·연구·경영 활동/u);
   assert.match(html, /2026-AI-245/u);
   assert.match(html, /제2026-015호/u);
   assert.match(html, /제2026151302호/u);
@@ -45,9 +45,9 @@ test('home Journey is complete, chronological and uses specific verified descrip
   assert.match(html, /한국회계학회 종신회원입니다/u);
   assert.match(html, /company-network\.html#ksci-lifetime-member/u);
   assert.match(html, /company-network\.html#kaa-lifetime-member/u);
-  assert.match(html, /설정등록 절차와 구분/u);
+  assert.match(html, /특허결정과 설정등록 완료는 구분/u);
   assert.match(html, /대·중소기업·농어업협력재단에 임치/u);
-  assert.match(html, /CLOA와 세무·회계 AI 연구개발/u);
+  assert.match(html, /CLOA 개발, 세무·회계 AI 연구개발/u);
   assert.match(html, /재학 중입니다/u);
   assert.doesNotMatch(html, /회사소개서 기재 기준/u);
   assert.doesNotMatch(html, /<h3>aSSIST · SDG 박사과정 입학<\/h3>/u);

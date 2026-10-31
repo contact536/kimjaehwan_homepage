@@ -17,7 +17,7 @@ test('six internal tools render on Projects only with screenshots and accurate d
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
   assert.doesNotMatch(research, /\/assets\/internal-tools\//u);
   assert.match(projects, /회사 내부 연구·운영 도구/u);
-  assert.match(projects, /모두 사내 전용이며 외부 접속 주소가 없습니다/u);
+  assert.match(projects, /모든 도구는 사내 전용으로 외부 접속 주소를 제공하지 않습니다/u);
   assert.doesNotMatch(projects, /127\.0\.0\.1|localhost|비밀번호/u);
   const analyzer = projects.match(/<article class="internal-tool" id="internal-tool-github-analyzer"[\s\S]*?<\/article>/u)?.[0] ?? '';
   assert.match(analyzer, /발명자<\/span> <strong>윤재성 개발자<\/strong>/u);
@@ -44,7 +44,7 @@ test('six internal tools render on Projects only with screenshots and accurate d
 
 test('research assistant explains each internal tool from curated data', () => {
   assert.match(searchResearch('MONKRAG 내부도구').answer, /근거 질의/u);
-  assert.match(searchResearch('랩토메이트').answer, /정확한 문서파일로 재생성/u);
+  assert.match(searchResearch('랩토메이트').answer, /정확한 문서 파일로 재생성/u);
   assert.match(searchResearch('아울메이트').answer, /랩토메이트.*정확도/u);
   const analyzer = searchResearch('GitHub Analyzer 발명자');
   assert.match(analyzer.answer, /발명자 윤재성 개발자/u);
