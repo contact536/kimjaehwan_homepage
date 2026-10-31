@@ -1,0 +1,31 @@
+/* Small, progressive enhancements; content stays visible without JavaScript. */
+.academic-header { transition:box-shadow 220ms ease, background-color 220ms ease; }
+.academic-header.is-scrolled { box-shadow:0 4px 24px #1820380a; }
+@supports (background:color-mix(in srgb, white, transparent)) {
+  .academic-header.is-scrolled { background:color-mix(in srgb,var(--bg-primary) 94%,transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+}
+.site-scroll-progress { position:fixed; inset:0 0 auto; height:2px; z-index:120; pointer-events:none; }
+.site-scroll-progress>span { display:block; width:100%; height:100%; background:var(--accent); transform:scaleX(0); transform-origin:left; }
+.site-back-top { position:fixed; right:22px; bottom:calc(22px + env(safe-area-inset-bottom,0px)); z-index:80; display:flex; align-items:center; justify-content:center; width:46px; height:46px; padding:0; border:1px solid var(--border); border-radius:50%; background:var(--bg-primary); color:var(--accent); box-shadow:0 4px 18px #18203812; font:inherit; font-size:22px; cursor:pointer; opacity:0; visibility:hidden; translate:0 8px; transition:opacity 180ms ease,translate 180ms ease,visibility 180ms; }
+.site-back-top.is-visible { opacity:1; visibility:visible; translate:0 0; }
+.site-back-top:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+body:has(dialog[open],.internal-tool-screens[open],input:focus,textarea:focus,select:focus) .site-back-top { visibility:hidden; opacity:0; transition:none; }
+.research-sidebar nav a { border-inline-start:2px solid transparent; padding-inline-start:10px; transition:color 180ms ease,background-color 180ms ease,border-color 180ms ease; }
+.research-sidebar nav a[aria-current="location"] { color:var(--accent); font-weight:600; border-inline-start-color:var(--accent); background:var(--bg-secondary); border-radius:0 5px 5px 0; }
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  :is(.research-topic,.company-service-card,.company-product-card,.internal-tool,.planned-research-card,.company-press-card,.academic-activity,.document-card) { transition:border-color 220ms ease,box-shadow 220ms ease,translate 220ms cubic-bezier(.22,.68,.3,1); }
+  :is(.research-topic,.company-service-card,.company-product-card,.internal-tool,.planned-research-card,.company-press-card,.academic-activity,.document-card):hover { border-color:var(--accent); box-shadow:0 8px 24px #1820380b; translate:0 -2px; }
+  :is(.internal-tool,.company-service-card):has(details[open]) { translate:none; }
+  .site-back-top:hover { background:var(--bg-secondary); translate:0 -2px; }
+}
+@media(max-width:600px) { .site-back-top { right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); } }
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto!important; }
+  .site-scroll-progress { display:none; }
+  .academic-header,.site-back-top,.research-sidebar nav a { transition:none; }
+  .site-back-top { translate:none; }
+}
+@media print {
+  .site-scroll-progress,.site-back-top { display:none!important; }
+  [data-motion-reveal] { opacity:1!important; transform:none!important; translate:none!important; }
+}
