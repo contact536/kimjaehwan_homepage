@@ -1,4 +1,7 @@
 /* Small, progressive enhancements; content stays visible without JavaScript. */
+/* Clip sideways movement without creating a second scroll container that
+   prevents sticky navigation and section tracking from following the viewport. */
+@supports (overflow-x:clip) { body { overflow-x:clip; } }
 .academic-header { transition:box-shadow 220ms ease, background-color 220ms ease; }
 .academic-header.is-scrolled { box-shadow:0 4px 24px #1820380a; }
 @supports (background:color-mix(in srgb, white, transparent)) {

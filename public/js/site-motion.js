@@ -74,18 +74,20 @@
   function observeSections() {
     if (reduced.matches || !window.IntersectionObserver || !Element.prototype.animate) return;
     const selectors = [
-      '.hero-content', '.academic-portrait', '.kim-page > .kim-overline', '.kim-page > h1', '.kim-page > .kim-lead',
-      'section > header', 'section > h2', '.container > .section-title',
+      // Animate complete visual units, including their backgrounds and images.
+      // Page titles and individual text nodes do not get separate entrances.
+      '.academic-intro', '.kim-about', '.kim-contact', '.research-scope', '.reading-related',
       '.research-topic', '.kim-row', '.sdg-research-card', '.planned-research-card', '.company-press-card', '.company-research-card',
       '.research-entry', '.internal-tool', '.company-service-card', '.company-product-card', '.academic-activity', '.document-card',
-      '.journal-manuscript > h3', '.sdg-paper > h3', '.reading-entry > h3', '.book-feature > h3'
+      '.journal-manuscript', '.sdg-paper', 'article.reading-entry', '.book-feature', '.conference-publication',
+      '.kim-detail', '.research-manuscripts', '.network-card', '.patent-document', '.cv-timeline > li', '#cv-research',
+      '.research-service-update', '.company-research-milestones'
     ];
     const selected = new Set();
-    for (const candidate of main.querySelectorAll(selectors.join(','))) {
-      if (candidate.closest('details,dialog,form,[hidden]')) continue;
-      let element = candidate;
-      if (element.getBoundingClientRect().height > innerHeight * .9) element = element.querySelector(':scope > header,:scope > h2,:scope > h3');
-      if (!element || [...selected].some(parent => parent.contains(element))) continue;
+    for (const element of main.querySelectorAll(selectors.join(','))) {
+      if (element.closest('details,dialog,form,[hidden]')) continue;
+      // A nested card travels with its selected parent, never a second time.
+      if ([...selected].some(parent => parent.contains(element))) continue;
       selected.add(element);
     }
     observer = new IntersectionObserver(entries => {
@@ -108,7 +110,9 @@
           animation.onfinish = () => { animations.delete(element); animation.cancel(); };
         } catch { /* Unsupported animation must never hide content. */ }
       }
-    }, {threshold:.08, rootMargin:'0px 0px -28px 0px'});
+    // Even a long manuscript card starts as its leading edge enters the view.
+    // A percentage threshold can be unreachable for cards taller than the screen.
+    }, {threshold:0, rootMargin:'0px 0px -28px 0px'});
     for (const element of selected) {
       element.setAttribute('data-motion-reveal', '');
       if (!seen.has(element)) observer.observe(element);
