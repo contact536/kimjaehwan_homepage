@@ -1,0 +1,85 @@
+/* Shared interaction details. Hover never reveals essential text or controls. */
+:root { --interaction-surface:var(--bg-secondary); --interaction-ring:var(--border); }
+@supports (color:color-mix(in srgb, white, black)) {
+  :root { --interaction-surface:color-mix(in srgb,var(--accent) 7%,var(--bg-primary)); --interaction-ring:color-mix(in srgb,var(--accent) 28%,transparent); }
+}
+
+/* Keep the current page visible while another navigation item is explored. */
+#academicMenu>a { position:relative; text-decoration:none; }
+#academicMenu>a[aria-current="page"] { border-bottom-color:transparent; }
+#academicMenu>a::after { content:""; position:absolute; inset:auto 0 -2px; height:2px; background:var(--accent); transform:scaleX(0); transform-origin:left; pointer-events:none; }
+#academicMenu>a[aria-current="page"]::after,#academicMenu>a:focus-visible::after { transform:scaleX(1); }
+#academicMenu>a:focus-visible { color:var(--accent); }
+:is(.research-sidebar nav,.author-info nav,.cv-overview nav) a:focus-visible,
+.academic-tools a:focus-visible,.finder-results a:focus-visible { color:var(--accent); background:var(--interaction-surface); }
+:is(.reading-links,.book-copy nav,.cv-links,.academic-links,.topic-destination,.research-follow-links) a { text-decoration-color:transparent; text-underline-offset:5px; }
+:is(.reading-links,.book-copy nav,.cv-links,.academic-links,.topic-destination,.research-follow-links) a:focus-visible { text-decoration:underline; text-underline-offset:5px; }
+
+/* Controls retain their existing dimensions and labels in either language. */
+:is(.language-switch button,.academic-menu-toggle,.theme-toggle,.company-product-filters button,.manuscript-file-actions>a,.company-service-videos a,.research-inquiry,.internal-tool-close,.cv-photo-close,.paper-preview-dialog button):focus-visible { border-color:var(--accent); box-shadow:0 0 0 3px var(--interaction-ring); }
+:is(.manuscript-file-actions>a,.company-service-videos a,.research-inquiry):focus-visible { background:var(--interaction-surface); }
+main details>summary::marker { color:var(--accent); }
+main details[open]>summary { color:var(--accent); }
+
+/* Images remain complete; document and application previews only gain a frame. */
+:is(.book-cover,.document-cover,.patent-preview,.author-photo):focus-visible { box-shadow:0 8px 26px var(--interaction-ring); }
+:is(.manuscript-preview,.sdg-first-pages,.conference-visuals) figure>a:focus-visible img { box-shadow:0 0 0 2px var(--accent),0 8px 24px var(--interaction-ring); }
+.internal-tool-preview { isolation:isolate; }
+.internal-tool-preview::after { content:""; position:absolute; inset:0; border:2px solid var(--accent); border-radius:inherit; opacity:0; pointer-events:none; }
+.internal-tool-preview:focus-visible::after { opacity:1; }
+.internal-tool-preview:focus-visible>span { background:var(--accent); color:var(--bg-primary); }
+.cv-timeline>li:focus-within::before { box-shadow:0 0 0 5px var(--interaction-ring); }
+.kim-row:focus-within time,.cv-timeline>li:focus-within .cv-date { color:var(--accent); }
+
+@media(prefers-reduced-motion:no-preference) {
+  #academicMenu>a { transition:color 180ms ease; }
+  #academicMenu>a::after { transition:transform 240ms cubic-bezier(.22,1,.36,1); }
+  :is(.reading-links,.book-copy nav,.cv-links,.academic-links,.topic-destination,.research-follow-links) a { transition:color 180ms ease,text-decoration-color 180ms ease; }
+  :is(.research-sidebar nav,.author-info nav,.cv-overview nav) a,.academic-tools a,.finder-results a { transition:color 180ms ease,background-color 180ms ease,translate 180ms ease; }
+  :is(.btn,.language-switch button,.academic-menu-toggle,.theme-toggle,.company-product-filters button,.manuscript-file-actions>a,.company-service-videos a,.research-inquiry,.internal-tool-close,.cv-photo-close,.paper-preview-dialog button) { transition:color 180ms ease,background-color 180ms ease,border-color 180ms ease,box-shadow 220ms ease,translate 220ms ease,scale 120ms ease; }
+  :is(.academic-portrait img,.kim-about .profile-photo,.author-photo,.internal-tool-logo,.company-service-card>header img,.book-cover,.document-cover,.patent-preview,.cv-activity-photo img) { transition:scale 420ms cubic-bezier(.22,1,.36,1),box-shadow 300ms ease,border-color 220ms ease; }
+  :is(.manuscript-preview,.sdg-first-pages,.conference-visuals) figure>a img,.internal-tool-preview::after,.internal-tool-preview>span { transition:box-shadow 220ms ease,opacity 180ms ease,background-color 180ms ease; }
+  .kim-row time,.cv-date { transition:color 180ms ease; }
+  .cv-timeline>li::before { transition:box-shadow 220ms ease,scale 220ms ease; }
+  :is(.btn,.academic-menu-toggle,.language-switch button,.company-product-filters button,.manuscript-file-actions>a,.paper-preview-dialog button):active:not(:disabled) { scale:.98; }
+  :is(.book-cover,.author-photo):focus-visible { scale:1.025; }
+  :is(.document-cover,.patent-preview):focus-visible { scale:1.012; }
+  .academic-tools[open]>div,.page-finder[open]>.finder-panel,
+  .internal-tool-screens[open]>.internal-tool-panel,.cv-photos[open]>.cv-photo-panel,
+  .manuscript-preview[open]>figure,.sdg-preview[open]>.sdg-first-pages { animation:research-panel-in 200ms ease-out; }
+  .paper-preview-dialog[open] { animation:research-dialog-in 180ms ease-out; }
+  .paper-preview-dialog[open]::backdrop { animation:research-backdrop-in 180ms ease-out; }
+  @media(max-width:600px) { #academicMenu:not([hidden]) { animation:research-panel-in 180ms ease-out; } }
+}
+
+@media(hover:hover) and (pointer:fine) {
+  #academicMenu>a:hover { color:var(--accent); }
+  #academicMenu>a:hover::after { transform:scaleX(1); }
+  :is(.research-sidebar nav,.author-info nav,.cv-overview nav) a:hover,.academic-tools a:hover,.finder-results a:hover { color:var(--accent); background:var(--interaction-surface); }
+  :is(.reading-links,.book-copy nav,.cv-links,.academic-links,.topic-destination,.research-follow-links) a:hover { text-decoration:underline; text-underline-offset:5px; }
+  :is(.language-switch button,.academic-menu-toggle,.company-product-filters button):hover:not([aria-pressed="true"]),
+  :is(.manuscript-file-actions>a,.company-service-videos a,.research-inquiry,.internal-tool-close,.cv-photo-close,.paper-preview-dialog button:not(:disabled)):hover { color:var(--accent); background:var(--interaction-surface); border-color:var(--accent); }
+  .btn:hover { box-shadow:0 5px 16px var(--interaction-ring); }
+  main details>summary:hover { color:var(--accent); text-decoration:underline; text-underline-offset:5px; }
+  :is(.academic-portrait img,.kim-about .profile-photo,.author-photo,.book-cover,.document-cover,.patent-preview,.cv-activity-photo img):hover { box-shadow:0 8px 26px var(--interaction-ring); }
+  :is(.manuscript-preview,.sdg-first-pages,.conference-visuals) figure>a:hover img { box-shadow:0 0 0 2px var(--accent),0 8px 24px var(--interaction-ring); }
+  .internal-tool-preview:hover::after { opacity:1; }
+  .internal-tool-preview:hover>span { background:var(--accent); color:var(--bg-primary); }
+  .kim-row:hover time,.cv-timeline>li:hover .cv-date { color:var(--accent); }
+  .cv-timeline>li:hover::before { box-shadow:0 0 0 5px var(--interaction-ring); }
+  @media(prefers-reduced-motion:no-preference) {
+    :is(.academic-portrait img,.kim-about .profile-photo,.author-photo,.book-cover):hover { scale:1.025; }
+    :is(.document-cover,.patent-preview):hover { scale:1.012; }
+    .internal-tool:hover .internal-tool-logo,.company-service-card:hover>header img { scale:1.07; }
+    :is(.research-sidebar nav,.author-info nav,.cv-overview nav) a:hover,.academic-tools a:hover { translate:3px 0; }
+    :is(.btn,.manuscript-file-actions>a,.company-service-videos a,.research-inquiry):hover { translate:0 -2px; }
+    .cv-timeline>li:hover::before { scale:1.15; }
+  }
+}
+@keyframes research-panel-in { from { opacity:.4; translate:0 6px; } to { opacity:1; translate:0 0; } }
+@keyframes research-dialog-in { from { opacity:.5; } to { opacity:1; } }
+@keyframes research-backdrop-in { from { opacity:0; } to { opacity:1; } }
+@media print {
+  #academicMenu>a::after,.internal-tool-preview::after { display:none; }
+  :is(.academic-portrait img,.kim-about .profile-photo,.author-photo,.book-cover,.document-cover,.patent-preview,.internal-tool-logo,.company-service-card>header img,.cv-activity-photo img) { scale:none!important; box-shadow:none!important; }
+}

@@ -7,5 +7,6 @@ for (const file of fs.readdirSync('public', {recursive:true}).filter(file=>file.
   if (!html.includes('class="academic-header"')) continue;
   if (!html.includes('/css/site-motion.css')) html = html.replace('</head>','<link rel="stylesheet" href="/css/site-motion.css"></head>');
   if (!html.includes('/js/site-motion.js')) html = html.replace('</head>','<script defer src="/js/site-motion.js"></script></head>');
+  if (!html.includes('/css/site-interactions.css')) html = html.replace('</head>','<link rel="stylesheet" href="/css/site-interactions.css"></head>');
   fs.writeFileSync(destination,html);
 }
