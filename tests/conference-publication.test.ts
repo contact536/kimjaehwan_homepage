@@ -54,16 +54,16 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   const pdf = fs.readFileSync('public' + pdfUrl);
   assert.equal(pdf.subarray(0, 5).toString(), '%PDF-');
   assert.equal(createHash('sha256').update(pdf).digest('hex'), '7c80625bd2219b790257c86de71cb4b243cf1bbb496c12f857ebbaf8e4fa028f');
-  const englishUrl = '/assets/publications/jksci-meeting-pipeline-english-full-text-20261031.pdf?v=da444f124c55';
+  const englishUrl = '/assets/publications/jksci-meeting-pipeline-english-full-text-20261031.pdf?v=63f11b997c51';
   for (const section of [review, research]) {
     assert.ok(section.includes(`href="${englishUrl}" target="_blank" rel="noopener"`));
-    assert.ok(section.includes(`href="${englishUrl}" download="JKSCI_Manuscript_English_Authors_Polished.pdf"`));
-    assert.match(section, /저자 포함 영문 원고 · PDF · 21쪽/u);
+    assert.ok(section.includes(`href="${englishUrl}" download="JKSCI_Manuscript_English_Authors_Revised.pdf"`));
+    assert.match(section, /저자 포함 영문 원고 · PDF · 22쪽/u);
     assert.match(section, /data-manuscript-language="ko"/u);
     assert.match(section, /data-manuscript-language="en"/u);
   }
   const englishPdf = fs.readFileSync('public' + englishUrl.split('?')[0]);
-  assert.equal(englishPdf.length, 1111131);
-  assert.equal(createHash('sha256').update(englishPdf).digest('hex'), 'da444f124c55939398adda6f62433108a713b148891755777b255d44743a83db');
+  assert.equal(englishPdf.length, 1187544);
+  assert.equal(createHash('sha256').update(englishPdf).digest('hex'), '63f11b997c514a6dfd45bd27e73749173ff49c5b48cfb38b1f7096fd4c65f1e3');
   assert.doesNotMatch(research + review, /2차 심사 중|3차 심사완료/u);
 });
