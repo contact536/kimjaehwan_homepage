@@ -12,7 +12,9 @@
 .manuscript-summary{margin:18px 0;color:var(--text-secondary);font-size:14px;line-height:1.85}
 .manuscript-keywords{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px;padding:0;list-style:none}.manuscript-keywords li{padding:4px 9px;border:1px solid var(--border);border-radius:5px;color:var(--text-secondary);font-size:12px;line-height:1.7}
 .manuscript-permalink{font-size:13px;font-weight:600}
-.manuscript-full-text{margin:20px 0;padding:18px 0;border-top:1px solid var(--border)}
+.manuscript-editions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:20px 0;padding-top:18px;border-top:1px solid var(--border)}
+.manuscript-full-text{min-width:0}
+.manuscript-full-text>h4{margin:0 0 8px;font-size:15px;color:var(--text-primary)}
 .manuscript-full-text>p{margin:0 0 12px;color:var(--text-secondary);font-size:13px;line-height:1.7}
 .manuscript-file-actions{display:flex;flex-wrap:wrap;gap:10px}
 .manuscript-file-actions>a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 15px;border:1px solid var(--accent);border-radius:6px;color:var(--accent);background:var(--bg-primary);font-size:14px;font-weight:600;line-height:1.7;text-decoration:none}
@@ -26,5 +28,5 @@
 .research-manuscript-item h3{margin:14px 0 10px;font-size:19px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
 .research-manuscript-item>p:last-child{margin:0;font-size:12px;color:var(--text-secondary)}
 .journal-manuscripts a:focus-visible,.research-manuscripts a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-@media(max-width:600px){.journal-manuscript,.research-manuscripts{padding:20px}.journal-manuscript dl>div{grid-template-columns:78px minmax(0,1fr);gap:10px;font-size:13px}}
+@media(max-width:600px){.journal-manuscript,.research-manuscripts{padding:20px}.journal-manuscript dl>div{grid-template-columns:78px minmax(0,1fr);gap:10px;font-size:13px}.manuscript-editions{grid-template-columns:minmax(0,1fr)}.manuscript-full-text+.manuscript-full-text{padding-top:18px;border-top:1px solid var(--border)}}
 @media print{.journal-manuscript,.research-manuscripts{break-inside:avoid}.manuscript-permalink{display:none}}

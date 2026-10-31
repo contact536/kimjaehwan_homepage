@@ -21,7 +21,7 @@ export const englishDocuments = [
   ...researcher.career.map(r=>({title:'Career · '+t(r.title),url:'/pages/experience.html#cv-career',text:join(r.date,r.description)})),
   {title:'D-Testbed · Planned financial AI research',url:'/pages/research.html#'+financialPlan.id,text:join(financialPlan.statusLabel,financialPlan.summary,financialPlan.scopeNote)},
   ...financialPlan.papers.map(p=>({title:t(p.title),url:'/pages/research.html#'+p.id,text:join(financialPlan.statusLabel,'Tentative target venue: '+t(p.venue),p.question,p.approach)})),
-  ...submissions.manuscripts.map(m=>({title:m.titleEn,url:'/pages/publications.html#'+m.id,text:join(m.journal,m.statusLabel,'Status as of '+m.statusAsOf,m.summary,m.resultsSummary)})),
+  ...submissions.manuscripts.map(m=>({title:m.titleEn,url:'/pages/publications.html#'+m.id,text:join(m.journal,m.statusLabel,'Status as of '+m.statusAsOf,m.summary,m.resultsSummary,m.englishFullText?'Full-text Korean and English PDFs are available to view and download.':'')})),
   ...[kortax,vision,manufacturing].map(m=>({title:m.title,url:'/pages/publications.html#'+m.id,text:join(m.statusLabel,m.summary,m.approach,'Only the first manuscript page is publicly available.')})),
   {title:'SDG manuscripts in progress',url:'/pages/publications.html#sdg-manuscripts',text:join(sdg.statusLabel,...sdg.manuscripts.map(m=>m.shortTitle),'Seven research topics; eight first-page previews including two KIS versions.')},
   ...sdg.manuscripts.map(m=>({title:t(m.title),url:'/pages/publications.html#'+m.id,text:join(sdg.statusLabel,m.summary,m.approach)})),
