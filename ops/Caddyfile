@@ -12,6 +12,11 @@ kimjaehwan.com {
     -Server
   }
 
+  # Revalidate the shared menu, translations and styles after deployments.
+  # Original documents, images, fonts and API cache policies are unaffected.
+  @site_ui path / /index.html /pages/* /css/* /js/* /locales/*
+  header @site_ui Cache-Control "no-cache"
+
   encode zstd gzip
   reverse_proxy 127.0.0.1:4317 {
     # Caddy owns this value; the loopback-only application uses it for

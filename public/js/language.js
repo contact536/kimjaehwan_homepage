@@ -22,8 +22,9 @@
     if (!value || value.startsWith('#')) return value;
     const url = new URL(value, location.href);
     if (url.origin !== location.origin || !(url.pathname === '/' || /^\/pages\/.*\.html$/.test(url.pathname) || url.pathname === '/index.html')) return value;
-    if (language === 'en') url.searchParams.set('lang', 'en');
-    else url.searchParams.delete('lang');
+    // Keep an explicit Korean choice even when storage still contains English
+    // (for example, a shared ?lang=ko link opened in an English browser session).
+    url.searchParams.set('lang', language);
     return url.pathname + url.search + url.hash;
   }
   function translatedSource(current, record) {
