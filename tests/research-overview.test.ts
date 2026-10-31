@@ -18,7 +18,7 @@ test('current research map connects all areas to live sections and retains first
     }
   }
   const index=publications.match(/<nav class="manuscript-index"[\s\S]*?<\/nav>/)![0];
-  assert.match(index,/3차 심사완료/);
+  assert.match(index,/3차 총평완료 · 게재가능/);
   for(const [,anchor] of index.matchAll(/href="#([^"]+)"/g))assert.ok(publications.includes(`id="${anchor}"`));
   const previews=[...publications.matchAll(/<details class="(?:manuscript-preview|sdg-preview)"[\s\S]*?<\/details>/g)];
   assert.equal(previews.length,11);

@@ -1,7 +1,9 @@
 import fs from 'node:fs';
+import submissions from '../seed/journal-manuscripts.json' with {type:'json'};
 import {overview,esc,topicCards,scopeLinks,manuscriptLinks,researchDetails} from './research-overview-content.mjs';
 
 const date=overview.updatedAt.replaceAll('-','.');
+const meetingManuscript=submissions.manuscripts.find(item=>item.id==='jksci-meeting-pipeline-review');
 const summary='AI의 근거와 검증을 중심으로 소프트웨어·산업 현장·금융데이터·지속가능한 전환을 연구합니다.';
 const sectionLinks=[
   ['#research-overview','연구 분야 한눈에'],
@@ -56,7 +58,7 @@ for(const [name,description] of Object.entries(descriptions)) {
   }
   if(name==='projects') html=html.replace(/<p class="kim-lead">[\s\S]*?<\/p>/,'<p class="kim-lead">연구를 실제 업무로 연결하는 XAIKOREA의 프로젝트와 사내 도구, 서비스·제품을 소개합니다.</p><!-- research-scope:start --><nav class="research-follow-links" aria-label="프로젝트 탐색"><a href="#internal-tools">회사 내부 연구·운영 도구 ↓</a><a href="#company-services">운영·공개 서비스 ↓</a><a href="/pages/research.html">연구 분야 · 논문 연구 →</a></nav><!-- research-scope:end -->');
   if(name==='contact') html=html.replace(/(<h2>함께 연구할 주제를 기다립니다\.<\/h2>)<p>[\s\S]*?<\/p>/,`$1<p>${esc(overview.collaboration)}</p>`);
-  if(name==='sources') html=html.replace('<h1>프로필 자료 기준</h1>',`<h1>프로필 자료 기준</h1><!-- research-scope:start --><section class="research-scope" aria-labelledby="research-source-heading"><h2 id="research-source-heading">최신 연구 소개 기준</h2><p>2026년 10월 31일까지 제공된 SDG 7개 주제의 원고, KorTaxArena 영문 개정 49안, Vision 영문 원고 v26, 제조 AI 리뷰 P21과 회의 인텔리전스 논문 원고·심사 화면을 반영했습니다.</p><p>진행 중인 원고는 연구 중으로, 회의 인텔리전스 논문은 3차 심사완료로 표시합니다. 연구 원고의 공개 범위는 첫 페이지입니다.</p><a href="/pages/publications.html">연구 개요 · 첫 페이지 보기 →</a></section><!-- research-scope:end -->`);
+  if(name==='sources') html=html.replace('<h1>프로필 자료 기준</h1>',`<h1>프로필 자료 기준</h1><!-- research-scope:start --><section class="research-scope" aria-labelledby="research-source-heading"><h2 id="research-source-heading">최신 연구 소개 기준</h2><p>2026년 10월 31일까지 제공된 SDG 7개 주제의 원고, KorTaxArena 영문 개정 49안, Vision 영문 원고 v26, 제조 AI 리뷰 P21과 회의 인텔리전스 논문 원고·심사 화면을 반영했습니다.</p><p>진행 중인 원고는 연구 중으로, 회의 인텔리전스 논문은 ${esc(meetingManuscript.statusLabel)}로 표시합니다. 연구 원고의 공개 범위는 첫 페이지입니다.</p><a href="/pages/publications.html">연구 개요 · 첫 페이지 보기 →</a></section><!-- research-scope:end -->`);
   if(!html.includes('/css/research-overview.css')) html=html.replace('</head>','<link rel="stylesheet" href="/css/research-overview.css"></head>');
   fs.writeFileSync(file,html);
 }

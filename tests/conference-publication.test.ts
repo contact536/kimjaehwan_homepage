@@ -29,9 +29,9 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   const review = html.match(/<article class="journal-manuscript" id="jksci-meeting-pipeline-review"[\s\S]*?<\/article>/u)?.[0] ?? '';
   assert.match(review, /건설기업을 위한 보안형 온프레미스 회의 인텔리전스 파이프라인의 설계 및 개념검증\(PoC\)/u);
   assert.match(review, /한국컴퓨터정보학회논문지/u);
-  assert.match(review, /3차 심사완료/u);
+  assert.match(review, /3차 총평완료 · 게재가능/u);
   assert.match(review, /2차 수정 후 게재/u);
-  assert.match(review, /상태 기준일<\/dt><dd><time datetime="2026-10-30">/u);
+  assert.match(review, /상태 기준일<\/dt><dd><time datetime="2026-10-31">/u);
   assert.match(review, /AMI test 녹음 16개.*912회.*26\.19초.*83\.52초/u);
   assert.match(review, /산출물 무결성/u);
   assert.doesNotMatch(review, /dbpiaone|scatId|\.hwp|\.pdf|<iframe|<embed|제34권|RTF|doi\.org|게재 확정|수정후재심/u);
@@ -43,6 +43,6 @@ test('KSCI 2026 conference paper is presented with verified metadata and source 
   assert.ok(html.indexOf('id="jksci-meeting-pipeline-review"') < html.indexOf('id="ksci-2026-edge-ai-paper"'));
   const research = fs.readFileSync('public/pages/research.html', 'utf8');
   assert.match(research, /href="\/pages\/publications\.html#jksci-meeting-pipeline-review"/u);
-  assert.match(research, /한국컴퓨터정보학회논문지 · 3차 심사완료/u);
-  assert.doesNotMatch(research + review, /2차 심사 중/u);
+  assert.match(research, /한국컴퓨터정보학회논문지 · 3차 총평완료 · 게재가능/u);
+  assert.doesNotMatch(research + review, /2차 심사 중|3차 심사완료/u);
 });
